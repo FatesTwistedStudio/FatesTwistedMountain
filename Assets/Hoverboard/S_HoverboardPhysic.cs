@@ -1,39 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class S_HoverboardPhysic : MonoBehaviour
 {
-    Rigidbody hb;
+    Rigidbody rb;
     public float horizontalTippingAlert;
     public float verticalTippingAlert;
 
-    public float multiplier;
+    [Header ("Movement")]
+    public float Height;
+    public float jumpForce;
     public float moveForce, turnTorque;
 
+    [Header ("Anchors")]
     public Transform[] anchors = new Transform[4];
     RaycastHit[] hits = new RaycastHit[4];
 
+    private bool inAir;
+    private Vector3 airVelocity;
+    private float gravity = -9.81f;
+    [SerializeField]
+    private float gravityMultiplyer;
+    public float minRotX;
+    public float minRotY;
+    public float minRotZ;
+    public float maxRotX;
+    public float maxRotY;
+    public float maxRotZ;
+
     void Start()
     {
-        hb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
+
+    void Update()
+    {
+        Debug.Log(inAir);
+        LimitRotation();
+        ApplyGravity();
+    }
+
     void FixedUpdate()
     {
         for (int i = 0; i < 4; i++)
         {
             ApplyForce(anchors[i], hits[i]);
         }
-        hb.AddForce(Input.GetAxis("Vertical") * moveForce * transform.forward);
-        hb.AddTorque(Input.GetAxis("Horizontal") * turnTorque * transform.up);
+        rb.AddForce(Input.GetAxis("Vertical") * moveForce * transform.right, ForceMode.VelocityChange);
+        rb.AddTorque(Input.GetAxis("Horizontal") * turnTorque * transform.up, ForceMode.VelocityChange);
+        
+        if (inAir == false && Input.GetButton("Jump"))
+        {
+            rb.AddForce( transform.up * jumpForce, ForceMode.VelocityChange);      
+        }
+        if (inAir == true)
+        {
+            rb.AddForce(-airVelocity);
+        }    
+
     }
    public void ApplyForce(Transform anchor, RaycastHit hit)
     {
-        if (Physics.Raycast(anchor.position, -anchor.up, out hit))
+        if (Physics.Raycast(anchor.position, -anchor.up, out hit, Height))
         {
             float force = 0;
             force = Mathf.Abs(1 / (hit.point.y - anchor.position.y));
-            hb.AddForceAtPosition(transform.up * force * multiplier, anchor.position, ForceMode.Acceleration);
+            rb.AddForceAtPosition(transform.up * force * Height, anchor.position, ForceMode.Acceleration);
+            inAir = false;
+        }
+        else
+        {
+            inAir = true;
+            
         }
     }
     public void overboardControls()
@@ -54,5 +91,28 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
 
         }
+    }
+
+    private void LimitRotation()
+    {
+        Vector3 playerEulerAngles = gameObject.transform.rotation.eulerAngles;
+
+
+
+        gameObject.transform.rotation = Quaternion.Euler(playerEulerAngles);
+    }
+
+    private void ApplyGravity()
+    {
+        if (inAir)
+        {
+            airVelocity.y += gravity * gravityMultiplyer * Time.deltaTime;
+        }
+        else
+        {
+            airVelocity.y = -1f;
+        }
+
+        
     }
 }
