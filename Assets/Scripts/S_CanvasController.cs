@@ -8,16 +8,23 @@ public class S_CanvasController : MonoBehaviour
     public Image background;
     public TextMeshProUGUI title;
     public Button quit;
-    public Button play;
+    public Button playButton;
+    public S_GameloopController S_GameloopController;
     // Start is called before the first frame update
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
+        if(S_GameloopController.player == null)
+        {
+           playButton.gameObject.SetActive(false);
+        }
+        else { playButton.gameObject.SetActive(true); }
     }
+
 }

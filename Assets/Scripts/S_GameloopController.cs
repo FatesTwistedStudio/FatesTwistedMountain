@@ -8,9 +8,10 @@ public class S_GameloopController : MonoBehaviour
     public float ingameTime;
     public GameObject sceneManager;
     public GameObject player;
-    void Awake()
+
+public void setCharacter(GameObject character)
     {
-        DontDestroyOnLoad(transform.gameObject);
+        player = character;
     }
     // Start is called before the first frame update
     void Start()
