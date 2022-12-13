@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class S_GameloopController : MonoBehaviour
 {
+    public float ingameTime;
     public GameObject sceneManager;
     public GameObject player;
     void Awake()
@@ -27,5 +28,6 @@ public class S_GameloopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ingameTime= Time.time;
     }
 }
