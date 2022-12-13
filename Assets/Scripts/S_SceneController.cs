@@ -13,23 +13,24 @@ public class S_SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+    public void setControllers()
+    {
         if (S_GameloopController == null)
         {
             S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
         }
-        if (pauseMenu == null)
+        if (pauseMenu != null)
         {
-            Debug.LogError("no pause menu connected");
+            pauseMenuControl();
         }
-
     }
-
     // Update is called once per frame
     void Update()
     {
         getSceneName();
-
-        pauseMenuControl();
+        setControllers();
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             isCanvasActive = !isCanvasActive;
@@ -38,7 +39,7 @@ public class S_SceneController : MonoBehaviour
     public void pauseMenuControl()
     {
         pauseMenu.gameObject.SetActive(isCanvasActive);
-        if(isCanvasActive == true)
+        if (isCanvasActive == true)
         {
             Time.timeScale = 0.0f;
         }
