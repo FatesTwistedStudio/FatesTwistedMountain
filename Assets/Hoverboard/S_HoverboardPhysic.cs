@@ -14,6 +14,10 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float turnTorque;
 
     public ParticleSystem sp;
+    public AudioSource snowboardSFX;
+    private bool playedAudio;
+    private bool m_Play;
+
     public float groundRate = 5.0f;
     public float airRate = 0;
 
@@ -31,7 +35,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
     void Update()
@@ -44,6 +48,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             //Debug.Log("Applying Gravity");
 
         }
+
     }
 
     void FixedUpdate()
@@ -60,7 +65,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (inAir == false && Input.GetButton("Jump"))
         {
             rb.AddForce(transform.up * jumpForce, ForceMode.VelocityChange);
-            Debug.LogWarning("Player has pressed Jump");
+            //Debug.LogWarning("Player has pressed Jump");
             inAir = true;
         }
 
@@ -75,6 +80,8 @@ public class S_HoverboardPhysic : MonoBehaviour
             force = Mathf.Abs(1 / (hit.point.y - anchor.position.y));
             rb.AddForceAtPosition(transform.up * force * Height, anchor.position, ForceMode.Acceleration);
             inAir = false;
+
+
             emission.rateOverDistance = groundRate;
             
         }
