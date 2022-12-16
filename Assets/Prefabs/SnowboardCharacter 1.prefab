@@ -519,21 +519,20 @@ MonoBehaviour:
   horizontalTippingAlert: 45
   verticalTippingAlert: 90
   Height: 1
-  jumpForce: 1
+  maxSpeed: 0
   moveForce: 0.4
   turnTorque: 0.2
+  sp: {fileID: 0}
+  snowboardSFX: {fileID: 0}
+  groundRate: 5
+  airRate: 0
   anchors:
   - {fileID: 4610487536954064643}
   - {fileID: 4610487537272839800}
   - {fileID: 4610487537737724894}
   - {fileID: 4610487536337186052}
+  jumpForce: 1
   gravityMultiplyer: 5
-  minRotX: -50
-  minRotY: -360
-  minRotZ: -50
-  maxRotX: 50
-  maxRotY: 360
-  maxRotZ: 50
 --- !u!1 &4610487537737724865
 GameObject:
   m_ObjectHideFlags: 0

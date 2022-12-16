@@ -13,18 +13,22 @@ public class S_CanvasController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
     void Update()
     {
         S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
-        if(S_GameloopController.player == null)
+        if (playButton != null)
         {
-           playButton.gameObject.SetActive(false);
+
+            if (S_GameloopController.player == null)
+            {
+                playButton.gameObject.SetActive(false);
+            }
+            else { playButton.gameObject.SetActive(true); }
         }
-        else { playButton.gameObject.SetActive(true); }
     }
 
 }
