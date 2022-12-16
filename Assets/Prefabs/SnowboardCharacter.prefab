@@ -374,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4610487537272839803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.5000019, z: -0.5}
+  m_LocalPosition: {x: 0.49999997, y: -0.5000019, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -519,14 +519,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f250714184f37a409cc4d3e09048927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 0}
   horizontalTippingAlert: 45
   verticalTippingAlert: 90
   Height: 1
   maxSpeed: 0
   moveForce: 1.1
   turnTorque: 0.2
+  horizontalMovement: 0
+  verticalMovement: 0
   sp: {fileID: 9220437871339396431}
   snowboardSFX: {fileID: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
+  distanceToGround: 0
   groundRate: 5
   airRate: 0
   anchors:
@@ -534,7 +541,12 @@ MonoBehaviour:
   - {fileID: 4610487537272839800}
   - {fileID: 4610487537737724894}
   - {fileID: 4610487536337186052}
+  groundDrag: 3
+  groundAngDrag: 3
+  airDrag: 1
+  airAngDrag: 1
   jumpForce: 1
+  maxFallSpeed: 0
   gravityMultiplyer: 50
 --- !u!1 &4610487537737724865
 GameObject:
@@ -560,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4610487537737724865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.5000019, z: 0.5}
+  m_LocalPosition: {x: -0.49999997, y: -0.5000019, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
