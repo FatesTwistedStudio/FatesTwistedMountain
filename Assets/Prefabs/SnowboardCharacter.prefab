@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 4610487537417753886}
   - component: {fileID: 4610487537417753882}
   - component: {fileID: 4610487537417753883}
+  - component: {fileID: 1045405855}
   m_Layer: 0
   m_Name: SnowboardCharacter
   m_TagString: Player
@@ -501,7 +502,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 500
   m_Drag: 3
-  m_AngularDrag: 5
+  m_AngularDrag: 2.53
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -519,23 +520,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f250714184f37a409cc4d3e09048927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 0}
+  orientation: {fileID: 4610487537417753885}
   horizontalTippingAlert: 45
   verticalTippingAlert: 90
   Height: 1
-  maxSpeed: 0
-  moveForce: 1.1
+  maxSpeed: 2
+  moveForce: 0.5
   turnTorque: 0.2
-  horizontalMovement: 0
-  verticalMovement: 0
   sp: {fileID: 9220437871339396431}
-  snowboardSFX: {fileID: 0}
+  snowboardSFX: {fileID: 1045405855}
   Ground:
     serializedVersion: 2
-    m_Bits: 0
-  distanceToGround: 0
+    m_Bits: 64
+  distanceToGround: 1
   groundRate: 5
-  airRate: 0
+  airRate: 0.12
   anchors:
   - {fileID: 4610487536954064643}
   - {fileID: 4610487537272839800}
@@ -543,11 +542,107 @@ MonoBehaviour:
   - {fileID: 4610487536337186052}
   groundDrag: 3
   groundAngDrag: 3
-  airDrag: 1
-  airAngDrag: 1
+  airDrag: 3
+  airAngDrag: 3
   jumpForce: 1
-  maxFallSpeed: 0
-  gravityMultiplyer: 50
+  maxFallSpeed: 50
+  gravityMultiplyer: 5
+--- !u!82 &1045405855
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610487537417753857}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f96f1ebb834bc8b498768a663a2e8d2e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.358
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4610487537737724865
 GameObject:
   m_ObjectHideFlags: 0

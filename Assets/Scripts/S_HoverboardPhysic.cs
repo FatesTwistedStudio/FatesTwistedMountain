@@ -19,6 +19,8 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float horizontalMovement;
     private float verticalMovement;
     Vector3 moveDirection;
+    Vector3 airMoveDirection;
+    private float airMovement;
     
 
 
@@ -172,8 +174,8 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
         else if (!isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveForce * maxSpeed * airRate, ForceMode.VelocityChange);
-            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            rb.AddForce(moveDirection.normalized * moveForce * maxSpeed, ForceMode.VelocityChange);
+            rb.AddTorque(-airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
         }
 
     }
@@ -211,13 +213,16 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
+        airMovement = Input.GetAxisRaw("Vertical");
 
         moveDirection = orientation.forward * -horizontalMovement + orientation.right * verticalMovement;
+        airMoveDirection = orientation.forward * airMovement + orientation.right * verticalMovement;
     }
 
     private void ApplyGravity()
     {
-        rb.AddForce(Physics.gravity, ForceMode.Acceleration );
+        rb.AddForce(Physics.gravity * gravityMultiplyer);
+        //rb.AddForce(Physics.gravity, ForceMode.Acceleration );
         Debug.Log("Applying Gravity");
     }
 
