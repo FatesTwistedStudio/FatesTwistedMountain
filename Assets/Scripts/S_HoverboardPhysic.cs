@@ -16,13 +16,24 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     public float moveForce;
     public float turnTorque;
+
+    [Header("Directions")]
+    [SerializeField]
     private float horizontalMovement;
+    [SerializeField]
     private float verticalMovement;
+    bool turningLeft, turningRight, disableMovement;
+
     Vector3 moveDirection;
     Vector3 airMoveDirection;
     private float airMovement;
-    
 
+    [Header("Friction")]
+    public float frictionCof = 10f;
+    public float coefficientOfFriction = 10f;
+    public static float mass;
+    public float normalForce = mass * 9.8f;
+    public float frictionForce = 10f;
 
     public ParticleSystem sp;
     public AudioSource snowboardSFX;
@@ -87,12 +98,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        disableMovement = false;
     }
 
     void Update()
     {
-        LimitRotation();
+        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         myInput();
         HandleDrag();
 
@@ -100,48 +111,73 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             Jump();
         }
+       
         
-        if (!isGrounded)
-        {
-            ApplyGravity();
-        }
-        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+        
+      
+
     }
 
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
         MovePlayer();
-
-        for (int i = 0; i < 4; i++)
-        {
-            ApplyForce(anchors[i], hits[i]);
-        }
-
-    }
-   public void ApplyForce(Transform anchor, RaycastHit hit)
-    {
+        Overboard();
+        ApplyForce();
         
-
-        var emission = sp.emission;
-
-        if (Physics.Raycast(anchor.position, -anchor.up, out hit, Height))
+        if (!isGrounded)
         {
-            float force = 0;
-            force = Mathf.Abs(1 / (hit.point.y - anchor.position.y));
-            rb.AddForceAtPosition(transform.up * force * Height, anchor.position, ForceMode.Acceleration);
-            inAir = false;
-            emission.rateOverDistance = groundRate;
-            
+            ApplyGravity();
         }
-        else
-        {
-            emission.rateOverDistance = airRate;
-            inAir = true;
-        }
+
     }
-    public void overboardControls()
+
+    private void myInput()
     {
+        if (disableMovement)
+        {
+            horizontalMovement = Input.GetAxisRaw("Horizontal"); // Left/Right is horizontal
+            verticalMovement = Input.GetAxisRaw("Vertical"); //forward and back is veritcal
+            airMovement = Input.GetAxisRaw("Vertical");
+        }
+        if (!isGrounded)
+        {
+            horizontalMovement = Mathf.Abs(horizontalMovement) * -1;
+        }
+
+        moveDirection = orientation.forward * -horizontalMovement + orientation.right * verticalMovement;
+        airMoveDirection = orientation.forward * airMovement + orientation.right * verticalMovement;
+    }
+   public void ApplyForce()
+    {
+        rb.AddForce(transform.forward * moveForce, ForceMode.Impulse);
+        
+        // Get the current forward velocity of the snowboard
+        Vector3 forwardVelocity = transform.forward * rb.velocity.magnitude;
+
+        // Calculate the friction force as a vector that is perpendicular to the forward velocity
+        Vector3 friction = Vector3.Normalize(-forwardVelocity) * frictionForce;
+        /*
+        if (turningLeft)
+        {
+            frictionForce = coefficientOfFriction * normalForce;
+        }
+        else if (turningRight)
+        {
+            frictionForce = -coefficientOfFriction * normalForce;
+        }
+        */
+        rb.AddForce(friction, ForceMode.Force);
+    }
+    public void Overboard()
+    {
+        disableMovement = true;
+        if (transform.up.y < 0)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
+            disableMovement = false;
+        }
+        /*
         if (GetComponent<Transform>().rotation.x > horizontalTippingAlert)
         {
            
@@ -158,24 +194,28 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
 
         }
+        */
     }
 
     private void MovePlayer()
     {
         if (isGrounded && !OnSlope())
         {
-            rb.AddForce(moveDirection.normalized * moveForce * maxSpeed, ForceMode.VelocityChange);
-            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+            //rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            //transform.Rotate(0, horizontalMovement - verticalMovement, 0);
         }
         else if (isGrounded && OnSlope())
         {
-            rb.AddForce(slopeDirection.normalized * moveForce * maxSpeed, ForceMode.VelocityChange);
-            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            rb.AddForce(slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
+           // rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
-        else if (!isGrounded)
+        else if (!isGrounded) //in the air
         {
-            rb.AddForce(moveDirection.normalized * moveForce * maxSpeed, ForceMode.VelocityChange);
-            rb.AddTorque(-airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
+            rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+            rb.AddTorque(airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
+            //transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
 
     }
@@ -183,18 +223,11 @@ public class S_HoverboardPhysic : MonoBehaviour
     private void Jump()
     {
 
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.VelocityChange);
+        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        rb.AddForce(moveDirection.normalized * jumpForce, ForceMode.VelocityChange);
     }
 
-    private void LimitRotation()
-    {
-        Vector3 playerEulerAngles = gameObject.transform.rotation.eulerAngles;
-
-
-
-        gameObject.transform.rotation = Quaternion.Euler(playerEulerAngles);
-    }
     private void HandleDrag()
     {
         if (isGrounded)
@@ -209,21 +242,10 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
     }
 
-    private void myInput()
-    {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        verticalMovement = Input.GetAxisRaw("Vertical");
-        airMovement = Input.GetAxisRaw("Vertical");
-
-        moveDirection = orientation.forward * -horizontalMovement + orientation.right * verticalMovement;
-        airMoveDirection = orientation.forward * airMovement + orientation.right * verticalMovement;
-    }
-
     private void ApplyGravity()
     {
-        rb.AddForce(Physics.gravity * gravityMultiplyer);
-        //rb.AddForce(Physics.gravity, ForceMode.Acceleration );
-        Debug.Log("Applying Gravity");
+        rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
+        //Debug.Log("Applying Gravity");
     }
 
     /* This wasa for debugging ground checksphere
