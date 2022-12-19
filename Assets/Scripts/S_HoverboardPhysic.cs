@@ -202,14 +202,14 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (isGrounded && !OnSlope())
         {
             rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
-            //rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
             //transform.Rotate(0, horizontalMovement - verticalMovement, 0);
         }
         else if (isGrounded && OnSlope())
         {
             rb.AddForce(slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
-           // rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
-            transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
+            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+           // transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
         else if (!isGrounded) //in the air
         {
