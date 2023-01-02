@@ -22,7 +22,6 @@ public class S_CanvasController : MonoBehaviour
         S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
         if (playButton != null)
         {
-
             if (S_GameloopController.player == null)
             {
                 playButton.gameObject.SetActive(false);
