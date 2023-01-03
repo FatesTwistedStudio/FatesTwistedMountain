@@ -1,5 +1,7 @@
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static Unity.VisualScripting.Member;
 
 public class S_HoverboardPhysic : MonoBehaviour
@@ -11,7 +13,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float verticalTippingAlert;
     public float Height;
 
-    [Header ("Movement")]
+    [Header("Movement")]
     public float maxSpeed;
     [SerializeField]
     public float moveForce;
@@ -22,7 +24,9 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float horizontalMovement;
     [SerializeField]
     private float verticalMovement;
-    bool turningLeft, turningRight, disableMovement;
+    [SerializeField]
+    private Vector2 Movement;
+    public bool disableMovement;
 
     Vector3 moveDirection;
     Vector3 airMoveDirection;
@@ -48,7 +52,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float groundRate = 5.0f;
     public float airRate = 0;
 
-    [Header ("Anchors")]
+    [Header("Anchors")]
     public Transform[] anchors = new Transform[4];
     RaycastHit[] hits = new RaycastHit[4];
 
@@ -69,7 +73,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private float gravity = -20;
     private float groundedGravity = -5f;
-    
+
     [SerializeField]
     private float maxFallSpeed;
     [SerializeField]
@@ -111,10 +115,10 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             Jump();
         }
-       
-        
-        
-      
+
+
+
+
 
     }
 
@@ -124,12 +128,17 @@ public class S_HoverboardPhysic : MonoBehaviour
         MovePlayer();
         Overboard();
         ApplyForce();
-        
+
         if (!isGrounded)
         {
             ApplyGravity();
         }
 
+    }
+
+    public void OnMove(InputValue value)
+    {
+        Movement = value.Get<Vector2>();
     }
 
     private void myInput()
@@ -140,13 +149,18 @@ public class S_HoverboardPhysic : MonoBehaviour
             verticalMovement = Input.GetAxisRaw("Vertical"); //forward and back is veritcal
             airMovement = Input.GetAxisRaw("Vertical");
         }
+        else
+        {
+            horizontalMovement = 0; // Left/Right is horizontal
+            verticalMovement = 0; //forward and back is veritcal
+        }
         if (!isGrounded)
         {
             horizontalMovement = Mathf.Abs(horizontalMovement) * -1;
         }
 
-        moveDirection = orientation.forward * -horizontalMovement + orientation.right * verticalMovement;
-        airMoveDirection = orientation.forward * airMovement + orientation.right * verticalMovement;
+        moveDirection = orientation.forward * -Movement.x + orientation.right * Movement.y;
+        airMoveDirection = orientation.forward * -Movement.x + orientation.right * Movement.y;
     }
    public void ApplyForce()
     {
