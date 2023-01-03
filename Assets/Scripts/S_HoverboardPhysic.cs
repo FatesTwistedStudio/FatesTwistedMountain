@@ -2,6 +2,8 @@ using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
 using static Unity.VisualScripting.Member;
 
 public class S_HoverboardPhysic : MonoBehaviour
@@ -16,17 +18,21 @@ public class S_HoverboardPhysic : MonoBehaviour
     [Header("Movement")]
     public float maxSpeed;
     [SerializeField]
+    public float rotSpeed;
+    [SerializeField]
     public float moveForce;
     public float turnTorque;
 
-    [Header("Directions")]
+    [Header("This is for Debug DO NOT TOUCH IN EDITOR")]
     [SerializeField]
     private float horizontalMovement;
     [SerializeField]
     private float verticalMovement;
     [SerializeField]
-    private Vector2 Movement;
-    public bool disableMovement;
+    private Vector2 _Movement;
+    [SerializeField]
+    private Vector2 _Rotation;
+    public bool disableInput;
 
     Vector3 moveDirection;
     Vector3 airMoveDirection;
@@ -97,12 +103,10 @@ public class S_HoverboardPhysic : MonoBehaviour
         return false;
     }
 
-    float _verticalSpeed;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        disableMovement = false;
+        disableInput = false;
     }
 
     void Update()
@@ -110,30 +114,41 @@ public class S_HoverboardPhysic : MonoBehaviour
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         myInput();
         HandleDrag();
-
-        if (Input.GetButton("Jump") && isGrounded)
-        {
-            
-        }
+        HandleRotation();
     }
 
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
         MovePlayer();
+        
         Overboard();
         ApplyForce();
 
         if (!isGrounded)
         {
             ApplyGravity();
+            disableInput = true;
+        }
+        else
+        {
+            disableInput = false;
+
         }
 
     }
 
     public void OnMove(InputValue value)
     {
-        Movement = value.Get<Vector2>();
+            _Movement = value.Get<Vector2>();
+        if (!disableInput)
+        {
+        }
+        else
+        {
+          //  _Movement = new Vector2(0, 0);
+        }
+        
     }
 
     public void OnJump(InputValue value)
@@ -141,27 +156,37 @@ public class S_HoverboardPhysic : MonoBehaviour
         if(isGrounded)
         {
             Jump();
-            Debug.Log("Jumped");
         }
+    }
+
+    public void OnRotate(InputValue value)
+    {
+        if (!disableInput)
+        {
+            
+        }
+
+            _Rotation = value.Get<Vector2>();
+        
+    }
+    private void HandleRotation()
+    {
+        //transform.Rotate(_Rotation.x, _Rotation.y, 0, Space.World);
+       transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_Rotation * 100), Time.deltaTime * 1f);
+
+
     }
 
     private void myInput()
     {
-        if (disableMovement)
-        {
-
-        }
-        else
-        {
-
-        }
+        
         if (!isGrounded)
         {
             horizontalMovement = Mathf.Abs(horizontalMovement) * -1;
         }
 
-        moveDirection = orientation.forward * -Movement.x + orientation.right * Movement.y;
-        airMoveDirection = orientation.forward * -Movement.x + orientation.right * Movement.y;
+        moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
+        airMoveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
     }
    public void ApplyForce()
     {
@@ -177,11 +202,11 @@ public class S_HoverboardPhysic : MonoBehaviour
     }
     public void Overboard()
     {
-        disableMovement = true;
+        disableInput = true;
         if (transform.up.y < 0)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
-            disableMovement = false;
+            disableInput = false;
         }
     }
 
@@ -190,19 +215,19 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (isGrounded && !OnSlope())
         {
             rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
-            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+         //   rb.AddTorque(Movement.x * turnTorque * transform.up, ForceMode.VelocityChange);
             //transform.Rotate(0, horizontalMovement - verticalMovement, 0);
         }
         else if (isGrounded && OnSlope())
         {
             rb.AddForce(slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
-            rb.AddTorque(horizontalMovement * turnTorque * transform.up, ForceMode.VelocityChange);
+          //  rb.AddTorque(Movement.x * turnTorque * transform.up, ForceMode.VelocityChange);
            // transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
         else if (!isGrounded) //in the air
         {
             rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
-            rb.AddTorque(airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
+           // rb.AddTorque(airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
             //transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
 
@@ -213,7 +238,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        rb.AddForce(Movement.normalized * jumpForce, ForceMode.VelocityChange);
+        rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
+        disableInput = true;
     }
 
     private void HandleDrag()
@@ -228,7 +254,9 @@ public class S_HoverboardPhysic : MonoBehaviour
             rb.drag = airDrag;
             rb.angularDrag = airAngDrag;
         }
-    }
+    } 
+
+
 
     private void ApplyGravity()
     {

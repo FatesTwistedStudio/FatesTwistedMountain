@@ -135,7 +135,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1478
+  m_Name: pb_Mesh-35230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -642,12 +642,14 @@ MonoBehaviour:
   verticalTippingAlert: 0
   Height: 0
   maxSpeed: 0
+  rotSpeed: 0
   moveForce: 0
   turnTorque: 0
   horizontalMovement: 0
   verticalMovement: 0
-  Movement: {x: 0, y: 0}
-  disableMovement: 0
+  _Movement: {x: 0, y: 0}
+  _Rotation: {x: 0, y: 0}
+  disableInput: 0
   frictionCof: 10
   coefficientOfFriction: 10
   normalForce: 0
@@ -1336,8 +1338,23 @@ PrefabInstance:
       objectReference: {fileID: 81082745}
     - target: {fileID: 2640921738554418691, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
-      propertyPath: jumpForce
-      value: 20
+      propertyPath: rotSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640921738554418691, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: maxFallSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640921738554418691, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: groundAngDrag
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899263163313021194, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
@@ -1347,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 100
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}

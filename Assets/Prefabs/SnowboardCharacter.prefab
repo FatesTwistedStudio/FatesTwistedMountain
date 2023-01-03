@@ -5015,6 +5015,7 @@ GameObject:
   - component: {fileID: 1973743180640225725}
   - component: {fileID: 1973743180640225727}
   - component: {fileID: 1973743180640225726}
+  - component: {fileID: 5171724099078038125}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -5087,6 +5088,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5171724099078038125
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973743180640225724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: f6efb6b52614b5d4b8d12b736635ec25, type: 3}
 --- !u!1 &1973743180905835473
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,12 +5727,13 @@ MonoBehaviour:
   verticalTippingAlert: 90
   Height: 1
   maxSpeed: 2
+  rotSpeed: 0
   moveForce: 1.5
   turnTorque: 0.2
   horizontalMovement: 0
   verticalMovement: 0
-  Movement: {x: 0, y: 0}
-  disableMovement: 0
+  _Movement: {x: 0, y: 0}
+  disableInput: 0
   frictionCof: 10
   coefficientOfFriction: 10
   normalForce: 0
