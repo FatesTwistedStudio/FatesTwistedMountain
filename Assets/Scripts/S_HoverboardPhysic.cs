@@ -113,13 +113,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         if (Input.GetButton("Jump") && isGrounded)
         {
-            Jump();
+            
         }
-
-
-
-
-
     }
 
     void FixedUpdate()
@@ -141,18 +136,24 @@ public class S_HoverboardPhysic : MonoBehaviour
         Movement = value.Get<Vector2>();
     }
 
+    public void OnJump(InputValue value)
+    {
+        if(isGrounded)
+        {
+            Jump();
+            Debug.Log("Jumped");
+        }
+    }
+
     private void myInput()
     {
         if (disableMovement)
         {
-            horizontalMovement = Input.GetAxisRaw("Horizontal"); // Left/Right is horizontal
-            verticalMovement = Input.GetAxisRaw("Vertical"); //forward and back is veritcal
-            airMovement = Input.GetAxisRaw("Vertical");
+
         }
         else
         {
-            horizontalMovement = 0; // Left/Right is horizontal
-            verticalMovement = 0; //forward and back is veritcal
+
         }
         if (!isGrounded)
         {
@@ -171,16 +172,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         // Calculate the friction force as a vector that is perpendicular to the forward velocity
         Vector3 friction = Vector3.Normalize(-forwardVelocity) * frictionForce;
-        /*
-        if (turningLeft)
-        {
-            frictionForce = coefficientOfFriction * normalForce;
-        }
-        else if (turningRight)
-        {
-            frictionForce = -coefficientOfFriction * normalForce;
-        }
-        */
+
         rb.AddForce(friction, ForceMode.Force);
     }
     public void Overboard()
@@ -191,24 +183,6 @@ public class S_HoverboardPhysic : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
             disableMovement = false;
         }
-        /*
-        if (GetComponent<Transform>().rotation.x > horizontalTippingAlert)
-        {
-           
-        }
-        if (GetComponent<Transform>().rotation.x > -horizontalTippingAlert)
-        {
-
-        }
-        if (GetComponent<Transform>().rotation.z > verticalTippingAlert)
-        {
-
-        }
-        if (GetComponent<Transform>().rotation.z > -verticalTippingAlert)
-        {
-
-        }
-        */
     }
 
     private void MovePlayer()
@@ -239,7 +213,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        rb.AddForce(moveDirection.normalized * jumpForce, ForceMode.VelocityChange);
+        rb.AddForce(Movement.normalized * jumpForce, ForceMode.VelocityChange);
     }
 
     private void HandleDrag()
