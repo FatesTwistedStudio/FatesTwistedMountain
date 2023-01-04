@@ -5586,7 +5586,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 100
+  m_VersionIndex: 130
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5744,7 +5744,7 @@ MonoBehaviour:
   verticalTippingAlert: 90
   Height: 1
   maxSpeed: 2
-  rotSpeed: 0
+  rotSpeed: 2
   moveForce: 1.5
   turnTorque: 0.2
   horizontalMovement: 0
@@ -5774,7 +5774,7 @@ MonoBehaviour:
   airDrag: 2
   airAngDrag: 1
   jumpForce: 20
-  maxFallSpeed: 50
+  maxFallSpeed: 1
   gravityMultiplyer: 1
 --- !u!82 &1866174825309092097
 AudioSource:
