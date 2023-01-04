@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6264568103808181365
+--- !u!1 &1544961815046522272
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6264568103808181364}
-  - component: {fileID: 6264568103808181363}
+  - component: {fileID: 1544961815046522274}
+  - component: {fileID: 1544961815046522275}
   m_Layer: 0
-  m_Name: GameloopController
-  m_TagString: GameController
+  m_Name: AISpawner
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6264568103808181364
+--- !u!4 &1544961815046522274
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264568103808181365}
+  m_GameObject: {fileID: 1544961815046522272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.20672, y: 365.79074, z: 5.435644}
+  m_LocalPosition: {x: 198.07, y: 2.2036896, z: 200.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6264568103808181363
+--- !u!114 &1544961815046522275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264568103808181365}
+  m_GameObject: {fileID: 1544961815046522272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4822891d96c591e48a38d493061345a4, type: 3}
+  m_Script: {fileID: 11500000, guid: eec24ad3c0219a44e992fb8aeafe90fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManager: {fileID: 0}
-  player: {fileID: 0}
-  currentSceneName: 
-  nextScene: 
+  S_CharacterDatabase: {fileID: 4029949850335907090, guid: 1f2b29a79ca2deb4b911b7d1b0a8991f,
+    type: 3}
+  AIcharacter: {fileID: 0}

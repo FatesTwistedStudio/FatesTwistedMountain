@@ -5666,12 +5666,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6792592451275203989}
   - component: {fileID: 2899263163313021194}
+  - component: {fileID: 6044688340883038315}
   - component: {fileID: 2640921738554418691}
   - component: {fileID: 1866174825309092097}
   - component: {fileID: 6102305352661670355}
   - component: {fileID: 680881395}
   m_Layer: 0
-  m_Name: SnowBoardCharacter
+  m_Name: SnowboardCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5710,6 +5711,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6044688340883038315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835430820122090977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd7e94db3b797242be832d864caa0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsEarned: 0
+  numGoldFlags: 0
+  itemHeld: {fileID: 0}
+  camFollowPoint: {fileID: 1973743180926299294}
 --- !u!114 &2640921738554418691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5733,6 +5750,7 @@ MonoBehaviour:
   horizontalMovement: 0
   verticalMovement: 0
   _Movement: {x: 0, y: 0}
+  _Rotation: {x: 0, y: 0}
   disableInput: 0
   frictionCof: 10
   coefficientOfFriction: 10

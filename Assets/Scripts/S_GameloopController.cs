@@ -1,15 +1,16 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class S_GameloopController : MonoBehaviour
 {
+    public GameObject player;
     public float inGameTime;
     public GameObject sceneManager;
-    public GameObject player;
-
-public void setCharacter(GameObject character)
+    public void SetCharacter(GameObject character)
     {
         player = character;
     }
@@ -29,6 +30,7 @@ public void setCharacter(GameObject character)
     // Update is called once per frame
     void Update()
     {
-        inGameTime= Time.time;
+       GameObject spawner = GameObject.FindWithTag("Spawner");
+        inGameTime = Time.time;
     }
 }
