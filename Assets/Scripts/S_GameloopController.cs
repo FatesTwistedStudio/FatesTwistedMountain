@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class S_GameloopController : MonoBehaviour
 {
-    public float ingameTime;
+    public float inGameTime;
     public GameObject sceneManager;
     public GameObject player;
 
@@ -29,6 +29,6 @@ public void setCharacter(GameObject character)
     // Update is called once per frame
     void Update()
     {
-        ingameTime= Time.time;
+        inGameTime= Time.time;
     }
 }
