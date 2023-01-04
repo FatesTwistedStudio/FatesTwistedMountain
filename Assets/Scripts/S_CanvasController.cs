@@ -5,17 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 public class S_CanvasController : MonoBehaviour
 {
-    public Canvas PauseMenu;
+    public GameObject levelSelect;
+    public S_GameloopController S_GameloopController;
     // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+        if (S_GameloopController != null)
+        {
+            if (S_GameloopController.player != null)
+            {
+                levelSelect.SetActive(true);
+            }
+            else
+            {
+                levelSelect.SetActive(false);
+            }
+        }
+    }  
 
 }
