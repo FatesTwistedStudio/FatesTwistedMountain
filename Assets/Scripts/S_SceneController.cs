@@ -9,7 +9,6 @@ public class S_SceneController : MonoBehaviour
     public bool isCanvasActive;
     public S_GameloopController S_GameloopController;
     public string currentSceneName;
-    // Start is called before the first frame update
 
     public void setControllers()
     {
@@ -19,7 +18,6 @@ public class S_SceneController : MonoBehaviour
         }
         if (pauseMenu != null)
         {
-
             pauseMenuControl();
         }
     }

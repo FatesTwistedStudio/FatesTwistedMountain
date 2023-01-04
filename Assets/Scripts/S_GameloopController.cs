@@ -30,7 +30,7 @@ public class S_GameloopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       GameObject spawner = GameObject.FindWithTag("Spawner");
+        GameObject spawner = GameObject.FindWithTag("Spawner");
         inGameTime = Time.time;
     }
 }

@@ -21,13 +21,6 @@ public class S_AISpawner : MonoBehaviour
             int l = S_CharacterDatabase.characterInformation.Length;
             int n = Random.Range(0, l - 1);
             AiCharacter = S_CharacterDatabase.characterInformation[n].characterPrefab;
-
-
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
