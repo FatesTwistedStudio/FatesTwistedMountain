@@ -1109,11 +1109,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 81082745}
-    - target: {fileID: 2640921738554418691, guid: 6fc5a4af690db9840835c0fcf91fb723,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_Mesh
@@ -1122,17 +1117,12 @@ PrefabInstance:
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 331
+      value: 343
       objectReference: {fileID: 0}
     - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_Name
       value: SnowBoardCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792592451275203989, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
@@ -1189,6 +1179,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1116860356, guid: 6fc5a4af690db9840835c0fcf91fb723, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fc5a4af690db9840835c0fcf91fb723, type: 3}

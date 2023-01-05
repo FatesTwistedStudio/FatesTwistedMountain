@@ -11,7 +11,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     Transform orientation;
     Rigidbody rb;
-    
     public float horizontalTippingAlert;
     public float verticalTippingAlert;
     public float Height;
@@ -22,16 +21,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float rotationSpeed;
     [SerializeField]
     public float moveForce;
+    public float bounceForce;
     public float turnTorque;
 
-    [Header("This is for Debug DO NOT TOUCH IN EDITOR")]
-    [SerializeField]
     private float horizontalMovement;
-    [SerializeField]
     private float verticalMovement;
-    [SerializeField]
     private Vector2 _Movement;
-    [SerializeField]
     private Vector2 _Rotation;
     public bool disableInput;
 
@@ -59,9 +54,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float groundRate = 5.0f;
     public float airRate = 0;
 
-    [Header("Anchors")]
-    public Transform[] anchors = new Transform[4];
-    RaycastHit[] hits = new RaycastHit[4];
 
     [Header("Drag")]
     [SerializeField]
@@ -260,6 +252,20 @@ public class S_HoverboardPhysic : MonoBehaviour
         rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
         //Debug.Log("Applying Gravity");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collision normal vector is facing upwards
+        if (collision.contacts[0].normal.y > 0)
+        {
+            // Calculate the bounce force direction
+            Vector3 bounceDirection = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
+            // Apply the bounce force
+            rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+        }
+
+    }
+
 
     /* This wasa for debugging ground checksphere
     private void OnDrawGizmos()
