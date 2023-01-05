@@ -11,6 +11,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     Transform orientation;
     Rigidbody rb;
+    
     public float horizontalTippingAlert;
     public float verticalTippingAlert;
     public float Height;
@@ -18,7 +19,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     [Header("Movement")]
     public float maxSpeed;
     [SerializeField]
-    public float rotSpeed;
+    public float rotationSpeed;
     [SerializeField]
     public float moveForce;
     public float turnTorque;
@@ -119,6 +120,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void FixedUpdate()
     {
+       // rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
         MovePlayer();
         
@@ -133,6 +136,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         else
         {
             disableInput = false;
+
 
         }
 
@@ -161,20 +165,13 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void OnRotate(InputValue value)
     {
-        if (!disableInput)
-        {
-            
-        }
-
-            _Rotation = value.Get<Vector2>();
+        _Rotation = value.Get<Vector2>();
         
     }
     private void HandleRotation()
     {
-        //transform.Rotate(_Rotation.x, _Rotation.y, 0, Space.World);
-       transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_Rotation * 100), Time.deltaTime * 1f);
-
-
+        GetComponent<Transform>().Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        //LOL
     }
 
     private void myInput()
