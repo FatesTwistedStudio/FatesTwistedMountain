@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class S_LeaderBoardTracker : MonoBehaviour
 {
-    public int points;
-    public float time;
-    public GameObject character;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        //create a list for storing character data 
 
-    // Update is called once per frame
-    void Update()
+    public void sortWinners(/*pull in player data*/)
     {
-        
+        //sort based on game mode
+      //if time--
+      //if points --
+
     }
 }

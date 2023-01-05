@@ -13,6 +13,8 @@ public class S_AISpawner : MonoBehaviour
         selectCharacter();
         GameObject spawnCharacter = Instantiate(AiCharacter, transform.position, transform.rotation) as GameObject;
         spawnCharacter.GetComponent<PlayerInput>().enabled = false;
+        spawnCharacter.tag = "Character";
+        //Debug.Log(spawnCharacter.tag);
     }
     public void selectCharacter()
     {
