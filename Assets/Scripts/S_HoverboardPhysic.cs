@@ -112,9 +112,9 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void FixedUpdate()
     {
-       // rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+        // rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+        CheckGround();
 
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
         MovePlayer();
         
         Overboard();
@@ -145,6 +145,11 @@ public class S_HoverboardPhysic : MonoBehaviour
           //  _Movement = new Vector2(0, 0);
         }
         
+    }
+
+    private void CheckGround()
+    {
+        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
     }
 
     public void OnJump(InputValue value)
@@ -250,6 +255,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     private void ApplyGravity()
     {
         rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
+        //rb.velocity += Vector3.down * newGravity * Time.deltaTime;
         //Debug.Log("Applying Gravity");
     }
 
