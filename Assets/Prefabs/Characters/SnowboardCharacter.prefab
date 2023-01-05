@@ -5494,6 +5494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd7e94db3b797242be832d864caa0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timedTrial: 0
   pointsEarned: 0
   numGoldFlags: 0
   itemHeld: {fileID: 0}
@@ -5537,6 +5538,7 @@ MonoBehaviour:
   airDrag: 2
   airAngDrag: 1
   jumpForce: 20
+  _baseGravity: -9.8
   maxFallSpeed: 1
   gravityMultiplyer: 1
 --- !u!82 &1866174825309092097

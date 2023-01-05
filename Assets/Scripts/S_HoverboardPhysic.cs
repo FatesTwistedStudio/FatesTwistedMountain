@@ -70,8 +70,9 @@ public class S_HoverboardPhysic : MonoBehaviour
     private bool isGrounded;
     public float jumpForce;
 
-    private float gravity = -20;
-    private float groundedGravity = -5f;
+    [SerializeField]
+    private float _baseGravity = -20;
+    private float currentTimeInAir = 0f;
 
     [SerializeField]
     private float maxFallSpeed;
@@ -122,13 +123,18 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         if (!isGrounded)
         {
+            currentTimeInAir = Mathf.Clamp(currentTimeInAir, 0f, 2f);
+            currentTimeInAir += Time.deltaTime;
+
             ApplyGravity();
             disableInput = true;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
+
         }
         else
         {
             disableInput = false;
-
+            currentTimeInAir = 0f;
 
         }
 
@@ -254,8 +260,14 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void ApplyGravity()
     {
-        rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
-        //rb.velocity += Vector3.down * newGravity * Time.deltaTime;
+
+        // Calculate the new gravity value
+        float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
+        //Debug.Log(gravity);
+        Debug.Log(currentTimeInAir);
+
+        //rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
+        rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime);
         //Debug.Log("Applying Gravity");
     }
 
