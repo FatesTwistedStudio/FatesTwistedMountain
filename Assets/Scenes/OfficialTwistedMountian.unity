@@ -619,6 +619,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+--- !u!1 &1814592205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 199988716, guid: 0aa027cf18f830649a25c1a6868977bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 82254977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2107450815 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6524915103144053549, guid: 0aa027cf18f830649a25c1a6868977bb,
@@ -875,7 +881,7 @@ PrefabInstance:
     - target: {fileID: 1544961815046522274, guid: e175a0412e4eb0742bb3788847542479,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 202.02
+      value: 194.6
       objectReference: {fileID: 0}
     - target: {fileID: 1544961815046522274, guid: e175a0412e4eb0742bb3788847542479,
         type: 3}
@@ -1000,6 +1006,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2670279582062333997, guid: 4e9f389f79712b84984eb36d12442337,
+        type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1814592205}
+    - target: {fileID: 2670279582062333997, guid: 4e9f389f79712b84984eb36d12442337,
+        type: 3}
+      propertyPath: eventController
+      value: 
+      objectReference: {fileID: 1814592205}
     - target: {fileID: 3048940266496965790, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1013,12 +1029,12 @@ PrefabInstance:
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -346.1
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -255.1
+      value: -93
       objectReference: {fileID: 0}
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}

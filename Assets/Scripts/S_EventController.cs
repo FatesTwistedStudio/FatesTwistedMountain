@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class S_EventController : MonoBehaviour
 {
+    public float timer=0;
     public float currentTime = 0f;
     public float startTime = 5f;
     public TextMeshProUGUI startText;
@@ -22,14 +23,13 @@ public class S_EventController : MonoBehaviour
         currentTime = startTime;
         player = GameObject.FindWithTag("Player");
         charSpawner = GameObject.FindGameObjectsWithTag("Character");
-
-    }
+ }
 
     void Update()
     {
-        if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
+        if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll) 
         {
-            currentTime += 1 * Time.deltaTime;
+            timer += 1 * Time.deltaTime;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -44,7 +44,12 @@ public class S_EventController : MonoBehaviour
             startText.SetText("Go!");
         }
     }
-
+    public void setTimedTrial(GameObject character)
+    {
+        currentTime = timer;
+        character.GetComponent<S_CharInfoHolder>().timedTrial=currentTime;
+   
+    }
     public void playEvent()
     {
         if (currentTime >= 0)

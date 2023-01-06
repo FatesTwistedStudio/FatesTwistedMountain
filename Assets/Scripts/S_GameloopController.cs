@@ -31,6 +31,6 @@ public class S_GameloopController : MonoBehaviour
     void Update()
     {
         GameObject spawner = GameObject.FindWithTag("Spawner");
-        inGameTime = Time.time;
+        inGameTime += 1 * Time.deltaTime;
     }
 }
