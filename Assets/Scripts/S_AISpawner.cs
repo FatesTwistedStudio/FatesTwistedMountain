@@ -7,7 +7,6 @@ public class S_AISpawner : MonoBehaviour
 {
     public S_CharacterDatabase S_CharacterDatabase;
     public GameObject AiCharacter;
-    // Start is called before the first frame update
     void Start()
     {
         selectCharacter();

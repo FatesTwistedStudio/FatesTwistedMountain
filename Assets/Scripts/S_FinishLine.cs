@@ -12,13 +12,14 @@ public class S_FinishLine : MonoBehaviour
     {
         if(other.GetComponent<S_CharInfoHolder>() != null)
         {
+
             S_LeaderBoardTracker.sortWinners(/*send character info*/) ;
         }
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerInput>().enabled=false;
             //play animation
-            Invoke("pullUpLeaderBoard", 3f);
+            Invoke("pullUpLeaderBoard", 1);
         }
         if(other.tag=="Character")
         {

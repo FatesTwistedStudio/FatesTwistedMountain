@@ -279,7 +279,42 @@ PrefabInstance:
     - target: {fileID: 2424777561236060372, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: loadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: S_SceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: LevelSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08a1d5db524784429a895c683f93992, type: 3}
