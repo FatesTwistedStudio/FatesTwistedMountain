@@ -10,6 +10,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 {
     [SerializeField]
     Transform orientation;
+    [SerializeField]
+    public Transform playerModel;
     Rigidbody rb;
     public float horizontalTippingAlert;
     public float verticalTippingAlert;
@@ -20,13 +22,21 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     public float rotationSpeed;
     [SerializeField]
+    public float tiltSpeed;
+    [SerializeField]
     public float moveForce;
     public float bounceForce;
     public float turnTorque;
+    [SerializeField]
+    private AnimationCurve animCurve;
+    [SerializeField]
+    private float snapTime;
 
     private float horizontalMovement;
     private float verticalMovement;
     private Vector2 _Movement;
+    [SerializeField]
+    private Vector2 _AirRot;
     private Vector2 _Rotation;
     public bool disableInput;
 
@@ -100,6 +110,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerModel = GetComponent<Transform>();
         disableInput = false;
     }
 
@@ -108,13 +119,13 @@ public class S_HoverboardPhysic : MonoBehaviour
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         myInput();
         HandleDrag();
-        HandleRotation();
     }
 
     void FixedUpdate()
     {
         // rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
         CheckGround();
+        //SurfaceAlignment();
 
         MovePlayer();
         
@@ -123,26 +134,26 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         if (!isGrounded)
         {
-            currentTimeInAir = Mathf.Clamp(currentTimeInAir, 0f, 2f);
-            currentTimeInAir += Time.deltaTime;
+            HandleAir();
 
-            ApplyGravity();
-            disableInput = true;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
+            playerModel.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
 
         }
-        else
+        else if (isGrounded)
         {
+            HandleRotation();
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
             disableInput = false;
             currentTimeInAir = 0f;
-
         }
 
     }
 
     public void OnMove(InputValue value)
     {
-            _Movement = value.Get<Vector2>();
+        _Movement = value.Get<Vector2>();
         if (!disableInput)
         {
         }
@@ -150,6 +161,16 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
           //  _Movement = new Vector2(0, 0);
         }
+        
+    }
+
+    public void OnAirRotation(InputValue value)
+    {
+        _AirRot = value.Get<Vector2>();
+    }
+    public void OnRotate(InputValue value)
+    {
+        _Rotation = value.Get<Vector2>();
         
     }
 
@@ -166,14 +187,11 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
     }
 
-    public void OnRotate(InputValue value)
-    {
-        _Rotation = value.Get<Vector2>();
-        
-    }
     private void HandleRotation()
     {
         GetComponent<Transform>().Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        playerModel.GetComponent<Transform>().Rotate(Vector3.left * _Rotation.x * tiltSpeed * 0.2f);
+
         //LOL
     }
 
@@ -186,7 +204,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
 
         moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
-        airMoveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
+        airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
     }
    public void ApplyForce()
     {
@@ -214,23 +232,37 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         if (isGrounded && !OnSlope())
         {
-            rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+            rb.AddForce(-moveDirection.normalized * moveForce, ForceMode.VelocityChange);
          //   rb.AddTorque(Movement.x * turnTorque * transform.up, ForceMode.VelocityChange);
             //transform.Rotate(0, horizontalMovement - verticalMovement, 0);
         }
         else if (isGrounded && OnSlope())
         {
-            rb.AddForce(slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
+            rb.AddForce(-slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
           //  rb.AddTorque(Movement.x * turnTorque * transform.up, ForceMode.VelocityChange);
            // transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
         else if (!isGrounded) //in the air
         {
-            rb.AddForce(moveDirection.normalized * moveForce, ForceMode.VelocityChange);
+            rb.AddForce(-moveDirection.normalized * moveForce, ForceMode.VelocityChange);
            // rb.AddTorque(airMovement * turnTorque * transform.forward * airRate, ForceMode.VelocityChange );
             //transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
 
+    }
+      
+    private void SurfaceAlignment()
+    {
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit info = new RaycastHit();
+
+        Quaternion RotationRef = Quaternion.Euler(0, 0, 0);
+
+        if (Physics.Raycast(ray, out info, Ground))
+        {
+            GetComponent<Transform>().transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(Vector3.up, info.normal), animCurve.Evaluate(snapTime));
+            GetComponent<Transform>().transform.rotation = Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z);
+        }
     }
 
     private void Jump()
@@ -260,15 +292,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void ApplyGravity()
     {
-
-        // Calculate the new gravity value
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
-        //Debug.Log(gravity);
-        Debug.Log(currentTimeInAir);
-
-        //rb.AddForce(Vector3.down * -gravity * gravityMultiplyer, ForceMode.Acceleration );
         rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime);
-        //Debug.Log("Applying Gravity");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -282,6 +307,17 @@ public class S_HoverboardPhysic : MonoBehaviour
             rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
         }
 
+    }
+    private void HandleAir()
+    {
+        playerModel.GetComponent<Transform>().Rotate(Vector3.up * _AirRot.x * rotationSpeed * 0.2f);
+        playerModel.GetComponent<Transform>().Rotate(Vector3.left * _AirRot.y * rotationSpeed * 0.2f);
+
+        currentTimeInAir = Mathf.Clamp(currentTimeInAir, 0f, 2.5f);
+        currentTimeInAir += Time.deltaTime;
+
+        ApplyGravity();
+        disableInput = true;
     }
 
 
