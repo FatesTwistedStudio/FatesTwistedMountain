@@ -13,6 +13,9 @@ public class S_AISpawner : MonoBehaviour
         GameObject spawnCharacter = Instantiate(AiCharacter, transform.position, transform.rotation) as GameObject;
         spawnCharacter.GetComponent<PlayerInput>().enabled = false;
         spawnCharacter.tag = "Character";
+        spawnCharacter.GetComponent<S_AiMovement>().enabled = true;
+        //set AI mode
+
         //Debug.Log(spawnCharacter.tag);
     }
     public void selectCharacter()
