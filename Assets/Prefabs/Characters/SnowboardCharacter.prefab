@@ -5474,10 +5474,12 @@ MonoBehaviour:
   orientation: {fileID: 8035796500752396125}
   playerModel: {fileID: 8035796500752396125}
   Height: 1
+  maxSlopeAngle: 45
   maxSpeed: 2
   rotationSpeed: 8
   tiltSpeed: 0.2
   moveForce: 1.5
+  slopeForce: 0
   bounceForce: 4
   turnTorque: 0.2
   animCurve:
@@ -5722,7 +5724,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 1
+  _time: 0.3
 --- !u!1 &8690327793383873036
 GameObject:
   m_ObjectHideFlags: 0

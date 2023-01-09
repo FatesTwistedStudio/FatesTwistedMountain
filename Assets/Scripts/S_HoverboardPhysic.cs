@@ -14,6 +14,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     public Transform playerModel;
     Rigidbody rb;
     public float Height;
+    public float maxSlopeAngle;
 
     [Header("Movement")]
     public float maxSpeed;
@@ -23,6 +24,8 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float tiltSpeed;
     [SerializeField]
     public float moveForce;
+    [SerializeField]
+    public float slopeForce;
     public float bounceForce;
     public float turnTorque;
     [SerializeField]
@@ -91,18 +94,17 @@ public class S_HoverboardPhysic : MonoBehaviour
     RaycastHit slopeHit;
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height / 2 + 0.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f ))
         {
-            if (slopeHit.normal != Vector3.up)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
         }
         return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     void Start()
@@ -116,9 +118,10 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         //transform.rotation = Quaternion.FromToRotation(transform.up, Terrain.normal) * transform.rotation;
 
-        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         myInput();
         HandleDrag();
+
+       // Debug.Log(GetSlopeMoveDirection());
     }
 
     void FixedUpdate()
@@ -191,8 +194,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         GetComponent<Transform>().Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
         playerModel.GetComponent<Transform>().Rotate(Vector3.left * _Rotation.x * tiltSpeed * 0.2f);
-
-        //LOL
     }
 
     private void myInput()
@@ -204,6 +205,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
 
         moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
+       // slopeDirection = (orientation.forward * -_Movement.x * -GetSlopeMoveDirection().x)+ (orientation.right * _Movement.y * -GetSlopeMoveDirection().z);
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
     }
    public void ApplyForce()
@@ -238,7 +240,9 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
         else if (isGrounded && OnSlope())
         {
-            rb.AddForce(-slopeDirection.normalized * moveForce, ForceMode.VelocityChange);
+           rb.AddForce(-moveDirection.normalized  * moveForce, ForceMode.VelocityChange);
+
+           // rb.AddForce(GetSlopeMoveDirection()*slopeForce* 20f,ForceMode.Force);
           //  rb.AddTorque(Movement.x * turnTorque * transform.up, ForceMode.VelocityChange);
            // transform.Rotate(0, -horizontalMovement + verticalMovement, 0);
         }
