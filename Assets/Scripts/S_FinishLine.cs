@@ -11,7 +11,7 @@ public class S_FinishLine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<S_CharInfoHolder>()==true)
+        if (other.GetComponent<S_CharInfoHolder>() == true)
         {
             eventController.GetComponent<S_EventController>().setTimedTrial(other.gameObject);
         }
@@ -20,20 +20,39 @@ public class S_FinishLine : MonoBehaviour
             S_LeaderBoardTracker.firstPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
+            //            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
             //play animation
             Invoke("pullUpLeaderBoard", 1);
-            List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
-            {
-                characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
-            }
+            //List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
+            //{
+            //    characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
+            //}
         }
         if (other.tag == "Character")
         {
             //other.ai script== false
-            List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
+            //List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
+            //{
+            //    characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
+            //}
+            if (S_LeaderBoardTracker.firstPlacePointsText == null)
             {
-                characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
+                S_LeaderBoardTracker.secondPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
+                S_LeaderBoardTracker.secondPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
             }
+            if (S_LeaderBoardTracker.secondPlacePointsText == null)
+            {
+                S_LeaderBoardTracker.thirdPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
+                S_LeaderBoardTracker.thirdPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+            }
+            if (S_LeaderBoardTracker.thirdPlacePointsText == null)
+            {
+                S_LeaderBoardTracker.fourthPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
+                S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+            }
+            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            // other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
         }
     }
     public void pullUpLeaderBoard()

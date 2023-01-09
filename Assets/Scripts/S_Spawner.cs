@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class S_Spawner : MonoBehaviour
 {
     public S_GameloopController S_GameloopController;
-    public GameObject vCam;
     public Camera SnowCam;
     // Start is called before the first frame update
     void Start()
