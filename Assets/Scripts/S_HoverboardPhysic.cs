@@ -13,8 +13,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     public Transform playerModel;
     Rigidbody rb;
-    public float horizontalTippingAlert;
-    public float verticalTippingAlert;
     public float Height;
 
     [Header("Movement")]
@@ -116,6 +114,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void Update()
     {
+        //transform.rotation = Quaternion.FromToRotation(transform.up, Terrain.normal) * transform.rotation;
+
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         myInput();
         HandleDrag();
@@ -293,7 +293,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     private void ApplyGravity()
     {
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
-        rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime);
+        rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime*4);
     }
 
     private void OnCollisionEnter(Collision collision)

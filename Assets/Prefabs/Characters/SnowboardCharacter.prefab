@@ -5400,6 +5400,7 @@ GameObject:
   - component: {fileID: 6102305352661670355}
   - component: {fileID: 7664706978305836734}
   - component: {fileID: 680881395}
+  - component: {fileID: 3889880542585794454}
   m_Layer: 0
   m_Name: SnowboardCharacter
   m_TagString: Character
@@ -5472,8 +5473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 8035796500752396125}
   playerModel: {fileID: 8035796500752396125}
-  horizontalTippingAlert: 45
-  verticalTippingAlert: 90
   Height: 1
   maxSpeed: 2
   rotationSpeed: 8
@@ -5645,7 +5644,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4835430820122090977}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3ce07b61e458f154980406b7cdae3d11, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.64
@@ -5683,6 +5682,47 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3889880542585794454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835430820122090977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220ab5c28f897404394757370927fb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerModel: {fileID: 8035796500752396125}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  anim:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.5223174
+      value: 1.0023587
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _time: 1
 --- !u!1 &8690327793383873036
 GameObject:
   m_ObjectHideFlags: 0
