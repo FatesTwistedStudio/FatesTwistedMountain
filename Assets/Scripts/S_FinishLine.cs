@@ -8,6 +8,11 @@ public class S_FinishLine : MonoBehaviour
     public S_LeaderBoardTracker S_LeaderBoardTracker;
     public GameObject eventController;
     public Canvas leaderboard;
+    public GameObject firstPlace;
+    public GameObject secondPlace;
+    public GameObject thirdPlace;
+    public GameObject fourthPlace;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,17 +22,75 @@ public class S_FinishLine : MonoBehaviour
         }
         if (other.tag == "Player")
         {
-            S_LeaderBoardTracker.firstPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
-            S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
-            //            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
             //play animation
             Invoke("pullUpLeaderBoard", 1);
-            //List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
-            //{
-            //    characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
-            //}
+            if (firstPlace == null)
+            {
+                firstPlace = other.gameObject;
+
+                return;
+            }
+            if (firstPlace != null)
+            {
+                if (secondPlace == null)
+                {
+                    if (other.gameObject != firstPlace)
+                    {
+                        secondPlace = other.gameObject;
+                        return;
+                    }
+                }
+                if (secondPlace != null)
+                {
+                    if (thirdPlace == null)
+                    {
+                        if (other.gameObject != firstPlace)
+                        {
+                            if (other.gameObject != secondPlace)
+                            {
+                                thirdPlace = other.gameObject;
+                                return;
+                            }
+                        }
+                    }
+                    if (thirdPlace != null)
+                    {
+                        if (fourthPlace == null)
+                        {
+                            if (other.gameObject != firstPlace)
+                            {
+                                if (other.gameObject != secondPlace)
+                                {
+                                    if (other.gameObject != thirdPlace)
+                                    {
+                                        fourthPlace = other.gameObject;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        if (fourthPlace != null)
+                        {
+                            if (other.gameObject != firstPlace)
+                            {
+                                if (other.gameObject != secondPlace)
+                                {
+                                    if (other.gameObject != thirdPlace)
+                                    {
+                                        if (other.gameObject != fourthPlace)
+                                        {
+                                            Debug.Log("Game Over");
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
         }
         if (other.tag == "Character")
         {
@@ -36,21 +99,73 @@ public class S_FinishLine : MonoBehaviour
             //{
             //    characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
             //}
-            if (S_LeaderBoardTracker.firstPlacePointsText == null)
+            if (firstPlace == null)
             {
-                S_LeaderBoardTracker.secondPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
-                S_LeaderBoardTracker.secondPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+                firstPlace = other.gameObject;
+
+                return;
             }
-            if (S_LeaderBoardTracker.secondPlacePointsText == null)
+            if (firstPlace != null)
             {
-                S_LeaderBoardTracker.thirdPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
-                S_LeaderBoardTracker.thirdPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+                if (secondPlace == null)
+                {
+                    if (other.gameObject != firstPlace)
+                    {
+                        secondPlace = other.gameObject;
+                        return;
+                    }
+                }
+                if (secondPlace != null)
+                {
+                    if (thirdPlace == null)
+                    {
+                        if (other.gameObject != firstPlace)
+                        {
+                            if (other.gameObject != secondPlace)
+                            {
+                                thirdPlace = other.gameObject;
+                                return;
+                            }
+                        }
+                    }
+                    if (thirdPlace != null)
+                    {
+                        if (fourthPlace == null)
+                        {
+                            if (other.gameObject != firstPlace)
+                            {
+                                if (other.gameObject != secondPlace)
+                                {
+                                    if (other.gameObject != thirdPlace)
+                                    {
+                                        fourthPlace = other.gameObject;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        if (fourthPlace != null)
+                        {
+                            if (other.gameObject != firstPlace)
+                            {
+                                if (other.gameObject != secondPlace)
+                                {
+                                    if (other.gameObject != thirdPlace)
+                                    {
+                                        if (other.gameObject != fourthPlace)
+                                        {
+                                            Debug.Log("Game Over");
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
             }
-            if (S_LeaderBoardTracker.thirdPlacePointsText == null)
-            {
-                S_LeaderBoardTracker.fourthPlacePointsText.SetText("" + other.GetComponent<S_CharInfoHolder>().pointsEarned);
-                S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + other.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
-            }
+
             other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             // other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
         }
@@ -65,6 +180,33 @@ public class S_FinishLine : MonoBehaviour
     }
     public void sortTheWinners()
     {
-
+        if (firstPlace != null)
+        {
+            S_LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.name);
+            S_LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
+            S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        if (secondPlace != null)
+        {
+            S_LeaderBoardTracker.secondPlacePlacementText.SetText("" + secondPlace.name);
+            S_LeaderBoardTracker.secondPlacePointsText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
+            S_LeaderBoardTracker.secondPlaceTimeText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        if (thirdPlace != null)
+        {
+            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("" + thirdPlace.name);
+            S_LeaderBoardTracker.thirdPlacePointsText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
+            S_LeaderBoardTracker.thirdPlaceTimeText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        if (fourthPlace != null)
+        {
+            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("" + fourthPlace.name);
+            S_LeaderBoardTracker.fourthPlacePointsText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
+            S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+    }
+    private void Update()
+    {
+        sortTheWinners();
     }
 }
