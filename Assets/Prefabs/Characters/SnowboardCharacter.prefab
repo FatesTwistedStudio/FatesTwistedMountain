@@ -5471,12 +5471,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f250714184f37a409cc4d3e09048927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 8035796500752396125}
+  orientation: {fileID: 6792592451275203989}
   playerModel: {fileID: 8035796500752396125}
   Height: 1
   maxSlopeAngle: 45
   maxSpeed: 2
   rotationSpeed: 8
+  airRotationSpeed: 5
   tiltSpeed: 0.2
   moveForce: 1.5
   slopeForce: 0
@@ -5649,10 +5650,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 3ce07b61e458f154980406b7cdae3d11, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.64
-  m_Height: 1
+  m_Radius: 0.87
+  m_Height: 3.6714783
   m_Direction: 1
-  m_Center: {x: -0.34, y: 0.49, z: 0}
+  m_Center: {x: -0.53, y: 1.74, z: 0}
 --- !u!114 &680881395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5724,7 +5725,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 0.3
+  _time: 0.25
 --- !u!1 &8690327793383873036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5749,7 +5750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8690327793383873036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
