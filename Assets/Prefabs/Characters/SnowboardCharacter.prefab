@@ -5475,11 +5475,12 @@ MonoBehaviour:
   playerModel: {fileID: 8035796500752396125}
   Height: 1
   maxSlopeAngle: 45
+  velocity: 0.4
   maxSpeed: 2
+  moveForce: 1
+  slowForce: 0
   rotationSpeed: 8
   airRotationSpeed: 5
-  tiltSpeed: 0.2
-  moveForce: 1.5
   slopeForce: 0
   bounceForce: 4
   turnTorque: 0.2
