@@ -69,7 +69,7 @@ public class S_EventController : MonoBehaviour
         if (currentTime < 0)
         {
             startingLine.SetActive(false);
-            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int i = 0; i < charSpawned.Length; i++)
             {
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
