@@ -299,6 +299,21 @@ PrefabInstance:
       propertyPath: eventController
       value: 
       objectReference: {fileID: 1941960953}
+    - target: {fileID: 3048940266496965790, guid: 4e9f389f79712b84984eb36d12442337,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1707218540}
+    - target: {fileID: 3048940266496965790, guid: 4e9f389f79712b84984eb36d12442337,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: loadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048940266496965790, guid: 4e9f389f79712b84984eb36d12442337,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: OfficialTwistedMountian
+      objectReference: {fileID: 0}
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
       propertyPath: m_RootOrder
@@ -1044,6 +1059,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1860099907}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1707218540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6524915103144053549, guid: 0aa027cf18f830649a25c1a6868977bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1526716435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e05171b01b9edc4abdb34f70bbfd6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1860099907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1257,7 +1284,7 @@ PrefabInstance:
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 802
+      value: 805
       objectReference: {fileID: 0}
     - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
