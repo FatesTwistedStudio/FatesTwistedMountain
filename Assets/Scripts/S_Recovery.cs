@@ -34,6 +34,7 @@ public class S_Recovery : MonoBehaviour
             }
             if (transform.rotation.x >= 90)
             {
+                Debug.Log("Lean");
                 recoveryMethod();
             }
             if (transform.rotation.x <= -90)
