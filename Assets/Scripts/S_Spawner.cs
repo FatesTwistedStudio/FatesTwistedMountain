@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 public class S_Spawner : MonoBehaviour
 {
     public S_GameloopController S_GameloopController;
-    public Camera snowCam;
-
+    public Camera SnowCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +18,12 @@ public class S_Spawner : MonoBehaviour
         GameObject spawnCharacter = Instantiate(S_GameloopController.player, transform.position, transform.rotation) as GameObject;
         spawnCharacter.gameObject.GetComponent<PlayerInput>().enabled = true;
         spawnCharacter.tag = "Player";
-        // Debug.Log(spawnCharacter.tag);  Camera mainCamera = Instantiate(snowCam) as Camera;
-       
+       // Debug.Log(spawnCharacter.tag);
+        Camera mainCamera = Instantiate(SnowCam) as Camera;
+        mainCamera.GetComponentInChildren<CinemachineVirtualCamera>().Follow = spawnCharacter.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
+        mainCamera.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = spawnCharacter.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
+
+
     }
 
 }
