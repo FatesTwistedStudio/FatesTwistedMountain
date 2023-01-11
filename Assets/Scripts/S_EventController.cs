@@ -43,7 +43,6 @@ public class S_EventController : MonoBehaviour
         if (isStarted == true)
         {
             playEvent();
-            startingLine.SetActive(false);
         }
         if (currentTime <= 1)
         {
@@ -69,6 +68,7 @@ public class S_EventController : MonoBehaviour
         }
         if (currentTime < 0)
         {
+            startingLine.SetActive(false);
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             for (int i = 0; i < charSpawned.Length; i++)
             {
