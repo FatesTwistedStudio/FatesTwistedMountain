@@ -28,9 +28,7 @@ public class S_Recovery : MonoBehaviour
         {
             if (gameObject.tag == "Player")
             {
-                mainCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
-                mainCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
-
+               
             }
             if (transform.rotation.x >= 90)
             {
