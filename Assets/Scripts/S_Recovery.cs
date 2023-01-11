@@ -6,13 +6,18 @@ using UnityEngine;
 public class S_Recovery : MonoBehaviour
 {
     public Quaternion resetXRotation;
+    public Vector3 resetLocation;
+    
+    public float yDrop;
+
     public Camera mainCam;
     public bool hasStarted;
     public bool needsRecovery;
     // Start is called before the first frame update
     void Start()
     {
-        
+        resetXRotation=transform.rotation;
+        resetLocation.Set(transform.position.x, transform.position.y+yDrop,transform.position.z);
         mainCam = Camera.main;
     }
 
@@ -52,7 +57,7 @@ public class S_Recovery : MonoBehaviour
     }
     public void recoveryMethod()
     {
-        transform.SetPositionAndRotation(transform.position, resetXRotation );
+        transform.SetPositionAndRotation(resetLocation, resetXRotation );
 
     }
 }
