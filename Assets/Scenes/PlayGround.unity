@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-32686
+  m_Name: pb_Mesh-3344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -827,30 +827,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2135184067}
     - target: {fileID: 199988718, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
-      propertyPath: startTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 199988718, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
       propertyPath: startingLine
       value: 
-      objectReference: {fileID: 2135184068}
-    - target: {fileID: 199988718, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
-      propertyPath: charSpawner.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 199988718, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
-      propertyPath: charSpawner.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 199988718, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
-      propertyPath: charSpawner.Array.data[1]
-      value: 
-      objectReference: {fileID: 1548155967}
-    - target: {fileID: 6264568103808181363, guid: 0aa027cf18f830649a25c1a6868977bb,
-        type: 3}
-      propertyPath: snowCam
-      value: 
-      objectReference: {fileID: 676542419}
+      objectReference: {fileID: 1920463269}
     - target: {fileID: 6264568103808181364, guid: 0aa027cf18f830649a25c1a6868977bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -911,16 +890,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameloopController
       objectReference: {fileID: 0}
-    - target: {fileID: 6264568103808181365, guid: 0aa027cf18f830649a25c1a6868977bb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524915103144053549, guid: 0aa027cf18f830649a25c1a6868977bb,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1548113562}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa027cf18f830649a25c1a6868977bb, type: 3}
 --- !u!1001 &1548113561
@@ -1047,18 +1016,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c3ea94d48b6d64e8957e457b93c75e, type: 3}
---- !u!223 &1548113562 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 8733348419193421594, guid: 66c3ea94d48b6d64e8957e457b93c75e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1548113561}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1548155967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1544961815046522272, guid: e175a0412e4eb0742bb3788847542479,
-    type: 3}
-  m_PrefabInstance: {fileID: 1860099907}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1707218540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6524915103144053549, guid: 0aa027cf18f830649a25c1a6868977bb,
@@ -1145,6 +1102,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e175a0412e4eb0742bb3788847542479, type: 3}
+--- !u!1 &1920463269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1039962321341507420, guid: 03e17be28959b8c4e899e5e4070f3d72,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135184066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941960953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 199988716, guid: 0aa027cf18f830649a25c1a6868977bb,
@@ -1243,12 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2135184068 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2013469910077403252, guid: 03e17be28959b8c4e899e5e4070f3d72,
-    type: 3}
-  m_PrefabInstance: {fileID: 2135184066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1973743180333363160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,7 +1241,7 @@ PrefabInstance:
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 805
+      value: 814
       objectReference: {fileID: 0}
     - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
