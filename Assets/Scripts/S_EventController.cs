@@ -21,15 +21,15 @@ public class S_EventController : MonoBehaviour
     {
         startText.SetText("");
         currentTime = startTime;
-        player = GameObject.FindWithTag("Player");
         charSpawned = GameObject.FindGameObjectsWithTag("Character");
     }
 
     void Update()
     {
-        if (player.GetComponent<S_Recovery>() == true)
+        player = GameObject.FindWithTag("Player");
+        if (player.GetComponent<S_Recovery>()==true)
         {
-            player.GetComponent<S_Recovery>().hasStarted = isStarted;
+        player.GetComponent<S_Recovery>().hasStarted = isStarted;
 
         }
         if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
