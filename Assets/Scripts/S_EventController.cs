@@ -46,6 +46,7 @@ public class S_EventController : MonoBehaviour
         }
         if (currentTime <= 1)
         {
+            startingLine.SetActive(false);
             startText.SetText("Go!");
         }
     }
@@ -68,7 +69,6 @@ public class S_EventController : MonoBehaviour
         }
         if (currentTime < 0)
         {
-            startingLine.SetActive(false);
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int i = 0; i < charSpawned.Length; i++)
             {

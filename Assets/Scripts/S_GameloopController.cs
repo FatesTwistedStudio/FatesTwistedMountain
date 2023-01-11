@@ -28,9 +28,9 @@ public class S_GameloopController : MonoBehaviour
             player = GameObject.FindWithTag("Player");
             player.GetComponent<S_CharInfoHolder>().camFollowPoint.tag = "FollowTarget";
         }
-        Camera mainCamera = Instantiate(snowCam) as Camera;
-        snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
-        snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
+        //Camera mainCamera = Instantiate(snowCam) as Camera;
+        //snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
+        //snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
 
     }
 

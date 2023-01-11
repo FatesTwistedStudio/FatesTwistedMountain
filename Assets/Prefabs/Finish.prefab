@@ -145,7 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   S_LeaderBoardTracker: {fileID: 4073437003136802643}
+  eventController: {fileID: 0}
   leaderboard: {fileID: 4826510220602750058}
+  firstPlace: {fileID: 0}
+  secondPlace: {fileID: 0}
+  thirdPlace: {fileID: 0}
+  fourthPlace: {fileID: 0}
 --- !u!65 &10899670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -166,6 +171,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3794152276866671503}
     m_Modifications:
+    - target: {fileID: 2424777560233509881, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777560233509881, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777560322049939, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777560322049939, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2424777561236060368, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
       propertyPath: m_Pivot.x
@@ -280,6 +305,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777561397695665, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777561397695665, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777561774136763, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424777561774136763, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5264070409701961765, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
