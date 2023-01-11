@@ -27,6 +27,7 @@ public class S_EventController : MonoBehaviour
 
     void Update()
     {
+        player.GetComponent<S_Recovery>().hasStarted = isStarted;
         if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll) 
         {
             timer += 1 * Time.deltaTime;
