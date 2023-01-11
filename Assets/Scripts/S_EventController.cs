@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class S_EventController : MonoBehaviour
 {
-    public float timer=0;
+    public float timer = 0;
     public float currentTime = 0f;
     public float startTime = 5f;
     public TextMeshProUGUI startText;
     public GameObject startingLine;
     public GameObject player;
     [SerializeField]
-    public GameObject[] charSpawner;
+    public GameObject[] charSpawned;
     public bool isStarted;
 
 
@@ -22,13 +22,17 @@ public class S_EventController : MonoBehaviour
         startText.SetText("");
         currentTime = startTime;
         player = GameObject.FindWithTag("Player");
-        charSpawner = GameObject.FindGameObjectsWithTag("Character");
- }
+        charSpawned = GameObject.FindGameObjectsWithTag("Character");
+    }
 
     void Update()
     {
-        player.GetComponent<S_Recovery>().hasStarted = isStarted;
-        if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll) 
+        if (player.GetComponent<S_Recovery>() == true)
+        {
+            player.GetComponent<S_Recovery>().hasStarted = isStarted;
+
+        }
+        if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
         {
             timer += 1 * Time.deltaTime;
         }
@@ -48,8 +52,8 @@ public class S_EventController : MonoBehaviour
     public void setTimedTrial(GameObject character)
     {
         currentTime = timer;
-        character.GetComponent<S_CharInfoHolder>().timedTrial=currentTime;
-   
+        character.GetComponent<S_CharInfoHolder>().timedTrial = currentTime;
+
     }
     public void playEvent()
     {
@@ -65,9 +69,9 @@ public class S_EventController : MonoBehaviour
         if (currentTime < 0)
         {
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            for (int i = 0; i < charSpawner.Length; i++)
+            for (int i = 0; i < charSpawned.Length; i++)
             {
-                charSpawner[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
             startingLine.SetActive(false);
         }
