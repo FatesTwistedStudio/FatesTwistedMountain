@@ -113,23 +113,18 @@ public class S_HoverboardPhysic : MonoBehaviour
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    private void Awake()
-    {
-       
-    }
-
     void Start()
     {
         if (gameObject.GetComponent<S_PlayerInput>() != null)
         {
-            Debug.Log("Player Alert");
+          //  Debug.Log("Player Alert");
             isPlayer = true;
             _PlayerInputScript = GetComponent<S_PlayerInput>();
 
         }
         else
         {
-            Debug.Log("im a cpu robot mannnnn");
+           // Debug.Log("im a cpu robot mannnnn");
             isPlayer = false;
         }
         rb = GetComponent<Rigidbody>();
