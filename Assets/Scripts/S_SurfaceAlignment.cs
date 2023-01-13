@@ -6,21 +6,21 @@ using UnityEngine.TextCore.Text;
 public class S_SurfaceAlignment : MonoBehaviour
 {
     [SerializeField]
-    public Transform playerModel;
+    private Transform playerModel;
     [SerializeField]
     private LayerMask ground;
-
     [SerializeField]
     private AnimationCurve anim;
-    
     [SerializeField]
     private float _time;
+    [SerializeField]
+    private float _modelTime;
+
     private void Update()
     {
-
         SurfaceAlignment();
-
     }
+
     private void SurfaceAlignment()
     {
         Ray ray = new Ray(transform.position, -transform.up);
@@ -31,20 +31,7 @@ public class S_SurfaceAlignment : MonoBehaviour
         {
             RotationRef = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(Vector3.up, info.normal), anim.Evaluate(_time));
             transform.GetComponent<Transform>().rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
-            playerModel.GetComponent<Transform>().rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
-            //Debug.LogWarning("Doing Thigns");
+            playerModel.GetComponent<Transform>().rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _modelTime);
         }
-        
-
-
-
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-    
-    
-
     }
 }

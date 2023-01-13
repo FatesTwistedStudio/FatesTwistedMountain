@@ -1,4 +1,3 @@
-using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,12 +8,14 @@ using static Unity.VisualScripting.Member;
 public class S_HoverboardPhysic : MonoBehaviour
 {
     [SerializeField]
-    Transform orientation;
+    private Transform orientation;
     [SerializeField]
     public Transform playerModel;
     Rigidbody rb;
     public float Height;
     public float maxSlopeAngle;
+
+    bool isPlayer;
 
     [Header("Movement")]
     public float velocity = 10.0f;
@@ -136,6 +137,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(-transform.right * velocity, ForceMode.VelocityChange);
+        rb.AddForce(-transform.up * velocity, ForceMode.VelocityChange);
 
         currentTimeInAir = Mathf.Clamp(currentTimeInAir, 0f, 2f);
 
@@ -164,8 +166,6 @@ public class S_HoverboardPhysic : MonoBehaviour
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
         }
-        
-
     }
 
     public void OnAirRotation(InputValue value)
@@ -299,7 +299,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     }
 
 
-    /* This wasa for debugging ground checksphere
+    /* This was for debugging ground checksphere
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position - new Vector3(0, 0, 0), distanceToGround);
