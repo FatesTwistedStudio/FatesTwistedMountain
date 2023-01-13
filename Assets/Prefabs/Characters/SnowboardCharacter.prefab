@@ -5487,12 +5487,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 6792592451275203989}
   playerModel: {fileID: 8035796500752396125}
-  Height: 1
-  maxSlopeAngle: 45
-  velocity: 0.4
+  baseVelocity: 0.4
   maxSpeed: 2
   moveForce: 1
-  slowForce: 0
+  slowForce: 1
   rotationSpeed: 8
   airRotationSpeed: 5
   slopeForce: 0
@@ -5523,7 +5521,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   snapTime: 0.25
-  _AirRot: {x: 0, y: 0}
   disableInput: 0
   frictionCof: 10
   coefficientOfFriction: 10
@@ -5541,6 +5538,7 @@ MonoBehaviour:
   groundAngDrag: 2.5
   airDrag: 2
   airAngDrag: 1
+  isGrounded: 0
   jumpForce: 20
   _baseGravity: -9.8
   maxFallSpeed: 1
