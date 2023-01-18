@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.61960787, g: 0.6666667, b: 0.78823537, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.0005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.18614274, g: 0.40396947, b: 0.8396226, a: 1}
-  m_AmbientEquatorColor: {r: 0.251157, g: 0.4853684, b: 0.6415094, a: 1}
+  m_AmbientSkyColor: {r: 0.8937789, g: 0.9199075, b: 0.9716981, a: 1}
+  m_AmbientEquatorColor: {r: 0.13171947, g: 0.5055179, b: 0.754717, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 177638cdcc0e05e408deccbcb5b184c4, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_Sun: {fileID: 1054665309}
+  m_IndirectSpecularColor: {r: 0.31827846, g: 0.39791468, b: 0.6338089, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6f24da2b3bc54234bbda6a22aa78a93f,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -163,7 +164,7 @@ PrefabInstance:
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113
+      value: 119.5
       objectReference: {fileID: 0}
     - target: {fileID: 3794152276866671503, guid: 4e9f389f79712b84984eb36d12442337,
         type: 3}
@@ -368,6 +369,7 @@ GameObject:
   - component: {fileID: 379161725}
   - component: {fileID: 379161724}
   - component: {fileID: 379161723}
+  - component: {fileID: 379161726}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -411,7 +413,7 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: b0a0f9ffb2577124a9e5211b9167672c, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -435,6 +437,119 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &379161726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379161722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddd3e01306370b4d8115886ac9d9b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 379161724}
+  layers:
+  - name: Snow
+    active: 1
+    layerIndex: 0
+    layerType: 0
+    probability: 1
+    maximumTreeCount: 1000
+    treeCount: 0
+    width: 1
+    height: 1
+    randomPosition: 1
+    randomRotation: 1
+    randomSize: 0.1
+    randomHealth: 0
+    offset: 0
+    debugLayerWeight: 0
+    resultWeight: 1
+    debugResultWeight: 1
+    correctedResultWeight: 1
+    debugCorrectedResultWeight: 0
+    rules:
+    - active: 1
+      filter: 0
+      min: 0
+      max: 0
+      frequency: 10
+      lacunarity: 10
+      intensity: 1
+      contrast: 0
+      texture: {fileID: 0}
+      imageChannel: 0
+      targetLayerIndex: 0
+      blend: 0
+      weight: 0
+      debugWeight: 0
+    activeRuleCount: 0
+  - name: Cliff
+    active: 1
+    layerIndex: 1
+    layerType: 0
+    probability: 1
+    maximumTreeCount: 1000
+    treeCount: 0
+    width: 1
+    height: 1
+    randomPosition: 1
+    randomRotation: 1
+    randomSize: 0.1
+    randomHealth: 0
+    offset: 0
+    debugLayerWeight: 0
+    resultWeight: 0
+    debugResultWeight: 0
+    correctedResultWeight: 0
+    debugCorrectedResultWeight: 0
+    rules:
+    - active: 1
+      filter: 1
+      min: 40
+      max: 100
+      frequency: 10
+      lacunarity: 10
+      intensity: 1
+      contrast: 0
+      texture: {fileID: 0}
+      imageChannel: 0
+      targetLayerIndex: 0
+      blend: 0
+      weight: 0
+      debugWeight: 0
+    - active: 1
+      filter: 2
+      min: 40
+      max: 100
+      frequency: 10
+      lacunarity: 10
+      intensity: 1
+      contrast: 0
+      texture: {fileID: 0}
+      imageChannel: 0
+      targetLayerIndex: 0
+      blend: 0
+      weight: 0
+      debugWeight: 0
+    activeRuleCount: 1
+  fallOffDistance: 2
+  fallOfNoise: 1
+  perlinOctaves: 5
+  clearTexture: 1
+  clearTrees: 1
+  debugPos: {x: 0, y: 0}
+  fallofNoiseFrequency: 150
+  fallofNoiseContrast: 10
+  fallofNoiseAmplitude: 1
+  textureLayerCount: 2
+  showProgress: 0
+  calculating: 0
+  calculatingPercent: 0
+  debugMode: 0
+  smoothcount: 1
 --- !u!1 &423250953
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &660486938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -783,8 +898,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 2.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -823,12 +938,12 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 8929
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -867,7 +982,7 @@ MonoBehaviour:
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieSize: {x: 755.82, y: 600}
   m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1262293066
 GameObject:
@@ -1768,6 +1883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingameTime: 0
   text: {fileID: 1453562456}
+  timeParent: {fileID: 1262293066}
 --- !u!1001 &2135184066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,7 +1899,7 @@ PrefabInstance:
     - target: {fileID: 1039962321341507419, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1425.1661
+      value: 1454.5347
       objectReference: {fileID: 0}
     - target: {fileID: 1039962321341507419, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
@@ -1793,7 +1909,7 @@ PrefabInstance:
     - target: {fileID: 1039962321341507419, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 597.3589
+      value: 603.4817
       objectReference: {fileID: 0}
     - target: {fileID: 1039962321341507419, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
