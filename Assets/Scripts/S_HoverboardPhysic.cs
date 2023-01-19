@@ -18,6 +18,10 @@ public class S_HoverboardPhysic : MonoBehaviour
     bool isPlayer;
     private S_PlayerInput _PlayerInputScript;
 
+    public Color color1;
+    public Color color2;
+    public Color color3;
+
     [Header("Movement")]
     [SerializeField]
     private float baseVelocity = 10.0f;
@@ -136,6 +140,9 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         HandleDrag();
         myInput();
+        Debug.Log(rb.velocity.magnitude);
+
+
     }
 
     void FixedUpdate()
@@ -272,6 +279,18 @@ public class S_HoverboardPhysic : MonoBehaviour
             Vector3 bounceDirection = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
             // Apply the bounce force
             rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+
+            //  Vector3 currentAirDirection = new Vector3(transform.eulerAngles.x, playerModel.rotation.eulerAngles.y, transform.eulerAngles.z);
+            // Debug.Log(currentAirDirection);
+            // Vector3 currentDirection = moveDirection;
+            // Vector3 newDirection = currentDirection - currentAirDirection;
+
+            var midway = new Vector3(orientation.transform.eulerAngles.x, orientation.transform.eulerAngles.y, orientation.transform.eulerAngles.z).normalized + new Vector3(playerModel.transform.eulerAngles.x, playerModel.transform.eulerAngles.y, playerModel.transform.eulerAngles.z).normalized;
+           // midway = midway.normalized;
+            moveDirection = midway;
+            Debug.LogWarning(midway);
+
+
         }
 
     }

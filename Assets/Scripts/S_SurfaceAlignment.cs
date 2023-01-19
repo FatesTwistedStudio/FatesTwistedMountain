@@ -30,8 +30,8 @@ public class S_SurfaceAlignment : MonoBehaviour
         if (Physics.Raycast(ray, out info, 1.5f, ground))
         {
             RotationRef = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(Vector3.up, info.normal), anim.Evaluate(_time));
-            transform.GetComponent<Transform>().rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
-            playerModel.GetComponent<Transform>().rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _modelTime);
+            transform.GetComponent<Transform>().rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
+            playerModel.GetComponent<Transform>().rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(-RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _modelTime);
         }
     }
 }
