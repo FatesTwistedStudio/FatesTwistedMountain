@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class S_PauseMenu : MonoBehaviour
 {
@@ -97,5 +98,10 @@ public class S_PauseMenu : MonoBehaviour
         AudioListener.pause = false;
         pauseUI.SetActive(false);
         isPaused = false;
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
     }
 }
