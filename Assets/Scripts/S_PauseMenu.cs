@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
+
 public class S_PauseMenu : MonoBehaviour
 {
     public Image background;
@@ -10,10 +12,23 @@ public class S_PauseMenu : MonoBehaviour
     public Button quit;
     public Button playButton;
     public S_GameloopController S_GameloopController;
+
+    private FTMInput playerInput;
+    private InputAction menu;
+    
+    private bool isPaused;
+
+    [SerializeField]
+    private GameObject pauseUI;
+
+    private void Awake()
+    {
+        playerInput = new FTMInput();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        pauseUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,5 +51,51 @@ public class S_PauseMenu : MonoBehaviour
     public void endEvent()
     {
 
+    }
+    public void OnPause(InputValue value)
+    {
+        pauseUI.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        menu = playerInput.Menu.Escape;
+        menu.Enable();
+
+        menu.performed += Pause;
+    }
+
+    private void OnDisable()
+    {
+        menu.Disable();
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            ActivateMenu();
+        }
+        else
+        {
+            DeactivateMenu();
+        }
+    }
+
+    public void ActivateMenu()
+    {
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        pauseUI.SetActive(true);
+    }
+
+    public void DeactivateMenu()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        pauseUI.SetActive(false);
+        isPaused = false;
     }
 }

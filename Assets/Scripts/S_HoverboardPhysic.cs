@@ -140,7 +140,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         HandleDrag();
         myInput();
-        Debug.Log(rb.velocity.magnitude);
+        //Debug.Log(rb.velocity.magnitude);
 
 
     }
