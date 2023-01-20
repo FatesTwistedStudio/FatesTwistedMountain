@@ -24,7 +24,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField]
-    private float baseVelocity = 10.0f;
+    private float baseVelocity;
     private PlayerInput playerInput;
     [SerializeField]
     private float maxSpeed;
@@ -102,6 +102,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     Vector3 slopeDirection;
     RaycastHit slopeHit;
+
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f ))
@@ -121,14 +122,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         if (gameObject.GetComponent<S_PlayerInput>() != null)
         {
-          //  Debug.Log("Player Alert");
             isPlayer = true;
             _PlayerInputScript = GetComponent<S_PlayerInput>();
 
         }
         else
         {
-           // Debug.Log("im a cpu robot mannnnn");
             isPlayer = false;
         }
         rb = GetComponent<Rigidbody>();
@@ -169,14 +168,14 @@ public class S_HoverboardPhysic : MonoBehaviour
             HandleAir();
             rb.velocity += moveDirection * Time.fixedDeltaTime;
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
+          //  transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
 
         }
         else if (isGrounded)
         {
             HandleRotation();
           
-            playerModel.rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1.5f);
+           //playerModel.rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1.5f);
 
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
@@ -285,15 +284,10 @@ public class S_HoverboardPhysic : MonoBehaviour
             // Vector3 currentDirection = moveDirection;
             // Vector3 newDirection = currentDirection - currentAirDirection;
 
-            var midway = new Vector3(orientation.transform.eulerAngles.x, orientation.transform.eulerAngles.y, orientation.transform.eulerAngles.z).normalized + new Vector3(playerModel.transform.eulerAngles.x, playerModel.transform.eulerAngles.y, playerModel.transform.eulerAngles.z).normalized;
-           // midway = midway.normalized;
-            moveDirection = midway;
-            Debug.LogWarning(midway);
-
-
         }
 
     }
+
     private void HandleAir()
     {
 
