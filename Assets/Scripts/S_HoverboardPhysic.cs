@@ -18,10 +18,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     bool isPlayer;
     private S_PlayerInput _PlayerInputScript;
 
-    public Color color1;
-    public Color color2;
-    public Color color3;
-
     [Header("Movement")]
     [SerializeField]
     private float baseVelocity;
@@ -30,6 +26,9 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float maxSpeed;
     [SerializeField]
     private float moveForce;
+    [SerializeField]
+    private float acceleration;
+   
     [SerializeField]
     private float slowForce;
     [SerializeField]
@@ -45,6 +44,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     private float snapTime;
 
+    [SerializeField]
     private Vector2 _Movement;
     private Vector2 _Rotation;
     private Vector2 _AirRot;
@@ -102,6 +102,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     Vector3 slopeDirection;
     RaycastHit slopeHit;
+    private float slopeAccelerationMultiplier = 2f;
 
     private bool OnSlope()
     {
@@ -152,6 +153,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             _Rotation = _PlayerInputScript._rotmvn;
             _AirRot = _PlayerInputScript._rotair;
         }
+        //SlopeSpeed();
 
         rb.AddForce(-transform.right * baseVelocity, ForceMode.VelocityChange);
         rb.AddForce(-transform.up * baseVelocity, ForceMode.VelocityChange);
@@ -189,7 +191,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void HandleRotation()
     {
-        GetComponent<Transform>().Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        playerModel.transform.Rotate(Vector3.right * _Rotation.x * rotationSpeed * 0.1f);
     }
 
    public void ApplyForce()
@@ -217,15 +220,13 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void MovePlayer()
     {
-        float moveSpeed = _Movement.y > 0 ? moveForce : slowForce;
-
         if (isGrounded && !OnSlope())
         {
-            rb.AddForce((-moveDirection.normalized * moveForce * moveSpeed), ForceMode.VelocityChange);
+            rb.AddForce((-moveDirection.normalized * moveForce), ForceMode.VelocityChange);
         }
         else if (isGrounded && OnSlope())
         {
-            rb.AddForce(-moveDirection.normalized * moveForce * moveSpeed, ForceMode.VelocityChange);
+            rb.AddForce(-moveDirection.normalized * moveForce , ForceMode.VelocityChange);
         }
         else if (!isGrounded) //in the air
         {
@@ -258,6 +259,8 @@ public class S_HoverboardPhysic : MonoBehaviour
     }
     private void myInput()
     {
+
+
         moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
         // slopeDirection = (orientation.forward * -_Movement.x * -GetSlopeMoveDirection().x)+ (orientation.right * _Movement.y * -GetSlopeMoveDirection().z);
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
@@ -279,11 +282,6 @@ public class S_HoverboardPhysic : MonoBehaviour
             // Apply the bounce force
             rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
 
-            //  Vector3 currentAirDirection = new Vector3(transform.eulerAngles.x, playerModel.rotation.eulerAngles.y, transform.eulerAngles.z);
-            // Debug.Log(currentAirDirection);
-            // Vector3 currentDirection = moveDirection;
-            // Vector3 newDirection = currentDirection - currentAirDirection;
-
         }
 
     }
@@ -300,6 +298,21 @@ public class S_HoverboardPhysic : MonoBehaviour
         disableInput = true;
     }
 
+    private void SlopeSpeed()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+
+            // Calculate new acceleration
+            float newAcceleration = slopeAngle * slopeAccelerationMultiplier;
+
+            // Apply new acceleration
+            rb.velocity *= newAcceleration;
+        }
+    
+    }
 
     /* This was for debugging ground checksphere
     private void OnDrawGizmos()

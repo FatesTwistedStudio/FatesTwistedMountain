@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1054665309}
-  m_IndirectSpecularColor: {r: 0.2760925, g: 0.3775428, b: 0.6465038, a: 1}
+  m_IndirectSpecularColor: {r: 0.26531172, g: 0.521078, b: 0.9200539, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1058,7 +1058,7 @@ PrefabInstance:
     - target: {fileID: 3914398048035663446, guid: e9f5a70f1ea492d41be3fc7218e223f4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 148
+      value: 157
       objectReference: {fileID: 0}
     - target: {fileID: 4868333008846690773, guid: e9f5a70f1ea492d41be3fc7218e223f4,
         type: 3}
@@ -1469,6 +1469,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1160341610618572168, guid: 03e17be28959b8c4e899e5e4070f3d72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1160341610618572170, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: snowCam
@@ -1478,17 +1483,17 @@ PrefabInstance:
     - target: {fileID: 1954138570905392644, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954138571308677505, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954138571412412189, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6177816177224445474, guid: 03e17be28959b8c4e899e5e4070f3d72,
         type: 3}
