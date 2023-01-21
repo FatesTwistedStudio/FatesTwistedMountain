@@ -12,7 +12,7 @@ public class S_FinishLine : MonoBehaviour
     public GameObject secondPlace;
     public GameObject thirdPlace;
     public GameObject fourthPlace;
-
+ 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -182,25 +182,25 @@ public class S_FinishLine : MonoBehaviour
     {
         if (firstPlace != null)
         {
-            S_LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.name);
+            S_LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>()._name);
             S_LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
         }
         if (secondPlace != null)
         {
-            S_LeaderBoardTracker.secondPlacePlacementText.SetText("" + secondPlace.name);
+            S_LeaderBoardTracker.secondPlacePlacementText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>()._name);
             S_LeaderBoardTracker.secondPlacePointsText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.secondPlaceTimeText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
         }
         if (thirdPlace != null)
         {
-            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("" + thirdPlace.name);
+            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>()._name);
             S_LeaderBoardTracker.thirdPlacePointsText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.thirdPlaceTimeText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
         }
         if (fourthPlace != null)
         {
-            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("" + fourthPlace.name);
+            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>()._name);
             S_LeaderBoardTracker.fourthPlacePointsText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
         }

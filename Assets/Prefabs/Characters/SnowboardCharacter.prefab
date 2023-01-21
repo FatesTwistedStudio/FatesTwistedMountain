@@ -5473,6 +5473,7 @@ MonoBehaviour:
   numGoldFlags: 0
   itemHeld: {fileID: 0}
   camFollowPoint: {fileID: 1973743180926299294}
+  _name: Player
 --- !u!114 &2640921738554418691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5487,6 +5488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 6792592451275203989}
   playerModel: {fileID: 8035796500752396125}
+  color1: {r: 0, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  color3: {r: 0, g: 0, b: 0, a: 0}
   baseVelocity: 0.4
   maxSpeed: 2
   moveForce: 1

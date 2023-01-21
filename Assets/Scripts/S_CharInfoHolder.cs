@@ -9,5 +9,6 @@ public class S_CharInfoHolder : MonoBehaviour
     public int numGoldFlags;
     public GameObject itemHeld;
     public GameObject camFollowPoint;
+    public string _name;
    // public bool isPlayer = false;
 }
