@@ -67,7 +67,7 @@ public class S_HUD : MonoBehaviour
             float velocity = playerRB.velocity.magnitude;
 
             speedParent.gameObject.SetActive(true);
-            _SpeedText.text = (velocity/1.5f).ToString("0.0" + " M/S");
+            _SpeedText.text = (velocity/1.5f).ToString("0.0" + " KM/H");
         }
         else
         {
