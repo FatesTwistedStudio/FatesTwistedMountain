@@ -75,6 +75,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     public float groundRate = 5.0f;
     public float airRate = 0;
 
+    [Header("Particles")]
+    [SerializeField]
+    private ParticleSystem snowstreamR;
+    [SerializeField]
+    private ParticleSystem snowstreamL;
+   
 
     [Header("Drag")]
     [SerializeField]
@@ -170,10 +176,12 @@ public class S_HoverboardPhysic : MonoBehaviour
             HandleAir();
             rb.velocity += moveDirection * Time.fixedDeltaTime;
 
-          //  transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
+
+
+            //  transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
 
         }
-        else if (isGrounded)
+        if (isGrounded)
         {
             HandleRotation();
           
@@ -181,6 +189,9 @@ public class S_HoverboardPhysic : MonoBehaviour
 
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
+            snowstreamL.Play();
+            snowstreamR.Play();
+
         }
     }
 
@@ -296,6 +307,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         ApplyGravity();
         disableInput = true;
+        snowstreamR.Pause();
+        snowstreamL.Pause();
     }
 
     private void SlopeSpeed()
