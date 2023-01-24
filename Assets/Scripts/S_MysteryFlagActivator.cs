@@ -46,7 +46,6 @@ public class S_MysteryFlagActivator : MonoBehaviour
                 if (S_ItemDatabase.redFlagItem[itemNum] != null)
                 {
                     item = S_ItemDatabase.redFlagItem[itemNum].itemPrefab;
-
                 }
                 
             }
