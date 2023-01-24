@@ -11,11 +11,15 @@ public class S_GameloopController : MonoBehaviour
     public GameObject follow;
     public float inGameTime;
     public GameObject sceneManager;
+    public GameObject eventManager;
     public Camera snowCam;
-    public void SetCharacter(GameObject character)
+    public void Awake()
     {
-        player = character;
+        DontDestroyOnLoad(gameObject);
+
     }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,10 @@ public class S_GameloopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(follow!=null)
+        {
+            eventManager.SetActive(true);
+        }
         if (player != null)
         {
             player.GetComponent<S_CharInfoHolder>().camFollowPoint.tag = "FollowTarget";
@@ -45,8 +53,16 @@ public class S_GameloopController : MonoBehaviour
                 //Debug.Log("" + snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow.tag);
                 //Debug.Log("" + snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt.tag);
                 follow = GameObject.FindWithTag("FollowTarget");
-                snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = follow.transform;
-                snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = follow.transform;
+                if (follow != null)
+                {
+
+                    snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = follow.transform;
+                    snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = follow.transform;
+                }
+                else
+                {
+                    Debug.Log("No follow point on Game Controller");
+                }
             }
         }
 

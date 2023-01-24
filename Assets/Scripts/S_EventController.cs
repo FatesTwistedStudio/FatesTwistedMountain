@@ -17,7 +17,7 @@ public class S_EventController : MonoBehaviour
     public bool isStarted;
 
 
-    private void Start()
+    private void Awake()
     {
         startText.SetText("");
         currentTime = startTime;

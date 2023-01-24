@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6943616032327040991}
   m_Layer: 0
   m_Name: EventController
-  m_TagString: Untagged
+  m_TagString: EventController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125679c2affd6f640bc75f2488d3132d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charSpawner:
-  - {fileID: 0}
-  - {fileID: 0}
+  timer: 0
+  currentTime: 0
+  startTime: 5
+  startText: {fileID: 0}
+  startingLine: {fileID: 0}
+  player: {fileID: 0}
+  charSpawned: []
+  isStarted: 0

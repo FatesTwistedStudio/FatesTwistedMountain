@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class S_StartingLine : MonoBehaviour
 {
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag=="Player")

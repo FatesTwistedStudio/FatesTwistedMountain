@@ -8,8 +8,10 @@ public class S_CharacterDatabase : MonoBehaviour
     public class CharacterInfo
     {
         public string characterName;
-        public Sprite characterImage;
         public GameObject characterPrefab;
+        public Sprite characterImage;
+        
     }
     public CharacterInfo[] characterInformation = new CharacterInfo[1];
+    
 }

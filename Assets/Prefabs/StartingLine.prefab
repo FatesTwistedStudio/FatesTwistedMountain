@@ -174,7 +174,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013469910077403252}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -530,17 +530,17 @@ PrefabInstance:
     - target: {fileID: 2194639178453236874, guid: 6d703d5ef55ef084fb52b2ded3166704,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2194639178453236874, guid: 6d703d5ef55ef084fb52b2ded3166704,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2194639178453236874, guid: 6d703d5ef55ef084fb52b2ded3166704,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2194639178453236874, guid: 6d703d5ef55ef084fb52b2ded3166704,
         type: 3}
@@ -557,6 +557,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2194639178453236875, guid: 6d703d5ef55ef084fb52b2ded3166704,
+        type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 8990069608514839905}
+    - target: {fileID: 2194639178453236875, guid: 6d703d5ef55ef084fb52b2ded3166704,
+        type: 3}
+      propertyPath: Spawner
+      value: 
+      objectReference: {fileID: 1039962321341507420}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d703d5ef55ef084fb52b2ded3166704, type: 3}
 --- !u!4 &1160341610618572171 stripped
