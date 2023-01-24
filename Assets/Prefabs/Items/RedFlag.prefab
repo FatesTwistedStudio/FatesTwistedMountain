@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6288967676427345968}
   - component: {fileID: 8462513500230459103}
+  - component: {fileID: 5304046827901631126}
   m_Layer: 0
   m_Name: RedFlag
-  m_TagString: Untagged
+  m_TagString: RedFlag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,8 +45,24 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2959914, y: 3.05066, z: 0.6078511}
-  m_Center: {x: -0.64799577, y: 0.007400632, z: -0.0032983124}
+  m_Size: {x: 2.2959914, y: 3.05066, z: 1.2305294}
+  m_Center: {x: -0.6479957, y: 0.007400632, z: 0.02604568}
+--- !u!114 &5304046827901631126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288967676427345975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06934fe85804adb46a67dbd9e5b62544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNum: 0
+  item: {fileID: 0}
+  S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
+    type: 3}
 --- !u!1001 &6288967677230408678
 PrefabInstance:
   m_ObjectHideFlags: 0
