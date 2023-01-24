@@ -49,13 +49,21 @@ public class S_HUD : MonoBehaviour
 
             timeParent.gameObject.SetActive(true);
             ingameTime = manager.timer;
-            _timeText.text = ingameTime.ToString("0:00.000");
+            DisplayTime(ingameTime);
         }
         else
         {
             timeParent.gameObject.SetActive(false);
 
         }
+
+    }
+
+    private void DisplayTime(float ingametime)
+    {
+        float minutes = Mathf.FloorToInt(ingametime / 60);
+        float seconds = Mathf.FloorToInt(ingametime % 60);
+        _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
 
