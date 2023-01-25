@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class S_FinishLine : MonoBehaviour
 {
@@ -205,8 +206,13 @@ public class S_FinishLine : MonoBehaviour
             S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
         }
     }
+    public void sendToNextLevel(string nextLevel)
+    {
+        SceneManager.LoadScene(nextLevel);
+    }
     private void Update()
     {
+        eventController = GameObject.FindWithTag("EventController");
         sortTheWinners();
     }
 }

@@ -15,6 +15,11 @@ public class S_CharInfoHolder : MonoBehaviour
     // public bool isPlayer = false;
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            pointsEarned++;
+        }
         gameObject.name= _name;
     }
+    
 }
