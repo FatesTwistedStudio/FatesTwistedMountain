@@ -14,10 +14,23 @@ public class S_GameloopController : MonoBehaviour
     public GameObject sceneManager;
     public GameObject eventManager;
     public Camera snowCam;
+
+    public static S_GameloopController instance;
+
     public void Awake()
     {
-        DontDestroyOnLoad(gameObject);
 
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
 
