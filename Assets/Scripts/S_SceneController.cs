@@ -9,7 +9,11 @@ public class S_SceneController : MonoBehaviour
     public bool isCanvasActive;
     public S_GameloopController S_GameloopController;
     public string currentSceneName;
-
+    public GameObject GameManager;
+    public void spawnTheManager()
+    {
+        Instantiate(GameManager);
+    }
     public void setControllers()
     {
         if (S_GameloopController == null)

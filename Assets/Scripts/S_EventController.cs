@@ -21,15 +21,22 @@ public class S_EventController : MonoBehaviour
     {
         startText.SetText("");
         currentTime = startTime;
-        charSpawned = GameObject.FindGameObjectsWithTag("Character");
+        startingLine.SetActive(true);
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        currentTime = startTime;
+
     }
 
     void Update()
     {
+        
+        charSpawned = GameObject.FindGameObjectsWithTag("Character");
         player = GameObject.FindWithTag("Player");
-        if (player.GetComponent<S_Recovery>()==true)
+        if (player.GetComponent<S_Recovery>() == true)
         {
-        player.GetComponent<S_Recovery>().hasStarted = isStarted;
+            player.GetComponent<S_Recovery>().hasStarted = isStarted;
 
         }
         if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
@@ -75,6 +82,6 @@ public class S_EventController : MonoBehaviour
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
         }
-        
+
     }
 }

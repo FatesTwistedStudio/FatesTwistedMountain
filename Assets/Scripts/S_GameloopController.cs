@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,9 +41,15 @@ public class S_GameloopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(follow!=null)
         {
             eventManager.SetActive(true);
+        }
+        else
+        {
+            eventManager.SetActive(false);
+
         }
         if (player != null)
         {
