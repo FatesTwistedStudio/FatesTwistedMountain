@@ -16,6 +16,11 @@ public class S_SceneController : MonoBehaviour
     }
     public void setControllers()
     {
+        if (GameObject.FindWithTag("GameController") == null)
+        {
+            spawnTheManager();
+
+        }
         if (S_GameloopController == null)
         {
             S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
@@ -28,6 +33,7 @@ public class S_SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         getSceneName();
         setControllers();
         if (Input.GetKeyUp(KeyCode.Escape))

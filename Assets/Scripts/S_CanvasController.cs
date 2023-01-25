@@ -42,4 +42,8 @@ public class S_CanvasController : MonoBehaviour
         S_GameloopController.player.GetComponent<S_CharInfoHolder>().image = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterImage;
         S_GameloopController.player.GetComponent<S_CharInfoHolder>()._name = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterName;
     }
+    public void setSnowEvent(string sceneName)
+    {
+        S_GameloopController.sceneManager.GetComponent<S_SceneController>().loadScene(sceneName);
+    }
 }

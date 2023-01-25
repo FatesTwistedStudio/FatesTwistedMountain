@@ -17,21 +17,27 @@ public class S_EventController : MonoBehaviour
     public bool isStarted;
 
 
-    private void Awake()
+    private void Start()
     {
-        startText.SetText("");
-        currentTime = startTime;
-        startingLine.SetActive(true);
+        if (startingLine != null)
+        {
+
+            startingLine.SetActive(true);
+        }
+        if (startText != null)
+        {
+            startText.SetText("");
+
+        }
     }
-    private void OnLevelWasLoaded(int level)
+    private void OnEnable()
     {
         currentTime = startTime;
 
     }
-
     void Update()
     {
-        
+
         charSpawned = GameObject.FindGameObjectsWithTag("Character");
         player = GameObject.FindWithTag("Player");
         if (player.GetComponent<S_Recovery>() == true)
@@ -45,6 +51,7 @@ public class S_EventController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
+
             isStarted = true;
         }
         if (isStarted == true)
@@ -67,14 +74,14 @@ public class S_EventController : MonoBehaviour
     {
         if (currentTime >= 0)
         {
+            currentTime -= 1 * Time.deltaTime;
             if (currentTime > 1)
             {
                 startText.text = currentTime.ToString("0");
 
             }
-            currentTime -= 1 * Time.deltaTime;
         }
-        if (currentTime < 0)
+        if (currentTime <= .5f)
         {
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int i = 0; i < charSpawned.Length; i++)
