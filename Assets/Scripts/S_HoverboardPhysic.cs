@@ -270,8 +270,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     }
     private void myInput()
     {
-
-
+        _Movement.y = Mathf.Clamp(_Movement.y, 0, 1);
         moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
         // slopeDirection = (orientation.forward * -_Movement.x * -GetSlopeMoveDirection().x)+ (orientation.right * _Movement.y * -GetSlopeMoveDirection().z);
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
