@@ -144,8 +144,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void Update()
     {
-        HandleDrag();
-        myInput();
         //Debug.Log(rb.velocity.magnitude);
 
 
@@ -165,9 +163,12 @@ public class S_HoverboardPhysic : MonoBehaviour
         rb.AddForce(-transform.up * baseVelocity, ForceMode.VelocityChange);
 
         currentTimeInAir = Mathf.Clamp(currentTimeInAir, 0f, 2f);
+        
+        myInput();
+        HandleDrag();
+        MovePlayer();
 
         CheckGround();
-        MovePlayer();
         Overboard();
         ApplyForce();
 
@@ -290,7 +291,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             // Calculate the bounce force direction
             Vector3 bounceDirection = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
             // Apply the bounce force
-            rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+            //rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
 
         }
 
