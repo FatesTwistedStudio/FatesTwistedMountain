@@ -5705,7 +5705,7 @@ MonoBehaviour:
   airRotationSpeed: 5
   slopeForce: 0
   bounceForce: 4
-  turnTorque: 0.2
+  turnTorque: 16
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -5933,26 +5933,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 0.3793941
+      outSlope: 0.3793941
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.5223174
-      value: 1.0023587
-      inSlope: 0
-      outSlope: 0
+      time: 3.8724554
+      value: 1.4691868
+      inSlope: 0.04127617
+      outSlope: 0.04127617
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.6768425
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   _time: 0.1
-  _modelTime: 0.05
+  _modelTime: 0.1
 --- !u!114 &3219276778072726971
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -144,8 +144,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(rb.velocity.magnitude);
-
 
     }
 
@@ -157,8 +155,6 @@ public class S_HoverboardPhysic : MonoBehaviour
             _Rotation = _PlayerInputScript._rotmvn;
             _AirRot = _PlayerInputScript._rotair;
         }
-        //SlopeSpeed();
-
         rb.AddForce(-transform.right * baseVelocity, ForceMode.VelocityChange);
         rb.AddForce(-transform.up * baseVelocity, ForceMode.VelocityChange);
 
@@ -170,24 +166,16 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         CheckGround();
         Overboard();
-        ApplyForce();
 
         if (!isGrounded)
         {
             HandleAir();
             rb.velocity += moveDirection * Time.fixedDeltaTime;
-
-
-
-            //  transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1);
-
         }
         if (isGrounded)
         {
             HandleRotation();
-          
-           //playerModel.rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0), Time.deltaTime * 1.5f);
-
+        
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
             snowstreamL.Play();
@@ -203,22 +191,9 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void HandleRotation()
     {
-      //  transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
-        rb.AddTorque(transform.up * _Rotation.x * rotationSpeed * 0.01f ,ForceMode.VelocityChange);
+        transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        //rb.AddTorque(transform.up * _Rotation.x * turnTorque * 0.01f ,ForceMode.VelocityChange);
         playerModel.transform.Rotate(Vector3.right * _Rotation.x * rotationSpeed * 0.1f);
-    }
-
-   public void ApplyForce()
-    {
-        rb.AddForce(transform.forward * moveForce, ForceMode.Impulse);
-        
-        // Get the current forward velocity of the snowboard
-        Vector3 forwardVelocity = transform.forward * rb.velocity.magnitude;
-
-        // Calculate the friction force as a vector that is perpendicular to the forward velocity
-        Vector3 friction = Vector3.Normalize(-forwardVelocity) * frictionForce;
-
-        rb.AddForce(friction, ForceMode.Force);
     }
 
     public void Overboard()
@@ -250,11 +225,9 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Jump()
     {
-
-        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
-        disableInput = true;
+        //disableInput = true;
     }
 
     private void HandleDrag()
@@ -283,21 +256,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
         rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime*3f);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Check if the collision normal vector is facing upwards
-        if (collision.contacts[0].normal.y > 0)
-        {
-            // Calculate the bounce force direction
-            Vector3 bounceDirection = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
-            // Apply the bounce force
-            //rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
-
-        }
-
-    }
-
     private void HandleAir()
     {
 
@@ -310,22 +268,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         disableInput = true;
         snowstreamR.Pause();
         snowstreamL.Pause();
-    }
-
-    private void SlopeSpeed()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit))
-        {
-            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-
-            // Calculate new acceleration
-            float newAcceleration = slopeAngle * slopeAccelerationMultiplier;
-
-            // Apply new acceleration
-            rb.velocity *= newAcceleration;
-        }
-    
     }
 
     /* This was for debugging ground checksphere
