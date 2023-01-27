@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class S_HUD : MonoBehaviour
 {
@@ -15,12 +16,19 @@ public class S_HUD : MonoBehaviour
     public TMP_Text _SpeedText;
     public GameObject timeParent;
     public GameObject speedParent;
+    public GameObject ItemUI;
+    public Image itemHudImage;
+    public TextMeshProUGUI ItemText;
+
+
 
     bool foundPlayer = false;
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (ec == null)
         {
             ec = GameObject.FindWithTag("EventController");
@@ -37,16 +45,32 @@ public class S_HUD : MonoBehaviour
             {
                 HandleTime();
                 HandleSpeed();
-
+                HandleItemUI();
             }
         }
     }
+    private void HandleItemUI()
+    {
+        ItemUI.SetActive(manager.playerHasItem);
+        if (manager.playerHasItem == true)
+        {
+            if (playerRB.gameObject.GetComponent<S_CharInfoHolder>().itemHeld != null)
+            {
+                ItemText.SetText(playerRB.gameObject.GetComponent<S_CharInfoHolder>().itemHeld.name + "");
 
+            }
+            if (playerRB.gameObject.GetComponent<S_CharInfoHolder>().itemSprite != null)
+            {
+                itemHudImage.GetComponent<Image>().sprite = playerRB.gameObject.GetComponent<S_CharInfoHolder>().itemSprite;
+
+            }
+        }
+
+    }
     private void HandleTime()
     {
         if (manager.currentTime < 0)
         {
-
             timeParent.gameObject.SetActive(true);
             ingameTime = manager.timer;
             DisplayTime(ingameTime);
@@ -56,9 +80,7 @@ public class S_HUD : MonoBehaviour
             timeParent.gameObject.SetActive(false);
 
         }
-
     }
-
     private void DisplayTime(float ingametime)
     {
         float minutes = Mathf.FloorToInt(ingametime / 60);

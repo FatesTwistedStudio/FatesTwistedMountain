@@ -9,17 +9,24 @@ public class S_CharInfoHolder : MonoBehaviour
     public int pointsEarned;
     public int numGoldFlags;
     public GameObject itemHeld;
+    public Sprite itemSprite;
     public GameObject camFollowPoint;
     public string _name;
     public Sprite image;
     // public bool isPlayer = false;
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             pointsEarned++;
         }
-        gameObject.name= _name;
+        gameObject.name = _name;
+        if (itemHeld != null)
+        {
+            itemSprite = itemHeld.GetComponent<S_ItemDefine>().itemImage;
+
+        }
+      
     }
-    
+
 }

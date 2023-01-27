@@ -53,6 +53,8 @@ MonoBehaviour:
   sceneManager: {fileID: 6524915103144053550}
   eventManager: {fileID: 199988716}
   snowCam: {fileID: 6267562645187972862, guid: d8454e577c48b30469847de7498123ab, type: 3}
+  S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
+    type: 3}
 --- !u!1001 &1252332024319113688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -286,6 +288,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268842646940093839, guid: 4548df3e277b69b448194c30a63829d9,
+        type: 3}
+      propertyPath: GameManager
+      value: 
+      objectReference: {fileID: 6264568103808181365}
     - target: {fileID: 3268842646940093839, guid: 4548df3e277b69b448194c30a63829d9,
         type: 3}
       propertyPath: S_GameloopController

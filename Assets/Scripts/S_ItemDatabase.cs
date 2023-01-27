@@ -8,9 +8,8 @@ public class S_ItemDatabase : MonoBehaviour
     public class GreenFlag
     {
         public string itemName;
-        
-        public Sprite itemImage;
-        public GameObject itemPrefab;
+        public Sprite itemGreenFlagImage;
+        public GameObject itemGreenFlagPrefab;
         public int pointsGiven;
     }
     public GreenFlag[] greenFlagItem = new GreenFlag[3];
@@ -19,8 +18,7 @@ public class S_ItemDatabase : MonoBehaviour
     public class RedFlag
     {
         public string itemName;
-      
-        public Sprite itemImage;
+        public Sprite itemRedFlagImage;
         public GameObject itemPrefab;
         public int pointsGiven;
     }
@@ -30,10 +28,9 @@ public class S_ItemDatabase : MonoBehaviour
     public class GoldFlag
     {
         public string itemName;
-        public Sprite itemImage;
         public GameObject itemPrefab;
+        public Sprite itemGoldFlagImage;
         public int pointsGiven;
     }
     public GoldFlag[] goldFlagItem = new GoldFlag[1];
-
 }

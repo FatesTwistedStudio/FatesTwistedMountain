@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class S_EventController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class S_EventController : MonoBehaviour
     [SerializeField]
     public GameObject[] charSpawned;
     public bool isStarted;
+    public bool playerHasItem;
 
 
     private void Start()
@@ -37,7 +39,6 @@ public class S_EventController : MonoBehaviour
     }
     void Update()
     {
-
         charSpawned = GameObject.FindGameObjectsWithTag("Character");
         player = GameObject.FindWithTag("Player");
         if (player.GetComponent<S_Recovery>() == true)
@@ -62,6 +63,18 @@ public class S_EventController : MonoBehaviour
         {
             startingLine.SetActive(false);
             startText.SetText("Go!");
+        }
+        if (player.GetComponent<S_CharInfoHolder>().itemHeld != null)
+        {
+            playerHasItem = true;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                useItem(player);
+            }
+        }
+        else
+        {
+            playerHasItem = false;
         }
     }
     public void setTimedTrial(GameObject character)
@@ -89,6 +102,11 @@ public class S_EventController : MonoBehaviour
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
         }
-
+    }
+    public void useItem(GameObject character)
+    {
+        GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld, character.GetComponent<S_CharInfoHolder>().itemHeld.GetComponent<S_ItemDefine>().holdingPosition, transform.rotation) as GameObject;
+        character.GetComponent<S_CharInfoHolder>().itemHeld = null;
+    
     }
 }

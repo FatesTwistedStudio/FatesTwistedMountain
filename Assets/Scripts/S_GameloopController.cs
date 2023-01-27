@@ -13,7 +13,7 @@ public class S_GameloopController : MonoBehaviour
     public GameObject sceneManager;
     public GameObject eventManager;
     public Camera snowCam;
-
+    public S_ItemDatabase S_ItemDatabase;
     public static S_GameloopController instance;
 
     public void Awake()
@@ -53,8 +53,8 @@ public class S_GameloopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(follow!=null)
+       // itemInfoSet();
+        if (follow != null)
         {
             eventManager.SetActive(true);
         }
@@ -88,4 +88,5 @@ public class S_GameloopController : MonoBehaviour
         GameObject spawner = GameObject.FindWithTag("Spawner");
         inGameTime += 1 * Time.deltaTime;
     }
+
 }
