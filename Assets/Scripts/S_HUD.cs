@@ -23,12 +23,13 @@ public class S_HUD : MonoBehaviour
 
 
     bool foundPlayer = false;
+    private void Start()
+    {
+    }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (ec == null)
         {
             ec = GameObject.FindWithTag("EventController");
@@ -39,6 +40,7 @@ public class S_HUD : MonoBehaviour
             if (manager == null)
             {
                 manager = ec.GetComponent<S_EventController>();
+                manager.timer = 0;
 
             }
             else

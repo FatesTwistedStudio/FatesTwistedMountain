@@ -13,7 +13,7 @@ public class S_PauseMenu : MonoBehaviour
     public Button quit;
     public Button playButton;
     public S_GameloopController S_GameloopController;
-
+    public S_EventController manager;
     private FTMInput playerInput;
     private InputAction menu;
     
@@ -30,6 +30,7 @@ public class S_PauseMenu : MonoBehaviour
     void Start()
     {
         pauseUI.SetActive(false);
+        manager = FindObjectOfType<S_EventController>();
     }
 
     // Update is called once per frame
