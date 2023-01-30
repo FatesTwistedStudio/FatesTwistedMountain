@@ -19,7 +19,6 @@ public class S_SurfaceAlignment : MonoBehaviour
     private void Update()
     {
         SurfaceAlignment();
-
     }
 
     private void SurfaceAlignment()

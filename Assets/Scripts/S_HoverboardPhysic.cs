@@ -53,15 +53,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     Vector3 moveDirection;
     Vector3 airMoveDirection;
 
-    private float airMovement;
-
-    [Header("Friction")]
-    public float frictionCof = 10f;
-    public float coefficientOfFriction = 10f;
-    public static float mass;
-    public float normalForce = mass * 9.8f;
-    public float frictionForce = 10f;
-
     public ParticleSystem sp;
     public AudioSource snowboardSFX;
     private bool playedAudio;
@@ -142,11 +133,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         disableInput = false;
     }
 
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
         if(isPlayer)
@@ -192,7 +178,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private void HandleRotation()
     {
         transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
-        //rb.AddTorque(transform.up * _Rotation.x * turnTorque * 0.01f ,ForceMode.VelocityChange);
         playerModel.transform.Rotate(Vector3.right * _Rotation.x * rotationSpeed * 0.1f);
     }
 
@@ -227,7 +212,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
-        //disableInput = true;
     }
 
     private void HandleDrag()
@@ -251,14 +235,8 @@ public class S_HoverboardPhysic : MonoBehaviour
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
     }
 
-    private void ApplyGravity()
-    {
-        float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
-        rb.velocity += Vector3.down * -gravity *(gravityMultiplyer * Time.deltaTime*3f);
-    }
     private void HandleAir()
     {
-
         playerModel.GetComponent<Transform>().Rotate(Vector3.up * _AirRot.x * airRotationSpeed * 1f);
         playerModel.GetComponent<Transform>().Rotate(Vector3.forward * _AirRot.y * airRotationSpeed * 1f);
 
@@ -268,6 +246,12 @@ public class S_HoverboardPhysic : MonoBehaviour
         disableInput = true;
         snowstreamR.Pause();
         snowstreamL.Pause();
+    }
+
+    private void ApplyGravity()
+    {
+        float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
+        rb.velocity += Vector3.down * -gravity * (gravityMultiplyer * Time.deltaTime * 3f);
     }
 
     /* This was for debugging ground checksphere

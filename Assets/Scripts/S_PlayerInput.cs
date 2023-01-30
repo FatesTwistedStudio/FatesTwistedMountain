@@ -37,13 +37,6 @@ public class S_PlayerInput : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-         //FindObjectOfType<S_AudioManager>().Play("Snowboard");
-    }
-
-
 
 
 
