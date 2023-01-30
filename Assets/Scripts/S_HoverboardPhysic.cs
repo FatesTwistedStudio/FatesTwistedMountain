@@ -7,6 +7,7 @@ using static Unity.VisualScripting.Member;
 
 public class S_HoverboardPhysic : MonoBehaviour
 {
+    [Header("Base Components : Please Connect")]
     [SerializeField]
     private Transform orientation;
     [SerializeField]
@@ -21,50 +22,41 @@ public class S_HoverboardPhysic : MonoBehaviour
     [Header("Movement")]
     [SerializeField]
     private float baseVelocity;
-    private PlayerInput playerInput;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
     private float moveForce;
     [SerializeField]
-    private float acceleration;
+    private float jumpForce;
    
-    [SerializeField]
-    private float slowForce;
+    [Header("Rotation")]
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
     private float airRotationSpeed;
-    [SerializeField]
-    private float slopeForce;
-    public float bounceForce;
-    public float turnTorque;
-    [SerializeField]
-    private AnimationCurve animCurve;
-    [SerializeField]
-    private float snapTime;
 
-    [SerializeField]
+
+    [Header("Input Vectors")]
     private Vector2 _Movement;
     private Vector2 _Rotation;
     private Vector2 _AirRot;
     public bool disableInput;
+    private PlayerInput playerInput;
 
     Vector3 moveDirection;
     Vector3 airMoveDirection;
 
-    public ParticleSystem sp;
+    [Header("Audio")]
     public AudioSource snowboardSFX;
     private bool playedAudio;
     private bool m_Play;
 
+    [Header("Grounding")]
     [SerializeField]
     private LayerMask Ground;
     [SerializeField]
     private float distanceToGround;
-
-    public float groundRate = 5.0f;
-    public float airRate = 0;
+    public bool isGrounded;
 
     [Header("Particles")]
     [SerializeField]
@@ -83,23 +75,18 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     private float airAngDrag = 1f;
 
-
     private bool inAir;
-    public bool isGrounded;
-    public float jumpForce;
 
+
+    [Header("Gravity")]
     [SerializeField]
     private float _baseGravity = -20;
     private float currentTimeInAir = 0f;
-
-    [SerializeField]
-    private float maxFallSpeed;
     [SerializeField]
     private float gravityMultiplyer;
 
-    Vector3 slopeDirection;
     RaycastHit slopeHit;
-    private float slopeAccelerationMultiplier = 2f;
+
 
     private bool OnSlope()
     {
@@ -172,6 +159,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void CheckGround()
     {
+        //Checks to see if the player is grounded by drawing a sphere at the Player's foot.
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
     }
 
@@ -183,6 +171,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Overboard()
     {
+        //When the player is overboard the player model resets it rotation to being back upright.
         disableInput = true;
         if (transform.up.y < 0)
         {
@@ -210,12 +199,14 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Jump()
     {
+        //Force applied to player when they press the jump button
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
     }
 
     private void HandleDrag()
     {
+        //Adjusts the drag of the player's rigid body depending on if they are grounded or not.
         if (isGrounded)
         {
             rb.drag = groundDrag;
@@ -229,9 +220,9 @@ public class S_HoverboardPhysic : MonoBehaviour
     }
     private void myInput()
     {
+        //Applying the input values given by the Player Input script to a usable Vector 3. Y Movement is clamped to prevent the player from moving backwards.
         _Movement.y = Mathf.Clamp(_Movement.y, 0, 1);
         moveDirection = orientation.forward * -_Movement.x + orientation.right * _Movement.y;
-        // slopeDirection = (orientation.forward * -_Movement.x * -GetSlopeMoveDirection().x)+ (orientation.right * _Movement.y * -GetSlopeMoveDirection().z);
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
     }
 
@@ -250,15 +241,8 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void ApplyGravity()
     {
+        //Applying gravity to the player when they leave the ground. Gets stronger over time.
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
         rb.velocity += Vector3.down * -gravity * (gravityMultiplyer * Time.deltaTime * 3f);
     }
-
-    /* This was for debugging ground checksphere
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.position - new Vector3(0, 0, 0), distanceToGround);
-    }
-    */
-
 }

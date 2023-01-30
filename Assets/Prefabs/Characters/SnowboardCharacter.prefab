@@ -5679,6 +5679,7 @@ MonoBehaviour:
   pointsEarned: 0
   numGoldFlags: 0
   itemHeld: {fileID: 0}
+  itemSprite: {fileID: 0}
   camFollowPoint: {fileID: 1973743180926299294}
   _name: Wilson
   image: {fileID: 21300000, guid: e1aaf672de8eaf84cb45c86621ce9559, type: 3}
@@ -5699,52 +5700,14 @@ MonoBehaviour:
   baseVelocity: 0.4
   maxSpeed: 2
   moveForce: 1
-  acceleration: 0
-  slowForce: 1
   rotationSpeed: 8
   airRotationSpeed: 5
-  slopeForce: 0
-  bounceForce: 4
-  turnTorque: 16
-  animCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  snapTime: 0.25
-  _Movement: {x: 0, y: 0}
   disableInput: 0
-  frictionCof: 10
-  coefficientOfFriction: 10
-  normalForce: 0
-  frictionForce: 10
-  sp: {fileID: 0}
   snowboardSFX: {fileID: 0}
   Ground:
     serializedVersion: 2
     m_Bits: 64
   distanceToGround: 1
-  groundRate: 5
-  airRate: 0.12
   snowstreamR: {fileID: 2974019456766209237}
   snowstreamL: {fileID: 5201298740287647083}
   groundDrag: 2.5
@@ -5753,8 +5716,8 @@ MonoBehaviour:
   airAngDrag: 1
   isGrounded: 0
   jumpForce: 20
+  bounceForce: 4
   _baseGravity: -9.8
-  maxFallSpeed: 1
   gravityMultiplyer: 1
 --- !u!82 &1866174825309092097
 AudioSource:
@@ -5952,7 +5915,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _time: 0.1
-  _modelTime: 0.1
+  _modelTime: 0.02
 --- !u!114 &3219276778072726971
 MonoBehaviour:
   m_ObjectHideFlags: 0
