@@ -5683,6 +5683,8 @@ MonoBehaviour:
   camFollowPoint: {fileID: 1973743180926299294}
   _name: Wilson
   image: {fileID: 21300000, guid: e1aaf672de8eaf84cb45c86621ce9559, type: 3}
+  holdingPosition: {x: 0, y: 0, z: 0}
+  holdingUp: {x: 0, y: 5, z: 0}
 --- !u!114 &2640921738554418691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5700,6 +5702,7 @@ MonoBehaviour:
   baseVelocity: 0.4
   maxSpeed: 2
   moveForce: 1
+  jumpForce: 20
   rotationSpeed: 8
   airRotationSpeed: 5
   disableInput: 0
@@ -5708,15 +5711,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   distanceToGround: 1
+  isGrounded: 0
   snowstreamR: {fileID: 2974019456766209237}
   snowstreamL: {fileID: 5201298740287647083}
   groundDrag: 2.5
   groundAngDrag: 2.5
   airDrag: 2
   airAngDrag: 1
-  isGrounded: 0
-  jumpForce: 20
-  bounceForce: 4
   _baseGravity: -9.8
   gravityMultiplyer: 1
 --- !u!82 &1866174825309092097

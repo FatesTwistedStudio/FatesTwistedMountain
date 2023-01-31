@@ -13,6 +13,9 @@ public class S_CharInfoHolder : MonoBehaviour
     public GameObject camFollowPoint;
     public string _name;
     public Sprite image;
+    public Vector3 holdingPosition;
+    public Vector3 holdingUp;
+
     // public bool isPlayer = false;
     private void Update()
     {
@@ -26,7 +29,7 @@ public class S_CharInfoHolder : MonoBehaviour
             itemSprite = itemHeld.GetComponent<S_ItemDefine>().itemImage;
 
         }
-      
+      holdingPosition = transform.position+holdingUp;
     }
 
 }
