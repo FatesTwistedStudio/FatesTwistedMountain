@@ -32,7 +32,7 @@ public class S_ItemDefine : MonoBehaviour
         Debug.Log(gameObject.name + " is awake");
 
     }
-    public void playEffect()
+    public void playEffect(GameObject beingEffected)
     {
         GameObject itemEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
         Debug.Log("item effect");
@@ -45,7 +45,7 @@ public class S_ItemDefine : MonoBehaviour
             if (other.tag == "Character")
             {
                 //do specific effect
-                playEffect();
+                playEffect(other.gameObject);
             }
             if (other.tag == "Player")
             {
@@ -58,15 +58,15 @@ public class S_ItemDefine : MonoBehaviour
             if (other.tag == "Character")
             {
                 //do specific effect
-                playEffect();
-            }
-            if (other.tag == "Player")
-            {
-                //do specific effect
 
+                if (other.tag == "Player")
+                {
+                    //do specific effect
+
+                }
             }
         }
+
+
     }
-
-
 }
