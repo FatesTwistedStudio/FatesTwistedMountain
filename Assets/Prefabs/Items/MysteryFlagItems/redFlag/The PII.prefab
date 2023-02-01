@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8796895194294758597}
   - component: {fileID: 7819609050946588554}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: FBX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,8 @@ MonoBehaviour:
     type: 3}
   itemType: RedFlag
   itemDatabasePlacement: 0
-  holdingPosition: {x: 0, y: 0, z: 0}
   S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
     type: 3}
-  len: 0
+  characterUsedItem: {fileID: 0}
+  willFollow: 0
+  willChase: 0
