@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723666330157614095}
   - component: {fileID: 4550444017687487006}
+  - component: {fileID: -5095352106014694730}
   m_Layer: 0
   m_Name: The WIP
   m_TagString: GreenFlag
@@ -49,10 +50,25 @@ MonoBehaviour:
   itemEffectPrefab: {fileID: 5277179078521345240, guid: 64e450f47ccedb243aee93ee17bdf56f,
     type: 3}
   itemType: GreenFlag
-  itemDatabasePlacement: 0
-  holdingPosition: {x: 0, y: 0, z: 0}
+  itemDatabasePlacement: 3
   S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
     type: 3}
+  characterUsedItem: {fileID: 0}
+  willFollow: 1
+  willChase: 0
+--- !u!135 &-5095352106014694730
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701381748488123646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7555739094787694476
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +80,6 @@ GameObject:
   - component: {fileID: 7470545693994566638}
   - component: {fileID: 5995154603916509900}
   - component: {fileID: 4178954992422081550}
-  - component: {fileID: 7267579976330110094}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -137,16 +152,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7267579976330110094
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555739094787694476}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

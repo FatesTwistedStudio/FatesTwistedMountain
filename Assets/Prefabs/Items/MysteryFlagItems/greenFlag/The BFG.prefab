@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087733185751283199}
   - component: {fileID: 5471340797112979707}
+  - component: {fileID: 5435206016513696213}
   m_Layer: 0
   m_Name: The BFG
   m_TagString: GreenFlag
@@ -53,8 +54,21 @@ MonoBehaviour:
   S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
     type: 3}
   characterUsedItem: {fileID: 0}
-  willFollow: 0
+  willFollow: 1
   willChase: 0
+--- !u!135 &5435206016513696213
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221772143671420019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2874914210866484440
 GameObject:
   m_ObjectHideFlags: 0
