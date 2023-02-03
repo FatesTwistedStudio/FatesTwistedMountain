@@ -19,62 +19,49 @@ public class S_ItemDefine : MonoBehaviour
     {
         if (willChase == true)
         {
-
             //apply physics to move foward
-
         }
         if (willFollow == true)
         {
             gameObject.transform.position = characterUsedItem.GetComponent<S_CharInfoHolder>().holdingPosition;
             //set to follow above player
         }
-        // S_ItemDatabase.greenFlagItem[itemDatabasePlacement].itemGreenFlagImage = itemImage;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player"+"Character")
+        //item being used is a red flag
+        if (tag == "RedFlag")
         {
-
-            if (tag == "RedFlag")
+            Debug.Log(name + " is a red flag");
+            //target aquisition for red flag
+            if (other.tag == "Character")
             {
-                Debug.Log(name + " is a red flag");
-                if (other.tag == "Character")
-                {
-                    Debug.Log(other.name + " should be hit with " + name);
-                    //do specific effect
-                }
-                if (other.tag == "Player")
-                {
-                    Debug.Log(other.name + " should be hit with " + name);
-
-                    //do specific effect
-
-                }
+                //do specific effect
+                Debug.Log(other.name + " should be hit with " + name);
             }
-            if (tag == "GreenFlag")
+            if (other.tag == "Player")
             {
-                Debug.Log(name + " is a green flag");
-                if (other.gameObject.tag == "RedFlag")
-                {
-                    transform.LookAt(other.gameObject.transform);
-                    Debug.Log(name + " should be facing " + other.name);
-                    //do specific effect
-                    itemEffectPrefab.GetComponent<S_Effect>().activateEffect(other.gameObject, gameObject);
-                    Debug.Log(name + " should be playing " + itemEffectPrefab.name);
-
-
-                }
-                else
-                {
-                    Debug.Log(other.name + " isnt a red flag");
-                }
+                //do specific effect
+                Debug.Log(other.name + " should be hit with " + name);
             }
         }
-        else
+        if (tag == "GreenFlag")
         {
-            Debug.Log(other.name);
+            Debug.Log(name + " is a green flag");
+            //find redflagitems
+            if (other.gameObject.tag == "RedFlag")
+            {
+                //look at redflagitem
+                transform.LookAt(other.gameObject.transform);
+                Debug.Log(name + " should be facing " + other.name);
+                //do specific effect
+                itemEffectPrefab.GetComponent<S_Effect>().activateEffect(other.gameObject, gameObject);
+                Debug.Log(name + " should be playing " + itemEffectPrefab.name);
+            }
+            if(other.gameObject.tag!="RedFlag")
+            {
+                Debug.Log(other.name + " isnt a red flag");
+            }
         }
-
-
     }
 }

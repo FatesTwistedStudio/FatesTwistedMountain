@@ -18,7 +18,6 @@ public class S_GameloopController : MonoBehaviour
 
     public void Awake()
     {
-
         if (instance == null)
         {
             instance = this;
@@ -28,12 +27,8 @@ public class S_GameloopController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         DontDestroyOnLoad(gameObject);
     }
-
-
-    // Start is called before the first frame update
     void Start()
     {
         if (sceneManager == null)
@@ -44,16 +39,9 @@ public class S_GameloopController : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player");
         }
-        //Camera mainCamera = Instantiate(snowCam) as Camera;
-        //snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
-        //snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = player.GetComponent<S_CharInfoHolder>().camFollowPoint.transform;
-
     }
-
-    // Update is called once per frame
     void Update()
     {
-       // itemInfoSet();
         if (follow != null)
         {
             eventManager.SetActive(true);
@@ -61,20 +49,15 @@ public class S_GameloopController : MonoBehaviour
         else
         {
             eventManager.SetActive(false);
-
         }
         if (player != null)
         {
             player.GetComponent<S_CharInfoHolder>().camFollowPoint.tag = "FollowTarget";
             if (snowCam != null)
             {
-
-                //Debug.Log("" + snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow.tag);
-                //Debug.Log("" + snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt.tag);
                 follow = GameObject.FindWithTag("FollowTarget");
                 if (follow != null)
                 {
-
                     snowCam.GetComponentInChildren<CinemachineVirtualCamera>().Follow = follow.transform;
                     snowCam.GetComponentInChildren<CinemachineVirtualCamera>().LookAt = follow.transform;
                 }
@@ -84,9 +67,7 @@ public class S_GameloopController : MonoBehaviour
                 }
             }
         }
-
         GameObject spawner = GameObject.FindWithTag("Spawner");
         inGameTime += 1 * Time.deltaTime;
     }
-
 }
