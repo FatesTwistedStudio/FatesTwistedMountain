@@ -21,72 +21,13 @@ public class S_Effect : MonoBehaviour
     {
         if (other.tag == "RedFlag")
         {
-
-            other.gameObject.SetActive(false);
+            //setActivateEffect(other.gameObject,gameObject);
         }
     }
-    public void setActivateEffect(GameObject incomingItem, GameObject itemUsed)
+    public void setActivateEffect(GameObject itemUsed, GameObject intrudingItem)
     {
         effectToBePlayed = itemUsed.GetComponent<S_ItemDefine>().itemEffectPrefab;
         Debug.Log(itemUsed.name + " is spawning an effect");
-        if (itemUsed.name == "The EDS")
-        {
-            EdsLaser(incomingItem);
-        }
-        if (itemUsed.name == "The NIE")
-        {
-            NieEffect();
-        }
-        if (itemUsed.name == "The WIP")
-        {
-            WIP();
-        }
-        if (itemUsed.name == "The HovEffect")
-        {
-            HovEffect();
-        }
-        if (itemUsed.name == "The BFG")
-        {
-            BFG();
-        }
-        if (itemUsed.name == "The ABE")
-        {
-            ABE();
-        }
-        if (itemUsed.name == "The ASI")
-        {
-            ASI();
-        }
-        if (itemUsed.name == "The CCS")
-        {
-            CCS();
-        }
-        if (itemUsed.name == "The GST")
-        {
-            GST();
-        }
-        if (itemUsed.name == "The ICF")
-        {
-            ICF();
-        }
-        if (itemUsed.name == "The MPE")
-        {
-            MPE();
-        }
-        if (itemUsed.name == "The PII")
-        {
-            PII();
-        }
-        if (itemUsed.name == "The SFB")
-        {
-            SFB();
-        }
-        if (itemUsed.name == "The SID")
-        {
-            SID();
-        }
-        //add points
-
     }
     public void HovEffect()
     {
@@ -99,7 +40,7 @@ public class S_Effect : MonoBehaviour
         //lasts a couple seconds
 
     }
-    public void NieEffect()
+    public void NieEffect(GameObject CharacterToEffect)
     {
         //activate headphones
         GameObject activeNieEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
@@ -109,7 +50,7 @@ public class S_Effect : MonoBehaviour
 
         //lasts for couple seconds
     }
-    public void EdsLaser(GameObject itemToDestroy)
+    public void EdsEffect(GameObject itemToDestroy)
     {
         Debug.Log("Play Laser effect");
         //shoots a laser
@@ -127,12 +68,12 @@ public class S_Effect : MonoBehaviour
 
         // last 3 times
     }
-    public void BFG()
+    public void BFG(GameObject CharacterToEffect)
     {
         //spawn particle effect 
         GameObject activeBfgEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
         //change player color
-        
+
         //ignore all effects
 
         //speed up character
@@ -146,7 +87,7 @@ public class S_Effect : MonoBehaviour
         // snow splatters appear
 
         //snow splaters appearance, size and placement are randomized
-        
+
         // lasts a couple seconds
 
     }
@@ -154,7 +95,7 @@ public class S_Effect : MonoBehaviour
     {
         //spawn fire effect
         GameObject activeAbeEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-       //touching the fire lows down character
+        //touching the fire lows down character
 
         //spawn icepatch
         Icepatch();
@@ -221,13 +162,13 @@ public class S_Effect : MonoBehaviour
         //spawn launcher and 3 shards
         GameObject activeSidEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
         //pressing Q again will shoot one shard and disable one from launcher
-        
+
         //shard moves foward
 
         //if character enters collider,  look at and continue foward
 
         //if character collides with shard , stun character
-    
+
     }
     public void Icepatch()
     {
@@ -249,6 +190,6 @@ public class S_Effect : MonoBehaviour
 
         // getting hit by redflag loses 1
 
-  
+
     }
 }

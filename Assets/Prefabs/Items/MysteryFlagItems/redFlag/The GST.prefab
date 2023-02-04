@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7180993860217732001}
   - component: {fileID: 2563221949213897344}
+  - component: {fileID: -2113453060969523671}
   - component: {fileID: 1089793172008629612}
   - component: {fileID: 1762486404585403765}
   m_Layer: 0
@@ -154,6 +155,21 @@ MonoBehaviour:
   characterUsedItem: {fileID: 0}
   willFollow: 0
   willChase: 1
+  S_Effect: {fileID: -2113453060969523671}
+--- !u!114 &-2113453060969523671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7180993860217732000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4d6aea0268c95438f05d70cf41ea1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToBePlayed: {fileID: 0}
+  itemEffectCollider: {fileID: 0}
 --- !u!135 &1089793172008629612
 SphereCollider:
   m_ObjectHideFlags: 0

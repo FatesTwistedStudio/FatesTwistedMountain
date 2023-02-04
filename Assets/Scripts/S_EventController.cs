@@ -71,6 +71,10 @@ public class S_EventController : MonoBehaviour
             {
                 useItem(player);
             }
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                player.GetComponent<S_CharInfoHolder>().itemHeld = null;
+            }
         }
         else
         {
@@ -105,9 +109,9 @@ public class S_EventController : MonoBehaviour
     }
     public void useItem(GameObject character)
     {
-        GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld,character.GetComponent<S_CharInfoHolder>().holdingPosition, transform.rotation) as GameObject;
+        GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld, character.GetComponent<S_CharInfoHolder>().holdingPosition, transform.rotation) as GameObject;
         spawnItem.GetComponent<S_ItemDefine>().characterUsedItem = character;
-        character.GetComponent<S_CharInfoHolder>().itemHeld = null;
-    
+      //  character.GetComponent<S_CharInfoHolder>().itemHeld = null;
+
     }
 }

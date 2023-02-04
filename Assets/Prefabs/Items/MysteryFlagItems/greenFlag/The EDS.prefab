@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6453599931697171572}
   - component: {fileID: 3294406876572081418}
+  - component: {fileID: 3478239874213343609}
   - component: {fileID: 7695545306194862765}
   - component: {fileID: 7334956413159799448}
   m_Layer: 0
@@ -381,7 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 5ba1e5d8c70ec8e40bda1e556d545a25, type: 3}
-  itemEffectPrefab: {fileID: 9041758715122512481}
+  itemEffectPrefab: {fileID: 1787963281734930321, guid: f6a3645415d8bc94aa6350d65b27de82,
+    type: 3}
   itemType: GreenFlag
   itemDatabasePlacement: 2
   S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
@@ -389,6 +391,21 @@ MonoBehaviour:
   characterUsedItem: {fileID: 0}
   willFollow: 1
   willChase: 0
+  S_Effect: {fileID: 3478239874213343609}
+--- !u!114 &3478239874213343609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281844331362194602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4d6aea0268c95438f05d70cf41ea1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToBePlayed: {fileID: 0}
+  itemEffectCollider: {fileID: 0}
 --- !u!135 &7695545306194862765
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -525,12 +542,6 @@ PrefabInstance:
 --- !u!4 &5385383328510723516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5544191930498832754, guid: b861118930caf2c43bc15bb45cd1a463,
-    type: 3}
-  m_PrefabInstance: {fileID: 453830798903680206}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9041758715122512481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8878445414003666607, guid: b861118930caf2c43bc15bb45cd1a463,
     type: 3}
   m_PrefabInstance: {fileID: 453830798903680206}
   m_PrefabAsset: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1987149308691280958}
   - component: {fileID: 395524864237139864}
   m_Layer: 0
-  m_Name: effect
+  m_Name: effectRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d6aea0268c95438f05d70cf41ea1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EdsLasereffect: {fileID: 1787963281734930321, guid: f6a3645415d8bc94aa6350d65b27de82,
-    type: 3}
-  IcePatch: {fileID: 0}
+  effectToBePlayed: {fileID: 0}
   itemEffectCollider: {fileID: 0}
 --- !u!135 &395524864237139864
 SphereCollider:
