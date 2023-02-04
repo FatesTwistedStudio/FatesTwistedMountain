@@ -85,6 +85,8 @@ public class S_Effect : MonoBehaviour
         {
             SID();
         }
+        //add points
+
     }
     public void HovEffect()
     {
@@ -171,33 +173,61 @@ public class S_Effect : MonoBehaviour
     }
     public void CCS()
     {
+        //spawn antenna
         GameObject activeCcsEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
+        //change controls
+
+        //reset controls after a couple seconds
 
     }
     public void GST()
     {
+        //spawn magic circle
         GameObject activeGstEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
+        //players who touch prefab cant jump
 
+        //lasts 5-10 secs
+
+        //effect lasts couple seconds
     }
     public void ICF()
     {
+        //spawn fake flag
         GameObject activeIcfEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
 
     }
     public void MPE()
     {
+        //spawn mud puddle
         GameObject activeMpeEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
+        //slow player who are touching prefab
+
+        //remains for 10 seconds, then turns to icepatch
 
     }
     public void SFB()
     {
+        //spawn drone
         GameObject activeSfbEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
+        //pressing Q will launch fire prefab
+
+        //icepatch appears whereever fire touches
+
+        //players who touch fire are stunned
 
     }
     public void SID()
     {
+        //spawn launcher and 3 shards
         GameObject activeSidEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
+        //pressing Q again will shoot one shard and disable one from launcher
+        
+        //shard moves foward
 
+        //if character enters collider,  look at and continue foward
+
+        //if character collides with shard , stun character
+    
     }
     public void Icepatch()
     {
@@ -208,5 +238,17 @@ public class S_Effect : MonoBehaviour
 
         //slow down player input while on patch
 
+
+    }
+
+    public void GoldenFlagEffect(GameObject character)
+    {
+        // add speed multiplier based on number of goldflags
+
+        //respawning loses all all flags
+
+        // getting hit by redflag loses 1
+
+  
     }
 }
