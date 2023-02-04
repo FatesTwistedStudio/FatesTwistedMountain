@@ -32,7 +32,6 @@ public class S_ItemDefine : MonoBehaviour
         //item being used is a red flag
         if (tag == "RedFlag")
         {
-            Debug.Log(name + " is a red flag");
             //target aquisition for red flag
             if (other.tag == "Character")
             {
@@ -45,23 +44,25 @@ public class S_ItemDefine : MonoBehaviour
                 Debug.Log(other.name + " should be hit with " + name);
             }
         }
-        if (tag == "GreenFlag")
+        if (gameObject.name == "The EDS")
         {
-            Debug.Log(name + " is a green flag");
             //find redflagitems
-            if (other.gameObject.tag == "RedFlag")
+            if (other.gameObject.GetComponent<S_ItemDefine>().itemType == "RedFlag")
             {
-                //look at redflagitem
-                transform.LookAt(other.gameObject.transform);
-                Debug.Log(name + " should be facing " + other.name);
                 //do specific effect
-                itemEffectPrefab.GetComponent<S_Effect>().activateEffect(other.gameObject, gameObject);
-                Debug.Log(name + " should be playing " + itemEffectPrefab.name);
+                itemEffectPrefab.GetComponent<S_Effect>().EdsLaser(other.gameObject);
+        
             }
-            if(other.gameObject.tag!="RedFlag")
-            {
-                Debug.Log(other.name + " isnt a red flag");
-            }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+
+        if(other.tag == "RedFlag")
+        {
+            //look at redflagitem
+            transform.LookAt(other.gameObject.transform);
+            Debug.Log(name + " should be facing " + other.name);
         }
     }
 }
