@@ -35,12 +35,12 @@ public class S_NieEffect : MonoBehaviour
     //they should play music
     private void playOneShotAudio()
     {
-
+        Debug.Log("Catchy audio plays");
     }
     //enhance player accelleration 
     private void increaseAcceleration()
     {
-
+        Debug.Log("Character feels themselves going faster");
     }
     //lasts for couple seconds
     private void durationRandomizer()

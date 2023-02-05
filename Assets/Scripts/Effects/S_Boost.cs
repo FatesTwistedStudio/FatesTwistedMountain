@@ -8,10 +8,16 @@ public class S_Boost : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-            Debug.Log("Force Applied");           
-        if(other.gameObject.tag=="Player")
+        if (other.gameObject.tag == "Player")
         {
             //impulse force
+            Debug.Log("Force Applied to Player");
+        }
+        if (other.gameObject.tag == "Character")
+        {
+            //impulse force
+            Debug.Log("Force Applied to Character");
+
         }
     }
 }

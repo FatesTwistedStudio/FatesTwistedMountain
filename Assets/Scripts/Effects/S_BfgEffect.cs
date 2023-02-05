@@ -26,13 +26,13 @@ public class S_BfgEffect : MonoBehaviour
     }
     private void Update()
     {
-        durationLeft = Time.deltaTime;
         if (durationLeft > 0)
         {
             changeColor();
             increaseSpeed();
             noEffects();
         }
+        durationLeft = Time.deltaTime;
         if (durationLeft <= 0)
         {
             destroyTheEffect();

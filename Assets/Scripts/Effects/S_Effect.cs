@@ -38,18 +38,6 @@ public class S_Effect : MonoBehaviour
 
         // last 3 times
     }
-
-    public void PII()
-    {
-        //spawn canvas 
-        GameObject activePiiEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        // snow splatters appear
-
-        //snow splaters appearance, size and placement are randomized
-
-        // lasts a couple seconds
-
-    }
     public void ABE()
     {
         //spawn fire effect
@@ -57,7 +45,7 @@ public class S_Effect : MonoBehaviour
         //touching the fire lows down character
 
         //spawn icepatch
-        Icepatch();
+        //Icepatch();
         // gain speed boost
 
         //lasts a couple seconds
@@ -116,31 +104,6 @@ public class S_Effect : MonoBehaviour
         //players who touch fire are stunned
 
     }
-    public void SID()
-    {
-        //spawn launcher and 3 shards
-        GameObject activeSidEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //pressing Q again will shoot one shard and disable one from launcher
-
-        //shard moves foward
-
-        //if character enters collider,  look at and continue foward
-
-        //if character collides with shard , stun character
-
-    }
-    public void Icepatch()
-    {
-        //spawn effect
-        GameObject activeIcePatchEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-
-        //speed up player
-
-        //slow down player input while on patch
-
-
-    }
-
     public void GoldenFlagEffect(GameObject character)
     {
         // add speed multiplier based on number of goldflags

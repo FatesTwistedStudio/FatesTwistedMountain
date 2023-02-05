@@ -15,7 +15,7 @@ public class S_EventController : MonoBehaviour
     public GameObject player;
     [SerializeField]
     public GameObject[] charSpawned;
-    public bool isStarted;
+    public bool isStarted = true;
     public bool playerHasItem;
 
 
@@ -49,11 +49,6 @@ public class S_EventController : MonoBehaviour
         if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
         {
             timer += 1 * Time.deltaTime;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
-            isStarted = true;
         }
         if (isStarted == true)
         {
