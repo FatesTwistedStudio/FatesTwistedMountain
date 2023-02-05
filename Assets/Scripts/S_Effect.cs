@@ -29,37 +29,7 @@ public class S_Effect : MonoBehaviour
         effectToBePlayed = itemUsed.GetComponent<S_ItemDefine>().itemEffectPrefab;
         Debug.Log(itemUsed.name + " is spawning an effect");
     }
-    public void HovEffect()
-    {
-        //effect should look like pulsing waves under the board
-        GameObject activeHovEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        // avoid ground based effects
 
-        // less mass
-
-        //lasts a couple seconds
-
-    }
-    public void NieEffect(GameObject CharacterToEffect)
-    {
-        //activate headphones
-        GameObject activeNieEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //they should play music
-
-        //enhance player accelleration 
-
-        //lasts for couple seconds
-    }
-    public void EdsEffect(GameObject itemToDestroy)
-    {
-        Debug.Log("Play Laser effect");
-        //shoots a laser
-        GameObject activeEdsLaserEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        itemEffectCollider = activeEdsLaserEffect.GetComponent<Collider>();
-        //laser defeats all projectile items
-
-        // lasts 1 time
-    }
     public void WIP()
     {
         // spawn glider 
@@ -68,18 +38,7 @@ public class S_Effect : MonoBehaviour
 
         // last 3 times
     }
-    public void BFG(GameObject CharacterToEffect)
-    {
-        //spawn particle effect 
-        GameObject activeBfgEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //change player color
 
-        //ignore all effects
-
-        //speed up character
-
-        //for random amount of time
-    }
     public void PII()
     {
         //spawn canvas 

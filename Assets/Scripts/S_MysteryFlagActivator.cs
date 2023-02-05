@@ -29,6 +29,7 @@ public class S_MysteryFlagActivator : MonoBehaviour
             item = S_ItemDatabase.redFlagItem[itemNum].itemPrefab;
             item.GetComponent<S_ItemDefine>().itemDatabasePlacement = itemNum;
             item.GetComponent<S_ItemDefine>().itemType = "RedFlag";
+            item.GetComponent<S_ItemDefine>().pointWorth = S_ItemDatabase.redFlagItem[itemNum].pointsGiven;
 
         }
         if (gameObject.tag == "GreenFlag")
@@ -37,6 +38,7 @@ public class S_MysteryFlagActivator : MonoBehaviour
             item = S_ItemDatabase.greenFlagItem[itemNum].itemGreenFlagPrefab;
             item.GetComponent<S_ItemDefine>().itemDatabasePlacement= itemNum;
             item.GetComponent<S_ItemDefine>().itemType = "GreenFlag";
+            item.GetComponent<S_ItemDefine>().pointWorth = S_ItemDatabase.greenFlagItem[itemNum].pointsGiven;
         }
     }
     public void setTheItem(GameObject character)

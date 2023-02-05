@@ -15,7 +15,7 @@ public class S_ItemDefine : MonoBehaviour
     public bool willFollow;
     public bool willChase;
     public S_Effect S_Effect;
-
+    public int pointWorth;
     private void OnTriggerStay(Collider other)
     {
         if (gameObject.name == "The EdsEffect")
@@ -37,6 +37,22 @@ public class S_ItemDefine : MonoBehaviour
         {
             gameObject.transform.position = characterUsedItem.GetComponent<S_CharInfoHolder>().holdingPosition;
             //set to follow above player
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //fire extra projectiles
+
+        }
+    }
+    private void Start()
+    {
+        if (name == "The BFG")
+        {
+            BFG(characterUsedItem);
+        }
+        if (name == "The HOV")
+        {
+            HovEffect(characterUsedItem);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -74,15 +90,18 @@ public class S_ItemDefine : MonoBehaviour
         {
             playEffect();
         }
+        if (name == "The EDS")
+        {
+            if(other.gameObject.tag =="RedFlag")
+            {
+                EdsEffect(other.gameObject);
+            }
+        }
 
     }
 
     public void playEffect()
     {
-        if (name == "The EDS")
-        {
-            // S_Effect.EdsEffect(intrudingItem);
-        }
         if (name == "The NIE")
         {
             //S_Effect.NieEffect();
@@ -90,14 +109,6 @@ public class S_ItemDefine : MonoBehaviour
         if (name == "The WIP")
         {
             S_Effect.WIP();
-        }
-        if (name == "The HOV")
-        {
-            S_Effect.HovEffect();
-        }
-        if (name == "The BFG")
-        {
-            //S_Effect.BFG();
         }
         if (name == "The ABE")
         {
@@ -137,6 +148,50 @@ public class S_ItemDefine : MonoBehaviour
         }
         //add points
 
+    }
+    public void BFG(GameObject CharacterToEffect)
+    {
+        itemEffectPrefab.GetComponent<S_BfgEffect>().character = CharacterToEffect;
+        GameObject activeBfgEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+       
+        if (activeBfgEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void EdsEffect(GameObject itemToDestroy)
+    {
+        //shoots a laser
+        GameObject activeEdsLaserEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeEdsLaserEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void HovEffect(GameObject CharacterToEffect)
+    {
+        //effect should look like pulsing waves under the board
+        GameObject activeHovEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeHovEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void NieEffect(GameObject CharacterToEffect)
+    {
+        //activate headphones
+        GameObject activeNieEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeNieEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
     }
 }
 
