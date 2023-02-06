@@ -212,7 +212,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             rb.drag = groundDrag;
             rb.angularDrag = groundAngDrag;
         }
-        else
+        else 
         {
             rb.drag = airDrag;
             rb.angularDrag = airAngDrag;
