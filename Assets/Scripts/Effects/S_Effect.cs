@@ -84,26 +84,6 @@ public class S_Effect : MonoBehaviour
         GameObject activeIcfEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
 
     }
-    public void MPE()
-    {
-        //spawn mud puddle
-        GameObject activeMpeEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //slow player who are touching prefab
-
-        //remains for 10 seconds, then turns to icepatch
-
-    }
-    public void SFB()
-    {
-        //spawn drone
-        GameObject activeSfbEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //pressing Q will launch fire prefab
-
-        //icepatch appears whereever fire touches
-
-        //players who touch fire are stunned
-
-    }
     public void GoldenFlagEffect(GameObject character)
     {
         // add speed multiplier based on number of goldflags

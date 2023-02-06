@@ -45,6 +45,11 @@ public class S_ItemDefine : MonoBehaviour
             {
                 SidEffect(characterUsedItem);
             }
+
+            if (name == "The SFB")
+            {
+                SFB();
+            }
         }
     }
     private void Start()
@@ -65,7 +70,10 @@ public class S_ItemDefine : MonoBehaviour
         {
             HovEffect(characterUsedItem);
         }
-
+        if (name == "The MPE")
+        {
+            MPE();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -139,14 +147,7 @@ public class S_ItemDefine : MonoBehaviour
         {
             S_Effect.ICF();
         }
-        if (name == "The MPE")
-        {
-            S_Effect.MPE();
-        }
-        if (name == "The SFB")
-        {
-            S_Effect.SFB();
-        }
+ 
         //add points
 
     }
@@ -226,6 +227,29 @@ public class S_ItemDefine : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void MPE()
+    {
+        //spawn mud puddle
+        GameObject activeMpeEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeMpeEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void SFB()
+    {
+        //spawn drone
+        GameObject activeSfbEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeSfbEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
 

@@ -21,7 +21,7 @@ public class S_HovEffect : MonoBehaviour
     }
     private void Update()
     {
-        durationLeft = Time.deltaTime;
+        durationLeft -= 1 * Time.deltaTime;
         if (durationLeft > 0)
         {
             offTheGround();
@@ -50,10 +50,7 @@ public class S_HovEffect : MonoBehaviour
     }
     public void destroyTheEffect()
     {
-        if (durationLeft <= 0)
-        {
             Destroy(gameObject);
-        }
     }
     //for random amount of time
     private void OnDestroy()

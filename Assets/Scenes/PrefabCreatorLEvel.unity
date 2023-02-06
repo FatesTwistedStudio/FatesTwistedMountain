@@ -768,6 +768,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2201720558353561130, guid: 25ed7ea0f8347de46a02ec9c6972693c,
+        type: 3}
+      propertyPath: icePatchEffect
+      value: 
+      objectReference: {fileID: 2750883825438101369, guid: b2f58f47166f94743b7cecbf83276a9d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25ed7ea0f8347de46a02ec9c6972693c, type: 3}
 --- !u!1001 &4172657045540527510
@@ -975,6 +981,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MpeEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 8283014482384888702, guid: 6743414ae0375fa4bb53b6c754e53d9d,
+        type: 3}
+      propertyPath: duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283014482384888702, guid: 6743414ae0375fa4bb53b6c754e53d9d,
+        type: 3}
+      propertyPath: icePatchEffect
+      value: 
+      objectReference: {fileID: 2750883825438101369, guid: b2f58f47166f94743b7cecbf83276a9d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6743414ae0375fa4bb53b6c754e53d9d, type: 3}
 --- !u!1001 &4629374980794557806

@@ -32,7 +32,7 @@ public class S_BfgEffect : MonoBehaviour
             increaseSpeed();
             noEffects();
         }
-        durationLeft = Time.deltaTime;
+        durationLeft -=1* Time.deltaTime;
         if (durationLeft <= 0)
         {
             destroyTheEffect();
