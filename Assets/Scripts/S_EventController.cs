@@ -108,7 +108,7 @@ public class S_EventController : MonoBehaviour
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int i = 0; i < charSpawned.Length; i++)
             {
-                charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
         }
     }
