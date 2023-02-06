@@ -808,6 +808,34 @@ public partial class @FTMInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Start Race"",
+            ""id"": ""fb2a9d41-be86-4c01-97cc-af496ea98d6f"",
+            ""actions"": [
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""94d04563-c746-4cd6-ac55-a8aeefe6c03d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a6a5757f-8682-4ea4-8872-43c92d951e45"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -894,6 +922,9 @@ public partial class @FTMInput : IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Escape = m_Menu.FindAction("Escape", throwIfNotFound: true);
+        // Start Race
+        m_StartRace = asset.FindActionMap("Start Race", throwIfNotFound: true);
+        m_StartRace_Start = m_StartRace.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1144,6 +1175,39 @@ public partial class @FTMInput : IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // Start Race
+    private readonly InputActionMap m_StartRace;
+    private IStartRaceActions m_StartRaceActionsCallbackInterface;
+    private readonly InputAction m_StartRace_Start;
+    public struct StartRaceActions
+    {
+        private @FTMInput m_Wrapper;
+        public StartRaceActions(@FTMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Start => m_Wrapper.m_StartRace_Start;
+        public InputActionMap Get() { return m_Wrapper.m_StartRace; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(StartRaceActions set) { return set.Get(); }
+        public void SetCallbacks(IStartRaceActions instance)
+        {
+            if (m_Wrapper.m_StartRaceActionsCallbackInterface != null)
+            {
+                @Start.started -= m_Wrapper.m_StartRaceActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_StartRaceActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_StartRaceActionsCallbackInterface.OnStart;
+            }
+            m_Wrapper.m_StartRaceActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
+            }
+        }
+    }
+    public StartRaceActions @StartRace => new StartRaceActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1212,5 +1276,9 @@ public partial class @FTMInput : IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnEscape(InputAction.CallbackContext context);
+    }
+    public interface IStartRaceActions
+    {
+        void OnStart(InputAction.CallbackContext context);
     }
 }

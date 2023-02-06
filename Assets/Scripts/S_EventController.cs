@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
 public class S_EventController : MonoBehaviour
@@ -17,7 +18,14 @@ public class S_EventController : MonoBehaviour
     public GameObject[] charSpawned;
     public bool isStarted = true;
     public bool playerHasItem;
+    private FTMInput _Input;
+    private InputAction StartRace;
 
+    private void Awake()
+    {
+        _Input = new FTMInput();
+
+    }
 
     private void Start()
     {
@@ -35,7 +43,9 @@ public class S_EventController : MonoBehaviour
     private void OnEnable()
     {
         currentTime = startTime;
-
+        StartRace = _Input.StartRace.Start;
+        StartRace.Enable();
+        StartRace.performed += OnStartRace;
     }
     void Update()
     {
@@ -109,4 +119,11 @@ public class S_EventController : MonoBehaviour
       //  character.GetComponent<S_CharInfoHolder>().itemHeld = null;
 
     }
+
+    public void OnStartRace(InputAction.CallbackContext context)
+    {
+        isStarted = true;
+    }
+
+    
 }

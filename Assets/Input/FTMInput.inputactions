@@ -1,5 +1,5 @@
 {
-    "name": "Fate'sTwistedMountain",
+    "name": "FTMInput",
     "maps": [
         {
             "name": "Player",
@@ -782,6 +782,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Start Race",
+            "id": "fb2a9d41-be86-4c01-97cc-af496ea98d6f",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "94d04563-c746-4cd6-ac55-a8aeefe6c03d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a6a5757f-8682-4ea4-8872-43c92d951e45",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
