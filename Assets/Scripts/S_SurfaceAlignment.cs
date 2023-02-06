@@ -16,7 +16,7 @@ public class S_SurfaceAlignment : MonoBehaviour
     [SerializeField]
     private float _modelTime;
 
-    private void Update()
+    private void FixedUpdate()
     {
         SurfaceAlignment();
     }

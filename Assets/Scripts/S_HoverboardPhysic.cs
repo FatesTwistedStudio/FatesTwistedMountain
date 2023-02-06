@@ -165,7 +165,9 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void HandleRotation()
     {
-        transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
+        rb.AddRelativeTorque(Vector3.up * _Rotation.x * rotationSpeed * 0.2f, ForceMode.VelocityChange);
+
+        //transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
         playerModel.transform.Rotate(Vector3.right * _Rotation.x * rotationSpeed * 0.1f);
     }
 
