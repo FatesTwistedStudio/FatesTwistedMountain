@@ -28,7 +28,8 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float moveForce;
     [SerializeField]
     private float jumpForce;
-   
+ 
+
     [Header("Rotation")]
     [SerializeField]
     private float rotationSpeed;
@@ -115,6 +116,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             isPlayer = false;
         }
+      
         rb = GetComponent<Rigidbody>();
         
         disableInput = false;
@@ -247,4 +249,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
         rb.velocity += Vector3.down * -gravity * (gravityMultiplyer * Time.deltaTime * 3f);
     }
+
+
 }

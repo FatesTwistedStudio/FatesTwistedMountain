@@ -6,6 +6,9 @@ public class S_PlayerController : MonoBehaviour
 {
     public float turnSpeed;
     public float speed;
+    public float normalSpeed;
+    public float boostedSpeed;
+    public float speedCoolDown;
 
     public GameObject BL;
     public GameObject FL;
@@ -17,6 +20,8 @@ public class S_PlayerController : MonoBehaviour
     private Vector3 FLstart;
     private Vector3 BRstart;
     private Vector3 FRstart;
+
+
 
     public Vector3 tiltDegree;
 
@@ -47,7 +52,7 @@ public class S_PlayerController : MonoBehaviour
         {
             FRstart = FR.transform.position;
         }
-
+        normalSpeed = speed;
     }
 
     // Update is called once per frame
@@ -82,5 +87,21 @@ public class S_PlayerController : MonoBehaviour
         FL.transform.position = FLstart;
         BR.transform.position = BRstart;
         FR.transform.position = FRstart;
+    }
+
+    //boost
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("SpeedBoost"))
+        {
+            speed = boostedSpeed;
+            StartCoroutine("SpeedDuration");
+        }
+    }
+
+    IEnumerator SpeedDuration()
+    {
+        yield return new WaitForSeconds(speedCoolDown);
+        speed = normalSpeed;
     }
 }
