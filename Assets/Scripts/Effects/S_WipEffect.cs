@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class S_WipEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject character;
+    public float newGravity;
+    private void Update()
     {
-        
+        slowGravity();
     }
-
-    // Update is called once per frame
-    void Update()
+    // gives more airtime for tricks
+    public void slowGravity()
     {
-        
+        Debug.Log(character.name + " is alowing his fall");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer==6)
+        {
+            Destroy(gameObject);
+        }
     }
 }

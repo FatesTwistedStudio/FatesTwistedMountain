@@ -29,55 +29,6 @@ public class S_Effect : MonoBehaviour
         effectToBePlayed = itemUsed.GetComponent<S_ItemDefine>().itemEffectPrefab;
         Debug.Log(itemUsed.name + " is spawning an effect");
     }
-
-    public void WIP()
-    {
-        // spawn glider 
-        GameObject activeWipEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        // gives more airtime for tricks
-
-        // last 3 times
-    }
-    public void ABE()
-    {
-        //spawn fire effect
-        GameObject activeAbeEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //touching the fire lows down character
-
-        //spawn icepatch
-        //Icepatch();
-        // gain speed boost
-
-        //lasts a couple seconds
-
-    }
-    public void ASI()
-    {
-        //spawn airhorn
-        GameObject activeAsiEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //play one-shot audioclip
-
-        //all players lose momentum
-    }
-    public void CCS()
-    {
-        //spawn antenna
-        GameObject activeCcsEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //change controls
-
-        //reset controls after a couple seconds
-
-    }
-    public void GST()
-    {
-        //spawn magic circle
-        GameObject activeGstEffect = Instantiate(effectToBePlayed, transform.position, transform.rotation) as GameObject;
-        //players who touch prefab cant jump
-
-        //lasts 5-10 secs
-
-        //effect lasts couple seconds
-    }
     public void ICF()
     {
         //spawn fake flag

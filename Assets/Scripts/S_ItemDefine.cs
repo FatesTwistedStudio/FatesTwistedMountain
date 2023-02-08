@@ -46,17 +46,21 @@ public class S_ItemDefine : MonoBehaviour
                 SidEffect(characterUsedItem);
             }
 
-            if (name == "The SFB")
+            if (name == "The SfbEffect")
             {
-                SFB();
+                SfbEffect();
+            }
+            if (name == "The WIP")
+            {
+                WipEffect(characterUsedItem);
             }
         }
     }
     private void Start()
     {
-        if (name == "The BFG")
+        if (name == "The BfgEffect")
         {
-            BFG(characterUsedItem);
+            BfgEffect(characterUsedItem);
         }
         if (name == "The PiiEffect")
         {
@@ -70,49 +74,42 @@ public class S_ItemDefine : MonoBehaviour
         {
             HovEffect(characterUsedItem);
         }
-        if (name == "The MPE")
+        if (name == "The MpeEffect")
         {
-            MPE();
+            MpeEffect();
+        }
+        if (name == "The AbeEffect")
+        {
+            AbeEffect();
+        }
+        if (name == "The AsiEffect")
+        {
+            AsiEffect();
+        }
+        if (name == "The CcsEffect")
+        {
+            CcsEffect(characterUsedItem);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        //item being used is a red flag
-        if (tag == "RedFlag")
+        if (other.tag == "Character")
         {
-            if (other.gameObject != characterUsedItem)
+            if (name == "The GstEffect")
             {
-                if (willChase == false)
-                {
-
-                }
-                if (willChase == true)
-                {
-
-                }
-                //target aquisition for red flag
-                if (other.tag == "Character")
-                {
-                    itemEffectPrefab.GetComponent<S_Effect>().setActivateEffect(other.gameObject, gameObject);
-
-                    //do specific effect
-                    Debug.Log(other.name + " should be hit with " + name);
-                }
-                if (other.tag == "Player")
-                {
-
-                    //do specific effect
-                    Debug.Log(other.name + " should be hit with " + name);
-                }
+                GstEffect(other.gameObject);
             }
         }
-        if (tag == "GreenFlag")
+        if (other.tag == "Player")
         {
-            playEffect();
+            if (name == "The GstEffect")
+            {
+                GstEffect(other.gameObject);
+            }
         }
-        if (name == "The EDS")
+        if (other.gameObject.tag == "RedFlag")
         {
-            if (other.gameObject.tag == "RedFlag")
+            if (name == "The EDS")
             {
                 EdsEffect();
             }
@@ -122,36 +119,12 @@ public class S_ItemDefine : MonoBehaviour
 
     public void playEffect()
     {
-
-        if (name == "The WIP")
-        {
-            S_Effect.WIP();
-        }
-        if (name == "The ABE")
-        {
-            S_Effect.ABE();
-        }
-        if (name == "The ASI")
-        {
-            S_Effect.ASI();
-        }
-        if (name == "The CCS")
-        {
-            S_Effect.CCS();
-        }
-        if (name == "The GST")
-        {
-            S_Effect.GST();
-        }
         if (name == "The ICF")
         {
             S_Effect.ICF();
         }
- 
-        //add points
-
     }
-    public void BFG(GameObject CharacterToEffect)
+    public void BfgEffect(GameObject CharacterToEffect)
     {
         itemEffectPrefab.GetComponent<S_BfgEffect>().character = CharacterToEffect;
         GameObject activeBfgEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
@@ -228,7 +201,7 @@ public class S_ItemDefine : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void MPE()
+    public void MpeEffect()
     {
         //spawn mud puddle
         GameObject activeMpeEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
@@ -239,7 +212,7 @@ public class S_ItemDefine : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SFB()
+    public void SfbEffect()
     {
         //spawn drone
         GameObject activeSfbEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
@@ -249,7 +222,78 @@ public class S_ItemDefine : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void AbeEffect()
+    {
+        itemEffectPrefab.GetComponent<S_AbeEffect>().character = characterUsedItem;
 
+        //spawn fire effect
+        GameObject activeAbeEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeAbeEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void AsiEffect()
+    {
+        itemEffectPrefab.GetComponent<S_AsiEffect>().character = characterUsedItem;
+
+        //spawn airhorn
+        GameObject activeAsiEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeAsiEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void WipEffect(GameObject CharacterToEffect)
+    {
+        itemEffectPrefab.GetComponent<S_WipEffect>().character = CharacterToEffect;
+        int Ammo = 3;
+        // spawn glider 
+        GameObject activeWipEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeWipEffect.IsDestroyed())
+        {
+            Ammo--;
+        }
+        if (Ammo <= 0)
+        {
+            Destroy(gameObject);
+
+        }
+    }
+    public void CcsEffect(GameObject playerWhoIsControlling)
+    {
+        itemEffectPrefab.GetComponent<S_CcsEffect>().character = playerWhoIsControlling;
+
+        //spawn antenna
+        GameObject activeCcsEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeCcsEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void GstEffect(GameObject CharacterToEffect)
+    {
+        itemEffectPrefab.GetComponent<S_GstEffect>().character = CharacterToEffect;
+
+        //spawn magic circle
+        GameObject activeGstEffect = Instantiate(itemEffectPrefab, transform.position, transform.rotation) as GameObject;
+
+        characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned = characterUsedItem.GetComponent<S_CharInfoHolder>().pointsEarned + pointWorth;
+
+        if (activeGstEffect.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

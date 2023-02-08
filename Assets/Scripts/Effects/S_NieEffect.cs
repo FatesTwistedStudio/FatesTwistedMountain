@@ -21,7 +21,7 @@ public class S_NieEffect : MonoBehaviour
     }
     private void Update()
     {
-        durationLeft = Time.deltaTime;
+        durationLeft -=1* Time.deltaTime;
         if (durationLeft > 0)
         {
             playOneShotAudio();
@@ -49,10 +49,7 @@ public class S_NieEffect : MonoBehaviour
     }
     public void destroyTheEffect()
     {
-        if (durationLeft <= 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
     //for random amount of time
     private void OnDestroy()

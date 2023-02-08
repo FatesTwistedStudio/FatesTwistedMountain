@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class S_AsiEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject character;
+    public AudioClip airHornSound;
+    private void Awake()
     {
-        
+        playSound();
+        slowDownCharacter(character);
+        destroyTheEffect();
+    }
+    //play one-shot audioclip
+    public void playSound()
+    {
+        Debug.Log("PLay Air horn sound");
     }
 
-    // Update is called once per frame
-    void Update()
+    //all players lose momentum
+    public void slowDownCharacter(GameObject characterNotEffected)
     {
-        
+        //find all players using eventContoller
+        Debug.Log("all players slow down except "+characterNotEffected.name);
+    }
+    public void destroyTheEffect()
+    {
+        Destroy(gameObject);
     }
 }
