@@ -10,6 +10,8 @@ public class S_PlayerController : MonoBehaviour
     public float boostedSpeed;
     public float speedCoolDown;
 
+    public float backdraftDistance; 
+
     public GameObject BL;
     public GameObject FL;
     public GameObject BR;
