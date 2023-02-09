@@ -89,6 +89,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     RaycastHit slopeHit;
 
 
+
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f ))
@@ -249,6 +250,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
         rb.velocity += Vector3.down * -gravity * (gravityMultiplyer * Time.deltaTime * 3f);
     }
+
 
 
 }

@@ -6,11 +6,14 @@ public class S_PlayerController : MonoBehaviour
 {
     public float turnSpeed;
     public float speed;
+
+    [Header("Boost")]
     public float normalSpeed;
     public float boostedSpeed;
     public float speedCoolDown;
-
-    public float backdraftDistance; 
+    public float backdraftDistance;
+    public float backdraftTime;
+    private float cooldownTimer = Mathf.Infinity;
 
     public GameObject BL;
     public GameObject FL;
@@ -60,8 +63,9 @@ public class S_PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    leaningBoardHorizantally();
+      leaningBoardHorizantally();
     }
+
     public void leaningBoardHorizantally()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -83,6 +87,7 @@ public class S_PlayerController : MonoBehaviour
             resetAnchors();
         }
     }
+
     public void resetAnchors()
     {
         BL.transform.position = BLstart;
@@ -92,9 +97,17 @@ public class S_PlayerController : MonoBehaviour
     }
 
     //boost
+
+    /* Need to add this instead of collider trigger 
+    cooldownTimer += Time.deltaTime;
+        if (cooldownTimer >= backdraftTime)
+        {
+            cooldownTimer = 0;
+    */
+
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("SpeedBoost"))
+            if (collider.CompareTag("SpeedBoost"))
         {
             speed = boostedSpeed;
             StartCoroutine("SpeedDuration");
