@@ -14,7 +14,7 @@ public class S_ItemDefine : MonoBehaviour
     public GameObject characterUsedItem;
     public bool willFollow;
     public bool willChase;
-    public S_Effect S_Effect;
+  //  public S_Effect S_Effect;
     public int pointWorth;
     private void OnTriggerStay(Collider other)
     {
@@ -121,7 +121,7 @@ public class S_ItemDefine : MonoBehaviour
     {
         if (name == "The ICF")
         {
-            S_Effect.ICF();
+            //S_Effect.ICF();
         }
     }
     public void BfgEffect(GameObject CharacterToEffect)
