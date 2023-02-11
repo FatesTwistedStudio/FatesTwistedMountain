@@ -14,15 +14,15 @@ public class S_ItemDefine : MonoBehaviour
     public GameObject characterUsedItem;
     public bool willFollow;
     public bool willChase;
-  //  public S_Effect S_Effect;
     public int pointWorth;
     private void OnTriggerStay(Collider other)
     {
-        if (gameObject.name == "The EdsEffect")
+        if (gameObject.name == "The EDS")
         {
             if (other.gameObject.tag == "RedFlag")
             {
                 //look at redflagitem
+                Debug.Log("EDS looking at " + other.gameObject.name);
                 transform.LookAt(other.gameObject.transform);
             }
         }
@@ -32,62 +32,85 @@ public class S_ItemDefine : MonoBehaviour
         if (willChase == true)
         {
             //apply physics to move foward
+            Debug.Log("item launch forward");
         }
         if (willFollow == true)
         {
+            Debug.Log("item is following");
+
             gameObject.transform.position = characterUsedItem.GetComponent<S_CharInfoHolder>().holdingPosition;
             //set to follow above player
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //fire extra projectiles
-            if (name == "The SidEffect")
+            if (name == "The SID")
             {
-                SidEffect(characterUsedItem);
-            }
+                Debug.Log("Sid effect item launch forward");
 
-            if (name == "The SfbEffect")
-            {
-                SfbEffect();
+                SidEffect(characterUsedItem);
             }
             if (name == "The WIP")
             {
+                Debug.Log("Wipeffect");
                 WipEffect(characterUsedItem);
             }
         }
     }
     private void Start()
     {
-        if (name == "The BfgEffect")
+        if (name == "The BFG")
         {
+            Debug.Log("Spawning BfgEffect");
             BfgEffect(characterUsedItem);
         }
-        if (name == "The PiiEffect")
+        if (name == "The PII")
         {
+            Debug.Log("Spawning PiiEffect");
+
             PiiEffect(characterUsedItem);
         }
         if (name == "The NIE")
         {
+            Debug.Log("Spawning NieEffect");
+
             NieEffect(characterUsedItem);
         }
         if (name == "The HOV")
         {
+            Debug.Log("Spawning HovEffect");
+
             HovEffect(characterUsedItem);
         }
-        if (name == "The MpeEffect")
+
+        if (name == "The SFB")
         {
+            Debug.Log("SFB effect item leaves flames behind ");
+
+            SfbEffect();
+        }
+        if (name == "The MPE")
+        {
+            Debug.Log("Spawning MpeEffect");
+
             MpeEffect();
         }
-        if (name == "The AbeEffect")
+        if (name == "The ABE")
         {
+            Debug.Log("Spawning AbeEffect");
+
             AbeEffect();
         }
-        if (name == "The AsiEffect")
+        if (name == "The ASI")
         {
+            Debug.Log("Spawning AsiEffect");
+
             AsiEffect();
         }
-        if (name == "The CcsEffect")
+        if (name == "The CCS")
         {
+            Debug.Log("Spawning CcsEffect");
+
             CcsEffect(characterUsedItem);
         }
     }
@@ -95,15 +118,19 @@ public class S_ItemDefine : MonoBehaviour
     {
         if (other.tag == "Character")
         {
-            if (name == "The GstEffect")
+            if (name == "The GST")
             {
+                Debug.Log("Spawning GstEffect");
+
                 GstEffect(other.gameObject);
             }
         }
         if (other.tag == "Player")
         {
-            if (name == "The GstEffect")
+            if (name == "The GST")
             {
+                Debug.Log("Spawning GstEffect");
+
                 GstEffect(other.gameObject);
             }
         }
@@ -111,6 +138,8 @@ public class S_ItemDefine : MonoBehaviour
         {
             if (name == "The EDS")
             {
+                Debug.Log("Spawning EdsEffect");
+
                 EdsEffect();
             }
         }
