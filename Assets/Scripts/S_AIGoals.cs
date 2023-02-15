@@ -13,7 +13,7 @@ public class S_AIGoals : MonoBehaviour
         {
             if (aiText == "")
             {
-
+                AiWilson();
             }
             if (aiText == "Slime")
             {
@@ -106,7 +106,7 @@ public class S_AIGoals : MonoBehaviour
         if (gameObject.GetComponent<S_CharInfoHolder>() != null)
         {
             if (gameObject.GetComponent<S_CharInfoHolder>().itemHeld.tag == "RedFlag")
-            {   
+            {
                 S_AiMovement.useItem(gameObject.GetComponent<S_CharInfoHolder>().itemHeld);
 
             }
@@ -118,6 +118,28 @@ public class S_AIGoals : MonoBehaviour
         }
         //will do tricks
 
+        //will try to make the player lose using items like a menace
+    }
+    public void AiWilson()
+    {
+        //unreal
+
+        //Will use red flag and green flag items
+        if (gameObject.GetComponent<S_CharInfoHolder>() != null)
+        {
+            if (gameObject.GetComponent<S_CharInfoHolder>().itemHeld.tag == "RedFlag")
+            {
+                S_AiMovement.useItem(gameObject.GetComponent<S_CharInfoHolder>().itemHeld);
+
+            }
+            if (gameObject.GetComponent<S_CharInfoHolder>().itemHeld.tag == "GreenFlag")
+            {
+                S_AiMovement.useItem(gameObject.GetComponent<S_CharInfoHolder>().itemHeld);
+
+            }
+        }
+        //will do tricks
+        
         //will try to make the player lose using items like a menace
     }
 }
