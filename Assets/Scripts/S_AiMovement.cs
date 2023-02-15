@@ -9,8 +9,34 @@ public class S_AiMovement : MonoBehaviour
     public float Speed;
 
     //focus on items
+    public void seeItem()
+    {
+        
+    }
+    public void useItem()
+    {
 
+    }
     //focus on shortest path
+    public void leanLeft()
+    {
 
+    }
+    public void leanRight()
+    {
+
+    }
+    public void leanBack()
+    {
+
+    }
+    public void leanFoward()
+    {
+
+    }
+    public void doTricks()
+    {
+
+    }
     
 }
