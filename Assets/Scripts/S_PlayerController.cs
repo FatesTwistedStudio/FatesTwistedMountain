@@ -63,7 +63,7 @@ public class S_PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      leaningBoardHorizantally();
+        leaningBoardHorizantally();
     }
 
     public void leaningBoardHorizantally()

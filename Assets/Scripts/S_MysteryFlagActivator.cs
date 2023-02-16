@@ -21,6 +21,8 @@ public class S_MysteryFlagActivator : MonoBehaviour
             }
         }
     }
+
+
     public void randomizeTheItem()
     {
         if (gameObject.tag == "RedFlag")

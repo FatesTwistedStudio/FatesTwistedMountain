@@ -47,7 +47,6 @@ public class S_ItemDefine : MonoBehaviour
             if (name == "The SID")
             {
                 Debug.Log("Sid effect item launch forward");
-
                 SidEffect(characterUsedItem);
             }
             if (name == "The WIP")
@@ -67,7 +66,6 @@ public class S_ItemDefine : MonoBehaviour
         if (name == "The PII")
         {
             Debug.Log("Spawning PiiEffect");
-
             PiiEffect(characterUsedItem);
         }
         if (name == "The NIE")
@@ -79,8 +77,8 @@ public class S_ItemDefine : MonoBehaviour
         if (name == "The HOV")
         {
             Debug.Log("Spawning HovEffect");
-
             HovEffect(characterUsedItem);
+ 
         }
 
         if (name == "The SFB")
@@ -114,6 +112,7 @@ public class S_ItemDefine : MonoBehaviour
             CcsEffect(characterUsedItem);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Character")
@@ -138,9 +137,9 @@ public class S_ItemDefine : MonoBehaviour
         {
             if (name == "The EDS")
             {
-                Debug.Log("Spawning EdsEffect");
-
+                Debug.Log("EDS Spawn");
                 EdsEffect();
+ 
             }
         }
 

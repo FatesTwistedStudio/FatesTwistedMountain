@@ -12,6 +12,7 @@ public class S_SidEffect : MonoBehaviour
     {
         Debug.Log("IceShard Moves forward");
     }
+
     //if character enters collider,  look at and continue foward
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +30,7 @@ public class S_SidEffect : MonoBehaviour
             }
         }
     }
+
     //if character collides with shard
     private void OnCollisionEnter(Collision collision)
     {
