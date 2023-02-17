@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
@@ -15,6 +16,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     Rigidbody rb;
     private float Height;
     private float maxSlopeAngle;
+    private NavMeshAgent navmesh;
 
     bool isPlayer;
     private S_PlayerInput _PlayerInputScript;
@@ -111,7 +113,8 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             isPlayer = true;
             _PlayerInputScript = GetComponent<S_PlayerInput>();
-
+            navmesh = GetComponent<NavMeshAgent>();
+            navmesh.enabled = false;
         }
         else
         {
