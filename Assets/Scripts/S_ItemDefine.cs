@@ -58,6 +58,8 @@ public class S_ItemDefine : MonoBehaviour
     }
     private void Start()
     {
+        Debug.Log("Name " + name);
+
         if (name == "The BFG")
         {
             Debug.Log("Spawning BfgEffect");
