@@ -33,18 +33,18 @@ public class S_AIGoals : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (gameObject.GetComponent<S_CharInfoHolder>().itemHeld.tag == "RedFlag")
+        if (other.gameObject.tag == "RedFlag")
         {
             S_AiMovement.seeItem(other.gameObject);
         }
-        if (gameObject.GetComponent<S_CharInfoHolder>().itemHeld.tag == "GreenFlag")
+        if (other.gameObject.tag == "GreenFlag")
         {
             S_AiMovement.seeItem(other.gameObject);
         }
-  
     }
+    
     public void AiSlime()
     {
         // easiest

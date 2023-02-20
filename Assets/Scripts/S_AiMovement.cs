@@ -21,7 +21,14 @@ public class S_AiMovement : MonoBehaviour
         if(gameObject.tag == "Character")
         {
             aiCharacter.SetDestination(whereToGo);
+            leanFoward();
         }
+        Invoke("dontSeeItem", 3.5f);
+    }
+    public void dontSeeItem()
+    {
+        whereToGo = GameObject.FindWithTag("Finish").transform.position;
+
     }
     public void seeItem(GameObject item)
     {
@@ -57,7 +64,7 @@ public class S_AiMovement : MonoBehaviour
     public void leanFoward()
     {
         //animation
-        //
+        aiCharacter.speed = 50;
         Debug.Log(gameObject.name + " leans foward");
 
     }
