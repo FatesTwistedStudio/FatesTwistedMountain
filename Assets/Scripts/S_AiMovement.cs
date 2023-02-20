@@ -5,31 +5,38 @@ using UnityEngine.AI;
 
 public class S_AiMovement : MonoBehaviour
 {
-    
+    private GameObject EventControl;
     public NavMeshAgent aiCharacter;
-    
-    public float Speed;
+    private Vector3 whereToGo;
 
+    public float Speed;
+    private void Start()
+    {
+        whereToGo = GameObject.FindWithTag("Finish").transform.position;
+    }
     //focus on items
     private void Update()
     {
+        EventControl = GameObject.FindWithTag("EventController");
         if(gameObject.tag == "Character")
         {
-
+            aiCharacter.SetDestination(whereToGo);
         }
     }
-    public void seeItem()
+    public void seeItem(GameObject item)
     {
+        whereToGo=item.transform.position;
         Debug.Log(gameObject.name + " seees an item");
     }
     public void useItem(GameObject itemToUse)
     {
+        EventControl.GetComponent<S_EventController>().useItem(itemToUse);
         Debug.Log(gameObject.name + " uses an item");
     }
     public void discardItem(GameObject itemToDiscard)
     {
+        EventControl.GetComponent<S_EventController>().discardItem(itemToDiscard);
         Debug.Log(gameObject.name + " discards an item");
-
     }
     //focus on shortest path
     public void leanLeft()
@@ -49,6 +56,8 @@ public class S_AiMovement : MonoBehaviour
     }
     public void leanFoward()
     {
+        //animation
+        //
         Debug.Log(gameObject.name + " leans foward");
 
     }

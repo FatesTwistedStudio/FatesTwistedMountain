@@ -116,10 +116,14 @@ public class S_EventController : MonoBehaviour
     {
         GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld, character.GetComponent<S_CharInfoHolder>().holdingPosition, transform.rotation) as GameObject;
         spawnItem.GetComponent<S_ItemDefine>().characterUsedItem = character;
-      //  character.GetComponent<S_CharInfoHolder>().itemHeld = null;
+      character.GetComponent<S_CharInfoHolder>().itemHeld = null;
 
     }
+    public void discardItem(GameObject character)
+    {
+        character.GetComponent<S_CharInfoHolder>().itemHeld = null;
 
+    }
     public void OnStartRace(InputAction.CallbackContext context)
     {
         isStarted = true;

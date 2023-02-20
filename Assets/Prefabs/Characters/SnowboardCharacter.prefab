@@ -201,6 +201,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973743181921170753}
+  - component: {fileID: 1842349998444474052}
+  - component: {fileID: 8355740077456611496}
   m_Layer: 0
   m_Name: FollowTarget
   m_TagString: FollowTarget
@@ -223,6 +225,33 @@ Transform:
   m_Father: {fileID: 6792592451275203989}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!135 &1842349998444474052
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973743180926299294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8355740077456611496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973743180926299294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07c8bc90a52560489c272487dae7e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiText: 
+  S_AiMovement: {fileID: 1240233052446909495}
 --- !u!1 &1973743181031288101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5610,7 +5639,6 @@ GameObject:
   - component: {fileID: 3889880542585794454}
   - component: {fileID: 3219276778072726971}
   - component: {fileID: 1240233052446909495}
-  - component: {fileID: 5683122849151783175}
   - component: {fileID: 1110884852966233493}
   m_Layer: 0
   m_Name: SnowboardCharacter
@@ -5936,20 +5964,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiCharacter: {fileID: 1110884852966233493}
   Speed: 0
---- !u!114 &5683122849151783175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835430820122090977}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d07c8bc90a52560489c272487dae7e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aiText: 
-  S_AiMovement: {fileID: 1240233052446909495}
 --- !u!195 &1110884852966233493
 NavMeshAgent:
   m_ObjectHideFlags: 0
