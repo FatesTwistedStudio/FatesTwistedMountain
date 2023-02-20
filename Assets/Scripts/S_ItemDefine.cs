@@ -56,10 +56,84 @@ public class S_ItemDefine : MonoBehaviour
             }
         }
     }
+
+
+    public enum Item
+    {
+        BFG,
+        NIE,
+        EDS,
+        HOV,
+        SFB,
+        MPE,
+        ABE,
+        ASI,
+        PII,
+        CCS
+    }
+
+    private Item itemChosen;
+
     private void Start()
     {
-        Debug.Log("Name " + name);
+      //itemChosen = Item.BFG; 
+      Debug.Log("Name " + name);
 
+        switch(itemChosen)
+        {
+            case Item.BFG:
+            Debug.Log("Spawning BfgEffect");
+            //BfgEffect(characterUsedItem);
+            break;
+
+            case Item.PII:
+            Debug.Log("Spawning PiiEffect");
+            //PiiEffect(characterUsedItem);
+            break;
+
+            case Item.NIE:
+            Debug.Log("Spawning NieEffect");
+            //NieEffect(characterUsedItem);
+            break;
+
+            case Item.HOV:
+            Debug.Log("Spawning HovEffect");
+            //HovEffect(characterUsedItem);
+            break;
+
+            case Item.SFB:
+            Debug.Log("SFB effect item leaves flames behind ");
+            //SfbEffect();
+            break;
+
+            case Item.MPE:
+            Debug.Log("Spawning MpeEffect");
+            //MpeEffect();
+            break;
+
+            case Item.ABE:
+            Debug.Log("Spawning AbeEffect");
+            //AbeEffect();
+            break;
+
+            case Item.ASI:
+            Debug.Log("Spawning AsiEffect");
+            //AsiEffect();
+            break;
+
+            case Item.CCS:
+            Debug.Log("Spawning CcsEffect");
+            //CcsEffect(characterUsedItem);
+            break;
+
+            default:
+            Debug.Log("No Item");
+            break;
+        }
+
+
+        /* Old debug item code
+         
         if (name == "The BFG")
         {
             Debug.Log("Spawning BfgEffect");
@@ -73,7 +147,6 @@ public class S_ItemDefine : MonoBehaviour
         if (name == "The NIE")
         {
             Debug.Log("Spawning NieEffect");
-
             NieEffect(characterUsedItem);
         }
         if (name == "The HOV")
@@ -86,33 +159,29 @@ public class S_ItemDefine : MonoBehaviour
         if (name == "The SFB")
         {
             Debug.Log("SFB effect item leaves flames behind ");
-
             SfbEffect();
         }
         if (name == "The MPE")
         {
             Debug.Log("Spawning MpeEffect");
-
             MpeEffect();
         }
         if (name == "The ABE")
         {
             Debug.Log("Spawning AbeEffect");
-
             AbeEffect();
         }
         if (name == "The ASI")
         {
             Debug.Log("Spawning AsiEffect");
-
             AsiEffect();
         }
         if (name == "The CCS")
         {
             Debug.Log("Spawning CcsEffect");
-
             CcsEffect(characterUsedItem);
         }
+        */
     }
 
     private void OnTriggerEnter(Collider other)
