@@ -31,13 +31,11 @@ public class S_HoverboardPhysic : MonoBehaviour
     [SerializeField]
     private float jumpForce;
  
-
     [Header("Rotation")]
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
     private float airRotationSpeed;
-
 
     [Header("Input Vectors")]
     private Vector2 _Movement;
@@ -66,7 +64,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private ParticleSystem snowstreamR;
     [SerializeField]
     private ParticleSystem snowstreamL;
-   
 
     [Header("Drag")]
     [SerializeField]
@@ -80,7 +77,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private bool inAir;
 
-
     [Header("Gravity")]
     [SerializeField]
     private float _baseGravity = -20;
@@ -89,8 +85,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float gravityMultiplyer;
 
     RaycastHit slopeHit;
-
-
 
     private bool OnSlope()
     {
@@ -254,7 +248,4 @@ public class S_HoverboardPhysic : MonoBehaviour
         float gravity = _baseGravity * Mathf.Pow(gravityMultiplyer * currentTimeInAir, currentTimeInAir);
         rb.velocity += Vector3.down * -gravity * (gravityMultiplyer * Time.deltaTime * 3f);
     }
-
-
-
 }
