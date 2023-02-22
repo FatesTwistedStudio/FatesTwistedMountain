@@ -38,7 +38,7 @@ public class S_SurfaceAlignment : MonoBehaviour
             RotationRef = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(Vector3.up, info.normal), anim.Evaluate(_time));
             TerrainNormal = Quaternion.FromToRotation(playerModel.up, info.normal);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
+           // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-RotationRef.eulerAngles.x, transform.rotation.eulerAngles.y, RotationRef.eulerAngles.z), _time);
            
             //Changes the player rotation to be aligned to the slope they are standing on. 
             playerModel.rotation = Quaternion.Lerp(playerModel.rotation, Quaternion.Euler(TerrainNormal.eulerAngles.x, playerModel.rotation.y, TerrainNormal.eulerAngles.z) * playerModel.rotation, _time);
