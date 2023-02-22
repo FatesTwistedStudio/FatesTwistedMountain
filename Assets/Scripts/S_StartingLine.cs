@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class S_StartingLine : MonoBehaviour
 {
+    private MeshRenderer renderer;
+    private void Awake()
+    {
+        renderer = GetComponent<MeshRenderer>();
+        renderer.enabled = false;
+    }
+    private void Start()
+    {
+        
+    }
 
     private void OnTriggerStay(Collider other)
     {
