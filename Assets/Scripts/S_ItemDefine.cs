@@ -15,6 +15,9 @@ public class S_ItemDefine : MonoBehaviour
     public bool willFollow;
     public bool willChase;
     public int pointWorth;
+
+    [SerializeField] private Item _item;
+
     private void OnTriggerStay(Collider other)
     {
         if (gameObject.name == "The EDS")
@@ -27,6 +30,29 @@ public class S_ItemDefine : MonoBehaviour
             }
         }
     }
+
+    public enum Item
+    {
+        BFG,
+        NIE,
+        EDS,
+        HOV,
+        MPE,
+        ABE,
+        ASI,
+        PII,
+        SFB,
+        CCS
+    };
+
+    Item itemChosen;
+
+    private void Start()
+    {
+        Debug.Log("Name " + name);
+
+    }
+
     private void Update()
     {
         if (willChase == true)
@@ -54,135 +80,133 @@ public class S_ItemDefine : MonoBehaviour
                 Debug.Log("Wipeffect");
                 WipEffect(characterUsedItem);
             }
-        }
-    }
+        
 
-
-    public enum Item
-    {
-        BFG,
-        NIE,
-        EDS,
-        HOV,
-        SFB,
-        MPE,
-        ABE,
-        ASI,
-        PII,
-        CCS
-    }
-
-    private Item itemChosen;
-
-    private void Start()
-    {
-      //itemChosen = Item.BFG; 
-      Debug.Log("Name " + name);
-
-        switch(itemChosen)
-        {
+        itemChosen = Item.BFG;
+ 
+            switch (itemChosen)
+         {
             case Item.BFG:
-            Debug.Log("Spawning BfgEffect");
-            //BfgEffect(characterUsedItem);
-            break;
-
-            case Item.PII:
-            Debug.Log("Spawning PiiEffect");
-            //PiiEffect(characterUsedItem);
-            break;
-
+             Debug.Log("Spawning BfgEffect");
+             //BfgEffect(characterUsedItem);
+             break;
+            
             case Item.NIE:
-            Debug.Log("Spawning NieEffect");
-            //NieEffect(characterUsedItem);
-            break;
+             Debug.Log("Spawning NieEffect");
+             //NieEffect(characterUsedItem);
+             break;
+
+            case Item.EDS:
+             Debug.Log("EDS Spawn");
+             //EdsEffect();
+             break;
 
             case Item.HOV:
-            Debug.Log("Spawning HovEffect");
-            //HovEffect(characterUsedItem);
-            break;
-
-            case Item.SFB:
-            Debug.Log("SFB effect item leaves flames behind ");
-            //SfbEffect();
-            break;
+             Debug.Log("Spawning HovEffect");
+             //HovEffect(characterUsedItem);
+             break;
 
             case Item.MPE:
-            Debug.Log("Spawning MpeEffect");
-            //MpeEffect();
-            break;
+             Debug.Log("Spawning MpeEffect");
+             //MpeEffect();
+             break;
 
             case Item.ABE:
-            Debug.Log("Spawning AbeEffect");
-            //AbeEffect();
-            break;
+             Debug.Log("Spawning AbeEffect");
+             //AbeEffect();
+             break;
 
             case Item.ASI:
-            Debug.Log("Spawning AsiEffect");
-            //AsiEffect();
-            break;
+             Debug.Log("Spawning AsiEffect");
+             //AsiEffect();
+             break;
+
+            case Item.PII:
+             Debug.Log("Spawning PiiEffect");
+             //PiiEffect(characterUsedItem);
+             break;
+
+            case Item.SFB:
+             Debug.Log("SFB effect item leaves flames behind ");
+             //SfbEffect();
+             break;
 
             case Item.CCS:
-            Debug.Log("Spawning CcsEffect");
-            //CcsEffect(characterUsedItem);
-            break;
+             Debug.Log("Spawning CcsEffect");
+             //CcsEffect(characterUsedItem);
+             break;
 
             default:
-            Debug.Log("No Item");
-            break;
+             Debug.Log("No Item");
+             break;
+          }
         }
 
+    }
 
-        /* Old debug item code
-         
-        if (name == "The BFG")
+    /*
+    Item ChooseItem(Item type)
+    {
+
+        if (type == Item.BFG)
         {
             Debug.Log("Spawning BfgEffect");
             BfgEffect(characterUsedItem);
         }
-        if (name == "The PII")
+        else if (type == Item.PII)
         {
             Debug.Log("Spawning PiiEffect");
             PiiEffect(characterUsedItem);
         }
-        if (name == "The NIE")
+        else if (type == Item.NIE)
         {
             Debug.Log("Spawning NieEffect");
             NieEffect(characterUsedItem);
         }
-        if (name == "The HOV")
+        else if (type == Item.HOV)
         {
             Debug.Log("Spawning HovEffect");
             HovEffect(characterUsedItem);
- 
-        }
 
-        if (name == "The SFB")
+        }
+        else if (type == Item.SFB)
         {
             Debug.Log("SFB effect item leaves flames behind ");
             SfbEffect();
         }
-        if (name == "The MPE")
+        else if (type == Item.MPE)
         {
             Debug.Log("Spawning MpeEffect");
             MpeEffect();
         }
-        if (name == "The ABE")
+        else if (type == Item.ABE)
         {
             Debug.Log("Spawning AbeEffect");
             AbeEffect();
         }
-        if (name == "The ASI")
+        else if (type == Item.ASI)
         {
             Debug.Log("Spawning AsiEffect");
             AsiEffect();
         }
-        if (name == "The CCS")
+        else if (type == Item.CCS)
         {
             Debug.Log("Spawning CcsEffect");
             CcsEffect(characterUsedItem);
         }
-        */
+
+        return type;
     }
+    */
+
+
+
+
+
+
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {

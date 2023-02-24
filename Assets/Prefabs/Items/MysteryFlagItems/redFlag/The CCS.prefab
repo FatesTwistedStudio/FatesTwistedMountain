@@ -52,13 +52,14 @@ MonoBehaviour:
   itemEffectPrefab: {fileID: 3719546237469750020, guid: 41242ea9708bb5a4293801ac34572cfa,
     type: 3}
   itemType: RedFlag
-  itemDatabasePlacement: 7
+  itemDatabasePlacement: 9
   S_ItemDatabase: {fileID: 7815149760662038912, guid: 9dea52336cad0e0439bfb35d90d0f6a2,
     type: 3}
   characterUsedItem: {fileID: 0}
   willFollow: 0
   willChase: 1
-  S_Effect: {fileID: 3457251895850379610}
+  pointWorth: 0
+  _item: 9
 --- !u!114 &3457251895850379610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d6aea0268c95438f05d70cf41ea1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectToBePlayed: {fileID: 0}
-  itemEffectCollider: {fileID: 0}
 --- !u!135 &-7190986658015277127
 SphereCollider:
   m_ObjectHideFlags: 0
