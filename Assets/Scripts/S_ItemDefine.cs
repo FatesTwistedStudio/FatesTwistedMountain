@@ -31,6 +31,7 @@ public class S_ItemDefine : MonoBehaviour
         }
     }
 
+    //enum/id of items
     public enum Item
     {
         BFG,
@@ -42,7 +43,10 @@ public class S_ItemDefine : MonoBehaviour
         ASI,
         PII,
         SFB,
-        CCS
+        CCS,
+        GST,
+        SID,
+        WIP
     };
 
     Item itemChosen;
@@ -83,7 +87,8 @@ public class S_ItemDefine : MonoBehaviour
         
 
         itemChosen = Item.BFG;
- 
+
+          /* Code for switch for item randomizer 
             switch (itemChosen)
          {
             case Item.BFG:
@@ -140,72 +145,73 @@ public class S_ItemDefine : MonoBehaviour
              Debug.Log("No Item");
              break;
           }
+            */
         }
 
-    }
-
-    /*
-    Item ChooseItem(Item type)
-    {
-
-        if (type == Item.BFG)
+        //code to perform item power 
+        if (_item == Item.BFG)
         {
             Debug.Log("Spawning BfgEffect");
             BfgEffect(characterUsedItem);
         }
-        else if (type == Item.PII)
+        else if (_item == Item.PII)
         {
             Debug.Log("Spawning PiiEffect");
             PiiEffect(characterUsedItem);
         }
-        else if (type == Item.NIE)
+        else if (_item == Item.NIE)
         {
             Debug.Log("Spawning NieEffect");
             NieEffect(characterUsedItem);
         }
-        else if (type == Item.HOV)
+        else if (_item == Item.HOV)
         {
             Debug.Log("Spawning HovEffect");
             HovEffect(characterUsedItem);
 
         }
-        else if (type == Item.SFB)
+        else if (_item == Item.SFB)
         {
             Debug.Log("SFB effect item leaves flames behind ");
             SfbEffect();
         }
-        else if (type == Item.MPE)
+        else if (_item == Item.MPE)
         {
             Debug.Log("Spawning MpeEffect");
             MpeEffect();
         }
-        else if (type == Item.ABE)
+        else if (_item == Item.ABE)
         {
             Debug.Log("Spawning AbeEffect");
             AbeEffect();
         }
-        else if (type == Item.ASI)
+        else if (_item == Item.ASI)
         {
             Debug.Log("Spawning AsiEffect");
             AsiEffect();
         }
-        else if (type == Item.CCS)
+        else if (_item == Item.CCS)
         {
             Debug.Log("Spawning CcsEffect");
             CcsEffect(characterUsedItem);
         }
+        else if (_item == Item.GST)
+        {
+            Debug.Log("Spawning GstEffect");
+            GstEffect(characterUsedItem);
+        }
+        else if (_item == Item.SID)
+        {
+            Debug.Log("Spawning SidEffect");
+            SidEffect(characterUsedItem);
+        }
+        else if (_item == Item.WIP)
+        {
+            Debug.Log("Spawning WipEffect");
+            WipEffect(characterUsedItem);
+        }
 
-        return type;
     }
-    */
-
-
-
-
-
-
-
-
 
 
     private void OnTriggerEnter(Collider other)

@@ -155,7 +155,8 @@ MonoBehaviour:
   characterUsedItem: {fileID: 0}
   willFollow: 0
   willChase: 1
-  S_Effect: {fileID: -2113453060969523671}
+  pointWorth: 0
+  _item: 10
 --- !u!114 &-2113453060969523671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d6aea0268c95438f05d70cf41ea1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectToBePlayed: {fileID: 0}
-  itemEffectCollider: {fileID: 0}
 --- !u!135 &1089793172008629612
 SphereCollider:
   m_ObjectHideFlags: 0
