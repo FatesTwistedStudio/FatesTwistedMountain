@@ -26,14 +26,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
   m_Name: ScreenSpaceAmbientOcclusion
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
   m_Settings:
     Downsample: 1
     AfterOpaque: 0
     Source: 1
     NormalSamples: 1
-    Intensity: 1
+    Intensity: 0.61
     DirectLightingStrength: 0.25
     Radius: 0.5
     SampleCount: 4
@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: -3546269853523347238}
   - {fileID: -5564807169181424516}
   m_RendererFeatureMap: da78106f5b1ec9ce7ce464fd5cd5c5b2
-  m_UseNativeRenderPass: 0
+  m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
