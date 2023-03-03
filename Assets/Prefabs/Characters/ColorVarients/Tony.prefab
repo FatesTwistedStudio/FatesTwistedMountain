@@ -150,6 +150,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102197119536678550, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1553b4e1bfcd4594fb4078d331880dc3, type: 2}
+    - target: {fileID: 1094520800436555788, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b9aa6b197f8ffb145bef9e13b8ea6558, type: 2}
+    - target: {fileID: 1094520800436555788, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1973743180313689912, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_IsActive
@@ -183,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 3141636233788805654, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 391
+      value: 394
       objectReference: {fileID: 0}
     - target: {fileID: 4835430820122090977, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
@@ -336,13 +351,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2400031699537356565, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3eb35159ee51e74eaf893f39f86d5ea, type: 2}
     - target: {fileID: 919132149155446097, guid: 2c46b903be2d40e40afdcca32602d6ad,
         type: 3}
       propertyPath: m_Name
       value: Tony_Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 1823817582581819116, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99ee11ebcd697694c80102e5598dd5f6, type: 2}
+    - target: {fileID: 3524067964684240644, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed86a291ced7eab4e9dc2a457be72cf7, type: 2}
+    - target: {fileID: 5074512353664290214, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b55473a9b8f9e534eab629d6625d1483, type: 2}
+    - target: {fileID: 5955209471968022006, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eac1dc888cd44e7439a59d7a725ae2af, type: 2}
+    - target: {fileID: 8153101253863224186, guid: 2c46b903be2d40e40afdcca32602d6ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fbd6518131bc3594892d3697ec588af7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c46b903be2d40e40afdcca32602d6ad, type: 3}
+--- !u!1 &8355847590172900540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c46b903be2d40e40afdcca32602d6ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9166099358066803181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &936411996804150447
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355847590172900540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9aa6b197f8ffb145bef9e13b8ea6558, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &8700461555998746118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c46b903be2d40e40afdcca32602d6ad,
