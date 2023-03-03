@@ -5722,8 +5722,6 @@ MonoBehaviour:
     m_Bits: 64
   distanceToGround: 1
   isGrounded: 0
-  snowstreamR: {fileID: 2974019456766209237}
-  snowstreamL: {fileID: 5201298740287647083}
   groundDrag: 2.5
   groundAngDrag: 2.5
   airDrag: 2
@@ -5939,9 +5937,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7acf1254fef074249a4d873efad9cb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particles: {fileID: 919099278349109942, guid: 6c5d5ad944db6504da6a1fc049281482,
-    type: 3}
+  landingParticles: {fileID: 1693789675623266370}
   spawnpoint: {fileID: 7662015318763671503}
+  snowstreamR: {fileID: 2974019456766209237}
+  snowstreamL: {fileID: 5201298740287647083}
+  snowboardSnowR: {fileID: 7037798330336282574}
+  snowboardSnowL: {fileID: 1378346360436927677}
+  smallWind: {fileID: 4824561009839345660}
+  bigWind: {fileID: 447542262352902825}
 --- !u!114 &1240233052446909495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11103,7 +11106,7 @@ PrefabInstance:
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
       propertyPath: m_Name
-      value: Particle System (3)
+      value: L.Snow Particles
       objectReference: {fileID: 0}
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
@@ -11125,6 +11128,12 @@ PrefabInstance:
 --- !u!4 &921830808881055778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 640835604937658836, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 301658345748994550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1378346360436927677 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
     type: 3}
   m_PrefabInstance: {fileID: 301658345748994550}
   m_PrefabAsset: {fileID: 0}
@@ -11418,7 +11427,7 @@ PrefabInstance:
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
       propertyPath: m_Name
-      value: Particle System (1)
+      value: Large Wind Particles
       objectReference: {fileID: 0}
     - target: {fileID: 5444774851073070297, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
@@ -11427,6 +11436,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2, type: 3}
+--- !u!198 &447542262352902825 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1241471006597042146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1863966722849152566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 640835604937658836, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
@@ -11823,10 +11838,16 @@ PrefabInstance:
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: Small Wind Particles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2, type: 3}
+--- !u!198 &4824561009839345660 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6195583859439024823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6710247066498165603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 640835604937658836, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
@@ -12008,7 +12029,7 @@ PrefabInstance:
     - target: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
@@ -12383,7 +12404,7 @@ PrefabInstance:
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
       propertyPath: m_Name
-      value: Particle System (4)
+      value: R.Snow Particles
       objectReference: {fileID: 0}
     - target: {fileID: 4930340314516159337, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
         type: 3}
@@ -12402,6 +12423,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4ba5bcf43b43a8449a7a3e003f5d403d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2, type: 3}
+--- !u!198 &7037798330336282574 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1661663458341238091, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8548995752433889925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9097437007216272209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 640835604937658836, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,

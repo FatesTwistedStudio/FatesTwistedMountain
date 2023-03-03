@@ -59,11 +59,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float distanceToGround;
     public bool isGrounded;
 
-    [Header("Particles")]
-    [SerializeField]
-    private ParticleSystem snowstreamR;
-    [SerializeField]
-    private ParticleSystem snowstreamL;
 
     [Header("Drag")]
     [SerializeField]
@@ -151,8 +146,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
-            snowstreamL.Play();
-            snowstreamR.Play();
+
 
         }
 
@@ -238,8 +232,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         ApplyGravity();
         disableInput = true;
-        snowstreamR.Pause();
-        snowstreamL.Pause();
+
     }
 
     private void ApplyGravity()
