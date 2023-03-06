@@ -20,6 +20,10 @@ public class S_EventController : MonoBehaviour
     public bool playerHasItem;
     private FTMInput _Input;
     private InputAction StartRace;
+    [SerializeField]
+    public float[] goldLevelTimes;
+    public float[] silverLevelTimes;
+    public float[] bronzeLevelTimes;
 
     private void Awake()
     {
@@ -128,6 +132,6 @@ public class S_EventController : MonoBehaviour
     {
         isStarted = true;
     }
-
+    
     
 }
