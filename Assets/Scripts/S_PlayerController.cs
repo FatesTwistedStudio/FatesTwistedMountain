@@ -26,11 +26,15 @@ public class S_PlayerController : MonoBehaviour
     private Vector3 BRstart;
     private Vector3 FRstart;
 
-
+    //stun 
+    public float stunDuration = 5.0f;
+    float stunRemaining = 0.0f;
 
     public Vector3 tiltDegree;
 
     S_HoverboardPhysic S_HoverboardPhysic;
+
+    S_Recovery S_Recovery;
     void Start()
     {
         if (GetComponent<S_HoverboardPhysic>() != null)
@@ -64,6 +68,17 @@ public class S_PlayerController : MonoBehaviour
     void Update()
     {
         leaningBoardHorizantally();
+
+        if (stunRemaining > 0.0f)
+        {
+            stunRemaining = Mathf.Max(stunRemaining - Time.deltaTime, 0.0f);
+        }
+            
+        if (stunRemaining <= 0.0f)
+        {
+            S_Recovery = GetComponent<S_Recovery>();
+        }
+
     }
 
     public void leaningBoardHorizantally()
@@ -95,6 +110,13 @@ public class S_PlayerController : MonoBehaviour
         BR.transform.position = BRstart;
         FR.transform.position = FRstart;
     }
+
+    //stun 
+    public void Stun()
+    {
+        stunRemaining = stunDuration;
+    }
+
 
     //boost
 
