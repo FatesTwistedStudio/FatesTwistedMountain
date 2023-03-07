@@ -33,6 +33,8 @@ public class S_PlayerController : MonoBehaviour
     public Vector3 tiltDegree;
 
     S_HoverboardPhysic S_HoverboardPhysic;
+
+    S_Recovery S_Recovery;
     void Start()
     {
         if (GetComponent<S_HoverboardPhysic>() != null)
@@ -68,8 +70,14 @@ public class S_PlayerController : MonoBehaviour
         leaningBoardHorizantally();
 
         if (stunRemaining > 0.0f)
+        {
             stunRemaining = Mathf.Max(stunRemaining - Time.deltaTime, 0.0f);
-        if (stunRemaining <= 0.0f) /*call recovery system*/;
+        }
+            
+        if (stunRemaining <= 0.0f)
+        {
+            S_Recovery = GetComponent<S_Recovery>();
+        }
 
     }
 
