@@ -53,12 +53,40 @@ MonoBehaviour:
   charSpawned: []
   isStarted: 1
   playerHasItem: 0
+  isTimedEvent: 1
   goldLevelTimes:
   - 0
-  - 0
+  - 60
+  - 60
+  - 60
+  - 60
   silverLevelTimes:
   - 0
-  - 0
+  - 120
+  - 120
+  - 120
+  - 120
   bronzeLevelTimes:
   - 0
+  - 440
+  - 440
+  - 440
+  - 440
+  goldLevelPoints:
   - 0
+  - 25
+  - 25
+  - 25
+  - 25
+  silverLevelPoints:
+  - 0
+  - 10
+  - 10
+  - 10
+  - 10
+  bronzeLevelPoints:
+  - 0
+  - 5
+  - 5
+  - 5
+  - 5

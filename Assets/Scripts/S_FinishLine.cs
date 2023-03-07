@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class S_FinishLine : MonoBehaviour
 {
+
     public S_LeaderBoardTracker S_LeaderBoardTracker;
     public GameObject eventController;
     public Canvas leaderboard;
@@ -14,33 +15,69 @@ public class S_FinishLine : MonoBehaviour
     public GameObject secondPlace;
     public GameObject thirdPlace;
     public GameObject fourthPlace;
- 
-    public void winOrLose(GameObject obj)
+
+    public void winOrLoseTime(GameObject obj)
     {
         if (obj.GetComponent<S_CharInfoHolder>() != null)
         {
-            firstPlace = null; 
+
+            firstPlace = null;
             secondPlace = null;
             thirdPlace = null;
             fourthPlace = obj;
-            if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().bronzeLevelTimes[0/*based on scene? */])
+
+            if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
             {
                 firstPlace = null;
                 secondPlace = null;
                 thirdPlace = obj;
                 fourthPlace = null;
-                if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().silverLevelTimes[0/*based on scene? */])
+                if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().silverLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                 {
                     firstPlace = null;
                     secondPlace = obj;
                     thirdPlace = null;
                     fourthPlace = null;
-                    if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().goldLevelTimes[0/*based on scene? */])
+                    if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().goldLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                     {
                         firstPlace = obj;
                         secondPlace = null;
                         thirdPlace = null;
                         fourthPlace = null;
+
+                    }
+                }
+            }
+        }
+    }
+    public void winOrLosePoint(GameObject obj)
+    {
+        if (obj.GetComponent<S_CharInfoHolder>() != null)
+        {
+            firstPlace = null;
+            secondPlace = null;
+            thirdPlace = null;
+            fourthPlace = obj;
+
+            if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().bronzeLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+            {
+                firstPlace = null;
+                secondPlace = null;
+                thirdPlace = obj;
+                fourthPlace = null;
+                if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().silverLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+                {
+                    firstPlace = null;
+                    secondPlace = obj;
+                    thirdPlace = null;
+                    fourthPlace = null;
+                    if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().goldLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+                    {
+                        firstPlace = obj;
+                        secondPlace = null;
+                        thirdPlace = null;
+                        fourthPlace = null;
+
                     }
                 }
             }
@@ -57,148 +94,19 @@ public class S_FinishLine : MonoBehaviour
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
             //play animation
             Invoke("pullUpLeaderBoard", 1);
-            winOrLose(other.gameObject);
-            //if (firstPlace == null)
-            //{
-            //    firstPlace = other.gameObject;
+            if (eventController.GetComponent<S_EventController>().isTimedEvent)
+            {
+                winOrLoseTime(other.gameObject);
 
-            //    return;
-            //}
-            //if (firstPlace != null)
-            //{
-            //    if (secondPlace == null)
-            //    {
-            //        if (other.gameObject != firstPlace)
-            //        {
-            //            secondPlace = other.gameObject;
-            //            return;
-            //        }
-            //    }
-            //    if (secondPlace != null)
-            //    {
-            //        if (thirdPlace == null)
-            //        {
-            //            if (other.gameObject != firstPlace)
-            //            {
-            //                if (other.gameObject != secondPlace)
-            //                {
-            //                    thirdPlace = other.gameObject;
-            //                    return;
-            //                }
-            //            }
-            //        }
-            //        if (thirdPlace != null)
-            //        {
-            //            if (fourthPlace == null)
-            //            {
-            //                if (other.gameObject != firstPlace)
-            //                {
-            //                    if (other.gameObject != secondPlace)
-            //                    {
-            //                        if (other.gameObject != thirdPlace)
-            //                        {
-            //                            fourthPlace = other.gameObject;
-            //                            return;
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //            if (fourthPlace != null)
-            //            {
-            //                if (other.gameObject != firstPlace)
-            //                {
-            //                    if (other.gameObject != secondPlace)
-            //                    {
-            //                        if (other.gameObject != thirdPlace)
-            //                        {
-            //                            if (other.gameObject != fourthPlace)
-            //                            {
-            //                                Debug.Log("Game Over");
-            //                                return;
-            //                            }
-            //                        }
-            //                    }
-            //                }
+            }
+            if (eventController.GetComponent<S_EventController>().isTimedEvent==false)
+            {
+                winOrLosePoint(other.gameObject);
+            }
 
-            //            }
-            //        }
-            //    }
-            //}
         }
         if (other.tag == "Character")
         {
-            //other.ai script== false
-            //List<S_CharacterCreate> characterCreate = new List<S_CharacterCreate>();
-            //{
-            //    characterCreate.Add(new S_CharacterCreate(other.name, other.GetComponent<S_CharInfoHolder>().timedTrial, other.GetComponent<S_CharInfoHolder>().pointsEarned));
-            //}
-            if (firstPlace == null)
-            {
-                firstPlace = other.gameObject;
-
-                return;
-            }
-            if (firstPlace != null)
-            {
-                if (secondPlace == null)
-                {
-                    if (other.gameObject != firstPlace)
-                    {
-                        secondPlace = other.gameObject;
-                        return;
-                    }
-                }
-                if (secondPlace != null)
-                {
-                    if (thirdPlace == null)
-                    {
-                        if (other.gameObject != firstPlace)
-                        {
-                            if (other.gameObject != secondPlace)
-                            {
-                                thirdPlace = other.gameObject;
-                                return;
-                            }
-                        }
-                    }
-                    if (thirdPlace != null)
-                    {
-                        if (fourthPlace == null)
-                        {
-                            if (other.gameObject != firstPlace)
-                            {
-                                if (other.gameObject != secondPlace)
-                                {
-                                    if (other.gameObject != thirdPlace)
-                                    {
-                                        fourthPlace = other.gameObject;
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                        if (fourthPlace != null)
-                        {
-                            if (other.gameObject != firstPlace)
-                            {
-                                if (other.gameObject != secondPlace)
-                                {
-                                    if (other.gameObject != thirdPlace)
-                                    {
-                                        if (other.gameObject != fourthPlace)
-                                        {
-                                            Debug.Log("Game Over");
-                                            return;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-
             other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             // other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
         }
@@ -216,30 +124,55 @@ public class S_FinishLine : MonoBehaviour
         if (firstPlace != null)
         {
             S_LeaderBoardTracker.firstPlaceImage.sprite = firstPlace.GetComponent<S_CharInfoHolder>().image;
-            S_LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>()._name);
+            S_LeaderBoardTracker.firstPlacePlacementText.SetText("Gold");
             S_LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        else
+        {
+
+            S_LeaderBoardTracker.firstPlacePlacementText.SetText("Gold Spot");
+            S_LeaderBoardTracker.firstPlacePointsText.SetText("--");
+            S_LeaderBoardTracker.firstPlaceTimeText.SetText("--.--");
         }
         if (secondPlace != null)
         {
             S_LeaderBoardTracker.secondPlaceImage.sprite = secondPlace.GetComponent<S_CharInfoHolder>().image;
-            S_LeaderBoardTracker.secondPlacePlacementText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>()._name);
+            S_LeaderBoardTracker.secondPlacePlacementText.SetText("Silver");
             S_LeaderBoardTracker.secondPlacePointsText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.secondPlaceTimeText.SetText("" + secondPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        else
+        {
+            S_LeaderBoardTracker.secondPlacePlacementText.SetText("Silver Spot");
+            S_LeaderBoardTracker.secondPlacePointsText.SetText("--");
+            S_LeaderBoardTracker.secondPlaceTimeText.SetText("--.--");
         }
         if (thirdPlace != null)
         {
             S_LeaderBoardTracker.thirdPlaceImage.sprite = thirdPlace.GetComponent<S_CharInfoHolder>().image;
-            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>()._name);
+            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("Bronze");
             S_LeaderBoardTracker.thirdPlacePointsText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.thirdPlaceTimeText.SetText("" + thirdPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        else
+        {
+            S_LeaderBoardTracker.thirdPlacePlacementText.SetText("Bronze Spot");
+            S_LeaderBoardTracker.thirdPlacePointsText.SetText("--");
+            S_LeaderBoardTracker.thirdPlaceTimeText.SetText("--.--");
         }
         if (fourthPlace != null)
         {
             S_LeaderBoardTracker.fourthPlaceImage.sprite = fourthPlace.GetComponent<S_CharInfoHolder>().image;
-            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>()._name);
+            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("Participation");
             S_LeaderBoardTracker.fourthPlacePointsText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
             S_LeaderBoardTracker.fourthPlaceTimeText.SetText("" + fourthPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+        }
+        else
+        {
+            S_LeaderBoardTracker.fourthPlacePlacementText.SetText("Loser Spot");
+            S_LeaderBoardTracker.fourthPlacePointsText.SetText("--");
+            S_LeaderBoardTracker.fourthPlaceTimeText.SetText("--.--");
         }
     }
     public void sendToNextLevel(string nextLevel)

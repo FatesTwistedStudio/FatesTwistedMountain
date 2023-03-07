@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
 public class S_EventController : MonoBehaviour
@@ -20,10 +22,16 @@ public class S_EventController : MonoBehaviour
     public bool playerHasItem;
     private FTMInput _Input;
     private InputAction StartRace;
+
+    public bool isTimedEvent = true;
     [SerializeField]
     public float[] goldLevelTimes;
     public float[] silverLevelTimes;
     public float[] bronzeLevelTimes;
+    [SerializeField]
+    public float[] goldLevelPoints;
+    public float[] silverLevelPoints;
+    public float[] bronzeLevelPoints;
 
     private void Awake()
     {
@@ -89,6 +97,10 @@ public class S_EventController : MonoBehaviour
         {
             playerHasItem = false;
         }
+        if (player.GetComponent<S_CharInfoHolder>().timedTrial > bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex]) 
+        {
+            endTimedRace();
+        }
     }
     public void setTimedTrial(GameObject character)
     {
@@ -120,7 +132,7 @@ public class S_EventController : MonoBehaviour
     {
         GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld, character.GetComponent<S_CharInfoHolder>().holdingPosition, transform.rotation) as GameObject;
         spawnItem.GetComponent<S_ItemDefine>().characterUsedItem = character;
-      character.GetComponent<S_CharInfoHolder>().itemHeld = null;
+        character.GetComponent<S_CharInfoHolder>().itemHeld = null;
 
     }
     public void discardItem(GameObject character)
@@ -132,6 +144,9 @@ public class S_EventController : MonoBehaviour
     {
         isStarted = true;
     }
-    
-    
+    public void endTimedRace()
+    {
+        //not sure how to end it yet
+    }
+
 }
