@@ -97,6 +97,7 @@ public class S_FinishLine : MonoBehaviour
             if (eventController.GetComponent<S_EventController>().isTimedEvent)
             {
                 winOrLoseTime(other.gameObject);
+                eventController.GetComponent<S_EventController>().endTimedRace();
 
             }
             if (eventController.GetComponent<S_EventController>().isTimedEvent==false)

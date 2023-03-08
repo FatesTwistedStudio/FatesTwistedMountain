@@ -16,14 +16,21 @@ public class S_EventController : MonoBehaviour
     public TextMeshProUGUI startText;
     public GameObject startingLine;
     public GameObject player;
-    [SerializeField]
-    public GameObject[] charSpawned;
+    public bool isTimedEvent = true;
     public bool isStarted = true;
     public bool playerHasItem;
     private FTMInput _Input;
     private InputAction StartRace;
 
-    public bool isTimedEvent = true;
+
+    public AudioSource bgs;
+    public AudioClip start;
+   
+    [SerializeField]
+    public AudioClip[] bgm;
+    
+    [SerializeField]
+    public GameObject[] charSpawned;
     [SerializeField]
     public float[] goldLevelTimes;
     public float[] silverLevelTimes;
@@ -110,6 +117,7 @@ public class S_EventController : MonoBehaviour
     }
     public void playEvent()
     {
+        bgs.PlayOneShot(start);
         if (currentTime >= 0)
         {
             currentTime -= 1 * Time.deltaTime;
@@ -121,12 +129,20 @@ public class S_EventController : MonoBehaviour
         }
         if (currentTime <= .5f)
         {
+            playAudio();
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int i = 0; i < charSpawned.Length; i++)
             {
+                
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
         }
+    }
+    public void playAudio()
+    {
+        bgs.loop = true;
+        bgs.PlayOneShot(bgm[SceneManager.GetActiveScene().buildIndex]);
+
     }
     public void useItem(GameObject character)
     {
@@ -147,6 +163,7 @@ public class S_EventController : MonoBehaviour
     public void endTimedRace()
     {
         //not sure how to end it yet
+        bgs.loop = false;
     }
 
 }
