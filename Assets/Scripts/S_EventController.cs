@@ -23,11 +23,11 @@ public class S_EventController : MonoBehaviour
     private InputAction StartRace;
 
 
-    public AudioSource bgs;
-    public AudioClip start;
+    //public AudioSource bgs;
+    //public AudioClip start;
    
-    [SerializeField]
-    public AudioClip[] bgm;
+    //[SerializeField]
+    //public AudioClip[] bgm;
     
     [SerializeField]
     public GameObject[] charSpawned;
@@ -117,7 +117,7 @@ public class S_EventController : MonoBehaviour
     }
     public void playEvent()
     {
-        bgs.PlayOneShot(start);
+        //bgs.PlayOneShot(start);
         if (currentTime >= 0)
         {
             currentTime -= 1 * Time.deltaTime;
@@ -140,8 +140,8 @@ public class S_EventController : MonoBehaviour
     }
     public void playAudio()
     {
-        bgs.loop = true;
-        bgs.PlayOneShot(bgm[SceneManager.GetActiveScene().buildIndex]);
+        //bgs.loop = true;
+        //bgs.PlayOneShot(bgm[SceneManager.GetActiveScene().buildIndex]);
 
     }
     public void useItem(GameObject character)
@@ -163,7 +163,7 @@ public class S_EventController : MonoBehaviour
     public void endTimedRace()
     {
         //not sure how to end it yet
-        bgs.loop = false;
+       //. bgs.loop = false;
     }
 
 }
