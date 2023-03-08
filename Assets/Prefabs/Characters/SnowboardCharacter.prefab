@@ -5645,6 +5645,7 @@ GameObject:
   - component: {fileID: 3219276778072726971}
   - component: {fileID: 1240233052446909495}
   - component: {fileID: 1110884852966233493}
+  - component: {fileID: 3157544757754466875}
   m_Layer: 0
   m_Name: SnowboardCharacter
   m_TagString: Character
@@ -5994,6 +5995,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3157544757754466875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835430820122090977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd601e2a1ca90314abcff22858be8e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
+  player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &4896091337288741425
 GameObject:
   m_ObjectHideFlags: 0
