@@ -40,7 +40,7 @@ public class S_AudioManager : MonoBehaviour
     private void Start()
     {
         //Can use this to play a level theme.
-//        Play("Level Theme");
+        Play("All-That");
     }
 
     public void Play(string name)

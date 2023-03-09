@@ -174,7 +174,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0fe3d6928ff81409e8ac48ffa62dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: All-That
+    clip: {fileID: 8300000, guid: f9c775bd46e1160498f103935bd026ea, type: 3}
+    volume: 0.158
+    spaitialBlend: 0
+    pitch: 0
+    loop: 0
+    mixerGroup: {fileID: 24300002, guid: 7e984f512e89b60468e829489e8883e3, type: 2}
+    source: {fileID: 0}
 --- !u!82 &6785295100946364998
 AudioSource:
   m_ObjectHideFlags: 0

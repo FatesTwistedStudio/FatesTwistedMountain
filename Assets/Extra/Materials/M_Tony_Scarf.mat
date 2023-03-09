@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Tony_Scarf
-  m_Shader: {fileID: 4800000, guid: 0a707c48486531548869fe407dabf0d5, type: 3}
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _USEOCCLUSION_ON
@@ -58,11 +58,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _EnvMapSampler:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FalloffSampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 92b965cb36c2241ff85afe194b701652, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapSampler:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -78,7 +90,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RimLightSampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularReflectionSampler:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -106,10 +126,12 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.891
+    - _DepthBias: 0.00012
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectLightMultiplier: 1
     - _DstBlend: 0
+    - _EdgeThickness: 1
     - _EmissionMulByBaseColor: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -134,6 +156,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularPower: 20
     - _SrcBlend: 1
     - _Surface: 0
     - _UseAlphaClipping: 0
@@ -143,12 +166,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.5943396, g: 0.34529284, b: 0.20465466, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.4627451, g: 0.39607844, b: 0.3882353, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
     - _IndirectLightMinColor: {r: 0.09999997, g: 0.09999997, b: 0.09999997, a: 1}
     - _OcclusionMapChannelMask: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowMapColor: {r: 0.31764707, g: 0.30588236, b: 0.25490198, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

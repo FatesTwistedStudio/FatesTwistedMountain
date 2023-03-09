@@ -52,6 +52,8 @@ Material:
     - Vector1_98e20889802745a2a709c5c00c4cd1ea: 160.9
     - Vector1_db97fb4b05384f57abe2a3893ad9751d: 0.21
     - Vector1_e9a470bb19c54787941af63a78f790f3: 12.9
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
@@ -77,3 +79,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
+--- !u!114 &8562258038222498190
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
