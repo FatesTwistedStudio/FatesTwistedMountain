@@ -5709,6 +5709,8 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: e1aaf672de8eaf84cb45c86621ce9559, type: 3}
   holdingPosition: {x: 0, y: 0, z: 0}
   holdingUp: {x: 0, y: 7, z: 0}
+  levelPlacement1: 0
+  levelPlacement2: 0
 --- !u!114 &2640921738554418691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6007,9 +6009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd601e2a1ca90314abcff22858be8e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
-  player: {fileID: 0}
-  rb: {fileID: 0}
+  OffsetRange: 0.28
+  fovRange: 0.75
 --- !u!1 &4896091337288741425
 GameObject:
   m_ObjectHideFlags: 0
