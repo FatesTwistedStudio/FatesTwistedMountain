@@ -20,14 +20,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Tony_Scarf
+  m_Name: M_Tony_Gloves
   m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ValidKeywords:
   - _EMISSIVE_SIMPLE
   - _OUTLINE_NML
   m_InvalidKeywords:
   - _
-  - _USEOCCLUSION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -50,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f3184119956bec048a8f5bc4085ab3d2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -82,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FalloffSampler:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a1d5b2277eb3f6245900378e6fa97575, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HighColor_Tex:
@@ -134,7 +133,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RimLightSampler:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a18067604964b5a4d8fd5552ed0d789e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_1st_ShadePosition:
@@ -185,7 +184,7 @@ Material:
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
     - _Add_Antipodean_RimLight: 0
-    - _AdditionalLightIgnoreCelShade: 0.559
+    - _AdditionalLightIgnoreCelShade: 0.9
     - _AlphaClip: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
@@ -197,21 +196,21 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
-    - _CelShadeMidPoint: 0.366
-    - _CelShadeSoftness: 0
+    - _CelShadeMidPoint: 0.138
+    - _CelShadeSoftness: 0.128
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorShift_Speed: 0
     - _Cull: 2
     - _CullMode: 2
-    - _Cutoff: 0.891
-    - _DepthBias: 2
+    - _Cutoff: 0.5
+    - _DepthBias: 0.00012
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectLightMultiplier: 1
     - _DstBlend: 0
     - _EMISSIVE: 0
-    - _EdgeThickness: 1
+    - _EdgeThickness: 17.2
     - _EmissionMulByBaseColor: 0
     - _EnvironmentReflections: 1
     - _Farthest_Distance: 100
@@ -253,7 +252,7 @@ Material:
     - _Is_ViewCoord_Scroll: 0
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
-    - _MainLightIgnoreCelShade: 0.589
+    - _MainLightIgnoreCelShade: 0
     - _MatCap: 0
     - _Metallic: 0
     - _Nearest_Distance: 0.5
@@ -264,14 +263,14 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _OutlineWidth: 4
+    - _OutlineWidth: 1.58
     - _OutlineZOffset: 0.282
     - _OutlineZOffsetMaskRemapEnd: 1
     - _OutlineZOffsetMaskRemapStart: 0
     - _Outline_Width: 0
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _ReceiveShadowMappingAmount: 0.65
+    - _ReceiveShadowMappingAmount: 0.554
     - _ReceiveShadowMappingPosOffset: 0
     - _ReceiveShadows: 1
     - _RimLight: 0
@@ -288,7 +287,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularPower: 0
+    - _SpecularPower: 20
     - _SrcBlend: 1
     - _StepOffset: 0
     - _Surface: 0
@@ -303,7 +302,7 @@ Material:
     - _Unlit_Intensity: 1
     - _UseAlphaClipping: 0
     - _UseEmission: 0
-    - _UseOcclusion: 1
+    - _UseOcclusion: 0
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -312,11 +311,11 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.09
     m_Colors:
-    - _1st_ShadeColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+    - _1st_ShadeColor: {r: 0.4710306, g: 0.6765876, b: 0.6886792, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.45882353, g: 0.39215687, b: 0.38431373, a: 1}
-    - _Color: {r: 0.45882344, g: 0.39215684, b: 0.3843137, a: 1}
+    - _BaseColor: {r: 0.72463506, g: 0.85996395, b: 0.8679245, a: 1}
+    - _Color: {r: 0.72463506, g: 0.85996395, b: 0.8679245, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
@@ -328,8 +327,8 @@ Material:
     - _OutlineColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShadowMapColor: {r: 0.31764707, g: 0.30588236, b: 0.25490198, a: 1}
+    - _ShadowColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    - _ShadowMapColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
