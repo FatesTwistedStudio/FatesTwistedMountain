@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class S_CanvasController : MonoBehaviour
 {
+    public bool needsToToggle = false;
     public GameObject levelSelect;
+    public GameObject characterSelect;
+    public GameObject testlevel;
+    public GameObject characterContinueButton;
     public S_GameloopController S_GameloopController;
     public S_CharacterDatabase S_CharacterDatabase;
     public Image playerImage;
@@ -13,22 +19,33 @@ public class S_CanvasController : MonoBehaviour
     // Start is called before the first frame update
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyUp(KeyCode.R))
+                if (Input.GetKeyUp(KeyCode.S))
+                    if (Input.GetKeyUp(KeyCode.T))
+                        testlevel.SetActive(true);
+                    else
+                        testlevel.SetActive(false);
+
         if (S_GameloopController == null)
-        {
             S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
-        }
 
         if (S_GameloopController != null)
-        {
             if (S_GameloopController.player != null)
             {
-                levelSelect.SetActive(true);
                 setPlayerFacingUI();
+                characterContinueButton.SetActive(true);
             }
-            else
-            {
-                levelSelect.SetActive(false);
-            }
+        if(S_GameloopController.player == null)
+        {
+            characterContinueButton.SetActive(false);
+            levelSelect.SetActive(false);
+        }
+
+        if (needsToToggle == true)
+        {
+            turnOnLevelSelect();
+            needsToToggle = false;
         }
     }
     public void setPlayerFacingUI()
@@ -42,8 +59,18 @@ public class S_CanvasController : MonoBehaviour
         S_GameloopController.player.GetComponent<S_CharInfoHolder>().image = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterImage;
         S_GameloopController.player.GetComponent<S_CharInfoHolder>()._name = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterName;
     }
-    public void setSnowEvent(string sceneName)
+    public void turnOnLevelSelect()
     {
-        S_GameloopController.sceneManager.GetComponent<S_SceneController>().loadScene(sceneName);
+        levelSelect.gameObject.SetActive(true);
+        characterSelect.gameObject.SetActive(false);
+    }
+    public void turnOffLevelSelect()
+    {
+        levelSelect.gameObject.SetActive(false);
+        characterSelect.gameObject.SetActive(true);
+    }
+    public void loadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -32,6 +32,9 @@ public class S_EventController : MonoBehaviour
     [SerializeField]
     public GameObject[] charSpawned;
     [SerializeField]
+    public Sprite[] levelSprites;
+    public Sprite[] miniMapSprites;
+    [SerializeField]
     public float[] goldLevelTimes;
     public float[] silverLevelTimes;
     public float[] bronzeLevelTimes;

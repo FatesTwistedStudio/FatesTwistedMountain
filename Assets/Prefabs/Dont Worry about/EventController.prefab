@@ -53,16 +53,21 @@ MonoBehaviour:
   isTimedEvent: 1
   isStarted: 1
   playerHasItem: 0
-  bgs: {fileID: 0}
-  start: {fileID: 0}
-  bgm: []
   charSpawned: []
+  levelSprites:
+  - {fileID: 21300058, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  - {fileID: 21300028, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  - {fileID: 21300030, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  miniMapSprites:
+  - {fileID: 5524590292671962877, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
+  - {fileID: -3168733581550749585, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
+  - {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
   goldLevelTimes:
   - 0
-  - 60
-  - 60
-  - 60
-  - 60
+  - 0
+  - 90
+  - 90
+  - 90
   silverLevelTimes:
   - 0
   - 120
