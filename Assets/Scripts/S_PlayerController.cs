@@ -69,6 +69,8 @@ public class S_PlayerController : MonoBehaviour
     {
         leaningBoardHorizantally();
 
+
+
         if (stunRemaining > 0.0f)
         {
             stunRemaining = Mathf.Max(stunRemaining - Time.deltaTime, 0.0f);
