@@ -100,7 +100,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
         emColor.startColor = RuntimeColor;
 
-        Debug.Log(emisson.rateOverDistance);
+       
 
      //   bigWind.emission.rateOverDistance = 1;
     }

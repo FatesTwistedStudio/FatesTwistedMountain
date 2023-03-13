@@ -50,7 +50,7 @@ public class S_PlayerInput : MonoBehaviour
     private void Update()
     {
        // Debug.Log(_mvn.magnitude);
-        Debug.Log(_rotmvn);
+       // Debug.Log(_rotmvn);
         handleMovement();
     }
     void handleMovement()

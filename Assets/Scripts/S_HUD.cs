@@ -10,9 +10,11 @@ public class S_HUD : MonoBehaviour
     public GameObject ec;
     public S_EventController manager;
     public float ingameTime;
+    public float deltaTime;
     private Rigidbody playerRB;
 
     public TMP_Text _timeText;
+    public TMP_Text _deltaText;
     public TMP_Text _SpeedText;
     public GameObject timeParent;
     public GameObject speedParent;
@@ -86,15 +88,17 @@ public class S_HUD : MonoBehaviour
     private void DisplayTime(float ingametime)
     {
         float minutes = Mathf.FloorToInt(ingametime / 60);
+        float Dminutes = Mathf.FloorToInt(deltaTime / 60);
         float seconds = Mathf.FloorToInt(ingametime % 60);
+        float Dseconds = Mathf.FloorToInt(deltaTime % 60);
         _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        //_deltaText.text = string.Format("<size=50><b>{0:HH:mm:ss}</b></size>\n{1:0.} fps ({2:+0.00;-0.00} ms)", Dminutes, Dseconds);
 
     }
 
     private void HandleSpeed()
     {
-        //Debug.Log(playerRB.velocity.magnitude);
-
         if (manager.currentTime < 0)
         {
             if (!foundPlayer)
