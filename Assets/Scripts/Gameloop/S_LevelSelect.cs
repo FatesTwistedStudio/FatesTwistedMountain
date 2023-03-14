@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -10,12 +12,10 @@ public class S_LevelSelect : MonoBehaviour
     public GameObject mainImage;
     public GameObject alternativeImage;
     public TextMeshProUGUI imageText;
-    private GameObject EventController;
-    private void Update()
-    {
-        if (EventController == null)
-            EventController = GameObject.FindWithTag("EventController");
-    }
+    [SerializeField]
+    public Sprite[] levelSprites;
+    public Sprite[] miniMapSprites;
+
     private void OnMouseOver()
     {
         alternativeImage.SetActive(true);
@@ -24,18 +24,27 @@ public class S_LevelSelect : MonoBehaviour
     {
         imageText.text = text;
     }
-    public void setImage(int image1,int image2)
+    public void setImage(int imageNum)
     {
-        mainImage.GetComponent<Image>().sprite= EventController.GetComponent<S_EventController>().levelSprites[image1];
-        alternativeImage.GetComponent<Image>().sprite= EventController.GetComponent<S_EventController>().levelSprites[image2];
+        if (imageNum > 0)
+        {
+            if (mainImage.GetComponent<Image>() != null)
+            {
+                Debug.Log("main");
+                mainImage.GetComponent<Image>().sprite = levelSprites[imageNum];
+            }
+            if (alternativeImage.GetComponent<Image>() != null)
+            {
+                alternativeImage.GetComponent<Image>().sprite = miniMapSprites[imageNum];
+
+            }
+
+        }
+
     }
-  
+
     public void loadScene()
     {
         SceneManager.LoadScene(imageText.text);
-    }
-    public void loadScene(string sceneName)
-    {
-
     }
 }

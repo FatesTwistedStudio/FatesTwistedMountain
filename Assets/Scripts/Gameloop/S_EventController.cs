@@ -31,9 +31,7 @@ public class S_EventController : MonoBehaviour
     
     [SerializeField]
     public GameObject[] charSpawned;
-    [SerializeField]
-    public Sprite[] levelSprites;
-    public Sprite[] miniMapSprites;
+
     [SerializeField]
     public float[] goldLevelTimes;
     public float[] silverLevelTimes;
@@ -107,7 +105,7 @@ public class S_EventController : MonoBehaviour
         {
             playerHasItem = false;
         }
-        if (player.GetComponent<S_CharInfoHolder>().timedTrial > bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex]) 
+        if (player.GetComponent<S_CharInfoHolder>().timedTrial > bronzeLevelTimes[SceneManager.GetActiveScene().buildIndex]) 
         {
             endTimedRace();
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Diagnostics.CodeAnalysis;
 
 public class S_CanvasController : MonoBehaviour
 {
@@ -20,12 +21,9 @@ public class S_CanvasController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
-            if (Input.GetKeyUp(KeyCode.R))
-                if (Input.GetKeyUp(KeyCode.S))
-                    if (Input.GetKeyUp(KeyCode.T))
-                        testlevel.SetActive(true);
-                    else
-                        testlevel.SetActive(false);
+            testlevel.SetActive(true);
+        if (Input.GetKeyUp(KeyCode.Q))
+            testlevel.SetActive(false);
 
         if (S_GameloopController == null)
             S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
@@ -36,7 +34,7 @@ public class S_CanvasController : MonoBehaviour
                 setPlayerFacingUI();
                 characterContinueButton.SetActive(true);
             }
-        if(S_GameloopController.player == null)
+        if (S_GameloopController.player == null)
         {
             characterContinueButton.SetActive(false);
             levelSelect.SetActive(false);
@@ -47,6 +45,7 @@ public class S_CanvasController : MonoBehaviour
             turnOnLevelSelect();
             needsToToggle = false;
         }
+
     }
     public void setPlayerFacingUI()
     {
@@ -72,5 +71,9 @@ public class S_CanvasController : MonoBehaviour
     public void loadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+    public void turnOnButton(Button level)
+    {
+        level.gameObject.SetActive(true);
     }
 }
