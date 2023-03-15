@@ -18,7 +18,7 @@ public class S_Boost : MonoBehaviour
             rb = other.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * boostedSpeed, ForceMode.VelocityChange);
             //impulse force
-            Debug.Log("Force Applied to Player");
+            //Debug.Log("Force Applied to Player");
             speed = boostedSpeed;
             StartCoroutine("SpeedDuration");
         }
@@ -27,7 +27,7 @@ public class S_Boost : MonoBehaviour
             //impulse force
             rb = other.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * boostedSpeed, ForceMode.VelocityChange);
-            Debug.Log("Force Applied to Character");
+            //Debug.Log("Force Applied to Character");
             speed = boostedSpeed;
             StartCoroutine("SpeedDuration");
 
