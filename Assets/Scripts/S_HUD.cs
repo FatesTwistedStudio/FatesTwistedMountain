@@ -87,14 +87,32 @@ public class S_HUD : MonoBehaviour
     }
     private void DisplayTime(float ingametime)
     {
+
+
         float minutes = Mathf.FloorToInt(ingametime / 60);
-        float Dminutes = Mathf.FloorToInt(deltaTime / 60);
         float seconds = Mathf.FloorToInt(ingametime % 60);
-        float Dseconds = Mathf.FloorToInt(deltaTime % 60);
+
+     
+        
         _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        //_deltaText.text = string.Format("<size=50><b>{0:HH:mm:ss}</b></size>\n{1:0.} fps ({2:+0.00;-0.00} ms)", Dminutes, Dseconds);
+        
 
+
+    }
+
+    public void DisplayDeltaTime(float DeltaTime)
+    {
+        string sign = deltaTime >= 0 ? "+" : "-";
+        float deltaMag = Mathf.Abs(deltaTime);
+        float Dminutes = Mathf.Floor(deltaMag / 60);
+        float Dseconds = Mathf.FloorToInt(deltaMag % 60);
+
+        string deltaTimeT = Mathf.Abs(deltaMag).ToString("0:00.000");
+        _deltaText.text = sign + string.Format("{0:00}:{1:00}", Dminutes, Dseconds);
+
+        Debug.Log(Dminutes);
+        Debug.Log(Dseconds);
     }
 
     private void HandleSpeed()

@@ -31,8 +31,6 @@ public class S_CheckpointReceiver : MonoBehaviour
         Debug.Log("Enter Checkpoint");
         col.enabled = false;
         ShowDelta();
-        Debug.Log(HUDTime);
-
     }
 
     private void ShowDelta()
@@ -40,7 +38,6 @@ public class S_CheckpointReceiver : MonoBehaviour
         float delta = 0;
         delta = HUDTime - CheckpointTime;
         HUD.deltaTime = delta;
-        Debug.Log(delta);
-        //if ()
+        HUD.DisplayDeltaTime(delta);        
     }
 }
