@@ -8,10 +8,12 @@ public class S_Podium : MonoBehaviour
     public GameObject podium1st;
     public GameObject podium2st;
     public GameObject podium3st;
+    public S_Credits S_Credits;
     private void Update()
     {
         if (player == null)
             player = GameObject.FindWithTag("Player");
+
         if (player != null)
         {
             if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 1)
