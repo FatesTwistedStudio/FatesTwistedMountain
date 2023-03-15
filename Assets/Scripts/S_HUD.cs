@@ -22,11 +22,14 @@ public class S_HUD : MonoBehaviour
     public Image itemHudImage;
     public TextMeshProUGUI ItemText;
 
+    public Animator deltaAnim;
+
 
 
     bool foundPlayer = false;
     private void Start()
     {
+       // deltaAnim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -87,29 +90,35 @@ public class S_HUD : MonoBehaviour
     }
     private void DisplayTime(float ingametime)
     {
-
-
         float minutes = Mathf.FloorToInt(ingametime / 60);
         float seconds = Mathf.FloorToInt(ingametime % 60);
-
-     
-        
         _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        
-
-
     }
 
     public void DisplayDeltaTime(float DeltaTime)
     {
         string sign = deltaTime >= 0 ? "+" : "-";
+
+        if (deltaTime < 0)
+        {
+            deltaAnim.Play("a_TimeAdv");
+        }
+        else if (deltaTime == 0)
+        {
+            deltaAnim.Play("a_TimeEqual");
+        }
+        else
+        {
+            deltaAnim.Play("a_TimeDis");
+        }
+
+
         float deltaMag = Mathf.Abs(deltaTime);
         float Dminutes = Mathf.Floor(deltaMag / 60);
         float Dseconds = Mathf.FloorToInt(deltaMag % 60);
 
         string deltaTimeT = Mathf.Abs(deltaMag).ToString("0:00.000");
-        _deltaText.text = sign + string.Format("{0:00}:{1:00}", Dminutes, Dseconds);
+        _deltaText.text = sign + "" + string.Format("{0:00}:{1:00}", Dminutes, Dseconds);
 
         Debug.Log(Dminutes);
         Debug.Log(Dseconds);

@@ -208,7 +208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0010042, y: 0}
+  m_AnchoredPosition: {x: -0.0026579, y: 0.000022888184}
   m_SizeDelta: {x: 191.26, y: 69.195}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1936731602539328467
@@ -250,7 +250,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 23
+  m_fontStyle: 19
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.62352943}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -837,6 +837,12 @@ MonoBehaviour:
   ItemUI: {fileID: 314842732470137890}
   itemHudImage: {fileID: 2589445629613722217}
   ItemText: {fileID: 9084744798928614933}
+  colorGradient: {fileID: 11400000, guid: 23046b0a1c3f5a4418fe5ca3459d1a75, type: 2}
+  TopColorL: {r: 0, g: 0, b: 0, a: 0}
+  TopColorR: {r: 0, g: 0, b: 0, a: 0}
+  bottomColorL: {r: 0, g: 0, b: 0, a: 0}
+  bottomColorR: {r: 0, g: 0, b: 0, a: 0}
+  deltaAnim: {fileID: 970504627086335779}
 --- !u!1 &7110549115507603203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8335887345554369005}
+  - component: {fileID: 970504627086335779}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -1335,3 +1342,23 @@ RectTransform:
   m_AnchoredPosition: {x: 303.5, y: 140.9}
   m_SizeDelta: {x: 191.2546, y: 69.1952}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &970504627086335779
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171957459922493213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 448d2daa0ed0ced45906fb1df9d3d604, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
