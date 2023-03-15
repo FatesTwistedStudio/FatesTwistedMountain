@@ -15,9 +15,9 @@ public class S_CharInfoHolder : MonoBehaviour
     public Sprite image;
     public Vector3 holdingPosition;
     public Vector3 holdingUp;
-    public int levelPlacement1;
-    public int levelPlacement2;
-    //public int levelPlacement3;
+    [SerializeField]
+    public int[] levelPlacement;
+   
 
 
     // public bool isPlayer = false;

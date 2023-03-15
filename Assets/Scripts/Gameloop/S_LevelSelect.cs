@@ -20,6 +20,13 @@ public class S_LevelSelect : MonoBehaviour
     {
         alternativeImage.SetActive(true);
     }
+    private void OnMouseUp()
+    {
+        Debug.Log("main");
+        alternativeImage.SetActive(true);
+
+    }
+
     public void setText(string text)
     {
         imageText.text = text;
@@ -30,7 +37,6 @@ public class S_LevelSelect : MonoBehaviour
         {
             if (mainImage.GetComponent<Image>() != null)
             {
-                Debug.Log("main");
                 mainImage.GetComponent<Image>().sprite = levelSprites[imageNum];
             }
             if (alternativeImage.GetComponent<Image>() != null)
