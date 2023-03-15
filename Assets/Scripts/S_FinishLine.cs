@@ -24,12 +24,12 @@ public class S_FinishLine : MonoBehaviour
             secondPlace = null;
             thirdPlace = null;
             fourthPlace = obj;
-            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
             {
 
                 obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
             }
-            else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+            else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] > 0)
             {
 
                 obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 4;
@@ -41,12 +41,12 @@ public class S_FinishLine : MonoBehaviour
                 secondPlace = null;
                 thirdPlace = obj;
                 fourthPlace = null;
-                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
                 {
 
                     obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
                 }
-                else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+                else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] > 0)
                 {
                     obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 3;
                 }
@@ -57,12 +57,12 @@ public class S_FinishLine : MonoBehaviour
                     secondPlace = obj;
                     thirdPlace = null;
                     fourthPlace = null;
-                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
                     {
                         obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
 
                     }
-                    else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+                    else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] > 0)
                     {
 
                         obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 2;
@@ -73,12 +73,12 @@ public class S_FinishLine : MonoBehaviour
                         secondPlace = null;
                         thirdPlace = null;
                         fourthPlace = null;
-                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
                         {
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
 
                         }
-                        else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+                        else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] > 0)
                         {
 
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 1;
