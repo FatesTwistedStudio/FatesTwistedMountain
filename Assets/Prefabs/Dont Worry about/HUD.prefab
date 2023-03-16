@@ -206,10 +206,10 @@ RectTransform:
   m_Father: {fileID: 8335887345554369005}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0026579, y: 0.000022888184}
-  m_SizeDelta: {x: 191.26, y: 69.195}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -95.630005, y: 0}
+  m_SizeDelta: {x: 191.26001, y: 69.195}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1936731602539328467
 CanvasRenderer:
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4293524977
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -419,8 +419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00083828, y: 0.00011563}
-  m_SizeDelta: {x: 191.26, y: 69.195}
+  m_AnchoredPosition: {x: 0.36999512, y: 0.40250015}
+  m_SizeDelta: {x: 191.26001, y: 69.195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7636190295983798731
 CanvasRenderer:
@@ -837,11 +837,6 @@ MonoBehaviour:
   ItemUI: {fileID: 314842732470137890}
   itemHudImage: {fileID: 2589445629613722217}
   ItemText: {fileID: 9084744798928614933}
-  colorGradient: {fileID: 11400000, guid: 23046b0a1c3f5a4418fe5ca3459d1a75, type: 2}
-  TopColorL: {r: 0, g: 0, b: 0, a: 0}
-  TopColorR: {r: 0, g: 0, b: 0, a: 0}
-  bottomColorL: {r: 0, g: 0, b: 0, a: 0}
-  bottomColorR: {r: 0, g: 0, b: 0, a: 0}
   deltaAnim: {fileID: 970504627086335779}
 --- !u!1 &7110549115507603203
 GameObject:
@@ -1328,7 +1323,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171957459922493213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 320.65265}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.41666663, y: 0.41666663, z: 0.41666663}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1337,11 +1332,11 @@ RectTransform:
   m_Father: {fileID: 7110549115461044882}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 303.5, y: 140.9}
-  m_SizeDelta: {x: 191.2546, y: 69.1952}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -43.91, y: -50}
+  m_SizeDelta: {x: 257.4966, y: 107.0478}
+  m_Pivot: {x: 1, y: 1}
 --- !u!95 &970504627086335779
 Animator:
   serializedVersion: 4
