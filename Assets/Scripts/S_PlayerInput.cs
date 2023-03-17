@@ -21,6 +21,7 @@ public class S_PlayerInput : MonoBehaviour
     int isLeaningForwardHash;
     int isLeaningRightHash;
     int isLeaningLeftHash;
+    int isJumpingHash;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class S_PlayerInput : MonoBehaviour
         isLeaningForwardHash = Animator.StringToHash("IsMovingForward");
         isLeaningRightHash = Animator.StringToHash("IsMovingRight");
         isLeaningLeftHash = Animator.StringToHash("IsMovingLeft");
+        isJumpingHash = Animator.StringToHash("IsJumping");
     }
 
     private void Update()
@@ -52,6 +54,10 @@ public class S_PlayerInput : MonoBehaviour
        // Debug.Log(_mvn.magnitude);
        // Debug.Log(_rotmvn);
         handleMovement();
+        if (_physicsSystem.isGrounded == true)
+        {
+           // anim.SetBool("IsJumping", false);
+        }
     }
     void handleMovement()
     {
@@ -85,15 +91,26 @@ public class S_PlayerInput : MonoBehaviour
             {
                 anim.SetBool("IsMovingLeft", false);
             }
+            
         }
         
         
+    }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            anim.SetBool("IsJumping", false);
+            anim.SetBool("HasLanded", true);
+        }
     }
 
     public void OnJump(InputValue value)
     {
         if (_physicsSystem.isGrounded)
         {
+            anim.SetBool("HasLanded", false);
+            anim.SetBool("IsJumping", true);
             _physicsSystem.Jump();
         }
     }
