@@ -22,13 +22,16 @@ public class S_EventController : MonoBehaviour
     private FTMInput _Input;
     private InputAction StartRace;
 
+    public S_BackgroundMusic _BackgroundMusic;
+    bool playedsong = false;
+
 
     //public AudioSource bgs;
     //public AudioClip start;
-   
+
     //[SerializeField]
     //public AudioClip[] bgm;
-    
+
     [SerializeField]
     public GameObject[] charSpawned;
 
@@ -44,6 +47,7 @@ public class S_EventController : MonoBehaviour
     private void Awake()
     {
         _Input = new FTMInput();
+ 
 
     }
 
@@ -59,6 +63,10 @@ public class S_EventController : MonoBehaviour
             startText.SetText("");
 
         }
+        if (_BackgroundMusic != null)
+        {
+
+        }
     }
     private void OnEnable()
     {
@@ -71,6 +79,7 @@ public class S_EventController : MonoBehaviour
     {
         charSpawned = GameObject.FindGameObjectsWithTag("Character");
         player = GameObject.FindWithTag("Player");
+        _BackgroundMusic = FindObjectOfType<S_BackgroundMusic>();
         if (player.GetComponent<S_Recovery>() == true)
         {
             player.GetComponent<S_Recovery>().hasStarted = isStarted;
@@ -121,11 +130,17 @@ public class S_EventController : MonoBehaviour
         //bgs.PlayOneShot(start);
         if (currentTime >= 0)
         {
+            if (!playedsong)
+            {
+                FindObjectOfType<S_AudioManager>().Play("Race-Start");
+
+                playedsong = true;
+            }
             currentTime -= 1 * Time.deltaTime;
             if (currentTime > 1)
             {
-                startText.text = currentTime.ToString("0");
 
+                startText.text = currentTime.ToString("0");
             }
         }
         if (currentTime <= .5f)
@@ -137,6 +152,8 @@ public class S_EventController : MonoBehaviour
                 
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+            
+
         }
     }
     public void playAudio()

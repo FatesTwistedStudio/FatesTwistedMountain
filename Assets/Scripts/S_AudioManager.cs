@@ -5,10 +5,11 @@ using UnityEngine.Audio;
 
 public class S_AudioManager : MonoBehaviour
 {
-
     public S_Sound[] sounds;
 
     public static S_AudioManager instance;
+
+    public S_BackgroundMusic bgm;
 
     private void Awake()
     {
@@ -37,14 +38,10 @@ public class S_AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //Can use this to play a level theme.
-        Play("All-That");
-    }
-
     public void Play(string name)
     {
+        //To call the refrence FindObjectOfType<S_AudioManager>().Play("NameofClip");
+
        S_Sound s = Array.Find(sounds, sound => sound.name == name);
        
        if (s == null)
@@ -56,17 +53,14 @@ public class S_AudioManager : MonoBehaviour
        if(s.source.loop ==true)
        {
             s.source.Play();
-           // Debug.Log("Playing Loop");
+           Debug.Log("Playing Audio");
        }
        else
        {
             s.source.PlayOneShot(s.source.clip, s.volume);
+           Debug.Log("Playing SFX");
           //  Debug.Log("One Shot SFX");
         }
-
-        
-
-        //To call the refrence FindObjectOfType<S_AudioManager>().Play("NameofClip");
     }
 
     public void StopPlaying(string name)

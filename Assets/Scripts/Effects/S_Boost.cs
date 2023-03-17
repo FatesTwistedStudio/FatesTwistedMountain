@@ -18,6 +18,8 @@ public class S_Boost : MonoBehaviour
             rb = other.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * boostedSpeed, ForceMode.VelocityChange);
             //impulse force
+
+            FindObjectOfType<S_AudioManager>().Play("Boost");
             //Debug.Log("Force Applied to Player");
             speed = boostedSpeed;
             StartCoroutine("SpeedDuration");

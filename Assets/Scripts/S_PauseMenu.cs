@@ -104,6 +104,7 @@ public class S_PauseMenu : MonoBehaviour
     public void Quit()
     {
         Time.timeScale = 1;
+        AudioListener.pause = false;
         SceneManager.LoadScene(0);
     }
 }
