@@ -130,12 +130,6 @@ public class S_EventController : MonoBehaviour
         //bgs.PlayOneShot(start);
         if (currentTime >= 0)
         {
-            if (!playedsong)
-            {
-                FindObjectOfType<S_AudioManager>().Play("Race-Start");
-
-                playedsong = true;
-            }
             currentTime -= 1 * Time.deltaTime;
             if (currentTime > 1)
             {

@@ -38,6 +38,17 @@ public class S_CheckpointReceiver : MonoBehaviour
         float delta = 0;
         delta = HUDTime - CheckpointTime;
         HUD.deltaTime = delta;
-        HUD.DisplayDeltaTime(delta);        
+        HUD.DisplayDeltaTime(delta); 
+        
+        if (delta > 0)
+        {
+            FindObjectOfType<S_AudioManager>().Play("Checkpoint-");
+
+        }
+        else
+        {
+            FindObjectOfType<S_AudioManager>().Play("Checkpoint+");
+
+        }
     }
 }

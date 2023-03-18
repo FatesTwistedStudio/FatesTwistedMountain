@@ -12,7 +12,8 @@ public class S_StartingLine : MonoBehaviour
     }
     private void Start()
     {
-        
+        FindObjectOfType<S_AudioManager>().Play("Race-Start");
+
     }
 
     private void OnTriggerStay(Collider other)

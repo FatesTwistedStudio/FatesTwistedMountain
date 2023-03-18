@@ -45,20 +45,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0.158
+  - name: Boost
+    clip: {fileID: 8300000, guid: 8ad403f13bc6243c4aadcc0a8348e389, type: 3}
+    volume: 1
     spaitialBlend: 0
-    pitch: 0
+    pitch: 1
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: e60c782f460a079449a33121c6f17c2e, type: 2}
     source: {fileID: 0}
-  musics:
   - name: All-That
     clip: {fileID: 8300000, guid: f9c775bd46e1160498f103935bd026ea, type: 3}
-    volume: 0.514
+    volume: 0.367
     spaitialBlend: 0
-    pitch: 0
+    pitch: 1
     loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Race-Start
+    clip: {fileID: 8300000, guid: 80ace7be2df07f94cb9e0c4804977d4f, type: 3}
+    volume: 0.586
+    spaitialBlend: 0
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Title
+    clip: {fileID: 8300000, guid: 6636369598b3ce9498236f675d37cce8, type: 3}
+    volume: 0.586
+    spaitialBlend: 0
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Checkpoint+
+    clip: {fileID: 8300000, guid: 3be1074f0139e7a45881cddf1ac97af4, type: 3}
+    volume: 0.586
+    spaitialBlend: 0
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Checkpoint-
+    clip: {fileID: 8300000, guid: 3be1074f0139e7a45881cddf1ac97af4, type: 3}
+    volume: 0.586
+    spaitialBlend: 0
+    pitch: 0.58
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  bgm: {fileID: 0}
