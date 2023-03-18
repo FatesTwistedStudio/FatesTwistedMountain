@@ -17,20 +17,33 @@ public class S_Podium : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("player present");
-            spawnPlayer(player, player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                spawnPlayer(player, player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
+            }
         }
     }
     public void spawnPlayer(GameObject player, int levelPlacement)
     {
+        Debug.Log("player present");
         if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 1)
-            Instantiate(player, podium1st.transform.position, podium1st.transform.rotation);
+        {
+            GameObject spawnCharacter = Instantiate(player, podium1st.transform.position, podium1st.transform.rotation) as GameObject;
+        }
+      else if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 2)
+        {
+            GameObject spawnCharacter = Instantiate(player, podium2st.transform.position, podium2st.transform.rotation) as GameObject;
+        }
+       else if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 3)
+        {
+            GameObject spawnCharacter = Instantiate(player, podium3st.transform.position, podium3st.transform.rotation) as GameObject;
+        }
+        else
+        {
+            GameObject spawnCharacter = Instantiate(player, podium1st.transform.position, podium1st.transform.rotation) as GameObject;
+        }
 
-        if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 2)
-            Instantiate(player, podium2st.transform.position, podium2st.transform.rotation);
 
-        if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 3)
-            Instantiate(player, podium3st.transform.position, podium3st.transform.rotation);
     }
 
 }
