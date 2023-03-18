@@ -29,10 +29,7 @@ public class S_FinishLine : MonoBehaviour
 
                 obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
             }
-            else
-            {
-                obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 4;
-            }
+  
 
             if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
             {
@@ -45,10 +42,7 @@ public class S_FinishLine : MonoBehaviour
 
                     obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
                 }
-                else 
-                {
-                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 3;
-                }
+              
 
                 if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().silverLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                 {
@@ -61,11 +55,7 @@ public class S_FinishLine : MonoBehaviour
                         obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
 
                     }
-                    else
-                    {
-
-                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 2;
-                    }
+                   
                     if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().goldLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                     {
                         firstPlace = obj;
@@ -76,11 +66,6 @@ public class S_FinishLine : MonoBehaviour
                         {
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
 
-                        }
-                        else
-                        {
-
-                            obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 1;
                         }
                     }
                 }

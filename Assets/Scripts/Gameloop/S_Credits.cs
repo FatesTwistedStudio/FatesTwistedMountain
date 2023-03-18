@@ -16,18 +16,26 @@ public class S_Credits : MonoBehaviour
     public TextMeshProUGUI[] contributorRole;
     public TextMeshProUGUI[] contributorThanks;
 
-    private void Update()
+    private void Awake()
     {
-        for (int i = 0; i < creditsDatabase.creditsInformation.Length; i++)
+        setCredits();
+    }
+    public void setCredits()
+    {
+        for (int i = 0; i < creditsDatabase.creditsInformation.Length-1; i++)
         {
             if (creditsDatabase.creditsInformation[i] != null)
             {
+
                 if (creditsDatabase.creditsInformation[i].stickerSprite != null)
-                    contributorLogo[i].GetComponent<Image>().sprite = creditsDatabase.creditsInformation[i].stickerSprite;
-                if (creditsDatabase.creditsInformation[i].contributorsName != null)
-                    contributorName[i].SetText("" + creditsDatabase.creditsInformation[i].contributorsName[i]);
+                    //contributorLogo[i].GetComponent<Image>().sprite = creditsDatabase.creditsInformation[i].stickerSprite;
+
+                    if (creditsDatabase.creditsInformation[i].contributorsName != null)
+                        contributorName[i].text =creditsDatabase.creditsInformation[i].contributorsName[i].ToString();
+
                 if (creditsDatabase.creditsInformation[i].contributorsRole != null)
                     contributorRole[i].SetText("" + creditsDatabase.creditsInformation[i].contributorsRole[i]);
+
                 if (creditsDatabase.creditsInformation[i].contributorsThanks != null)
                     contributorThanks[i].SetText("" + creditsDatabase.creditsInformation[i].contributorsThanks[i]);
             }
