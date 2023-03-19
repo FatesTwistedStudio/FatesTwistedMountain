@@ -19,106 +19,96 @@ public class S_FinishLine : MonoBehaviour
     {
         if (obj.GetComponent<S_CharInfoHolder>() != null)
         {
-
-            firstPlace = null;
-            secondPlace = null;
-            thirdPlace = null;
-            fourthPlace = obj;
-            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
-            {
-
-                obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
-            }
-  
-
             if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
             {
-                firstPlace = null;
-                secondPlace = null;
-                thirdPlace = obj;
-                fourthPlace = null;
-                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
-                {
-
-                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
-                }
-              
-
                 if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().silverLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                 {
-                    firstPlace = null;
-                    secondPlace = obj;
-                    thirdPlace = null;
-                    fourthPlace = null;
-                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
-                    {
-                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
-
-                    }
-                   
                     if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().goldLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
                     {
-                        firstPlace = obj;
-                        secondPlace = null;
-                        thirdPlace = null;
-                        fourthPlace = null;
-                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] <= 0)
+                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
                         {
+                            firstPlace = obj;
+                            secondPlace = null;
+                            thirdPlace = null;
+                            fourthPlace = null;
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
-
                         }
                     }
+                   else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                    {
+                        firstPlace = null;
+                        secondPlace = obj;
+                        thirdPlace = null;
+                        fourthPlace = null;
+                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
+                    }
+                }
+                else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                {
+                    firstPlace = null;
+                    secondPlace = null;
+                    thirdPlace = obj;
+                    fourthPlace = null;
+                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
                 }
             }
-        }
-    }
-    public void winOrLosePoint(GameObject obj)
-    {
-        if (obj.GetComponent<S_CharInfoHolder>() != null)
-        {
-            firstPlace = null;
-            secondPlace = null;
-            thirdPlace = null;
-            fourthPlace = obj;
-            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
-            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
-                obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 4;
-            if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().bronzeLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+            else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
             {
                 firstPlace = null;
                 secondPlace = null;
-                thirdPlace = obj;
-                fourthPlace = null;
-                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
-                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
-                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 3;
-                if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().silverLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
-                {
-                    firstPlace = null;
-                    secondPlace = obj;
-                    thirdPlace = null;
-                    fourthPlace = null;
-                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
-                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
-                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 2;
-                    if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().goldLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
-                    {
-                        firstPlace = obj;
-                        secondPlace = null;
-                        thirdPlace = null;
-                        fourthPlace = null;
-                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                            obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
-                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
-                            obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 1;
-                    }
-                }
+                thirdPlace = null;
+                fourthPlace = obj;
+                obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
             }
         }
     }
+    //public void winOrLosePoint(GameObject obj)
+    //{
+    //    if (obj.GetComponent<S_CharInfoHolder>() != null)
+    //    {
+    //        firstPlace = null;
+    //        secondPlace = null;
+    //        thirdPlace = null;
+    //        fourthPlace = obj;
+    //        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+    //            obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
+    //        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+    //            obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 4;
+    //        if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().bronzeLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+    //        {
+    //            firstPlace = null;
+    //            secondPlace = null;
+    //            thirdPlace = obj;
+    //            fourthPlace = null;
+    //            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+    //                obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
+    //            if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+    //                obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 3;
+    //            if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().silverLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+    //            {
+    //                firstPlace = null;
+    //                secondPlace = obj;
+    //                thirdPlace = null;
+    //                fourthPlace = null;
+    //                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+    //                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
+    //                if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+    //                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 2;
+    //                if (obj.GetComponent<S_CharInfoHolder>().pointsEarned < eventController.GetComponent<S_EventController>().goldLevelPoints[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
+    //                {
+    //                    firstPlace = obj;
+    //                    secondPlace = null;
+    //                    thirdPlace = null;
+    //                    fourthPlace = null;
+    //                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+    //                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
+    //                    if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] != 0)
+    //                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[1] = 1;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<S_CharInfoHolder>() == true)
@@ -134,12 +124,11 @@ public class S_FinishLine : MonoBehaviour
             {
                 winOrLoseTime(other.gameObject);
                 eventController.GetComponent<S_EventController>().endTimedRace();
-
             }
-            if (eventController.GetComponent<S_EventController>().isTimedEvent == false)
-            {
-                winOrLosePoint(other.gameObject);
-            }
+            //if (eventController.GetComponent<S_EventController>().isTimedEvent == false)
+            //{
+            //    winOrLosePoint(other.gameObject);
+            //}
 
         }
         if (other.tag == "Character")

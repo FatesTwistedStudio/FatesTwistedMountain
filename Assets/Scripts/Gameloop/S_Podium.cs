@@ -16,14 +16,19 @@ public class S_Podium : MonoBehaviour
         if (player == null)
             player = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player;
 
-        GameObject.FindWithTag("EventController").SetActive(false);
+
 
         if (player != null)
         {
-
             spawnPlayer();
 
         }
+    }
+    private void Update()
+    {
+        Debug.Log(player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
+        GameObject.FindWithTag("EventController").gameObject.SetActive(false);
+
     }
     public void spawnPlayer()
     {
@@ -36,6 +41,7 @@ public class S_Podium : MonoBehaviour
             spawnCharacter.GetComponent<S_SurfaceAlignment>().enabled = false;
             spawnCharacter.GetComponent<S_HandleCinemachine>().enabled = false;
             spawnCharacter.GetComponent<PlayerInput>().enabled = false;
+            spawnCharacter.GetComponent<S_Stun>().enabled = false;
         }
         else if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 2)
         {
@@ -46,6 +52,8 @@ public class S_Podium : MonoBehaviour
             spawnCharacter.GetComponent<S_SurfaceAlignment>().enabled = false;
             spawnCharacter.GetComponent<S_HandleCinemachine>().enabled = false;
             spawnCharacter.GetComponent<PlayerInput>().enabled = false;
+            spawnCharacter.GetComponent<S_Stun>().enabled = false;
+
         }
         else if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 3)
         {
@@ -56,6 +64,8 @@ public class S_Podium : MonoBehaviour
             spawnCharacter.GetComponent<S_SurfaceAlignment>().enabled = false;
             spawnCharacter.GetComponent<S_HandleCinemachine>().enabled = false;
             spawnCharacter.GetComponent<PlayerInput>().enabled = false;
+            spawnCharacter.GetComponent<S_Stun>().enabled = false;
+
         }
         else
         {
@@ -66,6 +76,8 @@ public class S_Podium : MonoBehaviour
             spawnCharacter.GetComponent<S_SurfaceAlignment>().enabled = false;
             spawnCharacter.GetComponent<S_HandleCinemachine>().enabled = false;
             spawnCharacter.GetComponent<PlayerInput>().enabled = false;
+            spawnCharacter.GetComponent<S_Stun>().enabled = false;
+
         }
 
 
