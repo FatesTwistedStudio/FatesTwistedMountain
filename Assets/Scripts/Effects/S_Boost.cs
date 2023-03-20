@@ -16,7 +16,7 @@ public class S_Boost : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             rb = other.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * boostedSpeed, ForceMode.VelocityChange);
+            rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
             //impulse force
 
             FindObjectOfType<S_AudioManager>().Play("Boost");
@@ -28,7 +28,7 @@ public class S_Boost : MonoBehaviour
         {
             //impulse force
             rb = other.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * boostedSpeed, ForceMode.VelocityChange);
+            rb.AddForce(-rb.transform.forward * boostedSpeed, ForceMode.VelocityChange);
             //Debug.Log("Force Applied to Character");
             speed = boostedSpeed;
             StartCoroutine("SpeedDuration");
