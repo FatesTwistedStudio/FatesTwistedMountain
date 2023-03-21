@@ -34,7 +34,7 @@ public class S_FinishLine : MonoBehaviour
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
                         }
                     }
-                   else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
+                    else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
                     {
                         firstPlace = null;
                         secondPlace = obj;
@@ -112,29 +112,21 @@ public class S_FinishLine : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<S_CharInfoHolder>() == true)
-        {
             eventController.GetComponent<S_EventController>().setTimedTrial(other.gameObject);
-        }
+
+        if (other.tag == "Character")
+            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
-            //play animation
-            Invoke("pullUpLeaderBoard", 1);
             if (eventController.GetComponent<S_EventController>().isTimedEvent)
             {
                 winOrLoseTime(other.gameObject);
+                GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player = other.gameObject;
                 eventController.GetComponent<S_EventController>().endTimedRace();
+                Invoke("pullUpLeaderBoard", 1);
             }
-            //if (eventController.GetComponent<S_EventController>().isTimedEvent == false)
-            //{
-            //    winOrLosePoint(other.gameObject);
-            //}
-
-        }
-        if (other.tag == "Character")
-        {
-            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            // other.gameObject.GetComponent<S_HoverboardPhysic>().enabled = false;
         }
     }
     public void pullUpLeaderBoard()

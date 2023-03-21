@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class S_Podium : MonoBehaviour
 {
     public GameObject player;
+    public GameObject gameController;
     public GameObject podium1st;
     public GameObject podium2st;
     public GameObject podium3st;
@@ -14,20 +15,21 @@ public class S_Podium : MonoBehaviour
     private void Awake()
     {
         if (player == null)
-            player = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player;
+            gameController = GameObject.FindWithTag("GameController");
 
 
+            if (player != null)
+            {
+                spawnPlayer();
+                GameObject.FindWithTag("EventController").gameObject.SetActive(false);
 
-        if (player != null)
-        {
-            spawnPlayer();
-
-        }
+            }
     }
     private void Update()
     {
+        player = gameController.GetComponent<S_GameloopController>().player;
         Debug.Log(player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
-        GameObject.FindWithTag("EventController").gameObject.SetActive(false);
+
 
     }
     public void spawnPlayer()
