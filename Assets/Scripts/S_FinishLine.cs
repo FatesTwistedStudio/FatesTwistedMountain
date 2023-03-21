@@ -27,38 +27,43 @@ public class S_FinishLine : MonoBehaviour
                     {
                         if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
                         {
+                            Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
                             firstPlace = obj;
                             secondPlace = null;
                             thirdPlace = null;
                             fourthPlace = null;
                             obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
+                            GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
                         }
                     }
                     else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
                     {
+                        Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
                         firstPlace = null;
                         secondPlace = obj;
                         thirdPlace = null;
                         fourthPlace = null;
                         obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
+                        GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
+
                     }
                 }
                 else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
                 {
+                    Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
                     firstPlace = null;
                     secondPlace = null;
                     thirdPlace = obj;
                     fourthPlace = null;
                     obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
+                    GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
                 }
             }
             else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
             {
-                firstPlace = null;
-                secondPlace = null;
-                thirdPlace = null;
                 fourthPlace = obj;
                 obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
+                GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
             }
         }
     }
@@ -111,6 +116,7 @@ public class S_FinishLine : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.GetComponent<S_CharInfoHolder>() == true)
             eventController.GetComponent<S_EventController>().setTimedTrial(other.gameObject);
 
@@ -120,13 +126,8 @@ public class S_FinishLine : MonoBehaviour
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
-            if (eventController.GetComponent<S_EventController>().isTimedEvent)
-            {
-                winOrLoseTime(other.gameObject);
-                GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player = other.gameObject;
-                eventController.GetComponent<S_EventController>().endTimedRace();
-                Invoke("pullUpLeaderBoard", 1);
-            }
+            winOrLoseTime(other.gameObject);
+            Invoke("pullUpLeaderBoard", 1);
         }
     }
     public void pullUpLeaderBoard()
@@ -148,7 +149,6 @@ public class S_FinishLine : MonoBehaviour
         }
         else
         {
-
             S_LeaderBoardTracker.firstPlacePlacementText.SetText("Gold Spot");
             S_LeaderBoardTracker.firstPlacePointsText.SetText("--");
             S_LeaderBoardTracker.firstPlaceTimeText.SetText("--.--");
@@ -192,6 +192,10 @@ public class S_FinishLine : MonoBehaviour
             S_LeaderBoardTracker.fourthPlacePointsText.SetText("--");
             S_LeaderBoardTracker.fourthPlaceTimeText.SetText("--.--");
         }
+        if (fourthPlace == null && thirdPlace == null && secondPlace == null && firstPlace == null)
+        {
+            Debug.Log("leader not set");
+        }
     }
     public void sendToNextLevel(string nextLevel)
     {
@@ -200,6 +204,7 @@ public class S_FinishLine : MonoBehaviour
     private void Update()
     {
         eventController = GameObject.FindWithTag("EventController");
-        sortTheWinners();
+        if (fourthPlace != null || thirdPlace != null || secondPlace != null || firstPlace != null)
+            sortTheWinners();
     }
 }

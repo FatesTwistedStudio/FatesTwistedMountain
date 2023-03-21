@@ -47,7 +47,7 @@ public class S_EventController : MonoBehaviour
     private void Awake()
     {
         _Input = new FTMInput();
- 
+
 
     }
 
@@ -85,10 +85,12 @@ public class S_EventController : MonoBehaviour
             player.GetComponent<S_Recovery>().hasStarted = isStarted;
 
         }
+
         if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
         {
             timer += 1 * Time.deltaTime;
         }
+
         if (isStarted == true)
         {
             playEvent();
@@ -114,10 +116,6 @@ public class S_EventController : MonoBehaviour
         {
             playerHasItem = false;
         }
-        if (player.GetComponent<S_CharInfoHolder>().timedTrial > bronzeLevelTimes[SceneManager.GetActiveScene().buildIndex]) 
-        {
-            endTimedRace();
-        }
     }
     public void setTimedTrial(GameObject character)
     {
@@ -133,20 +131,21 @@ public class S_EventController : MonoBehaviour
             currentTime -= 1 * Time.deltaTime;
             if (currentTime > 1)
             {
-
                 startText.text = currentTime.ToString("0");
             }
         }
         if (currentTime <= .5f)
         {
             playAudio();
-            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+          
+                player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            
             for (int i = 0; i < charSpawned.Length; i++)
             {
-                
+
                 charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
-            
+
 
         }
     }
@@ -172,10 +171,4 @@ public class S_EventController : MonoBehaviour
     {
         isStarted = true;
     }
-    public void endTimedRace()
-    {
-        //not sure how to end it yet
-       //. bgs.loop = false;
-    }
-
 }
