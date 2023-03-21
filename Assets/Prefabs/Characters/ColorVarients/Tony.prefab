@@ -221,6 +221,11 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 394
       objectReference: {fileID: 0}
+    - target: {fileID: 3518230165327987959, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Name
+      value: Trail
+      objectReference: {fileID: 0}
     - target: {fileID: 4824561009839345660, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -252,6 +257,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 29b9b6c0020db2340a66775ab312272b,
         type: 3}
+    - target: {fileID: 6044688340883038315, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: levelPlacement.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6324142131029338920, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -321,6 +331,71 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Autodestruct
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.0030899048
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.7177925
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.72752
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: 0.009757628
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: 0.009757628
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].tangentMode
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194693721982585752, guid: 6fc5a4af690db9840835c0fcf91fb723,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].tangentMode
+      value: 69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fc5a4af690db9840835c0fcf91fb723, type: 3}

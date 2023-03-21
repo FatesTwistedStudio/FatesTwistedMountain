@@ -45,6 +45,14 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [Header("Trail")]
     [SerializeField]
     private TrailRenderer trailRenderer;
+    [SerializeField]
+    private GameObject trail;
+    [SerializeField]
+    private Transform trailLocation;
+    private GameObject modelRef;
+    private float pauseTime;
+    private float resumeTime;
+    private float trailTime;
 
 
     private void Awake()
@@ -84,6 +92,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
         snowboardSnowR.Play();
         snowboardSnowL.Play();
         smallWind.Play();
+        bigWind.Play();
         trailRenderer.time = 1;
 
         var emisson = bigWind.emission;
@@ -97,12 +106,9 @@ public class S_HandlePlayerParticles : MonoBehaviour
         something = Mathf.Lerp(0, 0 + rb.velocity.magnitude/2, 0.2f);
         RuntimeColor.a = Mathf.Lerp(noColor.a + rb.velocity.magnitude * 0.01f, peakColor.a, 0.2f);
         RuntimeColor.a = Mathf.Clamp(RuntimeColor.a, noColor.a, peakColor.a);
-
         emColor.startColor = RuntimeColor;
-
        
-
-     //   bigWind.emission.rateOverDistance = 1;
+        trailRenderer.time = 1;
     }
 
     private void inAir()
@@ -112,10 +118,13 @@ public class S_HandlePlayerParticles : MonoBehaviour
         snowboardSnowR.Pause();
         snowboardSnowL.Pause();
         smallWind.Pause();
+        bigWind.Pause();
 
+        pauseTime = Time.time;
         trailRenderer.time = 0;
-
+   
     }
+ 
 
     private void OnCollisionEnter(Collision collision)
     {

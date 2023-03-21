@@ -55,7 +55,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: All-That
     clip: {fileID: 8300000, guid: f9c775bd46e1160498f103935bd026ea, type: 3}
-    volume: 0.367
+    volume: 0.15
     spaitialBlend: 0
     pitch: 1
     loop: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Title
     clip: {fileID: 8300000, guid: 6636369598b3ce9498236f675d37cce8, type: 3}
-    volume: 0.586
+    volume: 0.267
     spaitialBlend: 0
     pitch: 1
     loop: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Checkpoint+
     clip: {fileID: 8300000, guid: 3be1074f0139e7a45881cddf1ac97af4, type: 3}
-    volume: 0.586
+    volume: 0.874
     spaitialBlend: 0
     pitch: 1
     loop: 0
@@ -87,6 +87,22 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Checkpoint-
     clip: {fileID: 8300000, guid: 3be1074f0139e7a45881cddf1ac97af4, type: 3}
+    volume: 0.868
+    spaitialBlend: 0
+    pitch: 0.58
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SnowboardA
+    clip: {fileID: 8300000, guid: 85f497896c6d8524e9b726ae9128d394, type: 3}
+    volume: 0.44
+    spaitialBlend: 0
+    pitch: 0.881
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Snow-Landing
+    clip: {fileID: 8300000, guid: bf80c7a4abf7aca428a09d2106c5d955, type: 3}
     volume: 0.586
     spaitialBlend: 0
     pitch: 0.58

@@ -6,16 +6,16 @@ using UnityEngine.UIElements;
 public class S_CheckpointManager : MonoBehaviour
 {
     public float[] CheckpointTimes;
-    public GameObject[] Receivers;
+    public S_CheckpointReceiver[] Receivers;
 
     // Start is called before the first frame update
     void Start()
     {
-       // foroop (GameObject recive in Receivers)
-        //{
-         //   Receivers[recive].CheckpointTime = CheckpointTimes[recive];
-
-        //}
+       foreach (S_CheckpointReceiver receiver in Receivers)
+        {
+//            receiver.CheckpointTime = CheckpointTimes[i];
+  //          Debug.Log("Set Checkpoint");
+        }
     }
 
     // Update is called once per frame

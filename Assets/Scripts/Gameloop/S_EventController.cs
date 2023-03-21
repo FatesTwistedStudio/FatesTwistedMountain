@@ -44,10 +44,12 @@ public class S_EventController : MonoBehaviour
     public float[] silverLevelPoints;
     public float[] bronzeLevelPoints;
 
+    public bool startEvent;
+
     private void Awake()
     {
         _Input = new FTMInput();
-
+        startEvent = false;
 
     }
 
@@ -139,7 +141,7 @@ public class S_EventController : MonoBehaviour
             playAudio();
           
                 player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            
+            startEvent = true;
             for (int i = 0; i < charSpawned.Length; i++)
             {
 

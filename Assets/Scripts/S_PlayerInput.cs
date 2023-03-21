@@ -25,6 +25,7 @@ public class S_PlayerInput : MonoBehaviour
 
     private void Awake()
     {
+
         _physicsSystem = GetComponent<S_HoverboardPhysic>();
         playerInput = GetComponent<PlayerInput>();
         playerRefrence = GetComponentInChildren<S_PlayerModelRef>();
@@ -37,11 +38,12 @@ public class S_PlayerInput : MonoBehaviour
 
         playerInput.actions["AirRotation"].performed += ctx => _rotair = ctx.ReadValue<Vector2>();
         playerInput.actions["AirRotation"].canceled += ctx => _rotair = Vector2.zero;
-
-    
     }
+
     private void Start()
     {
+        FindObjectOfType<S_AudioManager>().Play("SnowboardA");
+
         anim = playerRefrence.GetComponent<Animator>();
         isLeaningForwardHash = Animator.StringToHash("IsMovingForward");
         isLeaningRightHash = Animator.StringToHash("IsMovingRight");
@@ -51,14 +53,14 @@ public class S_PlayerInput : MonoBehaviour
 
     private void Update()
     {
-       // Debug.Log(_mvn.magnitude);
-       // Debug.Log(_rotmvn);
         handleMovement();
-        if (_physicsSystem.isGrounded == true)
+        if (!_physicsSystem.isGrounded)
         {
-           // anim.SetBool("IsJumping", false);
+            FindObjectOfType<S_AudioManager>().Pause("SnowboardA");
+            
         }
     }
+
     void handleMovement()
     {
         if (anim != null)
@@ -102,6 +104,9 @@ public class S_PlayerInput : MonoBehaviour
         {
             anim.SetBool("IsJumping", false);
             anim.SetBool("HasLanded", true);
+            FindObjectOfType<S_AudioManager>().UnPause("SnowboardA");
+            FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
+
         }
     }
 

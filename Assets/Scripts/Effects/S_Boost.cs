@@ -5,25 +5,53 @@ using UnityEngine;
 public class S_Boost : MonoBehaviour
 {
     private Rigidbody rb;
+    private S_RefTarget target;
     [SerializeField]
     private float boostedSpeed;
     private float normalSpeed;
     private float speedCoolDown;
     private float speed;
+    private float delay;
+    private bool collided = false;
+
+    [SerializeField]
+    private GameObject[] effects;
+
+    private void Update()
+    {
+
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            rb = other.GetComponent<Rigidbody>();
-            rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
-            //impulse force
 
-            FindObjectOfType<S_AudioManager>().Play("Boost");
+            if (other.gameObject.tag == "Player")
+            {
+                rb = other.GetComponent<Rigidbody>();
+                target = other.GetComponentInChildren<S_RefTarget>();
+                rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
+                //impulse force
+                FindObjectOfType<S_AudioManager>().Play("Boost");
+
+            if (!collided)
+            {
+                var effect = Instantiate(effects[Random.Range(0, effects.Length)], target.transform.position, target.transform.rotation);
+                effect.transform.parent = other.transform;
+                collided = true;
+
+
+            }
+
+
+
+
             //Debug.Log("Force Applied to Player");
             speed = boostedSpeed;
-            StartCoroutine("SpeedDuration");
-        }
+                StartCoroutine("SpeedDuration");
+            }
+       
+
         if (other.gameObject.tag == "Character")
         {
             //impulse force

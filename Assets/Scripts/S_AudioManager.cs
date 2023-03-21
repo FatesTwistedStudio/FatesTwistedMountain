@@ -53,12 +53,12 @@ public class S_AudioManager : MonoBehaviour
        if(s.source.loop ==true)
        {
             s.source.Play();
-           Debug.Log("Playing Audio");
+           //Debug.Log("Playing Audio");
        }
        else
        {
             s.source.PlayOneShot(s.source.clip, s.volume);
-           Debug.Log("Playing SFX");
+           //Debug.Log("Playing SFX");
           //  Debug.Log("One Shot SFX");
         }
     }
@@ -76,5 +76,26 @@ public class S_AudioManager : MonoBehaviour
        // s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitch / 2f, s.pitch / 2f));
 
         s.source.Stop();
+    }
+
+    public void Pause(string name)
+    {
+        S_Sound s = Array.Find(sounds, item => item.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found! Check to see if you made a typo!");
+            return;
+        }
+        s.source.Pause();
+    }
+    public void UnPause(string name)
+    {
+        S_Sound s = Array.Find(sounds, item => item.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found! Check to see if you made a typo!");
+            return;
+        }
+        s.source.UnPause();
     }
 }
