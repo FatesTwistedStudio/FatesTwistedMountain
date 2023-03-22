@@ -61,6 +61,9 @@ public class S_FinishLine : MonoBehaviour
             }
             else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
             {
+                firstPlace = null;
+                secondPlace = null;
+                thirdPlace = null;
                 fourthPlace = obj;
                 obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
                 GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;

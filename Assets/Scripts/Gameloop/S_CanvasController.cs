@@ -22,6 +22,7 @@ public class S_CanvasController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
             testlevel.SetActive(true);
+      
         if (Input.GetKeyUp(KeyCode.Q))
             testlevel.SetActive(false);
 
@@ -57,6 +58,7 @@ public class S_CanvasController : MonoBehaviour
         S_GameloopController.player = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterPrefab;
         S_GameloopController.player.GetComponent<S_CharInfoHolder>().image = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterImage;
         S_GameloopController.player.GetComponent<S_CharInfoHolder>()._name = S_CharacterDatabase.GetComponent<S_CharacterDatabase>().characterInformation[rosterNum].characterName;
+        S_GameloopController.player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 0;
     }
     public void turnOnLevelSelect()
     {
