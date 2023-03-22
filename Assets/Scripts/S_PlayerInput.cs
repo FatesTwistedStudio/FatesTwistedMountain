@@ -105,7 +105,7 @@ public class S_PlayerInput : MonoBehaviour
             anim.SetBool("IsJumping", false);
             anim.SetBool("HasLanded", true);
             FindObjectOfType<S_AudioManager>().UnPause("SnowboardA");
-            FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
+           // FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
 
         }
     }
