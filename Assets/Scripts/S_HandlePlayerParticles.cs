@@ -32,9 +32,10 @@ public class S_HandlePlayerParticles : MonoBehaviour
     private ParticleSystem bigWind;
     [SerializeField]
     private GameObject bigWindObj;
-    private float minStartSpeed, maxStartSpeed;
+    [SerializeField]
+    private ParticleSystem blowingSnow;
 
-    public float something;
+    private float something;
     public Color peakColor;
     public Color noColor;
     public Color RuntimeColor;
@@ -93,6 +94,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
         snowboardSnowL.Play();
         smallWind.Play();
         bigWind.Play();
+        blowingSnow.Play();
         trailRenderer.time = 1;
 
         var emisson = bigWind.emission;
@@ -119,6 +121,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
         snowboardSnowL.Pause();
         smallWind.Pause();
         bigWind.Pause();
+        blowingSnow.Pause();
 
         pauseTime = Time.time;
         trailRenderer.time = 0;
