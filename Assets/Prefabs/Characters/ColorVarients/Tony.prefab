@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 6044688340883038315, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
       propertyPath: levelPlacement.Array.data[0]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6324142131029338920, guid: 6fc5a4af690db9840835c0fcf91fb723,
         type: 3}
@@ -424,8 +424,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 5
-  target: {fileID: 0}
+  target: {fileID: 3932610785444261960}
   angle: 0
+--- !u!4 &3932610785444261960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6792592451275203989, guid: 6fc5a4af690db9840835c0fcf91fb723,
+    type: 3}
+  m_PrefabInstance: {fileID: 7554597561999578589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9014417745449055680
 PrefabInstance:
   m_ObjectHideFlags: 0
