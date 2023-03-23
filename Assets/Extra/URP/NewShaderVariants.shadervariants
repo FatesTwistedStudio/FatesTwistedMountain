@@ -8,6 +8,25 @@ ShaderVariantCollection:
   m_PrefabAsset: {fileID: 0}
   m_Name: NewShaderVariants
   m_Shaders:
+  - first: {fileID: 69, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL UNITY_HDR_ON
+        passType: 0
+      - keywords: DIRECTIONAL_COOKIE SHADOWS_SCREEN SHADOWS_SOFT UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 74, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 64, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: SHADOWS_SPLIT_SPHERES
+        passType: 0
   - first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
@@ -21,42 +40,27 @@ ShaderVariantCollection:
   - first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _GLOSSYREFLECTIONS_OFF
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP
-          _NORMALMAP _PARALLAXMAP
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _DETAIL_MULX2 _METALLICGLOSSMAP
-          _NORMALMAP _PARALLAXMAP
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _EMISSION
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _EMISSION _GLOSSYREFLECTIONS_OFF
-        passType: 4
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _GLOSSYREFLECTIONS_OFF
-        passType: 4
-      - keywords: SHADOWS_DEPTH
-        passType: 8
-      - keywords: SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON
-        passType: 8
-      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP _PARALLAXMAP
-        passType: 8
-  - first: {fileID: 50, guid: 0000000000000000f000000000000000, type: 0}
-    second:
-      variants:
       - keywords: 
         passType: 8
       - keywords: SHADOWS_DEPTH
         passType: 8
-  - first: {fileID: 10490, guid: 0000000000000000f000000000000000, type: 0}
+      - keywords: _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 8
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 10
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP
+          _NORMALMAP _PARALLAXMAP
+        passType: 10
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _DETAIL_MULX2 _METALLICGLOSSMAP _NORMALMAP
+          _PARALLAXMAP
+        passType: 10
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _EMISSION
+        passType: 10
+  - first: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
       - keywords: 
-        passType: 13
-      - keywords: INSTANCING_ON
-        passType: 13
+        passType: 0
   - first: {fileID: 9000, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
@@ -100,38 +104,25 @@ ShaderVariantCollection:
   - first: {fileID: 10624, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH _NORMALMAP
-        passType: 4
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _NORMALMAP
+        passType: 10
   - first: {fileID: 10625, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
-      - keywords: INSTANCING_ON
+      - keywords: 
         passType: 8
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 10
   - first: {fileID: 10623, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH _NORMALMAP
-        passType: 4
-      - keywords: INSTANCING_ON _NORMALMAP
+      - keywords: SHADOWS_DEPTH _NORMALMAP
         passType: 8
-  - first: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
-    second:
-      variants:
-      - keywords: FOG_EXP2
-        passType: 0
-  - first: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 4800000, guid: 36e335017ad71d54fbb10842863188ae, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 4800000, guid: 4293210a3280c4283b9872316017f1f9, type: 3}
+      - keywords: _NORMALMAP
+        passType: 8
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _NORMALMAP
+        passType: 10
+  - first: {fileID: 4800000, guid: c1e1d3119c6fd4646aea0b4b74cacc1a, type: 3}
     second:
       variants:
       - keywords: 
@@ -141,61 +132,88 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 0
+  - first: {fileID: 4800000, guid: f75014305794b3948a3c6d5ccd550e05, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 81af42a93ade3dd46a9b583d4eec76d6, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
   - first: {fileID: 4800000, guid: 382151503e2a43a4ebb7366d1632731d, type: 3}
     second:
       variants:
-      - keywords: FINALPASS
+      - keywords: BLOOM CHROMATIC_ABERRATION COLOR_GRADING_HDR_3D
+        passType: 0
+  - first: {fileID: 4800000, guid: 4117fce9491711c4094d33a048e36e73, type: 3}
+    second:
+      variants:
+      - keywords: FOG_EXP2
+        passType: 0
+  - first: {fileID: 4800000, guid: 67f9497810829eb4791ec19e95781e51, type: 3}
+    second:
+      variants:
+      - keywords: 
         passType: 0
   - first: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
     second:
       variants:
       - keywords: 
         passType: 0
+      - keywords: OUTLINE_ON UNDERLAY_ON
+        passType: 0
   - first: {fileID: 4800000, guid: 88e05d1d051dbe14da3257013071561a, type: 3}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
+      - keywords: INSTANCING_ON LOD_FADE_CROSSFADE SHADOWS_DEPTH
+        passType: 8
+      - keywords: INSTANCING_ON SHADOWS_DEPTH
+        passType: 8
       - keywords: PROCEDURAL_INSTANCING_ON
         passType: 8
+      - keywords: INSTANCING_ON LIGHTPROBE_SH LOD_FADE_CROSSFADE UNITY_HDR_ON
+        passType: 10
+      - keywords: INSTANCING_ON LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 10
   - first: {fileID: 4800000, guid: a69d5225f8bd70341b4b06cb7b58e430, type: 3}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
+      - keywords: INSTANCING_ON LOD_FADE_CROSSFADE SHADOWS_DEPTH
+        passType: 8
+      - keywords: INSTANCING_ON SHADOWS_DEPTH
+        passType: 8
       - keywords: PROCEDURAL_INSTANCING_ON
         passType: 8
+      - keywords: INSTANCING_ON LIGHTPROBE_SH LOD_FADE_CROSSFADE UNITY_HDR_ON
+        passType: 10
+      - keywords: INSTANCING_ON LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 10
   - first: {fileID: 4800000, guid: a1c955eddea1e0f4e9c4673c479e80dc, type: 3}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
+      - keywords: INSTANCING_ON LOD_FADE_CROSSFADE SHADOWS_DEPTH
+        passType: 8
+      - keywords: INSTANCING_ON SHADOWS_DEPTH
+        passType: 8
       - keywords: PROCEDURAL_INSTANCING_ON
         passType: 8
-  - first: {fileID: 4800000, guid: d54f8080f6467324ba91af3d46748933, type: 3}
-    second:
-      variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
+      - keywords: INSTANCING_ON LIGHTPROBE_SH LOD_FADE_CROSSFADE UNITY_HDR_ON
+        passType: 10
+      - keywords: INSTANCING_ON LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 10
   - first: {fileID: 4800000, guid: 6fff49e2c6ea6e148a385309c1f1b71d, type: 3}
     second:
       variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH _INVERTSNOWMASK_ON
-        passType: 4
+      - keywords: INSTANCING_ON SHADOWS_DEPTH _INVERTSNOWMASK_ON
+        passType: 8
       - keywords: PROCEDURAL_INSTANCING_ON _INVERTSNOWMASK_ON
         passType: 8
-  - first: {fileID: 4800000, guid: c1770bb271a856f498ed48869f65c42b, type: 3}
-    second:
-      variants:
-      - keywords: DIRECTIONAL FOG_EXP2 INSTANCING_ON LIGHTPROBE_SH
-        passType: 4
-      - keywords: PROCEDURAL_INSTANCING_ON
-        passType: 8
-  - first: {fileID: 4800000, guid: 21b28f3ee4b3c13408ed85c229008f40, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 4
+      - keywords: INSTANCING_ON LIGHTPROBE_SH LOD_FADE_CROSSFADE UNITY_HDR_ON _INVERTSNOWMASK_ON
+        passType: 10
+      - keywords: INSTANCING_ON LIGHTPROBE_SH UNITY_HDR_ON _INVERTSNOWMASK_ON
+        passType: 10
   - first: {fileID: 4800000, guid: d46699f963e3e1a4fa975c3d0c795c75, type: 3}
     second:
       variants:
@@ -203,31 +221,32 @@ ShaderVariantCollection:
         passType: 0
       - keywords: 
         passType: 8
-  - first: {fileID: 4800000, guid: b35a2abbdd5b15d4ca40103088758eac, type: 3}
+      - keywords: FOG_EXP2 SHADOWS_DEPTH
+        passType: 8
+  - first: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
     second:
       variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSIVE_SIMPLE
+        passType: 4
+      - keywords: _OUTLINE_POS
+        passType: 4
+      - keywords: DIRECTIONAL_COOKIE
+        passType: 5
+      - keywords: DIRECTIONAL_COOKIE SHADOWS_SCREEN SHADOWS_SOFT
+        passType: 5
       - keywords: 
-        passType: 4
-      - keywords: DIRECTIONAL LIGHTPROBE_SH
-        passType: 4
-  - first: {fileID: 4800000, guid: fe3954a9664afb042a2af588b53680b0, type: 3}
+        passType: 8
+      - keywords: FOG_EXP2 SHADOWS_DEPTH
+        passType: 8
+  - first: {fileID: -6465566751694194690, guid: 2ed088c6de349de40ade8bcf29089184,
+      type: 3}
     second:
       variants:
+      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL_COOKIE FOG_EXP2
+        passType: 5
       - keywords: 
-        passType: 4
-      - keywords: DIRECTIONAL LIGHTPROBE_SH
-        passType: 4
-  - first: {fileID: 4800000, guid: abaf2020b803b6847b5c081ed22c05c5, type: 3}
-    second:
-      variants:
-      - keywords: DIRECTIONAL LIGHTPROBE_SH
-        passType: 4
-  - first: {fileID: 4800000, guid: ca035891872022e4f80c952b3916e450, type: 3}
-    second:
-      variants:
-      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH _EMISSIVE_SIMPLE
-        passType: 4
-      - keywords: _OUTLINE_NML
-        passType: 4
-      - keywords: 
+        passType: 8
+      - keywords: SHADOWS_DEPTH
         passType: 8

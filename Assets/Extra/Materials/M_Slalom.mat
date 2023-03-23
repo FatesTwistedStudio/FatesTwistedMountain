@@ -14,8 +14,6 @@ Material:
   - _OUTLINE_POS
   m_InvalidKeywords:
   - _
-  - _GLOSSYREFLECTIONS_OFF
-  - _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,6 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_Map:
+        m_Texture: {fileID: 2800000, guid: 26e29d77d1666464097ae9ed88f6f559, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -150,8 +152,11 @@ Material:
     - _2nd_ShadeColor_Step: 0
     - _Add_Antipodean_RimLight: 0
     - _AlphaClip: 0
+    - _Ambient_Occlusion: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _BaseColor_Step: 0.382
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
@@ -172,6 +177,7 @@ Material:
     - _EMISSIVE: 0
     - _EnvironmentReflections: 1
     - _Farthest_Distance: 100
+    - _Float: 0
     - _GI_Intensity: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -209,6 +215,7 @@ Material:
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 1
     - _MatCap: 0
+    - _Metalic: 1
     - _Metallic: 0
     - _Mode: 0
     - _Nearest_Distance: 0.5
@@ -232,8 +239,9 @@ Material:
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
+    - _SnowOpacity: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StepOffset: 0
@@ -262,12 +270,14 @@ Material:
     - _BaseColor: {r: 1, g: 0.9390884, b: 0, a: 1}
     - _Color: {r: 1, g: 0.9390884, b: 0, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
+    - _Emission: {r: 0.47794935, g: 0.3448063, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0.3584906, g: 0.05242079, b: 0.13820183, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    - _Snow_Direction: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
