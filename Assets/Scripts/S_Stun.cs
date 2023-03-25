@@ -43,7 +43,7 @@ public class S_Stun : MonoBehaviour
 
         if (GetComponent<S_PlayerInput>() != null)
         {
-            S_HoverboardPhysic = GetComponent<S_PlayerInput>();
+           // S_HoverboardPhysic = GetComponent<S_PlayerInput>();
         }
         else
         {
