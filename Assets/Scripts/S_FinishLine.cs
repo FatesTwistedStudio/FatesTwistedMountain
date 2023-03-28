@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ public class S_FinishLine : MonoBehaviour
     public GameObject secondPlace;
     public GameObject thirdPlace;
     public GameObject fourthPlace;
+    public GameObject startButton;
 
     public void winOrLoseTime(GameObject obj)
     {
@@ -136,6 +138,8 @@ public class S_FinishLine : MonoBehaviour
     public void pullUpLeaderBoard()
     {
         leaderboard.enabled = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(startButton);
     }
     void Start()
     {

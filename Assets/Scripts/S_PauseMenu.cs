@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class S_PauseMenu : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class S_PauseMenu : MonoBehaviour
     public S_EventController manager;
     private FTMInput playerInput;
     private InputAction menu;
+    public GameObject resumeButton;
     
     private bool isPaused;
 
@@ -57,6 +59,8 @@ public class S_PauseMenu : MonoBehaviour
     public void OnPause(InputValue value)
     {
         pauseUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     private void OnEnable()
@@ -91,18 +95,22 @@ public class S_PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         AudioListener.pause = true;
         pauseUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void DeactivateMenu()
     {
         Time.timeScale = 1;
         AudioListener.pause = false;
+        EventSystem.current.SetSelectedGameObject(null);
         pauseUI.SetActive(false);
         isPaused = false;
     }
 
     public void Quit()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         Time.timeScale = 1;
         AudioListener.pause = false;
         SceneManager.LoadScene(0);

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System.Diagnostics.CodeAnalysis;
 
 public class S_CanvasController : MonoBehaviour
@@ -17,6 +18,11 @@ public class S_CanvasController : MonoBehaviour
     public S_CharacterDatabase S_CharacterDatabase;
     public Image playerImage;
     public TextMeshProUGUI playerName;
+
+    public GameObject SelectLevelButton, SelectCharacterButton;
+
+     
+
     // Start is called before the first frame update
     private void Update()
     {
@@ -64,11 +70,17 @@ public class S_CanvasController : MonoBehaviour
     {
         levelSelect.gameObject.SetActive(true);
         characterSelect.gameObject.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(SelectLevelButton);
+
     }
     public void turnOffLevelSelect()
     {
         levelSelect.gameObject.SetActive(false);
         characterSelect.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(SelectCharacterButton);
+
     }
     public void loadScene(string sceneName)
     {
