@@ -21,7 +21,7 @@ public class S_PlayerInput : MonoBehaviour
     int isLeaningForwardHash;
     int isLeaningRightHash;
     int isLeaningLeftHash;
-    int isJumpingHash;
+    float jumpTime;
 
     private void Awake()
     {
@@ -48,7 +48,6 @@ public class S_PlayerInput : MonoBehaviour
         isLeaningForwardHash = Animator.StringToHash("IsMovingForward");
         isLeaningRightHash = Animator.StringToHash("IsMovingRight");
         isLeaningLeftHash = Animator.StringToHash("IsMovingLeft");
-        isJumpingHash = Animator.StringToHash("IsJumping");
     }
 
     private void Update()
@@ -57,8 +56,20 @@ public class S_PlayerInput : MonoBehaviour
         if (!_physicsSystem.isGrounded)
         {
             FindObjectOfType<S_AudioManager>().Pause("SnowboardA");
-            
+            jumpTime += Time.deltaTime;
+            if (jumpTime > 1)
+            {
+                anim.SetBool("IsJumping", true);
+                anim.SetBool("HasLanded", false);
+            }
         }
+        else
+        {
+            jumpTime = 0;
+
+        }
+        Debug.LogWarning(jumpTime);
+
     }
 
     void handleMovement()

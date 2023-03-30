@@ -51,8 +51,9 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [SerializeField]
     private Transform trailLocation;
     private GameObject modelRef;
+    
     private float pauseTime;
-    private float resumeTime;
+    private float LandingTime;
     private float trailTime;
 
 
@@ -74,16 +75,20 @@ public class S_HandlePlayerParticles : MonoBehaviour
     void Update()
     {
         velocity = rb.velocity.magnitude;
+        LandingTime = Mathf.Clamp(LandingTime, -3, 1);
 
       //  Debug.Log(velocity);
         if (player.isGrounded)
         {
             onGround();
+            LandingTime -= Time.deltaTime;
         }
         else
         {
             inAir();
+            LandingTime += Time.deltaTime * 2;
         }
+
     }
 
     private void onGround()
@@ -131,6 +136,22 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
+        GameObject lp = Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
+        var startsizelp = lp.GetComponent<ParticleSystem>().main;
+        startsizelp.startSize = 0.1f;
+
+        if (LandingTime >0)
+        {
+            GameObject zp = Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
+
+            var startsizezp = zp.GetComponent<ParticleSystem>().main;
+            var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime;
+
+            //emission.x = -rb.velocity.x;
+            //emission.y = rb.velocity.y;
+            //emission.z = -rb.velocity.z;
+        }
+
+
     }
 }
