@@ -14,6 +14,7 @@ public class S_Stun : MonoBehaviour
 
     float minimumFall;
     bool grounded;
+    public bool freeze = false;
 
 
     S_Recovery S_Recovery;
@@ -43,7 +44,7 @@ public class S_Stun : MonoBehaviour
 
         if (GetComponent<S_PlayerInput>() != null)
         {
-           // S_HoverboardPhysic = GetComponent<S_PlayerInput>();
+            S_PlayerInput = GetComponent<S_PlayerInput>();
         }
         else
         {
@@ -85,6 +86,7 @@ public class S_Stun : MonoBehaviour
 
         //angle = Vector3.Angle(transform.position, target.position);
         //Debug.Log(angle);
+        freeze = false;
 
         if (stunRemaining > 0.0f)
         {
@@ -109,6 +111,7 @@ public class S_Stun : MonoBehaviour
     public void Stun()
     {
            stunRemaining = stunDuration;
+           freeze = true;
            Debug.Log("Player fell" + stunRemaining);
 
     }
