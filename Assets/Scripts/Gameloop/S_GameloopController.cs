@@ -63,7 +63,7 @@ public class S_GameloopController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No follow point on Game Controller");
+//                    Debug.Log("No follow point on Game Controller");
                 }
             }
         }

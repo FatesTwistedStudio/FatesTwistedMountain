@@ -59,7 +59,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float distanceToGround;
     public bool isGrounded;
 
-
     [Header("Drag")]
     [SerializeField]
     private float groundDrag = 3f;
@@ -138,11 +137,12 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (!isGrounded)
         {
             HandleAir();
+            HandleRotation(0.05f);
             rb.velocity += moveDirection * Time.fixedDeltaTime;
         }
         if (isGrounded)
         {
-            HandleRotation();
+            HandleRotation(0.2f);
         
             disableInput = false;
             currentTimeInAir -= Time.deltaTime * 3.5f;
@@ -158,9 +158,9 @@ public class S_HoverboardPhysic : MonoBehaviour
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), distanceToGround, Ground);
     }
 
-    private void HandleRotation()
+    private void HandleRotation(float force)
     {
-        rb.AddRelativeTorque(Vector3.up * _Rotation.x * rotationSpeed * 0.2f, ForceMode.VelocityChange);
+        rb.AddRelativeTorque(Vector3.up * _Rotation.x * rotationSpeed * force, ForceMode.VelocityChange);
 
         //transform.Rotate(Vector3.up * _Rotation.x * rotationSpeed * 0.2f);
         playerModel.transform.Rotate(Vector3.right * _Rotation.x * rotationSpeed * 0.1f);

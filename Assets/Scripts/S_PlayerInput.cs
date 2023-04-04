@@ -68,7 +68,7 @@ public class S_PlayerInput : MonoBehaviour
             jumpTime = 0;
 
         }
-        Debug.LogWarning(jumpTime);
+        //Debug.LogWarning(jumpTime);
 
     }
 
