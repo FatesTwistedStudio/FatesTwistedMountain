@@ -6,6 +6,7 @@ public class S_Boost : MonoBehaviour
 {
     private Rigidbody rb;
     private S_RefTarget target;
+    private S_HandlePlayerParticles particlesRef;
     [SerializeField]
     private float boostedSpeed;
     private float normalSpeed;
@@ -17,35 +18,25 @@ public class S_Boost : MonoBehaviour
     [SerializeField]
     private GameObject[] effects;
 
-    private void Update()
-    {
-
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-
             if (other.gameObject.tag == "Player")
             {
                 rb = other.GetComponent<Rigidbody>();
                 target = other.GetComponentInChildren<S_RefTarget>();
+                particlesRef = other.GetComponent<S_HandlePlayerParticles>();
                 rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
+                particlesRef.SpawnBurst();
                 //impulse force
                 FindObjectOfType<S_AudioManager>().Play("Boost");
+                
 
             if (!collided)
             {
                 var effect = Instantiate(effects[Random.Range(0, effects.Length)], target.transform.position, target.transform.rotation);
                 effect.transform.parent = other.transform;
                 collided = true;
-
-
             }
-
-
-
-
             //Debug.Log("Force Applied to Player");
             speed = boostedSpeed;
                 StartCoroutine("SpeedDuration");

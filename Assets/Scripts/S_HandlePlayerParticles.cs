@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class S_HandlePlayerParticles : MonoBehaviour
 {
+    [SerializeField]
+    private Transform orientation;
     private S_HoverboardPhysic player;
     private Rigidbody rb;
 
@@ -25,7 +27,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [SerializeField]
     private ParticleSystem snowboardSnowL;
 
-    [Header("Wind Effect")]
+    [Header("Ground Wind Effect")]
     [SerializeField]
     private ParticleSystem smallWind;
     [SerializeField]
@@ -35,17 +37,34 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [SerializeField]
     private ParticleSystem blowingSnow;
 
+    [Header("Air Wind Effect")]
+    [SerializeField]
+    private ParticleSystem airSmallWind;
+    [SerializeField]
+    private ParticleSystem airBigWind;
+
+    [Header("Burst Wind Effect")]
+    [SerializeField]
+    private GameObject BurstParticles;
+    [SerializeField]
+    private Transform spawnpoint2;
+
+
     private float something;
     public Color peakColor;
     public Color noColor;
     public Color RuntimeColor;
-
+    public Color AirRuntimeColor;
     private float velocity;
     private float time;
 
     [Header("Trail")]
     [SerializeField]
     private TrailRenderer trailRenderer;
+    [SerializeField]
+    private TrailRenderer windTrailRendererFront;
+    [SerializeField]
+    private TrailRenderer windTrailRendererBack;
     [SerializeField]
     private GameObject trail;
     [SerializeField]
@@ -65,13 +84,6 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         velocity = rb.velocity.magnitude;
@@ -81,13 +93,14 @@ public class S_HandlePlayerParticles : MonoBehaviour
         if (player.isGrounded)
         {
             onGround();
-            LandingTime -= Time.deltaTime;
+            LandingTime = -1;
         }
         else
         {
             inAir();
-            LandingTime += Time.deltaTime * 2;
+            LandingTime += Time.deltaTime;
         }
+        Debug.LogWarning(LandingTime);
 
     }
 
@@ -100,12 +113,14 @@ public class S_HandlePlayerParticles : MonoBehaviour
         smallWind.Play();
         bigWind.Play();
         blowingSnow.Play();
-        trailRenderer.time = 1;
 
+        airSmallWind.Pause();
+        airBigWind.Pause();
+        
         var emisson = bigWind.emission;
         var emColor = bigWind.main;
-
-        emColor.startColor = new Color(1, 1, 1, 1);
+        var emissionColor = airBigWind.main;
+        var smolemissionColor = smallWind.main;
         
         emisson.rateOverDistance = something;
         emisson.rateOverDistance = Mathf.Clamp(something, 0, 5);
@@ -113,9 +128,14 @@ public class S_HandlePlayerParticles : MonoBehaviour
         something = Mathf.Lerp(0, 0 + rb.velocity.magnitude/2, 0.2f);
         RuntimeColor.a = Mathf.Lerp(noColor.a + rb.velocity.magnitude * 0.01f, peakColor.a, 0.2f);
         RuntimeColor.a = Mathf.Clamp(RuntimeColor.a, noColor.a, peakColor.a);
+        
         emColor.startColor = RuntimeColor;
-       
+        emissionColor.startColor = noColor;
+        smolemissionColor.startColor = noColor;
+
         trailRenderer.time = 1;
+        windTrailRendererFront.time = 0;
+        windTrailRendererBack.time = 0;
     }
 
     private void inAir()
@@ -128,11 +148,22 @@ public class S_HandlePlayerParticles : MonoBehaviour
         bigWind.Pause();
         blowingSnow.Pause();
 
+        airSmallWind.Play();
+        airBigWind.Play();
+        var emissionColor = airBigWind.main;
+        var smolemissionColor = airSmallWind.main;
+
+        AirRuntimeColor.a = Mathf.Lerp(noColor.a + LandingTime/2, peakColor.a, 0.01f);
+        AirRuntimeColor.a = Mathf.Clamp(AirRuntimeColor.a, noColor.a, peakColor.a);
+
+        emissionColor.startColor = AirRuntimeColor;
+        smolemissionColor.startColor = AirRuntimeColor;
+
         pauseTime = Time.time;
         trailRenderer.time = 0;
-   
+        windTrailRendererFront.time = 1;
+        windTrailRendererBack.time = 1;
     }
- 
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -145,13 +176,12 @@ public class S_HandlePlayerParticles : MonoBehaviour
             GameObject zp = Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
 
             var startsizezp = zp.GetComponent<ParticleSystem>().main;
-            var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime;
-
-            //emission.x = -rb.velocity.x;
-            //emission.y = rb.velocity.y;
-            //emission.z = -rb.velocity.z;
+            var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime; 
         }
+    }
 
-
+    public void SpawnBurst()
+    {
+        Instantiate(BurstParticles, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
     }
 }
