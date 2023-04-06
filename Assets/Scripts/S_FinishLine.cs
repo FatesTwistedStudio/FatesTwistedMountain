@@ -131,8 +131,12 @@ public class S_FinishLine : MonoBehaviour
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
+            other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.2f;
             winOrLoseTime(other.gameObject);
             Invoke("pullUpLeaderBoard", 1);
+            string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
+            FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
+            FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
         }
     }
     public void pullUpLeaderBoard()
@@ -207,6 +211,7 @@ public class S_FinishLine : MonoBehaviour
     public void sendToNextLevel(string nextLevel)
     {
         SceneManager.LoadScene(nextLevel);
+        FindObjectOfType<S_AudioManager>().FadeOut("Finish-Line");
     }
     private void Update()
     {

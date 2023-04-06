@@ -22,7 +22,8 @@ public class S_PlayerInput : MonoBehaviour
     int isLeaningRightHash;
     int isLeaningLeftHash;
     float jumpTime;
-
+    bool hasFallen = false;        
+    
     private void Awake()
     {
 
@@ -60,15 +61,21 @@ public class S_PlayerInput : MonoBehaviour
             if (jumpTime > 1)
             {
                 anim.SetBool("IsJumping", true);
+                if (!hasFallen)
+                {
+                     FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
+                     Debug.Log("Playing");
+                    hasFallen = true;
+                }
+
                 anim.SetBool("HasLanded", false);
             }
         }
         else
         {
             jumpTime = 0;
-
         }
-        //Debug.LogWarning(jumpTime);
+       // Debug.LogWarning(jumpTime);
 
     }
 
@@ -114,8 +121,11 @@ public class S_PlayerInput : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             anim.SetBool("IsJumping", false);
+            hasFallen = false;
             anim.SetBool("HasLanded", true);
             FindObjectOfType<S_AudioManager>().UnPause("SnowboardA");
+             FindObjectOfType<S_AudioManager>().Pause("Falling-Wind");
+
            // FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
 
         }
@@ -128,7 +138,14 @@ public class S_PlayerInput : MonoBehaviour
             anim.SetBool("HasLanded", false);
             anim.SetBool("IsJumping", true);
             _physicsSystem.Jump();
+            hasFallen = true;
+            Invoke("Delay", 2);
         }
+    }
+
+    public void Delay()
+    {
+        FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
     }
 
 

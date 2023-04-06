@@ -22,8 +22,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     private S_PlayerInput _PlayerInputScript;
 
     [Header("Movement")]
-    [SerializeField]
-    private float baseVelocity;
+    public float baseVelocity;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -232,7 +231,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
         ApplyGravity();
         disableInput = true;
-
     }
 
     private void ApplyGravity()

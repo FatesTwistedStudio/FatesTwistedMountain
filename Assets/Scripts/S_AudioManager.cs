@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -6,10 +8,9 @@ using UnityEngine.Audio;
 public class S_AudioManager : MonoBehaviour
 {
     public S_Sound[] sounds;
-
     public static S_AudioManager instance;
-
-    public S_BackgroundMusic bgm;
+    public float fadeDuration = 0.5f;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -38,10 +39,11 @@ public class S_AudioManager : MonoBehaviour
         }
     }
 
+    //To call the refrence FindObjectOfType<S_AudioManager>().NameofTheFunction("NameofClip");
+
+
     public void Play(string name)
     {
-        //To call the refrence FindObjectOfType<S_AudioManager>().Play("NameofClip");
-
        S_Sound s = Array.Find(sounds, sound => sound.name == name);
        
        if (s == null)
@@ -49,17 +51,13 @@ public class S_AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found! Check to see if you made a typo!");
             return;
        }
-
        if(s.source.loop ==true)
        {
             s.source.Play();
-           //Debug.Log("Playing Audio");
        }
        else
        {
             s.source.PlayOneShot(s.source.clip, s.volume);
-           //Debug.Log("Playing SFX");
-          //  Debug.Log("One Shot SFX");
         }
     }
 
@@ -71,10 +69,6 @@ public class S_AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found! Check to see if you made a typo!");
             return;
         }
-
-       // s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volume / 2f, s.volume / 2f));
-       // s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitch / 2f, s.pitch / 2f));
-
         s.source.Stop();
     }
 
@@ -98,4 +92,58 @@ public class S_AudioManager : MonoBehaviour
         }
         s.source.UnPause();
     }
+    
+    public void FadeOut(string name)
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        _coroutine = StartCoroutine(FadeOutCoroutine(name));
+    }
+    
+    private IEnumerator FadeOutCoroutine(string name)
+    {
+        S_Sound s = Array.Find(sounds, item => item.name == name);
+        
+        float startVolume = s.source.volume;
+
+        while (s.volume > 0)
+        {
+            s.source.volume -= startVolume * Time.deltaTime * fadeDuration;
+
+            yield return null;
+        }
+
+        s.source.Stop();
+        s.source.volume = startVolume;
+    }
+
+    public void FadeIn(string name)
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        _coroutine = StartCoroutine(FadeInCoroutine(name));
+    }
+   
+    private IEnumerator FadeInCoroutine(string name)
+    {
+        S_Sound s = Array.Find(sounds, item => item.name == name);
+
+        float startVolume = 0f;
+        s.source.volume = startVolume;
+        s.source.Play();
+
+        while (s.source.volume < 1)
+        {
+            s.source.volume = Mathf.Lerp(s.source.volume, s.volume, Time.deltaTime * fadeDuration);
+
+            yield return null;
+        }
+
+        s.source.volume = s.volume;
+    }
+
 }

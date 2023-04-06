@@ -100,7 +100,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
             inAir();
             LandingTime += Time.deltaTime;
         }
-        Debug.LogWarning(LandingTime);
+       // Debug.LogWarning(LandingTime);
 
     }
 

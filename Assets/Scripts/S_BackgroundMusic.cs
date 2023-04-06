@@ -10,21 +10,9 @@ public class S_BackgroundMusic : MonoBehaviour
     [HideInInspector]
     public S_AudioManager manager;
 
-    public void Awake()
-    {
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         manager = FindObjectOfType<S_AudioManager>(); 
-        manager.Play(BackgroundSongName);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-
+        manager.FadeIn(BackgroundSongName);
     }
 }
