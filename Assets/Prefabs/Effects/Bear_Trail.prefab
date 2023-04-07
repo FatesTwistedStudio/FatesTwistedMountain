@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5125781371871851044}
   - component: {fileID: 8696785761601572243}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: Bear_Trail
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 606633037639548235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.083, y: -1.8, z: 0.137}
-  m_LocalScale: {x: 1.2, y: 0.1, z: 0.3}
+  m_LocalScale: {x: 2.3571599, y: 0.04533, z: 0.54396003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.6
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:

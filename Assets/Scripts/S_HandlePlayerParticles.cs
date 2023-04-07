@@ -66,7 +66,8 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [SerializeField]
     private TrailRenderer windTrailRendererBack;
     [SerializeField]
-    private GameObject trail;
+    private GameObject trailprefab;
+    private GameObject newTrail;
     [SerializeField]
     private Transform trailLocation;
     private GameObject modelRef;
@@ -74,6 +75,8 @@ public class S_HandlePlayerParticles : MonoBehaviour
     private float pauseTime;
     private float LandingTime;
     private float trailTime;
+
+    private bool spawnedTrail;
 
 
     private void Awake()
@@ -94,10 +97,28 @@ public class S_HandlePlayerParticles : MonoBehaviour
         {
             onGround();
             LandingTime = -1;
+            if(!spawnedTrail)
+            {
+                newTrail = Instantiate(trailprefab, trailLocation.transform.position, trailLocation.transform.rotation);
+                newTrail.transform.SetParent(orientation.transform);
+                
+                spawnedTrail = true;
+            }
         }
         else
         {
             inAir();
+            if (newTrail == null)
+            {
+                return;
+            }
+            else
+            {
+                newTrail.transform.parent = null;
+                spawnedTrail = false;
+
+            }
+            
             LandingTime += Time.deltaTime;
         }
        // Debug.LogWarning(LandingTime);
@@ -133,7 +154,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
         emissionColor.startColor = noColor;
         smolemissionColor.startColor = noColor;
 
-        trailRenderer.time = 1;
+        //trailRenderer.time = 1;
         windTrailRendererFront.time = 0;
         windTrailRendererBack.time = 0;
     }
@@ -160,7 +181,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
         smolemissionColor.startColor = AirRuntimeColor;
 
         pauseTime = Time.time;
-        trailRenderer.time = 0;
+        //trailRenderer.time = 0;
         windTrailRendererFront.time = 1;
         windTrailRendererBack.time = 1;
     }

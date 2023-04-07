@@ -15,7 +15,8 @@ public class S_FinishLine : MonoBehaviour
     public GameObject secondPlace;
     public GameObject thirdPlace;
     public GameObject fourthPlace;
-    public GameObject startButton;
+    public GameObject NextLevelButton;
+    public bool crossFinishLine;
 
     public void winOrLoseTime(GameObject obj)
     {
@@ -130,6 +131,7 @@ public class S_FinishLine : MonoBehaviour
 
         if (other.tag == "Player")
         {
+            crossFinishLine = true;
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
             other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.2f;
             winOrLoseTime(other.gameObject);
@@ -142,12 +144,14 @@ public class S_FinishLine : MonoBehaviour
     public void pullUpLeaderBoard()
     {
         leaderboard.enabled = true;
+        NextLevelButton.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(startButton);
+        EventSystem.current.SetSelectedGameObject(NextLevelButton);
     }
     void Start()
     {
         leaderboard.enabled = false;
+        NextLevelButton.SetActive(false);
     }
     public void sortTheWinners()
     {

@@ -58,9 +58,12 @@ public class S_PauseMenu : MonoBehaviour
     }
     public void OnPause(InputValue value)
     {
-        pauseUI.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(resumeButton);
+       
+            
+            pauseUI.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(resumeButton);
+
     }
 
     private void OnEnable()
@@ -92,11 +95,16 @@ public class S_PauseMenu : MonoBehaviour
 
     public void ActivateMenu()
     {
-        Time.timeScale = 0;
-        AudioListener.pause = true;
-        pauseUI.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(resumeButton);
+        bool crossfinish = FindObjectOfType<S_FinishLine>().crossFinishLine;
+        if(!crossfinish)
+        {
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+            pauseUI.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(resumeButton);
+        }
+      Debug.Log("crossfinish" + crossfinish);
     }
 
     public void DeactivateMenu()
