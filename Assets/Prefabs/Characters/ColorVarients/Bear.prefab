@@ -14249,7 +14249,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: f8113e01eb7ad1648883de50c6598dc1, type: 3}
   holdingPosition: {x: 0, y: 0, z: 0}
   holdingUp: {x: 0, y: 7, z: 0}
-  levelPlacement: 00000000
+  levelPlacement: 01000000
 --- !u!114 &707732890639272791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14493,7 +14493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 3505902919251709733}
-  landingParticles: {fileID: 919099278349109942, guid: 6c5d5ad944db6504da6a1fc049281482,
+  smallLandingParticles: {fileID: 919099278349109942, guid: 6c5d5ad944db6504da6a1fc049281482,
+    type: 3}
+  dynamicLandingParticles: {fileID: 919099278349109942, guid: 606c3fa5d9f8ce243a4d66ee63a671b2,
     type: 3}
   spawnpoint: {fileID: 3515324597422402856}
   snowstreamR: {fileID: 2404043441606808057}

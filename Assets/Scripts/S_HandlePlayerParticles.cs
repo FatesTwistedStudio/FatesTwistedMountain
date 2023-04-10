@@ -11,7 +11,9 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
     [Header("Landing Particles")]
     [SerializeField]
-    private GameObject landingParticles;
+    private GameObject smallLandingParticles;
+    [SerializeField]
+    private GameObject dynamicLandingParticles;
     [SerializeField]
     private Transform spawnpoint;
 
@@ -188,17 +190,24 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject lp = Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
+        GameObject lp = Instantiate(smallLandingParticles, spawnpoint.transform.position, smallLandingParticles.transform.rotation);
         var startsizelp = lp.GetComponent<ParticleSystem>().main;
         startsizelp.startSize = 0.1f;
 
+        
+
         if (LandingTime >0)
         {
-            GameObject zp = Instantiate(landingParticles, spawnpoint.transform.position, landingParticles.transform.rotation);
+            GameObject zp = Instantiate(dynamicLandingParticles, spawnpoint.transform.position, smallLandingParticles.transform.rotation);
 
             var startsizezp = zp.GetComponent<ParticleSystem>().main;
             var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime; 
+            
+           // startsizezp.startSize = rb.velocity.magnitude * 0.1f;
+            startsizezp.startSpeed = rb.velocity.magnitude * 0.4f;
+            Debug.LogWarning("Big landing, particles spawned");
         }
+        
     }
 
     public void SpawnBurst()

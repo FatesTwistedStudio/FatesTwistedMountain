@@ -670,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850267469501885068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10703361, y: -0.48, z: -0.217}
+  m_LocalPosition: {x: 0.45868534, y: 0.23, z: -0.185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1305,15 +1305,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
+    type: 5
     angle: 34.76
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: -91.21, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 3, y: 0.1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1563,8 +1563,8 @@ ParticleSystem:
         m_RotationOrder: 4
     rateOverDistance:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1628,9 +1628,9 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.40000153
-          inSlope: 2
-          outSlope: 2
+          value: 0
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -5520,6 +5520,7 @@ GameObject:
   - component: {fileID: 1240233052446909495}
   - component: {fileID: 1110884852966233493}
   - component: {fileID: 3157544757754466875}
+  - component: {fileID: 7392661089047264120}
   m_Layer: 0
   m_Name: SnowboardCharacter
   m_TagString: Character
@@ -5732,7 +5733,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1973743181031288102}
-  landingParticles: {fileID: 919099278349109942, guid: 6c5d5ad944db6504da6a1fc049281482,
+  smallLandingParticles: {fileID: 919099278349109942, guid: 6c5d5ad944db6504da6a1fc049281482,
+    type: 3}
+  dynamicLandingParticles: {fileID: 919099278349109942, guid: 606c3fa5d9f8ce243a4d66ee63a671b2,
     type: 3}
   spawnpoint: {fileID: 2375561513917928788}
   snowstreamR: {fileID: 2974019456766209237}
@@ -5808,6 +5811,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OffsetRange: 0.1
   fovRange: 0.369
+--- !u!114 &7392661089047264120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835430820122090977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e21832d2c823c48a056bb026369f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetXRotation: {x: 0, y: 0, z: 0, w: 0}
+  resetLocation: {x: 0, y: 0, z: 0}
+  yDrop: 0
+  mainCam: {fileID: 0}
+  hasStarted: 0
+  needsRecovery: 0
 --- !u!1 &4896091337288741425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,7 +5855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4896091337288741425}
   m_LocalRotation: {x: -0, y: -0, z: -0.111929305, w: 0.9937162}
-  m_LocalPosition: {x: 0.10703364, y: -0.48, z: 0.50491554}
+  m_LocalPosition: {x: 0.45868534, y: 0.23, z: 0.445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6469,15 +6490,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
+    type: 5
     angle: 34.76
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: -91.21, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 3, y: 0.1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6727,8 +6748,8 @@ ParticleSystem:
         m_RotationOrder: 4
     rateOverDistance:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6792,9 +6813,9 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.40000153
-          inSlope: 2
-          outSlope: 2
+          value: 0
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -12329,6 +12350,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5444774851073070297, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfe8658752823e4458860db464555099, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2, type: 3}
 --- !u!198 &3044790352229564194 stripped
@@ -12655,6 +12681,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5444774851073070297, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfe8658752823e4458860db464555099, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94aa00d4751d00b4abcc1d0a38ab1dd2, type: 3}
 --- !u!4 &4786088118416294797 stripped

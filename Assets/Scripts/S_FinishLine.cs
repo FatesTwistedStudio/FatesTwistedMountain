@@ -131,15 +131,20 @@ public class S_FinishLine : MonoBehaviour
 
         if (other.tag == "Player")
         {
+            string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
+            FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
+            Invoke("PlayMusic", 1);
             crossFinishLine = true;
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
             other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.2f;
             winOrLoseTime(other.gameObject);
             Invoke("pullUpLeaderBoard", 1);
-            string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
-            FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
-            FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
         }
+    }
+    public void PlayMusic()
+    {
+            FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
+
     }
     public void pullUpLeaderBoard()
     {
