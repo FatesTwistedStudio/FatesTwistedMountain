@@ -9,21 +9,29 @@ using UnityEngine.UIElements;
 
 public class S_LevelSelect : MonoBehaviour
 {
+    public GameObject currentImage;
     public GameObject mainImage;
     public GameObject alternativeImage;
+
     public TextMeshProUGUI imageText;
     [SerializeField]
     public Sprite[] levelSprites;
     public Sprite[] miniMapSprites;
 
-    private void OnMouseOver()
+
+    public void OnEnter()
     {
+        Debug.Log("Hover");
         alternativeImage.SetActive(true);
+        mainImage.SetActive(false);
     }
-    private void OnMouseUp()
+
+    public void OnExit()
     {
         Debug.Log("main");
-        alternativeImage.SetActive(true);
+        //currentImage = mainImage;
+        mainImage.SetActive(true);
+        alternativeImage.SetActive(false);
 
     }
 
@@ -31,6 +39,8 @@ public class S_LevelSelect : MonoBehaviour
     {
         imageText.text = text;
     }
+
+    /*
     public void setImage(int imageNum)
     {
         if (imageNum > 0)
@@ -48,6 +58,7 @@ public class S_LevelSelect : MonoBehaviour
         }
 
     }
+    */
 
     public void loadScene()
     {
