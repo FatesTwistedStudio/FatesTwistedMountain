@@ -12,6 +12,7 @@ public class S_LevelSelect : MonoBehaviour
     public GameObject currentImage;
     public GameObject mainImage;
     public GameObject alternativeImage;
+    public GameObject alternativeImage2;
 
     public TextMeshProUGUI imageText;
     [SerializeField]
@@ -21,9 +22,10 @@ public class S_LevelSelect : MonoBehaviour
 
     public void OnEnter()
     {
-        Debug.Log("Hover");
+        Debug.Log("Hover1");
         alternativeImage.SetActive(true);
         mainImage.SetActive(false);
+        alternativeImage2.SetActive(false);
     }
 
     public void OnExit()
@@ -32,12 +34,21 @@ public class S_LevelSelect : MonoBehaviour
         //currentImage = mainImage;
         mainImage.SetActive(true);
         alternativeImage.SetActive(false);
+        alternativeImage2.SetActive(false);
 
     }
 
     public void setText(string text)
     {
         imageText.text = text;
+    }
+
+    public void OnEnterLevel()
+    {
+        Debug.Log("Hover2");
+        alternativeImage2.SetActive(true);
+        alternativeImage.SetActive(false);
+        mainImage.SetActive(false);
     }
 
     /*
