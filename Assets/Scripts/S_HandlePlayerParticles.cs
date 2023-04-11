@@ -203,7 +203,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
             var startsizezp = zp.GetComponent<ParticleSystem>().main;
             var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime; 
             
-           // startsizezp.startSize = rb.velocity.magnitude * 0.1f;
+            startsizezp.startSize = rb.velocity.magnitude * 0.01f;
             startsizezp.startSpeed = rb.velocity.magnitude * 0.4f;
             Debug.LogWarning("Big landing, particles spawned");
         }

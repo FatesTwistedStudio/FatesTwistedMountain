@@ -7,6 +7,7 @@ public class S_Boost : MonoBehaviour
     private Rigidbody rb;
     private S_RefTarget target;
     private S_HandlePlayerParticles particlesRef;
+    private S_ScreenShake ssUI;
     [SerializeField]
     private float boostedSpeed;
     private float normalSpeed;
@@ -17,12 +18,18 @@ public class S_Boost : MonoBehaviour
 
     [SerializeField]
     private GameObject[] effects;
+    
+     private void Start()
+    {
+        ssUI = FindObjectOfType<S_ScreenShake>();   
+    }
 
     private void OnTriggerEnter(Collider other)
     {
             if (other.gameObject.tag == "Player")
             {
                 rb = other.GetComponent<Rigidbody>();
+                ssUI.Shake();
                 target = other.GetComponentInChildren<S_RefTarget>();
                 particlesRef = other.GetComponent<S_HandlePlayerParticles>();
                 rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
