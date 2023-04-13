@@ -147,8 +147,16 @@ public class S_PlayerInput : MonoBehaviour
     {
         FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
     }
+    
+    public void Victory()
+    {
+        anim.SetBool("HasWon", true);
+    }
 
-
+    public void Lose()
+    {
+        anim.SetBool("HasLose", true);
+    }
 
 
 

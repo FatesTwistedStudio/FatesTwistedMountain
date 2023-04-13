@@ -136,6 +136,7 @@ public class S_FinishLine : MonoBehaviour
             Invoke("PlayMusic", 1);
             crossFinishLine = true;
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
+            other.gameObject.GetComponent<S_PlayerInput>().Victory();
             other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.2f;
             winOrLoseTime(other.gameObject);
             Invoke("pullUpLeaderBoard", 1);

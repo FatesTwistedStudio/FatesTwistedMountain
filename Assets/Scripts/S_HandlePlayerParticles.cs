@@ -202,10 +202,10 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
             var startsizezp = zp.GetComponent<ParticleSystem>().main;
             var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime; 
-            
+            FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
             startsizezp.startSize = rb.velocity.magnitude * 0.01f;
             startsizezp.startSpeed = rb.velocity.magnitude * 0.4f;
-            Debug.LogWarning("Big landing, particles spawned");
+            //Debug.LogWarning("Big landing, particles spawned");
         }
         
     }
