@@ -778,9 +778,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d060232827cdd48a3a45b07cab2ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 527959247358016128}
   stunDuration: 5
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
   grounded: 0
   freeze: 0
+  anim: {fileID: 4106232353428980417}
 --- !u!96 &4133921510694928391 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 5875493007869154778, guid: 6fc5a4af690db9840835c0fcf91fb723,

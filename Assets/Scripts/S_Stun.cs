@@ -5,21 +5,25 @@ using UnityEngine;
 public class S_Stun : MonoBehaviour
 {
 
+    public Transform orientation;
     Rigidbody rb;
 
     [Header("Stun")]
     public float stunDuration = 5.0f;
     float stunRemaining = 0.0f;
-
+    [SerializeField]
+    private LayerMask ground;
 
     float minimumFall;
-    bool grounded;
+    public bool grounded;
     public bool freeze = false;
 
 
     S_Recovery S_Recovery;
     S_HoverboardPhysic S_HoverboardPhysic;
     S_PlayerInput S_PlayerInput;
+
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +55,6 @@ public class S_Stun : MonoBehaviour
             Debug.Log("S_PlayerInput not connected");
         }
 
-
         rb = GetComponent<Rigidbody>();
 
     }
@@ -60,59 +63,56 @@ public class S_Stun : MonoBehaviour
     {
         CheckGround();
 
-       if(grounded && rb.velocity.y == 0)
+        minimumFall = Mathf.Clamp(minimumFall, 0, 11);
+       
+       if(grounded)
         {
-            grounded = false;
+            minimumFall -= Time.deltaTime *2;
 
-            if(minimumFall <= -2)
-            {
-                Stun();
-            }
-        }
-        else if (grounded)
-        {
-            if (rb.velocity.y < minimumFall)
-                minimumFall = rb.velocity.y;
         }
        if (!grounded)
         {
-           minimumFall = 0;
+          // minimumFall = 0;
+           minimumFall += Time.deltaTime * 3;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        Debug.Log(minimumFall);
 
-        //angle = Vector3.Angle(transform.position, target.position);
-        //Debug.Log(angle);
-        freeze = false;
 
-        if (stunRemaining > 0.0f)
+        Ray ray = new Ray(orientation.transform.position, -orientation.transform.up);
+        RaycastHit info = new RaycastHit();
+
+        if (!Physics.Raycast(ray, out info, 1, ground) && grounded && minimumFall >= 10 ||Physics.Raycast(orientation.transform.position, orientation.transform.up, out info, 2, ground))
         {
-            stunRemaining = Mathf.Max(stunRemaining - Time.deltaTime, 0.0f);
+            minimumFall = 0;
+            Stun();
+            Debug.LogWarning("Stunned");
+
+        }
+        else
+        {
         }
 
-        if (stunRemaining <= 0.0f)
-        {
-            S_Recovery = GetComponent<S_Recovery>();
-        }
     }
 
     void CheckGround()
     {
-        grounded = Physics.Raycast(transform.position + Vector3.up, -Vector3.up, 1.01f);
+        grounded = Physics.CheckSphere(transform.position - new Vector3(0, 0, 0), 1, ground);
     }
-
-
-
 
     //stun 
     public void Stun()
     {
+        anim.SetBool("Wipeout", true);
            stunRemaining = stunDuration;
            freeze = true;
            Debug.Log("Player fell" + stunRemaining);
+           Invoke("TurnoffStun", 3);
 
+    }
+
+    public void TurnoffStun()
+    {
+            anim.SetBool("Wipeout", false);
     }
 }
