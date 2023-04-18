@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: FeedbacksDemoSkybox2 1
   m_Shader: {fileID: 4800000, guid: 21b28f3ee4b3c13408ed85c229008f40, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SCREENSPACE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -65,13 +66,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 1
+    - _Intensity: 1.65
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Saturation: 1.26
-    - _ScreenSpace: 0
+    - _Saturation: 1.46
+    - _ScreenSpace: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -81,5 +82,5 @@ Material:
     - _BottomColor: {r: 0.61960787, g: 0.86605346, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TopColor: {r: 0.10446224, g: 0, b: 0.8867924, a: 0}
+    - _TopColor: {r: 0.0033374948, g: 0.18482742, b: 0.7075472, a: 0}
   m_BuildTextureStacks: []

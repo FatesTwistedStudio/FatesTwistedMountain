@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class S_SceneController : MonoBehaviour
 {
+    S_Transition TransitionScript;
     public Canvas pauseMenu;
     public bool isCanvasActive;
     public S_GameloopController S_GameloopController;
@@ -29,6 +32,11 @@ public class S_SceneController : MonoBehaviour
         {
             pauseMenuControl();
         }
+    }
+
+    private void Start() 
+    {
+
     }
     // Update is called once per frame
     void Update()
@@ -63,6 +71,17 @@ public class S_SceneController : MonoBehaviour
     }
     public void loadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        TransitionScript = FindObjectOfType<S_Transition>();
+        TransitionScript.TurnOffTransition();
+        StartCoroutine(TransitionDelay(1.5f, sceneName));
+    }
+    IEnumerator TransitionDelay(float delay,string name)
+    {
+        yield return new WaitForSeconds(delay);
+        loadlevel(name);
+    }
+    public void loadlevel(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }
