@@ -56,7 +56,7 @@ public class S_CanvasController : MonoBehaviour
     }
     public void setPlayerFacingUI()
     {
-        playerImage.sprite = S_GameloopController.player.GetComponent<S_CharInfoHolder>().image;
+        //playerImage.sprite = S_GameloopController.player.GetComponent<S_CharInfoHolder>().image;
         playerName.text = S_GameloopController.player.GetComponent<S_CharInfoHolder>()._name;
     }
     public void SetCharacter(int rosterNum)
