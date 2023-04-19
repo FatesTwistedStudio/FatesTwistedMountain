@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using static Unity.VisualScripting.Member;
+using System.Collections;
 
 public class S_HoverboardPhysic : MonoBehaviour
 {
@@ -29,7 +30,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float moveForce;
     [SerializeField]
     private float jumpForce;
- 
+
+
+    private float jumpingDelay = 0.5f;
+    private bool cantJump = false;
+
+
     [Header("Rotation")]
     [SerializeField]
     private float rotationSpeed;
@@ -198,7 +204,20 @@ public class S_HoverboardPhysic : MonoBehaviour
         //Force applied to player when they press the jump button
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
+
+        if (jumpingDelay >= 0.5f)
+        {
+            StartCoroutine(JumpDelay());
+        }
     }
+
+    IEnumerator JumpDelay()
+    {
+        cantJump = true;
+        yield return new WaitForSeconds(0.5f);
+        cantJump = false;
+    }
+
 
     private void HandleDrag()
     {

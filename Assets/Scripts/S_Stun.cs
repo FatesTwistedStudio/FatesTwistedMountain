@@ -28,6 +28,7 @@ public class S_Stun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         if (GetComponent<S_Recovery>() != null)
         {
             S_Recovery = GetComponent<S_Recovery>();
@@ -36,6 +37,7 @@ public class S_Stun : MonoBehaviour
         {
             Debug.Log("S_Recovery not connected");
         }
+        */
 
         if (GetComponent<S_HoverboardPhysic>() != null)
         {
