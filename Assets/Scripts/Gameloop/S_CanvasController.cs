@@ -43,7 +43,7 @@ public class S_CanvasController : MonoBehaviour
             }
         if (S_GameloopController.player == null)
         {
-            characterContinueButton.SetActive(false);
+            //characterContinueButton.SetActive(false);
             levelSelect.SetActive(false);
         }
 

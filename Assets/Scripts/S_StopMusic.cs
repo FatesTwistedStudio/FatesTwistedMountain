@@ -16,7 +16,11 @@ public class S_StopMusic : MonoBehaviour
     public void StopAudio()
     {
         manager.StopPlaying(BackgroundSongName);
-        //manager.FadeOut(BackgroundSongName);
+    }
+    public void StopMusic()
+    {
+        manager.FadeOut(BackgroundSongName);
+
     }
 
     // Update is called once per frame
