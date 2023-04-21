@@ -21,7 +21,17 @@ public class S_LevelSelect : MonoBehaviour
     public string Level1,Level2,Level3;
     string currentLevel;
     public S_Transition transition;
+    public Animator startlevelAnim;
 
+    void Start()
+    {
+
+    }
+    public void OnEnable() {
+        imageText.text = "";
+        
+    }
+    
 
     public void OnEnter()
     {
@@ -48,14 +58,17 @@ public class S_LevelSelect : MonoBehaviour
     public void SetLevel1()
     {
         currentLevel = Level1;
+        startlevelAnim.SetBool("Entry", true);
     }
     public void SetLevel2()
     {
         currentLevel = Level2;
+        startlevelAnim.SetBool("Entry", true);
     }
     public void SetLevel3()
     {
         currentLevel = Level3;
+        startlevelAnim.SetBool("Entry", true);
     }
 
     public void OnEnterLevel()
