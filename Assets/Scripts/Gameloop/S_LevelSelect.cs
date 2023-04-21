@@ -18,6 +18,9 @@ public class S_LevelSelect : MonoBehaviour
     [SerializeField]
     public Sprite[] levelSprites;
     public Sprite[] miniMapSprites;
+    public string Level1,Level2,Level3;
+    string currentLevel;
+    public S_Transition transition;
 
 
     public void OnEnter()
@@ -41,6 +44,18 @@ public class S_LevelSelect : MonoBehaviour
     public void setText(string text)
     {
         imageText.text = text;
+    }
+    public void SetLevel1()
+    {
+        currentLevel = Level1;
+    }
+    public void SetLevel2()
+    {
+        currentLevel = Level2;
+    }
+    public void SetLevel3()
+    {
+        currentLevel = Level3;
     }
 
     public void OnEnterLevel()
@@ -73,6 +88,7 @@ public class S_LevelSelect : MonoBehaviour
 
     public void loadScene()
     {
-        SceneManager.LoadScene(imageText.text);
+        transition.loadScene(currentLevel);
+        //SceneManager.LoadScene(currentLevel);
     }
 }
