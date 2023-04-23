@@ -20605,11 +20605,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980f1c787c5e4744f86aa70e88f3d2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skyOne: {fileID: 2100000, guid: 6bfab16f387f95e4bb60f866299be241, type: 2}
-  skyTwo: {fileID: 2100000, guid: 3f698c5d47507d54db2dcb930054532e, type: 2}
-  skyThree: {fileID: 2100000, guid: d04fa9ef91692c6429efccdf42970c46, type: 2}
-  skyFour: {fileID: 2100000, guid: f9ec1c0318dcc3149b0e9ae62a6d8cdf, type: 2}
-  skyFive: {fileID: 2100000, guid: aa87107d0c3535c4983a4edb2d0e9f7b, type: 2}
+  skyBoxes:
+  - {fileID: 2100000, guid: 6bfab16f387f95e4bb60f866299be241, type: 2}
+  - {fileID: 2100000, guid: 3f698c5d47507d54db2dcb930054532e, type: 2}
+  - {fileID: 2100000, guid: d04fa9ef91692c6429efccdf42970c46, type: 2}
+  - {fileID: 2100000, guid: f9ec1c0318dcc3149b0e9ae62a6d8cdf, type: 2}
+  - {fileID: 2100000, guid: 6abe918ee1229b34f8557fc2a5a39825, type: 2}
+  - {fileID: 2100000, guid: aa87107d0c3535c4983a4edb2d0e9f7b, type: 2}
+  theBox:
+  - {fileID: 659823997}
 --- !u!1001 &1427669711
 PrefabInstance:
   m_ObjectHideFlags: 0
