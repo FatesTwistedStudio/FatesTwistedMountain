@@ -22,8 +22,12 @@ public class S_PlayerInput : MonoBehaviour
     int isLeaningRightHash;
     int isLeaningLeftHash;
     float jumpTime;
-    bool hasFallen = false;        
-    
+    bool hasFallen = false;
+
+    private float jumpingDelay = 0.5f;
+    private bool cantJump = false;
+
+
     private void Awake()
     {
 
@@ -135,12 +139,27 @@ public class S_PlayerInput : MonoBehaviour
     {
         if (_physicsSystem.isGrounded)
         {
+            Debug.Log("jumping");
             anim.SetBool("HasLanded", false);
             anim.SetBool("IsJumping", true);
             _physicsSystem.Jump();
             hasFallen = true;
             Invoke("Delay", 2);
+
+            if (jumpingDelay >= 0.5f)
+            {
+                StartCoroutine(JumpDelay());
+            }
         }
+
+
+    }
+
+    IEnumerator JumpDelay()
+    {
+        cantJump = true;
+        yield return new WaitForSeconds(0.5f);
+        cantJump = false;
     }
 
     public void Delay()

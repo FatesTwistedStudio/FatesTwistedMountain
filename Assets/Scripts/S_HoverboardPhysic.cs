@@ -32,8 +32,8 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float jumpForce;
 
 
-    private float jumpingDelay = 0.5f;
-    private bool cantJump = false;
+    private float jumpingDelay = 1f;
+    private bool cantJump;
 
 
     [Header("Rotation")]
@@ -117,6 +117,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         
         disableInput = false;
+
     }
 
     void FixedUpdate()
@@ -156,6 +157,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
 
     }
+
 
     private void CheckGround()
     {
@@ -201,20 +203,19 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Jump()
     {
-        //Force applied to player when they press the jump button
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
-
-        if (jumpingDelay >= 0.5f)
+       
+        if (!cantJump)
         {
-            StartCoroutine(JumpDelay());
+            cantJump = true;
+            Invoke("resetJumpDelay", 1f);
+            //Force applied to player when they press the jump button
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            rb.AddForce(_Movement.normalized * jumpForce, ForceMode.VelocityChange);
         }
     }
 
-    IEnumerator JumpDelay()
+    private void resetJumpDelay()
     {
-        cantJump = true;
-        yield return new WaitForSeconds(0.5f);
         cantJump = false;
     }
 
