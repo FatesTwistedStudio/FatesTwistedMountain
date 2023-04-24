@@ -10,9 +10,9 @@ using UnityEngine.UIElements;
 public class S_LevelSelect : MonoBehaviour
 {
     public GameObject currentImage;
-    public GameObject mainImage;
-    public GameObject alternativeImage;
-    public GameObject alternativeImage2;
+    public GameObject MainBG;
+    public GameObject map1;
+    public GameObject map2;
 
     public TextMeshProUGUI imageText;
     [SerializeField]
@@ -22,6 +22,7 @@ public class S_LevelSelect : MonoBehaviour
     string currentLevel;
     public S_Transition transition;
     public Animator startlevelAnim;
+    public Animator stSlAnim;
 
     void Start()
     {
@@ -36,18 +37,17 @@ public class S_LevelSelect : MonoBehaviour
     public void OnEnter()
     {
         Debug.Log("Hover1");
-        alternativeImage.SetActive(true);
-        mainImage.SetActive(false);
-        alternativeImage2.SetActive(false);
     }
 
     public void OnExit()
     {
         Debug.Log("main");
         //currentImage = mainImage;
-        mainImage.SetActive(true);
-        alternativeImage.SetActive(false);
-        alternativeImage2.SetActive(false);
+        stSlAnim.Play("a_STSL_Start");
+        stSlAnim.SetBool("Start", false);
+
+        map1.SetActive(false);
+        map2.SetActive(false);
 
     }
 
@@ -59,24 +59,33 @@ public class S_LevelSelect : MonoBehaviour
     {
         currentLevel = Level1;
         startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+        map1.SetActive(true);
+        map2.SetActive(false);
+
     }
     public void SetLevel2()
     {
         currentLevel = Level2;
         startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+        map1.SetActive(false);
+        map2.SetActive(true);
     }
     public void SetLevel3()
     {
         currentLevel = Level3;
         startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
     }
 
     public void OnEnterLevel()
     {
         Debug.Log("Hover2");
-        alternativeImage2.SetActive(true);
-        alternativeImage.SetActive(false);
-        mainImage.SetActive(false);
+        map2.SetActive(true);
+        map1.SetActive(false);
     }
 
     /*
@@ -88,9 +97,9 @@ public class S_LevelSelect : MonoBehaviour
             {
                 mainImage.GetComponent<Image>().sprite = levelSprites[imageNum];
             }
-            if (alternativeImage.GetComponent<Image>() != null)
+            if (map1.GetComponent<Image>() != null)
             {
-                alternativeImage.GetComponent<Image>().sprite = miniMapSprites[imageNum];
+                map1.GetComponent<Image>().sprite = miniMapSprites[imageNum];
 
             }
 
