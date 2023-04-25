@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class S_StopMusic : MonoBehaviour
 {
+    [HideInInspector]
     public S_AudioManager manager;
-    public string BackgroundSongName;
+    public string[] bgAudio;
+    public string backgroundSongName;
 
     // Start is called before the first frame update
     void Start()
@@ -15,17 +17,14 @@ public class S_StopMusic : MonoBehaviour
     }
     public void StopAudio()
     {
-        manager.StopPlaying(BackgroundSongName);
+        for (int i = 0; i < bgAudio.Length; i++)
+        {
+            manager.StopPlaying(bgAudio[i]);
+        }
     }
     public void StopMusic()
     {
-        manager.FadeOut(BackgroundSongName);
+        manager.FadeOut(backgroundSongName);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

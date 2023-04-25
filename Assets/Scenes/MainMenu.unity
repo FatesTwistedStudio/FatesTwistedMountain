@@ -253,9 +253,9 @@ RectTransform:
   - {fileID: 1351174169}
   - {fileID: 757598687}
   - {fileID: 1241104937}
-  - {fileID: 1401647660}
   - {fileID: 1493697368}
   - {fileID: 840171178455585412}
+  - {fileID: 1401647660}
   - {fileID: 840171177507992179}
   - {fileID: 936117230}
   m_Father: {fileID: 0}
@@ -1826,8 +1826,9 @@ GameObject:
   - component: {fileID: 1401647663}
   - component: {fileID: 1401647662}
   - component: {fileID: 1401647661}
+  - component: {fileID: 1401647665}
   m_Layer: 5
-  m_Name: Options (1)
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1851,7 @@ RectTransform:
   - {fileID: 1009451217}
   - {fileID: 364351702}
   m_Father: {fileID: 159228424}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -0.505, y: 0.761, z: -6.177}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1921,10 +1922,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: S_SceneController, Assembly-CSharp
-        m_MethodName: loadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1401647665}
+        m_TargetAssemblyTypeName: S_ButtonSFX, Assembly-CSharp
+        m_MethodName: OptionsSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1971,6 +1972,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401647659}
   m_CullTransparentMesh: 1
+--- !u!114 &1401647665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401647659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49f75d682d29941bfcdc8215f2dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &1449116650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1493697368}
+  - component: {fileID: 1493697374}
   - component: {fileID: 1493697371}
   - component: {fileID: 1493697370}
   - component: {fileID: 1493697369}
@@ -2296,7 +2311,7 @@ RectTransform:
   - {fileID: 1799581995}
   - {fileID: 1659761726}
   m_Father: {fileID: 159228424}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2357,6 +2372,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LevelSelect
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1493697374}
+        m_TargetAssemblyTypeName: S_ButtonSFX, Assembly-CSharp
+        m_MethodName: ConfirmSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1622602679}
@@ -2429,6 +2456,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1493697374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493697367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49f75d682d29941bfcdc8215f2dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &1622602677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  BackgroundSongName: Title
+  bgAudio: []
+  backgroundSongName: Title
 --- !u!1 &1659761725
 GameObject:
   m_ObjectHideFlags: 0
@@ -3896,6 +3937,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 840171177507992189}
+        m_TargetAssemblyTypeName: S_ButtonSFX, Assembly-CSharp
+        m_MethodName: QuitSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1959460649}
         m_TargetAssemblyTypeName: S_SceneController, Assembly-CSharp
         m_MethodName: quitGame
@@ -3966,6 +4019,7 @@ GameObject:
   - component: {fileID: 840171177507992177}
   - component: {fileID: 840171177507992178}
   - component: {fileID: 840171177507992182}
+  - component: {fileID: 840171177507992189}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -3973,6 +4027,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &840171177507992189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840171177507992188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49f75d682d29941bfcdc8215f2dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!224 &840171177949506036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4223,7 +4290,7 @@ RectTransform:
   - {fileID: 840171177985194670}
   - {fileID: 215189764}
   m_Father: {fileID: 159228424}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -0.002, y: -0.235, z: 2.107}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4274,10 +4341,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: S_SceneController, Assembly-CSharp
-        m_MethodName: loadScene
-        m_Mode: 5
+      - m_Target: {fileID: 840171178455585420}
+        m_TargetAssemblyTypeName: S_ButtonSFX, Assembly-CSharp
+        m_MethodName: OptionsSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4337,6 +4404,7 @@ GameObject:
   - component: {fileID: 840171178455585414}
   - component: {fileID: 840171178455585413}
   - component: {fileID: 840171178455585409}
+  - component: {fileID: 840171178455585420}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -4344,6 +4412,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &840171178455585420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840171178455585419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49f75d682d29941bfcdc8215f2dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!224 &840171178551161428
 RectTransform:
   m_ObjectHideFlags: 0

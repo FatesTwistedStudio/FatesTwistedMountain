@@ -18,6 +18,12 @@ public class S_PauseMenu : MonoBehaviour
     private FTMInput playerInput;
     private InputAction menu;
     public GameObject resumeButton;
+    public GameObject HUD;
+    public Animator anim;
+    public S_Transition transiton;
+    [HideInInspector]
+    public S_AudioManager audioManager;
+    S_StopMusic endAudio;
     
     private bool isPaused;
 
@@ -32,7 +38,9 @@ public class S_PauseMenu : MonoBehaviour
     void Start()
     {
         pauseUI.SetActive(false);
+
         manager = FindObjectOfType<S_EventController>();
+        audioManager = FindObjectOfType<S_AudioManager>(); 
     }
 
     // Update is called once per frame
@@ -95,11 +103,14 @@ public class S_PauseMenu : MonoBehaviour
 
     public void ActivateMenu()
     {
+        audioManager.Play("Button-Pause");
         bool crossfinish = FindObjectOfType<S_FinishLine>().crossFinishLine;
         if(!crossfinish)
         {
-            Time.timeScale = 0;
-            AudioListener.pause = true;
+            Time.timeScale = Time.unscaledDeltaTime * 0.3f;
+            //AudioListener.pause = true;
+            anim.Play("a_PM_Start");
+            HUD.SetActive(false);
             pauseUI.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(resumeButton);
@@ -109,18 +120,29 @@ public class S_PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
+        audioManager.Play("Button-Resume");
+        anim.Play("a_PM_End");
         Time.timeScale = 1;
-        AudioListener.pause = false;
+        //AudioListener.pause = false;
         EventSystem.current.SetSelectedGameObject(null);
-        pauseUI.SetActive(false);
         isPaused = false;
+    }
+    public void EndUI()
+    {
+        pauseUI.SetActive(false);
+        HUD.SetActive(true);
     }
 
     public void Quit()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        endAudio = FindObjectOfType<S_StopMusic>();
+        endAudio.StopAudio();
+        endAudio.StopMusic();
+
         Time.timeScale = 1;
         AudioListener.pause = false;
-        SceneManager.LoadScene(0);
+        transiton.loadScene("MainMenu");
+        //SceneManager.LoadScene(0);
     }
 }
