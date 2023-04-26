@@ -78,7 +78,7 @@ public class S_Stun : MonoBehaviour
            minimumFall += Time.deltaTime * 3;
         }
 
-        Debug.Log(minimumFall);
+        //Debug.Log(minimumFall);
 
 
         Ray ray = new Ray(orientation.transform.position, -orientation.transform.up);
@@ -88,7 +88,7 @@ public class S_Stun : MonoBehaviour
         {
             minimumFall = 0;
             Stun();
-            Debug.LogWarning("Stunned");
+            //Debug.LogWarning("Stunned");
 
         }
         else

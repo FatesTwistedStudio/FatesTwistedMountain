@@ -22,7 +22,7 @@ public class S_LSCharacters : MonoBehaviour
         anim.SetBool("Entry", false);
         TonyLS.SetActive(false);
         BearLS.SetActive(false);
-       // PDLS.SetActive(false);
+        PDLS.SetActive(false);
         //imageText.text = "s";
 
     }
@@ -32,10 +32,12 @@ public class S_LSCharacters : MonoBehaviour
         if (TonyE)
         {
             BearLS.SetActive(false);
+            PDLS.SetActive(false);
         }
         if (BearE)
         {
             TonyLS.SetActive(false);
+            PDLS.SetActive(false);
         }
         if (PDE)
         {
@@ -52,6 +54,7 @@ public class S_LSCharacters : MonoBehaviour
         BearE = false;
         PDE = false;
         BearLS.SetActive(false);
+        PDLS.SetActive(false);
 
         if (!TonyLS.activeSelf)
         {
@@ -60,7 +63,6 @@ public class S_LSCharacters : MonoBehaviour
         characterimage.GetComponent<Image>().color = TonyC;
         }
 
-       // PDLS.SetActive(false);
     }
     IEnumerator EnableTonyM(float delay)
     {
@@ -74,6 +76,7 @@ public class S_LSCharacters : MonoBehaviour
         BearE = true;
         PDE = false;
         TonyLS.SetActive(false);
+        PDLS.SetActive(false);
 
         if (!BearLS.activeSelf){
         Instantiate(particles, BearLS.transform.position + new Vector3(0,2,0), particles.transform.rotation);        
@@ -83,7 +86,6 @@ public class S_LSCharacters : MonoBehaviour
 
         }
 
-      //  PDLS.SetActive(false);
     }
     
     IEnumerator EnableBearM(float delay)
@@ -111,6 +113,6 @@ public class S_LSCharacters : MonoBehaviour
     IEnumerator EnablePDM(float delay)
     {
         yield return new WaitForSeconds(delay);
-        //PDLS.SetActive(true);
+        PDLS.SetActive(true);
     }
 }
