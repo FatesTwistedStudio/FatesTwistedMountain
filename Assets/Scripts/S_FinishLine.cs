@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class S_FinishLine : MonoBehaviour
 {
 
-    public S_LeaderBoardTracker S_LeaderBoardTracker;
+    public S_LeaderBoardTracker LeaderBoardTracker;
     public GameObject eventController;
     public Canvas leaderboard;
     public GameObject firstPlace;
@@ -17,6 +17,8 @@ public class S_FinishLine : MonoBehaviour
     public GameObject fourthPlace;
     public GameObject NextLevelButton;
     public bool crossFinishLine;
+    GameObject finishUI;   
+    public Animator anim;
 
     public void winOrLoseTime(GameObject obj)
     {
@@ -39,37 +41,7 @@ public class S_FinishLine : MonoBehaviour
                             GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
                         }
                     }
-                    else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                    {
-                        Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
-                        firstPlace = null;
-                        secondPlace = obj;
-                        thirdPlace = null;
-                        fourthPlace = null;
-                        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
-                        GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 2;
-
-                    }
                 }
-                else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                {
-                    Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
-                    firstPlace = null;
-                    secondPlace = null;
-                    thirdPlace = obj;
-                    fourthPlace = null;
-                    obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
-                    GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 3;
-                }
-            }
-            else if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-            {
-                firstPlace = null;
-                secondPlace = null;
-                thirdPlace = null;
-                fourthPlace = obj;
-                obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
-                GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 4;
             }
         }
     }
@@ -122,7 +94,7 @@ public class S_FinishLine : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-
+        finishUI = GameObject.FindWithTag("FinishUI");
         if (other.GetComponent<S_CharInfoHolder>() == true)
             eventController.GetComponent<S_EventController>().setTimedTrial(other.gameObject);
 
@@ -137,43 +109,46 @@ public class S_FinishLine : MonoBehaviour
             crossFinishLine = true;
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
             other.gameObject.GetComponent<S_PlayerInput>().Victory();
-            other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.2f;
+            other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.5f;
             winOrLoseTime(other.gameObject);
-            Invoke("pullUpLeaderBoard", 1);
+            finishUI.GetComponent<Canvas>().enabled = true;
+            finishUI.GetComponent<Animator>().Play("a_UI_FinishLine");
+            Invoke("pullUpLeaderBoard", 2);
         }
     }
     public void PlayMusic()
     {
-            FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
+        FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
 
     }
     public void pullUpLeaderBoard()
     {
         leaderboard.enabled = true;
-        NextLevelButton.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(NextLevelButton);
+        anim.Play("a_FinishLineStart");
     }
     void Start()
     {
+        LeaderBoardTracker = FindObjectOfType<S_LeaderBoardTracker>();
+        leaderboard = FindObjectOfType<S_LeaderBoardTracker>().gameObject.GetComponent<Canvas>();
+        anim = FindObjectOfType<S_LeaderBoardTracker>().gameObject.GetComponent<Animator>();
         leaderboard.enabled = false;
-        NextLevelButton.SetActive(false);
     }
     public void sortTheWinners()
     {
         if (firstPlace != null)
         {
-            S_LeaderBoardTracker.firstPlaceImage.sprite = firstPlace.GetComponent<S_CharInfoHolder>().image;
-            S_LeaderBoardTracker.firstPlacePlacementText.SetText("Gold");
-            S_LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
-            S_LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("0.00"));
+            LeaderBoardTracker.firstPlaceImage.sprite = firstPlace.GetComponent<S_CharInfoHolder>().image;
+            LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>()._name);
+            LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
+            LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("Time:"+ "0.000"));
         }
         else
         {
-            S_LeaderBoardTracker.firstPlacePlacementText.SetText("Gold Spot");
-            S_LeaderBoardTracker.firstPlacePointsText.SetText("--");
-            S_LeaderBoardTracker.firstPlaceTimeText.SetText("--.--");
+            LeaderBoardTracker.firstPlacePlacementText.SetText("Gold Spot");
+            LeaderBoardTracker.firstPlacePointsText.SetText("--");
+            LeaderBoardTracker.firstPlaceTimeText.SetText("--.--");
         }
+        /*
         if (secondPlace != null)
         {
             S_LeaderBoardTracker.secondPlaceImage.sprite = secondPlace.GetComponent<S_CharInfoHolder>().image;
@@ -217,6 +192,7 @@ public class S_FinishLine : MonoBehaviour
         {
             Debug.Log("leader not set");
         }
+        */
     }
     public void sendToNextLevel(string nextLevel)
     {

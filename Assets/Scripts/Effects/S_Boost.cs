@@ -20,8 +20,12 @@ public class S_Boost : MonoBehaviour
     [SerializeField]
     private GameObject[] effects;
     
-     private void Start()
+     private void Update()
     {
+  
+         ssUI = FindObjectOfType<S_ScreenShake>();
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
