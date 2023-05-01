@@ -12,7 +12,7 @@ public class S_EventController : MonoBehaviour
 {
     public float timer = 0;
     public float currentTime = 0f;
-    public float startTime = 5f;
+    public float startTime = 0.6f;
     public TextMeshProUGUI startText;
     public GameObject startingLine;
     public GameObject player;
@@ -23,6 +23,7 @@ public class S_EventController : MonoBehaviour
     private InputAction StartRace;
 
     public S_BackgroundMusic _BackgroundMusic;
+    public S_Countdown countdown;
     bool playedsong = false;
 
 
@@ -57,17 +58,15 @@ public class S_EventController : MonoBehaviour
     {
         if (startingLine != null)
         {
-
             startingLine.SetActive(true);
         }
         if (startText != null)
         {
-            startText.SetText("");
+           // startText.SetText("");
 
         }
-        if (_BackgroundMusic != null)
+        if (countdown != null)
         {
-
         }
     }
     private void OnEnable()
@@ -79,6 +78,7 @@ public class S_EventController : MonoBehaviour
     }
     void Update()
     {
+        countdown = FindObjectOfType<S_Countdown>();
         charSpawned = GameObject.FindGameObjectsWithTag("Character");
         player = GameObject.FindWithTag("Player");
         _BackgroundMusic = FindObjectOfType<S_BackgroundMusic>();
@@ -95,12 +95,12 @@ public class S_EventController : MonoBehaviour
 
         if (isStarted == true)
         {
-            playEvent();
+            //Invoke("playEvent", 4);
+           // playEvent();
         }
         if (currentTime <= 1)
         {
-            startingLine.SetActive(false);
-            startText.SetText("Go!");
+            //startText.SetText("Go!");
         }
         if (player.GetComponent<S_CharInfoHolder>().itemHeld != null)
         {
@@ -127,28 +127,18 @@ public class S_EventController : MonoBehaviour
     }
     public void playEvent()
     {
+        startEvent = true;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        startingLine.SetActive(false);
+
         //bgs.PlayOneShot(start);
         if (currentTime >= 0)
         {
-            currentTime -= 1 * Time.deltaTime;
+            currentTime -= 2 * Time.deltaTime;
             if (currentTime > 1)
             {
-                startText.text = currentTime.ToString("0");
+                //startText.text = currentTime.ToString("0");
             }
-        }
-        if (currentTime <= .5f)
-        {
-            playAudio();
-          
-                player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            startEvent = true;
-            for (int i = 0; i < charSpawned.Length; i++)
-            {
-
-                charSpawned[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            }
-
-
         }
     }
     public void playAudio()

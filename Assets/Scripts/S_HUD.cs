@@ -92,7 +92,8 @@ public class S_HUD : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(ingametime / 60);
         float seconds = Mathf.FloorToInt(ingametime % 60);
-        _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        float milliSeconds = (ingametime % 1) * 1000;
+        _timeText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
     }
 
     public void DisplayDeltaTime(float DeltaTime)

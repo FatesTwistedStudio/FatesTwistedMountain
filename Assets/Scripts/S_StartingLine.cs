@@ -12,7 +12,6 @@ public class S_StartingLine : MonoBehaviour
     }
     private void Start()
     {
-        FindObjectOfType<S_AudioManager>().Play("Race-Start");
 
     }
 
@@ -20,8 +19,7 @@ public class S_StartingLine : MonoBehaviour
     {
         if (other.tag=="Player")
         {
-
-        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         if(other.tag=="Character")
         {

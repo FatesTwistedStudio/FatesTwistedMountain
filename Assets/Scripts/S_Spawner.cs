@@ -29,7 +29,7 @@ public class S_Spawner : MonoBehaviour
     }
     public void Update()
     {
-        S_GameloopController.eventManager.GetComponent<S_EventController>().startText=timer;
+        //S_GameloopController.eventManager.GetComponent<S_EventController>().startText=timer;
         S_GameloopController.eventManager.GetComponent<S_EventController>().startingLine = Spawner;
     }
 }
