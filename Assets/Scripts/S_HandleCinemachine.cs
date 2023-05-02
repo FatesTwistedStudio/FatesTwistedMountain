@@ -11,7 +11,7 @@ public class S_HandleCinemachine : MonoBehaviour
     private CinemachineCameraOffset vcamOffset;
     private S_HoverboardPhysic player;
     private Rigidbody rb;
-    [Range(0, 1)]
+    [Range(0.01f, 1)]
     public float OffsetRange;
     [Range(0, 1)]
     public float fovRange;
@@ -38,6 +38,7 @@ public class S_HandleCinemachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        OffsetRange = Mathf.Clamp(OffsetRange, 0.01f,1);
         _Movement = _PlayerInputScript._mvn;
         _Rotation = _PlayerInputScript._rotmvn;
         currentDutchAngle = Mathf.Clamp(currentDutchAngle, -20, 20);
