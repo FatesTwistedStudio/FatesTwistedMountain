@@ -32,7 +32,7 @@ public class S_OptionsMenu : MonoBehaviour
 
         int currentResIndex = 0;
 
-        resolutions = Screen.resolutions.refreshRate;
+        resolutions = Screen.resolutions;
         resDropdown.ClearOptions();
 
         List<string> options = new List<string>();
