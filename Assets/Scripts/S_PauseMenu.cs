@@ -120,12 +120,36 @@ public class S_PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
-        audioManager.Play("Button-Resume");
-        anim.Play("a_PM_End");
-        Time.timeScale = 1;
-        //AudioListener.pause = false;
-        EventSystem.current.SetSelectedGameObject(null);
-        isPaused = false;
+        if (anim.GetBool("IsOptionEnabled") == true)
+        {
+            anim.SetBool("IsOptionEnabled", false);
+            anim.SetBool("IsCreditsEnabled", false);
+            audioManager.Play("Button-Resume");
+            anim.Play("a_PM_End_OP");
+            Time.timeScale = 1;
+            EventSystem.current.SetSelectedGameObject(null);
+            isPaused = false;
+        }
+        else if (anim.GetBool("IsCreditsEnabled") == true)
+        {
+            anim.SetBool("IsCreditsEnabled", false);
+            anim.SetBool("IsOptionEnabled", false);
+            audioManager.Play("Button-Resume");
+            anim.Play("a_PM_End_Cr");
+            Time.timeScale = 1;
+            EventSystem.current.SetSelectedGameObject(null);
+            isPaused = false;
+        }
+        else
+        {
+            audioManager.Play("Button-Resume");
+            anim.Play("a_PM_End");
+            Time.timeScale = 1;
+            //AudioListener.pause = false;
+            EventSystem.current.SetSelectedGameObject(null);
+            isPaused = false;
+        }
+
     }
     public void EndUI()
     {
@@ -144,5 +168,29 @@ public class S_PauseMenu : MonoBehaviour
         AudioListener.pause = false;
         transiton.loadScene("MainMenu");
         //SceneManager.LoadScene(0);
+    }
+
+    public void EnableOptions()
+    {
+        if (anim.GetBool("IsOptionEnabled") == true)
+        {
+            anim.SetBool("IsOptionEnabled", false);
+            anim.SetBool("IsCreditsEnabled", false);
+            anim.Play("a_PM_DisableOptions");
+        }
+        else
+        {
+            anim.SetBool("IsCreditsEnabled", false);
+            anim.SetBool("IsOptionEnabled", true);
+            anim.Play("a_PM_ShowOptions");
+        }
+
+    }
+
+    public void EnableCredits()
+    {
+        anim.SetBool("IsOptionEnabled", false);
+        anim.SetBool("IsCreditsEnabled", true);
+
     }
 }

@@ -16,9 +16,12 @@ public class S_OptionsMenu : MonoBehaviour
     public bool FullScreen;
 
     Resolution[] resolutions;
+    List<Resolution> filteredResolutions;
+    private float currentRefreshRate;
 
     void Start()
     {
+        toggle.isOn = Screen.fullScreen;
 
         if(PlayerPrefs.HasKey("Master_Volume")|| PlayerPrefs.HasKey("Music_Volume") || PlayerPrefs.HasKey("SFX_Volume"))
         {
@@ -36,13 +39,23 @@ public class S_OptionsMenu : MonoBehaviour
         resDropdown.ClearOptions();
 
         List<string> options = new List<string>();
+        filteredResolutions = new List<Resolution>();
+        currentRefreshRate = Screen.currentResolution.refreshRate;
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
+            if (resolutions[i].refreshRate == currentRefreshRate)
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
+
+        for (int i = 0; i < filteredResolutions.Count; i++)
+        {
+            string option = filteredResolutions[i].width + "x" + filteredResolutions[i].height + " @ " + filteredResolutions[i].refreshRate + "Hz";
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (filteredResolutions[i].width == Screen.currentResolution.width && filteredResolutions[i].height == Screen.currentResolution.height)
             {
                 currentResIndex = i;
             }
@@ -97,7 +110,7 @@ public class S_OptionsMenu : MonoBehaviour
 
     public void SetRes(int resolutionIndex)
     {
-        Resolution res = resolutions[resolutionIndex];
+        Resolution res = filteredResolutions[resolutionIndex];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
     }
 
