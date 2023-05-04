@@ -115,6 +115,18 @@ public class S_FinishLine : MonoBehaviour
             finishUI.GetComponent<Animator>().Play("a_UI_FinishLine");
             Invoke("pullUpLeaderBoard", 2);
         }
+
+        if (other.tag == "GreenFlag")
+        {
+            other.GetComponent<S_CharInfoHolder>().itemHeld = null; 
+        }
+
+        if (other.tag == "RedFlag")
+        {
+            other.GetComponent<S_CharInfoHolder>().itemHeld = null;
+        }
+
+
     }
     public void PlayMusic()
     {
