@@ -14,6 +14,13 @@ public class S_OptionsMenu : MonoBehaviour
     public AudioMixer musicVolume;
     public AudioMixer sfxVolume;
     public bool FullScreen;
+    public int quality;
+    public Resolution res;
+
+    private const string resolutionWidthPlayerPrefKey = "ResolutionWidth";
+    private const string resolutionHeightPlayerPrefKey = "ResolutionHeight";
+    private const string resolutionRefreshRatePlayerPrefKey = "RefreshRate";
+    private const string fullScreenPlayerPrefKey = "FullScreen";
 
     Resolution[] resolutions;
     List<Resolution> filteredResolutions;
@@ -21,22 +28,12 @@ public class S_OptionsMenu : MonoBehaviour
 
     void Start()
     {
-        toggle.isOn = Screen.fullScreen;
-
-        if(PlayerPrefs.HasKey("Master_Volume")|| PlayerPrefs.HasKey("Music_Volume") || PlayerPrefs.HasKey("SFX_Volume"))
-        {
-            Load();
-        }
-        else
-        {
-            SetMasterVolume(masterSlider.value);
-        }
-
+        Load();
 
         int currentResIndex = 0;
 
-        resolutions = Screen.resolutions;
         resDropdown.ClearOptions();
+        resolutions = Screen.resolutions;
 
         List<string> options = new List<string>();
         filteredResolutions = new List<Resolution>();
@@ -44,7 +41,9 @@ public class S_OptionsMenu : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            if (resolutions[i].refreshRate == currentRefreshRate)
+            float aspectRatio = (float)resolutions[i].width / resolutions[i].height;
+
+            if (resolutions[i].refreshRate == currentRefreshRate && Mathf.Approximately(aspectRatio, 16f / 9f))
             {
                 filteredResolutions.Add(resolutions[i]);
             }
@@ -64,13 +63,10 @@ public class S_OptionsMenu : MonoBehaviour
         resDropdown.value = currentResIndex;
         resDropdown.RefreshShownValue();
 
-    }
+        toggle.onValueChanged.AddListener(SetFullscreen);
+        resDropdown.onValueChanged.AddListener(SetRes);
 
-    void Update()
-    {
-        /*
 
-        */
     }
 
     public void SetMasterVolume(float volume)
@@ -97,21 +93,27 @@ public class S_OptionsMenu : MonoBehaviour
     public void SetQuality (int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
-        PlayerPrefs.SetInt("Quality", qualityIndex);
+        quality = qualityIndex;
     }
 
     public void SetFullscreen (bool isFullscreen)
     {
-        FullScreen = isFullscreen;
-        Screen.fullScreen = FullScreen;
-        
-        PlayerPrefs.SetInt("isFullscreen",FullScreen ? 1 : 0);
+        Screen.fullScreen = isFullscreen;  
+        PlayerPrefs.SetInt(fullScreenPlayerPrefKey, isFullscreen ? 1 : 0);          
     }
 
     public void SetRes(int resolutionIndex)
     {
-        Resolution res = filteredResolutions[resolutionIndex];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        res = filteredResolutions[resolutionIndex];
+        PlayerPrefs.SetInt(resolutionWidthPlayerPrefKey, res.width);
+        PlayerPrefs.SetInt(resolutionHeightPlayerPrefKey, res.height);
+        PlayerPrefs.SetInt(resolutionRefreshRatePlayerPrefKey, res.refreshRate);
+
+        Screen.SetResolution(
+             res.width,
+             res.height,
+             toggle.isOn
+         );
     }
 
     private void Load()
@@ -123,10 +125,17 @@ public class S_OptionsMenu : MonoBehaviour
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
 
-        Screen.fullScreen = FullScreen;
-        toggle.isOn = FullScreen;
-        SetFullscreen(FullScreen);
+        res.width = PlayerPrefs.GetInt(resolutionWidthPlayerPrefKey, Screen.currentResolution.width);
+        res.height = PlayerPrefs.GetInt(resolutionHeightPlayerPrefKey, Screen.currentResolution.height);
+        res.refreshRate = PlayerPrefs.GetInt(resolutionRefreshRatePlayerPrefKey, Screen.currentResolution.refreshRate);
 
-        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
+        toggle.isOn = PlayerPrefs.GetInt(fullScreenPlayerPrefKey, Screen.fullScreen ? 1 : 0) > 0;
+
+        Screen.SetResolution(
+             res.width,
+             res.height,
+             toggle.isOn
+         );
+
     }
 }
