@@ -27,4 +27,18 @@ public class S_StartOptions : MonoBehaviour
         }
 
     }
+
+    public void EnableCredits()
+    {
+        anim.SetBool("IsCreditsEnabled", true);
+        anim.SetBool("IsOptionEnabled", false);
+        anim.Play("a_MM_Credits");
+    }
+
+    public void DisableCredits()
+    {
+        anim.SetBool("IsCreditsEnabled", false);
+        anim.SetBool("IsOptionEnabled", false);
+        anim.Play("a_MM_CreditsDisable");       
+    }
 }
