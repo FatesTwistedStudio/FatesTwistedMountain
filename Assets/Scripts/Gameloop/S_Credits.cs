@@ -37,5 +37,6 @@ public class S_Credits : MonoBehaviour
     public void sendToNextLevel(string nextLevel)
     {
         SceneManager.LoadScene(nextLevel);
+        FindObjectOfType<S_AudioManager>().StopPlaying("Finish-Line");
     }
 }
