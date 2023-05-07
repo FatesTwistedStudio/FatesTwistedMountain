@@ -3,7 +3,27 @@ guid: cd7e89b4225cd574f93d056aa239ec93
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arms_Material
+    second: {fileID: 2100000, guid: d105237175310da4c8ccaf444434df31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes_Material
+    second: {fileID: 2100000, guid: 967b19998c0fe9b47a3b2c5d4d5cfc03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MonkeyHead_Material
+    second: {fileID: 2100000, guid: 8758f48f44e6a084a981690d700d4eec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SnowBody_Material
+    second: {fileID: 2100000, guid: 59868a401dbfe0e4286b4ee2b2d1bc46, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

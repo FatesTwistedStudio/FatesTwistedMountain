@@ -130,12 +130,5 @@ public class S_OptionsMenu : MonoBehaviour
         res.refreshRate = PlayerPrefs.GetInt(resolutionRefreshRatePlayerPrefKey, Screen.currentResolution.refreshRate);
 
         toggle.isOn = PlayerPrefs.GetInt(fullScreenPlayerPrefKey, Screen.fullScreen ? 1 : 0) > 0;
-
-        Screen.SetResolution(
-             res.width,
-             res.height,
-             toggle.isOn
-         );
-
     }
 }
