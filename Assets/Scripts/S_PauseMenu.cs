@@ -107,7 +107,7 @@ public class S_PauseMenu : MonoBehaviour
         bool crossfinish = FindObjectOfType<S_FinishLine>().crossFinishLine;
         if(!crossfinish)
         {
-            Time.timeScale = Time.unscaledDeltaTime * 0.3f;
+            Time.timeScale = Time.unscaledDeltaTime * 0.1f;
             //AudioListener.pause = true;
             anim.Play("a_PM_Start");
             HUD.SetActive(false);
@@ -167,7 +167,6 @@ public class S_PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         transiton.loadScene("MainMenu");
-        //SceneManager.LoadScene(0);
     }
 
     public void EnableOptions()

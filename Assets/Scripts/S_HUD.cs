@@ -23,10 +23,9 @@ public class S_HUD : MonoBehaviour
     public TextMeshProUGUI ItemText;
 
     public Animator deltaAnim;
-
-
-
     bool foundPlayer = false;
+
+
     private void Start()
     {
        // deltaAnim = GetComponentInChildren<Animator>();
@@ -55,6 +54,9 @@ public class S_HUD : MonoBehaviour
                 HandleItemUI();
             }
         }
+
+      
+
     }
     private void HandleItemUI()
     {
@@ -85,7 +87,6 @@ public class S_HUD : MonoBehaviour
         else
         {
             timeParent.gameObject.SetActive(false);
-
         }
     }
     private void DisplayTime(float ingametime)
@@ -117,12 +118,10 @@ public class S_HUD : MonoBehaviour
         float deltaMag = Mathf.Abs(deltaTime);
         float Dminutes = Mathf.Floor(deltaMag / 60);
         float Dseconds = Mathf.FloorToInt(deltaMag % 60);
+        float Dmilliseconds = (deltaMag % 1) * 1000;
 
         string deltaTimeT = Mathf.Abs(deltaMag).ToString("0:00.000");
-        _deltaText.text = sign + "" + string.Format("{0:00}:{1:00}", Dminutes, Dseconds);
-
-        Debug.Log(Dminutes);
-        Debug.Log(Dseconds);
+        _deltaText.text = sign + "" + string.Format("{0:00}:{1:00}:{2:000}", Dminutes, Dseconds, Dmilliseconds);
     }
 
     private void HandleSpeed()
