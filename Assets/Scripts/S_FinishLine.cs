@@ -19,6 +19,7 @@ public class S_FinishLine : MonoBehaviour
     public bool crossFinishLine;
     GameObject finishUI;   
     public Animator anim;
+    S_PauseMenu pm;
 
     public void winOrLoseTime(GameObject obj)
     {
@@ -103,6 +104,7 @@ public class S_FinishLine : MonoBehaviour
 
         if (other.tag == "Player")
         {
+            pm.canPause = false;
             string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
             FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
             Invoke("PlayMusic", 1);
@@ -144,6 +146,7 @@ public class S_FinishLine : MonoBehaviour
         leaderboard = FindObjectOfType<S_LeaderBoardTracker>().gameObject.GetComponent<Canvas>();
         anim = FindObjectOfType<S_LeaderBoardTracker>().gameObject.GetComponent<Animator>();
         leaderboard.enabled = false;
+        pm = FindObjectOfType<S_PauseMenu>();
     }
     public void sortTheWinners()
     {

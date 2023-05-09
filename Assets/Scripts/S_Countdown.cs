@@ -10,11 +10,12 @@ public class S_Countdown : MonoBehaviour
 
     public bool goBegan = false;
     public S_EventController controller;
-    
+    public S_PauseMenu pauseMenu;    
     public void Start3()
     {
         FindObjectOfType<S_AudioManager>().Play("Race-Countdown");
         text.text = "3";
+        pauseMenu.canPause = false;
     }
      public void Start2()
     {
@@ -31,6 +32,7 @@ public class S_Countdown : MonoBehaviour
         goBegan = true;
         FindObjectOfType<S_AudioManager>().Play("Race-Start");
         text.text = "GO!";
+        pauseMenu.canPause = true;
     }
 
 

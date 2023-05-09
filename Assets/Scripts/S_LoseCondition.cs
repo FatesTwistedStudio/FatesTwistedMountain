@@ -13,6 +13,7 @@ public class S_LoseCondition : MonoBehaviour
     public S_Transition transiton;
     public Animator anim;
     S_HoverboardPhysic physics;
+    public S_PauseMenu pauseMenu; 
     Rigidbody rb;
 
 
@@ -42,6 +43,7 @@ public class S_LoseCondition : MonoBehaviour
             timeisUp = true;
             Debug.Log("You lose");
             anim.Play("a_LC_Lose");
+            pauseMenu.canPause = false;
             playerRef.Lose();
             playerRef.enabled = false;
             physics.enabled = false;

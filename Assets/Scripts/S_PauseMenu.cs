@@ -26,6 +26,7 @@ public class S_PauseMenu : MonoBehaviour
     S_StopMusic endAudio;
     
     private bool isPaused;
+    public bool canPause = false;
 
     [SerializeField]
     private GameObject pauseUI;
@@ -33,6 +34,7 @@ public class S_PauseMenu : MonoBehaviour
     private void Awake()
     {
         playerInput = new FTMInput();
+        canPause = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -90,15 +92,18 @@ public class S_PauseMenu : MonoBehaviour
     public void Pause(InputAction.CallbackContext context)
     {
         isPaused = !isPaused;
+        if (canPause)
+        {
+            if (isPaused)
+            {
+                ActivateMenu();
+            }
+            else
+            {
+                DeactivateMenu();
+            }
+        }
 
-        if (isPaused)
-        {
-            ActivateMenu();
-        }
-        else
-        {
-            DeactivateMenu();
-        }
     }
 
     public void ActivateMenu()
@@ -172,24 +177,41 @@ public class S_PauseMenu : MonoBehaviour
     public void EnableOptions()
     {
         if (anim.GetBool("IsOptionEnabled") == true)
-        {
+        {  
             anim.SetBool("IsOptionEnabled", false);
-            anim.SetBool("IsCreditsEnabled", false);
+            anim.SetBool("IsControlsEnabled", false);
             anim.Play("a_PM_DisableOptions");
         }
         else
         {
-            anim.SetBool("IsCreditsEnabled", false);
+            if (anim.GetBool("IsControlsEnabled") == true)
+            {
+                anim.Play("a_PM_DisableControls");
+            }
+            anim.SetBool("IsControlsEnabled", false);
             anim.SetBool("IsOptionEnabled", true);
             anim.Play("a_PM_ShowOptions");
         }
-
     }
 
-    public void EnableCredits()
+    public void EnableControls()
     {
-        anim.SetBool("IsOptionEnabled", false);
-        anim.SetBool("IsCreditsEnabled", true);
-
+        if (anim.GetBool("IsControlsEnabled") == true)
+        {
+            
+            anim.SetBool("IsOptionEnabled", false);
+            anim.SetBool("IsControlsEnabled", false);
+            anim.Play("a_PM_DisableControls");
+        }
+        else
+        {
+            if (anim.GetBool("IsOptionEnabled") == true)
+            {
+                anim.Play("a_PM_DisableControls");
+            }
+            anim.SetBool("IsOptionEnabled", false);
+            anim.SetBool("IsControlsEnabled", true);
+            anim.Play("a_PM_ShowControls");
+        }
     }
 }
