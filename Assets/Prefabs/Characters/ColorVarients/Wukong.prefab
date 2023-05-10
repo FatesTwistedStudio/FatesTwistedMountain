@@ -1139,14 +1139,19 @@ PrefabInstance:
     - target: {fileID: 4266138590481954230, guid: 631cb13cff9b8d847808f2349a83a9ae,
         type: 3}
       propertyPath: _name
-      value: Snowman
+      value: Snow Wukong
       objectReference: {fileID: 0}
     - target: {fileID: 4266138590481954230, guid: 631cb13cff9b8d847808f2349a83a9ae,
         type: 3}
       propertyPath: image
       value: 
-      objectReference: {fileID: 21300000, guid: c03b3794b4963a540bd2d4f0243fdded,
+      objectReference: {fileID: 21300000, guid: 2ac216d89e28b064d8df8e86f3954359,
         type: 3}
+    - target: {fileID: 4266138590481954230, guid: 631cb13cff9b8d847808f2349a83a9ae,
+        type: 3}
+      propertyPath: levelPlacement.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4267517765663808439, guid: 631cb13cff9b8d847808f2349a83a9ae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
