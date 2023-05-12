@@ -17,6 +17,7 @@ public class S_LSCharacters : MonoBehaviour
     public TextMeshProUGUI imageText;
 
 
+
     void Awake()
     {
         anim.SetBool("Entry", false);
@@ -201,5 +202,36 @@ public class S_LSCharacters : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         TurLS.SetActive(true);
+    }
+    public void RandomChr()
+    {
+        int randomNum = Random.Range(0,4);
+        Debug.Log(randomNum);
+
+        switch (randomNum)
+        {
+            case 0:
+                EnableTony();
+                controller.SetCharacter(1);
+                break;
+            case 1:
+                EnableBear();
+                controller.SetCharacter(7);
+                break;
+            case 2:
+                EnablePD();
+                controller.SetCharacter(8);
+                break;
+            case 3:
+                EnableWC();
+                controller.SetCharacter(9);
+                break;
+            /*
+            case 4:
+                EnableTurtle();
+                controller.SetCharacter();
+                break;
+            */
+        }
     }
 }
