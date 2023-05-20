@@ -16,6 +16,7 @@ public class S_SceneController : MonoBehaviour
     public void spawnTheManager()
     {
         Instantiate(GameManager);
+        Debug.Log("gamemanager spawn");
     }
     public void setControllers()
     {
