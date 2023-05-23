@@ -205,8 +205,8 @@ public class S_LSCharacters : MonoBehaviour
     }
     public void RandomChr()
     {
-        int randomNum = Random.Range(0,4);
-        Debug.Log(randomNum);
+        int randomNum = Random.Range(0,5);
+        //Debug.Log(randomNum);
 
         switch (randomNum)
         {
@@ -226,12 +226,12 @@ public class S_LSCharacters : MonoBehaviour
                 EnableWC();
                 controller.SetCharacter(9);
                 break;
-            /*
+            
             case 4:
                 EnableTurtle();
-                controller.SetCharacter();
+                controller.SetCharacter(10);
                 break;
-            */
+            
         }
     }
 }
