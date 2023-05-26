@@ -55,4 +55,11 @@ public class S_Transition : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    public void sendToNextLevel(string nextLevel)
+    {
+        SceneManager.LoadScene(nextLevel);
+        FindObjectOfType<S_AudioManager>().StopPlaying("Finish-Line");
+    }
+
+
 }

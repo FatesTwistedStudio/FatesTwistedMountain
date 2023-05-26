@@ -46,6 +46,7 @@ public class S_FinishLine : MonoBehaviour
             }
         }
     }
+
     //public void winOrLosePoint(GameObject obj)
     //{
     //    if (obj.GetComponent<S_CharInfoHolder>() != null)
@@ -93,6 +94,7 @@ public class S_FinishLine : MonoBehaviour
     //        }
     //    }
     //}
+
     private void OnTriggerEnter(Collider other)
     {
         finishUI = GameObject.FindWithTag("FinishUI");
@@ -130,16 +132,19 @@ public class S_FinishLine : MonoBehaviour
 
 
     }
+
     public void PlayMusic()
     {
         FindObjectOfType<S_AudioManager>().FadeIn("Finish-Line");
 
     }
+
     public void pullUpLeaderBoard()
     {
         leaderboard.enabled = true;
         anim.Play("a_FinishLineStart");
     }
+
     void Start()
     {
         LeaderBoardTracker = FindObjectOfType<S_LeaderBoardTracker>();
@@ -148,6 +153,7 @@ public class S_FinishLine : MonoBehaviour
         leaderboard.enabled = false;
         pm = FindObjectOfType<S_PauseMenu>();
     }
+
     public void sortTheWinners()
     {
         if (firstPlace != null)
@@ -209,11 +215,15 @@ public class S_FinishLine : MonoBehaviour
         }
         */
     }
+
+
     public void sendToNextLevel(string nextLevel)
     {
+        Debug.Log("send credit music");
         SceneManager.LoadScene(nextLevel);
         FindObjectOfType<S_AudioManager>().FadeOut("Finish-Line");
     }
+
     private void Update()
     {
         eventController = GameObject.FindWithTag("EventController");

@@ -36,7 +36,7 @@ public class S_LevelSelect : MonoBehaviour
 
     public void OnEnter()
     {
-        Debug.Log("Hover1");
+        Debug.Log("Select1");
     }
 
     public void OnExit()

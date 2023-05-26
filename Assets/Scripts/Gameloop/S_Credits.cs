@@ -34,9 +34,13 @@ public class S_Credits : MonoBehaviour
         }
     }
 
+
     public void sendToNextLevel(string nextLevel)
     {
+        Debug.Log("recieves credit music");
         SceneManager.LoadScene(nextLevel);
         FindObjectOfType<S_AudioManager>().StopPlaying("Finish-Line");
     }
+
+ 
 }
