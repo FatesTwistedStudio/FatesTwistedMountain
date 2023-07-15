@@ -15,7 +15,8 @@ public class S_GameloopController : MonoBehaviour
     public Camera snowCam;
     public S_ItemDatabase S_ItemDatabase;
     public static S_GameloopController instance;
-
+    //things to save
+    public int[] highscores;
     public void Awake()
     {
         if (instance == null)
@@ -39,6 +40,7 @@ public class S_GameloopController : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player");
         }
+        LoadPlayer();
     }
     void Update()
     {
@@ -69,5 +71,21 @@ public class S_GameloopController : MonoBehaviour
         }
         GameObject spawner = GameObject.FindWithTag("Spawner");
         inGameTime += 1 * Time.deltaTime;
+    }
+    private void OnDestroy()
+    {
+        SavePlayer();
+    }
+    //Save and Load-------------------------------------------------------------
+    //Credit: https://www.youtube.com/watch?v=XOjd_qU2Ido&t=683s
+    public void SavePlayer()
+    {
+        S_SaveSystem.SavePlayer(this);
+    }
+    public void LoadPlayer()
+    {
+        S_PlayerData data = S_SaveSystem.LoadPlayer();
+
+        highscores = data.highScores;
     }
 }
