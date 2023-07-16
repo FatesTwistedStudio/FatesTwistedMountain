@@ -17,6 +17,8 @@ public class S_GameloopController : MonoBehaviour
     public static S_GameloopController instance;
     //things to save
     public int[] highscores;
+
+    public string SavePath;
     public void Awake()
     {
         if (instance == null)
