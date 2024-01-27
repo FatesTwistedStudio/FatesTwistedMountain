@@ -21,19 +21,14 @@ public class S_GameloopController : MonoBehaviour
     public string SavePath;
     public void Awake()
     {
+        if (SavePath != null)
+        {
+            LoadPlayer();
+        }
         if (instance == null)
         {
             instance = this;
         }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-    void Start()
-    {
         if (sceneManager == null)
         {
             sceneManager = GameObject.FindWithTag("SceneController");
@@ -42,8 +37,10 @@ public class S_GameloopController : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player");
         }
-        LoadPlayer();
+
+        DontDestroyOnLoad(gameObject);
     }
+
     void Update()
     {
         if (follow != null)
@@ -67,7 +64,7 @@ public class S_GameloopController : MonoBehaviour
                 }
                 else
                 {
-//                    Debug.Log("No follow point on Game Controller");
+                    //                    Debug.Log("No follow point on Game Controller");
                 }
             }
         }
@@ -76,6 +73,7 @@ public class S_GameloopController : MonoBehaviour
     }
     private void OnDestroy()
     {
+        Debug.Log("Death to " + gameObject.name);
         SavePlayer();
     }
     //Save and Load-------------------------------------------------------------
@@ -88,6 +86,11 @@ public class S_GameloopController : MonoBehaviour
     {
         S_PlayerData data = S_SaveSystem.LoadPlayer();
 
-        highscores = data.highScores;
+        if (data != null)
+        {
+            highscores = data.highScores;
+
+        }
+
     }
 }

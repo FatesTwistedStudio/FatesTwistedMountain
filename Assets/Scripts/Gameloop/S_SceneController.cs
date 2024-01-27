@@ -25,7 +25,7 @@ public class S_SceneController : MonoBehaviour
             spawnTheManager();
 
         }
-        if (S_GameloopController == null)
+        else
         {
             S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
         }
@@ -35,11 +35,6 @@ public class S_SceneController : MonoBehaviour
         }
     }
 
-    private void Start() 
-    {
-
-    }
-    // Update is called once per frame
     void Update()
     {
 
@@ -76,13 +71,13 @@ public class S_SceneController : MonoBehaviour
         TransitionScript.TurnOffTransition();
         StartCoroutine(TransitionDelay(1.5f, sceneName));
     }
-    IEnumerator TransitionDelay(float delay,string name)
+    IEnumerator TransitionDelay(float delay, string name)
     {
         yield return new WaitForSeconds(delay);
         loadlevel(name);
     }
     public void loadlevel(string name)
     {
-        SceneManager.LoadScene(name);
+        S_GameloopController.gameObject.GetComponentInChildren<ASyncLoader>().LoadLevelAsyncWithName(name);
     }
 }

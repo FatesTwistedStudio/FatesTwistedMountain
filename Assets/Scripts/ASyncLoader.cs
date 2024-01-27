@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using Unity.Mathematics;
 
 public class ASyncLoader : MonoBehaviour
 {
@@ -25,9 +27,34 @@ public class ASyncLoader : MonoBehaviour
     public string[] loadingDetails;
     public TextMeshProUGUI LoadScreenPercentage;
 
+
+    private void OnLevelWasLoaded(int level)
+    {
+        loadScreen.SetActive(false);
+    }
     public void LoadLevelAsync(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
+    }
+    public void LoadLevelAsyncWithName(string name)
+    {
+        if (name != "MainMenu")
+        {
+            Debug.Log(name);
+            int index = SceneManager.GetSceneByName(name).buildIndex;
+            Debug.Log(index);
+            if (index <= -1)
+            {
+                index = -index;
+
+            }
+
+            LoadLevelAsync(index);
+        }
+        else
+        {
+            LoadLevelAsync(0);
+        }
     }
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
@@ -35,11 +62,13 @@ public class ASyncLoader : MonoBehaviour
         loadScreen.SetActive(true);
         while (!operation.isDone)
         {
+            loadScreen.SetActive(true);
             float progress = Mathf.Clamp01(operation.progress / .9f);
             slider.value = progress;
             setLoadingScreenDetails(sceneIndex, progress);
             yield return null;
         }
+        OnLevelWasLoaded(sceneIndex);
     }
     public void setLoadingScreenDetails(int sceneIndex, float progress)
     {
@@ -50,8 +79,8 @@ public class ASyncLoader : MonoBehaviour
         LoadScreenHeaderText.SetText(headers[sceneIndex]);
         LoadScreenLevelDetailText.SetText("Level:" + levelDetails[sceneIndex]);
 
-        int r = Random.Range(0, levelDetails.Length);
-        LoadScreenLoadingDetailsText.SetText(loadingDetails[r]);
+        // int r = Random.Range(0, levelDetails.Length);
+        LoadScreenLoadingDetailsText.SetText(loadingDetails[0]);
 
     }
 }

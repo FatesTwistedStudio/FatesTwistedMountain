@@ -39,20 +39,20 @@ public class S_Transition : MonoBehaviour
     {
         revealTransition = false;
     }
-
     public void loadScene(string sceneName)
     {
         TurnOffTransition();
         StartCoroutine(TransitionDelay(1.5f, sceneName));
     }
-    IEnumerator TransitionDelay(float delay,string name)
+    IEnumerator TransitionDelay(float delay, string name)
     {
         yield return new WaitForSeconds(delay);
         loadlevel(name);
     }
     public void loadlevel(string name)
     {
-        SceneManager.LoadScene(name);
+        GameObject.FindWithTag("AsyncLoader").GetComponent<ASyncLoader>().LoadLevelAsyncWithName(name);
+        //SceneManager.LoadScene(name);
     }
 
     public void sendToNextLevel(string nextLevel)

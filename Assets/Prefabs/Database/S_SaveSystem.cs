@@ -35,13 +35,22 @@ public static class S_SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found in " + path);
+            Debug.LogWarning("Save file not found in " + path);
             return null;
         }
     }
 
     public static void debugPath(string pathName)
     {
-        GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().SavePath = pathName;
+        GameObject controller = GameObject.FindWithTag("GameController");
+        if (controller != null)
+        {
+            controller.GetComponent<S_GameloopController>().SavePath = pathName;
+
+        }
+        else
+        {
+            controller = GameObject.FindWithTag("GameController");
+        }
     }
 }
