@@ -68,7 +68,7 @@ public class S_SceneController : MonoBehaviour
     {
         TransitionScript = FindObjectOfType<S_Transition>();
         TransitionScript.TurnOffTransition();
-        StartCoroutine(TransitionDelay(1.5f, sceneName));
+        StartCoroutine(TransitionDelay(.2f, sceneName));
     }
     IEnumerator TransitionDelay(float delay, string name)
     {

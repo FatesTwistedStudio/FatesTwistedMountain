@@ -42,7 +42,7 @@ public class S_Transition : MonoBehaviour
     public void loadScene(int buildNum)
     {
         TurnOffTransition();
-        StartCoroutine(TransitionDelay(1.5f, buildNum));
+        StartCoroutine(TransitionDelay(.2f, buildNum));
     }
     IEnumerator TransitionDelay(float delay, int buildNum)
     {
