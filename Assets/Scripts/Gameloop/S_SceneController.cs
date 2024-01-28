@@ -15,35 +15,33 @@ public class S_SceneController : MonoBehaviour
     public GameObject GameManager;
     public void spawnTheManager()
     {
-        Instantiate(GameManager);
-        Debug.Log("gamemanager spawn");
+        GameObject GM = Instantiate(GameManager);
+       // Debug.Log("gamemanager spawn");
+        S_GameloopController = GM.GetComponent<S_GameloopController>();
     }
-    public void setControllers()
-    {
-        if (GameObject.FindWithTag("GameController") == null)
-        {
-            spawnTheManager();
-
-        }
-        else
-        {
-            S_GameloopController = GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>();
-        }
-        if (pauseMenu != null)
-        {
-            pauseMenuControl();
-        }
-    }
-
     void Update()
     {
-
         getSceneName();
-        setControllers();
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (S_GameloopController == null)
         {
-            isCanvasActive = !isCanvasActive;
+            spawnTheManager();
         }
+        if (GameObject.FindWithTag("PauseMenu") == true)
+        {
+            if (pauseMenu != null)
+            {
+                pauseMenuControl();
+                if (Input.GetKeyUp(KeyCode.Escape))
+                {
+                    isCanvasActive = !isCanvasActive;
+                }
+            }
+            else
+            {
+                pauseMenu = GameObject.FindWithTag("PauseMenu").GetComponent<Canvas>();
+            }
+        }
+
     }
     public void pauseMenuControl()
     {
@@ -60,6 +58,7 @@ public class S_SceneController : MonoBehaviour
     public void getSceneName()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
+      //  debugBuildIndex();
     }
     public void quitGame()
     {
@@ -79,5 +78,13 @@ public class S_SceneController : MonoBehaviour
     public void loadlevel(string name)
     {
         S_GameloopController.gameObject.GetComponentInChildren<ASyncLoader>().LoadLevelAsyncWithName(name);
+    }
+    public void debugBuildIndex()
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            Debug.Log("SCENE: "+SceneManager.GetSceneByBuildIndex(i).path + " ; " + i+" ; "+ SceneManager.sceneCountInBuildSettings);
+
+        }
     }
 }

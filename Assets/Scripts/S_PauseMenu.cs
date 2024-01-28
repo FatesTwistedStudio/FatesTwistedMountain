@@ -171,7 +171,8 @@ public class S_PauseMenu : MonoBehaviour
 
         Time.timeScale = 1;
         AudioListener.pause = false;
-        transiton.loadScene("MainMenu");
+        //load main menu
+        transiton.loadScene(0);
     }
 
     public void EnableOptions()

@@ -39,19 +39,19 @@ public class S_Transition : MonoBehaviour
     {
         revealTransition = false;
     }
-    public void loadScene(string sceneName)
+    public void loadScene(int buildNum)
     {
         TurnOffTransition();
-        StartCoroutine(TransitionDelay(1.5f, sceneName));
+        StartCoroutine(TransitionDelay(1.5f, buildNum));
     }
-    IEnumerator TransitionDelay(float delay, string name)
+    IEnumerator TransitionDelay(float delay, int buildNum)
     {
         yield return new WaitForSeconds(delay);
-        loadlevel(name);
+        loadlevel(buildNum);
     }
-    public void loadlevel(string name)
+    public void loadlevel(int buildNum)
     {
-        GameObject.FindWithTag("AsyncLoader").GetComponent<ASyncLoader>().LoadLevelAsyncWithName(name);
+        GameObject.FindWithTag("AsyncLoader").GetComponent<ASyncLoader>().LoadLevelAsync(buildNum);
         //SceneManager.LoadScene(name);
     }
 

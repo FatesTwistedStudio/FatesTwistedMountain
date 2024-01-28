@@ -20,6 +20,7 @@ public class S_LevelSelect : MonoBehaviour
     public Sprite[] miniMapSprites;
     public string Level1,Level2,Level3;
     string currentLevel;
+    public int buildIndex;
     public S_Transition transition;
     public Animator startlevelAnim;
     public Animator stSlAnim;
@@ -58,6 +59,7 @@ public class S_LevelSelect : MonoBehaviour
     public void SetLevel1()
     {
         currentLevel = Level1;
+        buildIndex = 2;
         startlevelAnim.SetBool("Entry", true);
         stSlAnim.SetBool("Start", true);
         map1.SetActive(true);
@@ -67,6 +69,7 @@ public class S_LevelSelect : MonoBehaviour
     public void SetLevel2()
     {
         currentLevel = Level2;
+        buildIndex = 3; 
         startlevelAnim.SetBool("Entry", true);
         stSlAnim.SetBool("Start", true);
 
@@ -76,6 +79,7 @@ public class S_LevelSelect : MonoBehaviour
     public void SetLevel3()
     {
         currentLevel = Level3;
+        buildIndex = 4;
         startlevelAnim.SetBool("Entry", true);
         stSlAnim.SetBool("Start", true);
 
@@ -110,7 +114,7 @@ public class S_LevelSelect : MonoBehaviour
 
     public void loadScene()
     {
-        transition.loadScene(currentLevel);
+        transition.loadScene(buildIndex);
         //SceneManager.LoadScene(currentLevel);
     }
 }

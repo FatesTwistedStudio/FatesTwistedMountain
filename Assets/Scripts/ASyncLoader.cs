@@ -27,11 +27,6 @@ public class ASyncLoader : MonoBehaviour
     public string[] loadingDetails;
     public TextMeshProUGUI LoadScreenPercentage;
 
-
-    private void OnLevelWasLoaded(int level)
-    {
-        loadScreen.SetActive(false);
-    }
     public void LoadLevelAsync(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
@@ -45,11 +40,13 @@ public class ASyncLoader : MonoBehaviour
             Debug.Log(index);
             if (index <= -1)
             {
-                index = -index;
-
+                Debug.LogError("The Build Index for " + name + " has returned " + index);
             }
+            else
+            {
 
-            LoadLevelAsync(index);
+                LoadLevelAsync(index);
+            }
         }
         else
         {
@@ -58,17 +55,23 @@ public class ASyncLoader : MonoBehaviour
     }
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
+        //create operation for loading async
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        //turn on the canvas
         loadScreen.SetActive(true);
+        //set canvas while loading
         while (!operation.isDone)
         {
-            loadScreen.SetActive(true);
             float progress = Mathf.Clamp01(operation.progress / .9f);
             slider.value = progress;
             setLoadingScreenDetails(sceneIndex, progress);
             yield return null;
         }
-        OnLevelWasLoaded(sceneIndex);
+        //turn off loading canvas when done
+        if (operation.isDone)
+        {
+            loadScreen.SetActive(false);
+        }
     }
     public void setLoadingScreenDetails(int sceneIndex, float progress)
     {

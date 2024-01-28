@@ -61,6 +61,6 @@ public class S_LoseCondition : MonoBehaviour
 
         Time.timeScale = 1;
         AudioListener.pause = false;
-        transiton.loadScene("MainMenu");
+        transiton.loadScene(0);
     }
 }
