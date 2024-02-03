@@ -18,7 +18,7 @@ public class S_LevelSelect : MonoBehaviour
     [SerializeField]
     public Sprite[] levelSprites;
     public Sprite[] miniMapSprites;
-    public string Level1,Level2,Level3;
+    public string Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8;
     string currentLevel;
     public int buildIndex;
     public S_Transition transition;
@@ -29,11 +29,12 @@ public class S_LevelSelect : MonoBehaviour
     {
 
     }
-    public void OnEnable() {
+    public void OnEnable()
+    {
         imageText.text = "";
-        
+
     }
-    
+
 
     public void OnEnter()
     {
@@ -69,7 +70,7 @@ public class S_LevelSelect : MonoBehaviour
     public void SetLevel2()
     {
         currentLevel = Level2;
-        buildIndex = 3; 
+        buildIndex = 3;
         startlevelAnim.SetBool("Entry", true);
         stSlAnim.SetBool("Start", true);
 
@@ -84,7 +85,13 @@ public class S_LevelSelect : MonoBehaviour
         stSlAnim.SetBool("Start", true);
 
     }
-
+    public void SetTestLevel(int Index)
+    {
+        currentLevel = Level3;
+        buildIndex = Index;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+    }
     public void OnEnterLevel()
     {
         Debug.Log("Hover2");
