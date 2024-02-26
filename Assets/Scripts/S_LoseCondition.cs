@@ -1,46 +1,49 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class S_LoseCondition : MonoBehaviour
 {
-    S_HUD hud;
-    float time;
-    bool timeWarning = false;
-    bool timeisUp = false;
-    public S_PlayerInput playerRef;
-    public S_StopMusic endAudio;
-    public S_Transition transiton;
-    public Animator anim;
-    S_HoverboardPhysic physics;
-    public S_PauseMenu pauseMenu; 
-    Rigidbody rb;
+    [SerializeField] private S_HUD hud;
+    [SerializeField] private S_StopMusic endAudio;
+    [SerializeField] private S_Transition transiton;
+    [SerializeField] private Animator anim;
+    [SerializeField] private S_PauseMenu pauseMenu;
+    [SerializeField] private S_PlayerInput playerRef;
+    [SerializeField] private S_HoverboardPhysic physics;
+    [SerializeField] private Rigidbody rb;
 
+    private float timeWarningThreshold = 150f;
+    private float timeOutThreshold = 300f;
+    private bool isTimeWarningShown;
+    private bool isTimedOut;
+    private bool hasFoundPlayerRef;
+    private bool hasFoundPhysics;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        hud = FindObjectOfType<S_HUD>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        time = hud.ingameTime;
-        playerRef = FindObjectOfType<S_PlayerInput>();
-        physics = FindObjectOfType<S_HoverboardPhysic>();
-        rb = physics.gameObject.GetComponent<Rigidbody>();
-
-        if (time > 150 && !timeWarning)
+        //Obtain references
+        if (!hasFoundPlayerRef)
         {
-            timeWarning = true;
+            playerRef = FindObjectOfType<S_PlayerInput>();
+            hasFoundPlayerRef = true;
+        }
+        if (!hasFoundPhysics)
+        {
+            physics = FindObjectOfType<S_HoverboardPhysic>();
+            hasFoundPhysics = true;
+            rb = physics.GetComponent<Rigidbody>();
+        }
+
+        if (hud.ingameTime > timeWarningThreshold && !isTimeWarningShown)
+        {
+            isTimeWarningShown = true;
             Debug.Log("Warning");
             anim.Play("a_LC_Warning");
         }
 
-        if (time > 300 && !timeisUp && timeWarning)
+        if (hud.ingameTime > timeOutThreshold && !isTimedOut && isTimeWarningShown)
         {
-            timeisUp = true;
+            isTimedOut = true;
             Debug.Log("You lose");
             anim.Play("a_LC_Lose");
             pauseMenu.canPause = false;
@@ -48,17 +51,14 @@ public class S_LoseCondition : MonoBehaviour
             playerRef.enabled = false;
             physics.enabled = false;
             hud.gameObject.SetActive(false);
-            physics.baseVelocity = 0;
+            physics.baseVelocity = 0f;
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
     public void Quit()
     {
-        endAudio = FindObjectOfType<S_StopMusic>();
-        endAudio.StopAudio();
-        endAudio.StopMusic();
-
+        endAudio?.StopAudio(); // Use null-conditional operator for potential null reference
         Time.timeScale = 1;
         AudioListener.pause = false;
         transiton.loadScene(0);

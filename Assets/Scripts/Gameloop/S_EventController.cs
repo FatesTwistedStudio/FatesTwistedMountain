@@ -46,6 +46,7 @@ public class S_EventController : MonoBehaviour
     public float[] bronzeLevelPoints;
 
     public bool startEvent;
+    bool foundPlayer;
 
     private void Awake()
     {
@@ -60,14 +61,6 @@ public class S_EventController : MonoBehaviour
         {
             startingLine.SetActive(true);
         }
-        if (startText != null)
-        {
-           // startText.SetText("");
-
-        }
-        if (countdown != null)
-        {
-        }
     }
     private void OnEnable()
     {
@@ -78,10 +71,14 @@ public class S_EventController : MonoBehaviour
     }
     void Update()
     {
-        countdown = FindObjectOfType<S_Countdown>();
-        charSpawned = GameObject.FindGameObjectsWithTag("Character");
-        player = GameObject.FindWithTag("Player");
-        _BackgroundMusic = FindObjectOfType<S_BackgroundMusic>();
+        if (!foundPlayer)
+        {
+            countdown = FindObjectOfType<S_Countdown>();
+            player = GameObject.FindWithTag("Player");
+            _BackgroundMusic = FindObjectOfType<S_BackgroundMusic>();
+            foundPlayer = true;
+        }
+
         if (player.GetComponent<S_Recovery>() == true)
         {
             player.GetComponent<S_Recovery>().hasStarted = isStarted;
@@ -92,16 +89,7 @@ public class S_EventController : MonoBehaviour
         {
             timer += 1 * Time.deltaTime;
         }
-
-        if (isStarted == true)
-        {
-            //Invoke("playEvent", 4);
-           // playEvent();
-        }
-        if (currentTime <= 1)
-        {
-            //startText.SetText("Go!");
-        }
+        /*
         if (player.GetComponent<S_CharInfoHolder>().itemHeld != null)
         {
             playerHasItem = true;
@@ -118,6 +106,7 @@ public class S_EventController : MonoBehaviour
         {
             playerHasItem = false;
         }
+        */
     }
     public void setTimedTrial(GameObject character)
     {
@@ -140,12 +129,6 @@ public class S_EventController : MonoBehaviour
                 //startText.text = currentTime.ToString("0");
             }
         }
-    }
-    public void playAudio()
-    {
-        //bgs.loop = true;
-        //bgs.PlayOneShot(bgm[SceneManager.GetActiveScene().buildIndex]);
-
     }
     public void useItem(GameObject character)
     {

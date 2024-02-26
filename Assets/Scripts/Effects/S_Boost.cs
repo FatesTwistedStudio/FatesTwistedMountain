@@ -22,10 +22,10 @@ public class S_Boost : MonoBehaviour
     
      private void Update()
     {
-  
-         ssUI = FindObjectOfType<S_ScreenShake>();
-
-        
+        if (!ssUI)
+        {
+            ssUI = FindObjectOfType<S_ScreenShake>();   
+        }        
     }
 
     private void OnTriggerEnter(Collider other)
