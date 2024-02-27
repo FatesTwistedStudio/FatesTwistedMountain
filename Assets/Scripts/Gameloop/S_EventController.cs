@@ -133,7 +133,7 @@ public class S_EventController : MonoBehaviour
     public void useItem(GameObject character)
     {
         GameObject spawnItem = Instantiate(character.GetComponent<S_CharInfoHolder>().itemHeld, character.GetComponent<S_CharInfoHolder>().holdingPosition, transform.rotation) as GameObject;
-        spawnItem.GetComponent<S_ItemDefine>().characterUsedItem = character;
+        //  spawnItem.GetComponent<S_ItemDefine>().characterUsedItem = character;
         character.GetComponent<S_CharInfoHolder>().itemHeld = null;
 
     }

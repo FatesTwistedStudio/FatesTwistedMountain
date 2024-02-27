@@ -13,7 +13,6 @@ public class S_GameloopController : MonoBehaviour
     public GameObject sceneManager;
     public GameObject eventManager;
     public Camera snowCam;
-    public S_ItemDatabase S_ItemDatabase;
     public static S_GameloopController instance;
     //things to save
     public int[] highscores;

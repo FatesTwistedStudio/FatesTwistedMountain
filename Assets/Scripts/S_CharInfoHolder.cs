@@ -26,7 +26,7 @@ public class S_CharInfoHolder : MonoBehaviour
         gameObject.name = _name;
         if (itemHeld != null)
         {
-            itemSprite = itemHeld.GetComponent<S_ItemDefine>().itemImage;
+            //itemSprite = itemHeld.GetComponent<S_ItemDefine>().itemImage;
 
         }
         holdingPosition = transform.position + holdingUp;
