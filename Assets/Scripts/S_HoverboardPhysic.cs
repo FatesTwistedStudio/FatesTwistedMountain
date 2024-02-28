@@ -113,7 +113,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             isPlayer = false;
         }
-      
         rb = GetComponent<Rigidbody>();
         
         disableInput = false;
@@ -203,7 +202,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Jump()
     {
-       
         if (!cantJump)
         {
             cantJump = true;
@@ -218,7 +216,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         cantJump = false;
     }
-
 
     private void HandleDrag()
     {
