@@ -15,12 +15,12 @@ public class S_HandleCinemachine : MonoBehaviour
     public float OffsetRange;
     [Range(0, 1)]
     public float fovRange;
-      private Vector2 _Movement;
-      private Vector2 _Rotation;
-      S_PlayerInput _PlayerInputScript;
+    private Vector2 _Movement;
+    private Vector2 _Rotation;
+    S_PlayerInput _PlayerInputScript;
     private float currentDutchAngle;
 
-      float rotationSpeed = 10;
+    float rotationSpeed = 10;
 
 
 
@@ -42,9 +42,9 @@ public class S_HandleCinemachine : MonoBehaviour
         _Movement = _PlayerInputScript._mvn;
         _Rotation = _PlayerInputScript._rotmvn;
         currentDutchAngle = Mathf.Clamp(currentDutchAngle, -20, 20);
-        
-        if (_Rotation.x < 0 || _Rotation.x > 0) 
-        { 
+
+        if (_Rotation.x < 0 || _Rotation.x > 0)
+        {
             currentDutchAngle += _Rotation.x * rotationSpeed * Time.deltaTime;
 
         }
