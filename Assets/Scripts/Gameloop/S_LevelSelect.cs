@@ -29,12 +29,15 @@ public class S_LevelSelect : MonoBehaviour
     {
 
     }
+    public void loadScene()
+    {
+        transition.loadScene(buildIndex);
+    }
+
     public void OnEnable()
     {
         imageText.text = "";
-
     }
-
 
     public void OnEnter()
     {
@@ -85,6 +88,30 @@ public class S_LevelSelect : MonoBehaviour
         stSlAnim.SetBool("Start", true);
 
     }
+    public void SetLevel4()
+    {
+        currentLevel = Level4;
+        buildIndex = 5;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+    }
+    public void SetLevel5()
+    {
+        currentLevel = Level5;
+        buildIndex = 6;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+    }
+    public void SetLevel6()
+    {
+        currentLevel = Level6;
+        buildIndex = 7;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+    }
     public void SetTestLevel(int Index)
     {
         currentLevel = Level3;
@@ -99,29 +126,5 @@ public class S_LevelSelect : MonoBehaviour
         map1.SetActive(false);
     }
 
-    /*
-    public void setImage(int imageNum)
-    {
-        if (imageNum > 0)
-        {
-            if (mainImage.GetComponent<Image>() != null)
-            {
-                mainImage.GetComponent<Image>().sprite = levelSprites[imageNum];
-            }
-            if (map1.GetComponent<Image>() != null)
-            {
-                map1.GetComponent<Image>().sprite = miniMapSprites[imageNum];
 
-            }
-
-        }
-
-    }
-    */
-
-    public void loadScene()
-    {
-        transition.loadScene(buildIndex);
-        //SceneManager.LoadScene(currentLevel);
-    }
 }
