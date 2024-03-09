@@ -10,8 +10,8 @@ public class S_ChickenSwarm : MonoBehaviour
 
     private void Awake()
     {
-        toonChickens = GetComponentsInChildren<Animator>();
-        toonChickens[0].GetComponent<AnimatorController>()
+        //toonChickens = GetComponentsInChildren<Animator>();
+        //toonChickens[0].GetComponent<AnimatorController>()
     }
     // Start is called before the first frame update
     void Start()
