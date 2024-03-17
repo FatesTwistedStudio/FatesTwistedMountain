@@ -85,7 +85,7 @@ public class S_EventController : MonoBehaviour
 
         }
 
-        if (player.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeAll)
+        if (player.GetComponent<S_HoverboardPhysic>().canMove = true)
         {
             timer += 1 * Time.deltaTime;
         }
@@ -117,7 +117,6 @@ public class S_EventController : MonoBehaviour
     public void playEvent()
     {
         startEvent = true;
-        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         startingLine.SetActive(false);
 
         //bgs.PlayOneShot(start);

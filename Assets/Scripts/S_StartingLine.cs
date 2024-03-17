@@ -19,11 +19,11 @@ public class S_StartingLine : MonoBehaviour
     {
         if (other.tag=="Player")
         {
-            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.GetComponent<S_HoverboardPhysic>().canMove = false;
         }
         if(other.tag=="Character")
         {
-            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.GetComponent<S_HoverboardPhysic>().canMove = false;
 
         }
 
@@ -31,6 +31,6 @@ public class S_StartingLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -62,6 +62,15 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drift"",
+                    ""type"": ""Value"",
+                    ""id"": ""06833645-b04f-4c0c-bbdc-5ba380b07e36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -416,6 +425,17 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
                     ""action"": ""AirRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba9f45cb-f5f7-4759-ac03-3d392b19e025"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Drift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1138,6 +1158,7 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_AirRotation = m_Player.FindAction("AirRotation", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Drift = m_Player.FindAction("Drift", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1221,6 +1242,7 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_AirRotation;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Drift;
     public struct PlayerActions
     {
         private @FTMInput m_Wrapper;
@@ -1229,6 +1251,7 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @AirRotation => m_Wrapper.m_Player_AirRotation;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Drift => m_Wrapper.m_Player_Drift;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1250,6 +1273,9 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Drift.started += instance.OnDrift;
+            @Drift.performed += instance.OnDrift;
+            @Drift.canceled += instance.OnDrift;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1266,6 +1292,9 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Drift.started -= instance.OnDrift;
+            @Drift.performed -= instance.OnDrift;
+            @Drift.canceled -= instance.OnDrift;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1544,6 +1573,7 @@ public partial class @FTMInput: IInputActionCollection2, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnAirRotation(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDrift(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

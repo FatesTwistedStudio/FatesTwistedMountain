@@ -11,7 +11,7 @@ public class S_HUD : MonoBehaviour
     public S_EventController manager;
     public float ingameTime;
     public float deltaTime;
-    private Rigidbody playerRB;
+    private S_HoverboardPhysic playerRB;
 
     public TMP_Text _timeText;
     public TMP_Text _deltaText;
@@ -55,7 +55,7 @@ public class S_HUD : MonoBehaviour
             }
         }
 
-      
+
 
     }
     private void HandleItemUI()
@@ -130,7 +130,7 @@ public class S_HUD : MonoBehaviour
         {
             if (!foundPlayer)
             {
-                playerRB = FindObjectOfType<S_PlayerInput>().GetComponent<Rigidbody>();
+                playerRB = FindObjectOfType<S_PlayerInput>().GetComponent<S_HoverboardPhysic>();
                 foundPlayer = true;
             }
 

@@ -7,9 +7,10 @@ using UnityEngine.Windows;
 
 public class S_HandleCinemachine : MonoBehaviour
 {
-    private CinemachineVirtualCamera vcam;
-    private CinemachineCameraOffset vcamOffset;
-    private S_HoverboardPhysic player;
+    [SerializeField] private CinemachineVirtualCamera vcam;
+    [SerializeField] private CinemachineCameraOffset vcamOffset;
+    [SerializeField] private S_HoverboardPhysic player;
+    [SerializeField] private S_PlayerInput _PlayerInputScript;
     private Rigidbody rb;
     [Range(0.01f, 1)]
     public float OffsetRange;
@@ -17,7 +18,6 @@ public class S_HandleCinemachine : MonoBehaviour
     public float fovRange;
     private Vector2 _Movement;
     private Vector2 _Rotation;
-    S_PlayerInput _PlayerInputScript;
     private float currentDutchAngle;
 
     float rotationSpeed = 10;
@@ -27,12 +27,10 @@ public class S_HandleCinemachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         vcam = FindObjectOfType<CinemachineVirtualCamera>();
         vcamOffset = vcam.GetComponent<CinemachineCameraOffset>();
-    _PlayerInputScript = GetComponent<S_PlayerInput>();
-
-
+        _PlayerInputScript = GetComponent<S_PlayerInput>();
     }
 
     // Update is called once per frame
@@ -53,8 +51,8 @@ public class S_HandleCinemachine : MonoBehaviour
             currentDutchAngle = Mathf.Lerp(currentDutchAngle, 0f , Time.deltaTime * 2);
         }
 
-        vcamOffset.m_Offset.z = Mathf.Lerp(0, 0 + rb.velocity.magnitude * OffsetRange, 0.7f);
-        vcam.m_Lens.FieldOfView = Mathf.Lerp(68, 68 + rb.velocity.magnitude * fovRange, 0.7f);
+       // vcamOffset.m_Offset.z = Mathf.Lerp(0, 0 + rb.velocity.magnitude * OffsetRange, 0.7f);
+       // vcam.m_Lens.FieldOfView = Mathf.Lerp(68, 68 + rb.velocity.magnitude * fovRange, 0.7f);
 
         //vcamOffset.transform.Rotate(new Vector3(0f, 0f, _Movement.x * rotationSpeed * Time.deltaTime));
         vcam.m_Lens.Dutch = currentDutchAngle;

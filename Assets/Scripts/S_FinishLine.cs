@@ -17,7 +17,7 @@ public class S_FinishLine : MonoBehaviour
     public GameObject fourthPlace;
     public GameObject NextLevelButton;
     public bool crossFinishLine;
-    GameObject finishUI;   
+    GameObject finishUI;
     public Animator anim;
     S_PauseMenu pm;
 
@@ -113,7 +113,7 @@ public class S_FinishLine : MonoBehaviour
             crossFinishLine = true;
             other.gameObject.GetComponent<PlayerInput>().enabled = false;
             other.gameObject.GetComponent<S_PlayerInput>().Victory();
-            other.gameObject.GetComponent<S_HoverboardPhysic>().baseVelocity = 0.5f;
+            other.gameObject.GetComponent<S_HoverboardPhysic>().acceleration = 0.5f;
             winOrLoseTime(other.gameObject);
             finishUI.GetComponent<Canvas>().enabled = true;
             finishUI.GetComponent<Animator>().Play("a_UI_FinishLine");
@@ -122,7 +122,7 @@ public class S_FinishLine : MonoBehaviour
 
         if (other.tag == "GreenFlag")
         {
-            other.GetComponent<S_CharInfoHolder>().itemHeld = null; 
+            other.GetComponent<S_CharInfoHolder>().itemHeld = null;
         }
 
         if (other.tag == "RedFlag")

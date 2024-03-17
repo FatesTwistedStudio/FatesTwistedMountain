@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-
 public class S_PlayerInput : MonoBehaviour
 {
     private PlayerInput playerInput;
@@ -15,6 +14,7 @@ public class S_PlayerInput : MonoBehaviour
     public Vector2 _rotair;
 
     S_HoverboardPhysic _physicsSystem;
+    CharacterController character;
 
     public Animator anim;
     public GameObject playerRef;
@@ -27,13 +27,34 @@ public class S_PlayerInput : MonoBehaviour
     private float jumpingDelay = 0.5f;
     private bool cantJump = false;
 
+    private bool IsGrounded()
+    {
+        // Define a downward raycast from the character's position
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        // Set the maximum distance for the raycast
+        float maxDistance = 1f; // Adjust as needed based on your character's size
+
+        // Perform the raycast
+        if (Physics.Raycast(ray, maxDistance))
+        {
+            // The raycast hits something, indicating that the character is grounded
+            return true;
+        }
+        else
+        {
+            // The raycast does not hit anything, indicating that the character is not grounded
+            return false;
+        }
+    }
+
 
     private void Awake()
     {
-
         _physicsSystem = GetComponent<S_HoverboardPhysic>();
         playerInput = GetComponent<PlayerInput>();
         playerRefrence = GetComponentInChildren<S_PlayerModelRef>();
+        character = GetComponent<CharacterController>();
 
         playerInput.actions["Move"].performed += ctx => _mvn = ctx.ReadValue<Vector2>();
         playerInput.actions["Move"].canceled += ctx => _mvn = Vector2.zero;
@@ -58,8 +79,9 @@ public class S_PlayerInput : MonoBehaviour
     private void Update()
     {
         handleMovement();
-        if (!_physicsSystem.isGrounded)
+        if (!IsGrounded())
         {
+            //Debug.Log("working");
             FindObjectOfType<S_AudioManager>().Pause("SnowboardA");
             jumpTime += Time.deltaTime;
             if (jumpTime > 1)
@@ -67,20 +89,22 @@ public class S_PlayerInput : MonoBehaviour
                 anim.SetBool("IsJumping", true);
                 if (!hasFallen)
                 {
-                     FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
-                     Debug.Log("Playing");
+                    FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
+                    Debug.Log("Playing");
                     hasFallen = true;
                 }
-
-                anim.SetBool("HasLanded", false);
             }
         }
         else
         {
             jumpTime = 0;
+            if ( anim.GetBool("IsJumping"))
+            {
+                anim.SetBool("IsJumping", false);
+                anim.SetBool("HasLanded", true);
+            }
         }
        // Debug.LogWarning(jumpTime);
-
     }
 
     void handleMovement()
@@ -115,11 +139,9 @@ public class S_PlayerInput : MonoBehaviour
             {
                 anim.SetBool("IsMovingLeft", false);
             }
-            
         }
-        
-        
     }
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6)
@@ -128,7 +150,7 @@ public class S_PlayerInput : MonoBehaviour
             hasFallen = false;
             anim.SetBool("HasLanded", true);
             FindObjectOfType<S_AudioManager>().UnPause("SnowboardA");
-             FindObjectOfType<S_AudioManager>().Pause("Falling-Wind");
+            FindObjectOfType<S_AudioManager>().Pause("Falling-Wind");
 
            // FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
 
@@ -137,9 +159,9 @@ public class S_PlayerInput : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (_physicsSystem.isGrounded)
+        if (IsGrounded())
         {
-            Debug.Log("jumping");
+            //Debug.Log("jumping");
             anim.SetBool("HasLanded", false);
             anim.SetBool("IsJumping", true);
             _physicsSystem.Jump();
@@ -151,8 +173,11 @@ public class S_PlayerInput : MonoBehaviour
                 StartCoroutine(JumpDelay());
             }
         }
-
-
+    }
+    public void OnDrift(InputValue value)
+    {
+        Debug.Log("Drifting and drifting value is: " + value);
+        _physicsSystem.StartDrift();
     }
 
     IEnumerator JumpDelay()
@@ -166,7 +191,7 @@ public class S_PlayerInput : MonoBehaviour
     {
         FindObjectOfType<S_AudioManager>().FadeIn("Falling-Wind");
     }
-    
+
     public void Victory()
     {
         anim.SetBool("HasWon", true);
@@ -176,16 +201,5 @@ public class S_PlayerInput : MonoBehaviour
     {
         anim.SetBool("HasLose", true);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

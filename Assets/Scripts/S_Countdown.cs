@@ -10,14 +10,14 @@ public class S_Countdown : MonoBehaviour
 
     public bool goBegan = false;
     public S_EventController controller;
-    public S_PauseMenu pauseMenu;    
+    public S_PauseMenu pauseMenu;
     public void Start3()
     {
         FindObjectOfType<S_AudioManager>().Play("Race-Countdown");
         text.text = "3";
         pauseMenu.canPause = false;
     }
-     public void Start2()
+    public void Start2()
     {
         FindObjectOfType<S_AudioManager>().Play("Race-Countdown");
         text.text = "2";
@@ -33,6 +33,8 @@ public class S_Countdown : MonoBehaviour
         FindObjectOfType<S_AudioManager>().Play("Race-Start");
         text.text = "GO!";
         pauseMenu.canPause = true;
+        //player.GetComponent<S_HoverboardPhysic>().canMove = true;
+
     }
 
 
@@ -51,6 +53,6 @@ public class S_Countdown : MonoBehaviour
         controller.playEvent();
 
         }
-        
+
     }
 }

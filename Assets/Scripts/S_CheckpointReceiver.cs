@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class S_CheckpointReceiver : MonoBehaviour
 {
-    
+
     [SerializeField]
     public float CheckpointTime;
 
-    
     private S_HUD HUD;
     private float HUDTime;
 
@@ -17,7 +16,7 @@ public class S_CheckpointReceiver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         col = GetComponent<Collider>();
+        col = GetComponent<Collider>();
         HUD = FindObjectOfType<S_HUD>();
     }
 
@@ -38,8 +37,8 @@ public class S_CheckpointReceiver : MonoBehaviour
         float delta = 0;
         delta = HUDTime - CheckpointTime;
         HUD.deltaTime = delta;
-        HUD.DisplayDeltaTime(delta); 
-        
+        HUD.DisplayDeltaTime(delta);
+
         if (delta > 0)
         {
             FindObjectOfType<S_AudioManager>().Play("Checkpoint-");

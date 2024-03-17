@@ -51,7 +51,7 @@ public class S_LoseCondition : MonoBehaviour
             playerRef.enabled = false;
             physics.enabled = false;
             hud.gameObject.SetActive(false);
-            physics.baseVelocity = 0f;
+            physics.acceleration = 0f;
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }

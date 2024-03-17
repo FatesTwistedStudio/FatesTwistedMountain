@@ -5543,9 +5543,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6792592451275203989}
-  - component: {fileID: 2899263163313021194}
   - component: {fileID: 6044688340883038315}
   - component: {fileID: 2640921738554418691}
+  - component: {fileID: 2927376062190019142}
   - component: {fileID: 6102305352661670355}
   - component: {fileID: 7664706978305836734}
   - component: {fileID: 680881395}
@@ -5581,33 +5581,6 @@ Transform:
   - {fileID: 1858787096833439733}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2899263163313021194
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835430820122090977}
-  serializedVersion: 4
-  m_Mass: 500
-  m_Drag: 3
-  m_AngularDrag: 2.53
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!114 &6044688340883038315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5645,11 +5618,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 6792592451275203989}
   playerModel: {fileID: 8035796500752396125}
-  baseVelocity: 1
-  maxSpeed: 2
-  moveForce: 1
-  jumpForce: 20
-  rotationSpeed: 0.55
+  acceleration: 0.1
+  maxSpeed: 25
+  driftForce: 10
+  maxDriftDuration: 2
+  jumpForce: 25
+  maxLeanAngle: 45
+  jumpFrames: 6
+  rotationSpeed: 100
   airRotationSpeed: 5
   disableInput: 0
   snowboardSFX: {fileID: 0}
@@ -5662,8 +5638,35 @@ MonoBehaviour:
   groundAngDrag: 2.5
   airDrag: 2
   airAngDrag: 1
-  _baseGravity: -9.8
-  gravityMultiplyer: 1
+  _baseGravity: -9
+  gravityMultiplier: 0
+  maxGravityMultiplier: 10
+--- !u!143 &2927376062190019142
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835430820122090977}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 3.671478
+  m_Radius: 0.87
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: -0.53, y: 1.74, z: 0}
 --- !u!136 &6102305352661670355
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5748,7 +5751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4835430820122090977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 220ab5c28f897404394757370927fb43, type: 3}
   m_Name: 
@@ -5872,6 +5875,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd601e2a1ca90314abcff22858be8e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vcam: {fileID: 0}
+  vcamOffset: {fileID: 0}
+  player: {fileID: 0}
+  _PlayerInputScript: {fileID: 0}
   OffsetRange: 0.1
   fovRange: 0.369
 --- !u!114 &7392661089047264120
@@ -5881,7 +5888,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4835430820122090977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0e21832d2c823c48a056bb026369f98, type: 3}
   m_Name: 

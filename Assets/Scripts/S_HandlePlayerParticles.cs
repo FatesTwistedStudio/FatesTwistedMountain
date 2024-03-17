@@ -73,7 +73,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
     [SerializeField]
     private Transform trailLocation;
     private GameObject modelRef;
-    
+
     private float pauseTime;
     private float LandingTime;
     private float trailTime;
@@ -84,14 +84,14 @@ public class S_HandlePlayerParticles : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<S_HoverboardPhysic>();
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         bigWind = bigWindObj.GetComponent<ParticleSystem>();
 
     }
 
     void Update()
     {
-        velocity = rb.velocity.magnitude;
+        //velocity = rb.velocity.magnitude;
         LandingTime = Mathf.Clamp(LandingTime, -3, 1);
 
       //  Debug.Log(velocity);
@@ -103,7 +103,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
             {
                 newTrail = Instantiate(trailprefab, trailLocation.transform.position, trailLocation.transform.rotation);
                 newTrail.transform.SetParent(orientation.transform);
-                
+
                 spawnedTrail = true;
             }
         }
@@ -120,7 +120,7 @@ public class S_HandlePlayerParticles : MonoBehaviour
                 spawnedTrail = false;
 
             }
-            
+
             LandingTime += Time.deltaTime;
         }
        // Debug.LogWarning(LandingTime);
@@ -139,19 +139,19 @@ public class S_HandlePlayerParticles : MonoBehaviour
 
         airSmallWind.Pause();
         airBigWind.Pause();
-        
+
         var emisson = bigWind.emission;
         var emColor = bigWind.main;
         var emissionColor = airBigWind.main;
         var smolemissionColor = smallWind.main;
-        
+
         emisson.rateOverDistance = something;
         emisson.rateOverDistance = Mathf.Clamp(something, 0, 5);
-        
-        something = Mathf.Lerp(0, 0 + rb.velocity.magnitude/2, 0.2f);
-        RuntimeColor.a = Mathf.Lerp(noColor.a + rb.velocity.magnitude * 0.01f, peakColor.a, 0.2f);
-        RuntimeColor.a = Mathf.Clamp(RuntimeColor.a, noColor.a, peakColor.a);
-        
+
+        //something = Mathf.Lerp(0, 0 + rb.velocity.magnitude/2, 0.2f);
+       // RuntimeColor.a = Mathf.Lerp(noColor.a + rb.velocity.magnitude * 0.01f, peakColor.a, 0.2f);
+       //RuntimeColor.a = Mathf.Clamp(RuntimeColor.a, noColor.a, peakColor.a);
+
         emColor.startColor = RuntimeColor;
         emissionColor.startColor = noColor;
         smolemissionColor.startColor = noColor;
@@ -194,20 +194,20 @@ public class S_HandlePlayerParticles : MonoBehaviour
         var startsizelp = lp.GetComponent<ParticleSystem>().main;
         startsizelp.startSize = 0.1f;
 
-        
+
 
         if (LandingTime >0)
         {
             GameObject zp = Instantiate(dynamicLandingParticles, spawnpoint.transform.position, smallLandingParticles.transform.rotation);
 
             var startsizezp = zp.GetComponent<ParticleSystem>().main;
-            var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime; 
+            var emission = zp.GetComponent<ParticleSystem>().velocityOverLifetime;
             FindObjectOfType<S_AudioManager>().Play("Snow-Landing");
-            startsizezp.startSize = rb.velocity.magnitude * 0.01f;
-            startsizezp.startSpeed = rb.velocity.magnitude * 0.4f;
+           // startsizezp.startSize = rb.velocity.magnitude * 0.01f;
+            //startsizezp.startSpeed = rb.velocity.magnitude * 0.4f;
             //Debug.LogWarning("Big landing, particles spawned");
         }
-        
+
     }
 
     public void SpawnBurst()

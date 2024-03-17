@@ -10083,13 +10083,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8300149355244718273}
-  - component: {fileID: 380676730302188638}
   - component: {fileID: 9121798058874096959}
   - component: {fileID: 707732890639272791}
   - component: {fileID: 3788040870001742933}
   - component: {fileID: 8780771771198715015}
   - component: {fileID: 5128101785238383594}
   - component: {fileID: 3275294524923691431}
+  - component: {fileID: 1371019731518728959}
   - component: {fileID: 1769790109097984706}
   - component: {fileID: 133142234282258671}
   - component: {fileID: 4342066421380237667}
@@ -10123,33 +10123,6 @@ Transform:
   - {fileID: 2892014766918687553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &380676730302188638
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7957519360050131125}
-  serializedVersion: 4
-  m_Mass: 500
-  m_Drag: 3
-  m_AngularDrag: 2.53
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!114 &9121798058874096959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10187,11 +10160,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 8300149355244718273}
   playerModel: {fileID: 4823580960616530441}
-  baseVelocity: 1
-  maxSpeed: 2
-  moveForce: 1
+  canMove: 0
+  acceleration: 0.1
+  maxSpeed: 25
+  velocity: {x: 0, y: 0, z: 0}
+  driftForce: 10
+  maxDriftDuration: 2
   jumpForce: 20
-  rotationSpeed: 0.55
+  maxLeanAngle: 45
+  jumpFrames: 6
+  rotationSpeed: 100
   airRotationSpeed: 5
   disableInput: 0
   snowboardSFX: {fileID: 0}
@@ -10204,8 +10182,9 @@ MonoBehaviour:
   groundAngDrag: 2.5
   airDrag: 2
   airAngDrag: 1
-  _baseGravity: -9.8
-  gravityMultiplyer: 1
+  _baseGravity: -9
+  gravityMultiplier: 0
+  maxGravityMultiplier: 10
 --- !u!82 &3788040870001742933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10379,6 +10358,32 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!143 &1371019731518728959
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7957519360050131125}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 3.671478
+  m_Radius: 1
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: -0.53, y: 1.76, z: 0}
 --- !u!114 &1769790109097984706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10386,7 +10391,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7957519360050131125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 220ab5c28f897404394757370927fb43, type: 3}
   m_Name: 
@@ -10484,7 +10489,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7957519360050131125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 500
@@ -10511,6 +10516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd601e2a1ca90314abcff22858be8e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vcam: {fileID: 0}
+  vcamOffset: {fileID: 0}
+  player: {fileID: 0}
+  _PlayerInputScript: {fileID: 0}
   OffsetRange: 0.28
   fovRange: 0.75
 --- !u!114 &8775773860631744548
@@ -10520,7 +10529,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7957519360050131125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0e21832d2c823c48a056bb026369f98, type: 3}
   m_Name: 
@@ -10538,7 +10547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7957519360050131125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25d060232827cdd48a3a45b07cab2ea2, type: 3}
   m_Name: 
