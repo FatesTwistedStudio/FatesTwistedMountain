@@ -24,8 +24,7 @@ public class S_HoverboardPhysic : MonoBehaviour
     [Header("Movement")]
     public bool canMove;
     public float acceleration;
-    [SerializeField]
-    private float maxSpeed;
+    public float maxSpeed;
     public Vector3 velocity;
     private Vector3 forwardVelocity;
 
@@ -181,7 +180,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             Vector3 newRotation = playerModel.localEulerAngles;
             newRotation.y = currentLeanAngle;
             playerModel.localEulerAngles = newRotation;
-            AngleRot();
+            SurfaceAlignment();
 
             // Calculate the movement direction based on the character's forward direction
             Vector3 forwardDirection = -transform.right.normalized;
@@ -322,7 +321,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
-    public void AngleRot()
+    public void SurfaceAlignment()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -transform.up, out hit, distanceToGround, Ground))

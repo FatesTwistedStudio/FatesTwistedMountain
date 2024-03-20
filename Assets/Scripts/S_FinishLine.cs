@@ -102,7 +102,8 @@ public class S_FinishLine : MonoBehaviour
             eventController.GetComponent<S_EventController>().setTimedTrial(other.gameObject);
 
         if (other.tag == "Character")
-            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            //other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.GetComponent<S_HoverboardPhysic>().canMove = false;
 
         if (other.tag == "Player")
         {
@@ -110,11 +111,16 @@ public class S_FinishLine : MonoBehaviour
             string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
             FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
             Invoke("PlayMusic", 1);
+
             crossFinishLine = true;
-            other.gameObject.GetComponent<PlayerInput>().enabled = false;
+
+            //other.gameObject.GetComponent<PlayerInput>().enabled = false;
+            other.GetComponent<S_HoverboardPhysic>().canMove = false;
             other.gameObject.GetComponent<S_PlayerInput>().Victory();
-            other.gameObject.GetComponent<S_HoverboardPhysic>().acceleration = 0.5f;
+            other.gameObject.GetComponent<S_HoverboardPhysic>().maxSpeed = 0;
+
             winOrLoseTime(other.gameObject);
+
             finishUI.GetComponent<Canvas>().enabled = true;
             finishUI.GetComponent<Animator>().Play("a_UI_FinishLine");
             Invoke("pullUpLeaderBoard", 2);
@@ -226,6 +232,7 @@ public class S_FinishLine : MonoBehaviour
 
     private void Update()
     {
+        //Note to self: Move this to Start for optimization
         eventController = GameObject.FindWithTag("EventController");
         if (fourthPlace != null || thirdPlace != null || secondPlace != null || firstPlace != null)
             sortTheWinners();
