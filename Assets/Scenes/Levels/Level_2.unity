@@ -21307,7 +21307,7 @@ PrefabInstance:
     - target: {fileID: 8615585553976720757, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8615585553976720757, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
@@ -21328,6 +21328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: S_Transition, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615585553976720757, guid: d08a1d5db524784429a895c683f93992,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8615585553976720757, guid: d08a1d5db524784429a895c683f93992,
         type: 3}
