@@ -4,44 +4,41 @@ using UnityEngine;
 
 public class S_Boost : MonoBehaviour
 {
-    private Rigidbody rb;
+    private CharacterController physics;
     private S_RefTarget target;
     private S_HandlePlayerParticles particlesRef;
     [SerializeField]
     private S_ScreenShake ssUI;
     [SerializeField]
     private float boostedSpeed;
-    private float normalSpeed;
-    private float speedCoolDown;
     private float speed;
-    private float delay;
     private bool collided = false;
-
     [SerializeField]
     private GameObject[] effects;
-    
-     private void Update()
+
+    private void Update()
     {
         if (!ssUI)
         {
-            ssUI = FindObjectOfType<S_ScreenShake>();   
-        }        
+            ssUI = FindObjectOfType<S_ScreenShake>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-            if (other.gameObject.tag == "Player")
-            {
-                rb = other.GetComponent<Rigidbody>();
+        if (other.gameObject.tag == "Player")
+        {
+            physics = other.GetComponent<CharacterController>();
 
-                ssUI.Shake();
-                target = other.GetComponentInChildren<S_RefTarget>();
-                particlesRef = other.GetComponent<S_HandlePlayerParticles>();
-                rb.AddForce(-other.transform.right * boostedSpeed, ForceMode.VelocityChange);
-                particlesRef.SpawnBurst();
-                //impulse force
-                FindObjectOfType<S_AudioManager>().Play("Boost");
-                
+            physics.Move(-other.transform.right * boostedSpeed); //Speed Boost
+
+            ssUI.Shake();
+            target = other.GetComponentInChildren<S_RefTarget>();
+            particlesRef = other.GetComponent<S_HandlePlayerParticles>();
+
+            particlesRef.SpawnBurst();
+
+            FindObjectOfType<S_AudioManager>().Play("Boost");
 
             if (!collided)
             {
@@ -49,27 +46,14 @@ public class S_Boost : MonoBehaviour
                 effect.transform.parent = other.transform;
                 collided = true;
             }
-            //Debug.Log("Force Applied to Player");
-            speed = boostedSpeed;
-                StartCoroutine("SpeedDuration");
-            }
-       
+        }
+
 
         if (other.gameObject.tag == "Character")
         {
             //impulse force
-            rb = other.GetComponent<Rigidbody>();
-            rb.AddForce(-rb.transform.forward * boostedSpeed, ForceMode.VelocityChange);
-            //Debug.Log("Force Applied to Character");
-            speed = boostedSpeed;
-            StartCoroutine("SpeedDuration");
-
+            physics = other.GetComponent<CharacterController>();
+            physics.Move(-other.transform.right * boostedSpeed);
         }
-    }
-
-    IEnumerator SpeedDuration()
-    {
-        yield return new WaitForSeconds(speedCoolDown);
-        speed = normalSpeed;
     }
 }

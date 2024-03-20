@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5627650546185512851}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.9614568, y: -1.708951, z: -2.592103}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 7272825144289394344}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8044998225814725650
 GameObject:
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8405246545111942599}
   - component: {fileID: 5233963446341953351}
   - component: {fileID: 2984954799786345383}
+  - component: {fileID: 8740963262644501321}
   m_Layer: 6
   m_Name: Boost Obj,
   m_TagString: Untagged
@@ -59,13 +60,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8044998225814725650}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4284195452980550324}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5999243831624265997
 MeshFilter:
@@ -126,11 +127,19 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8044998225814725650}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.25, y: 0.125, z: 1.25}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 3.25, y: 0.6, z: 1.25}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &2984954799786345383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,8 +152,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d748da6ed43f236449aabd96703fed3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostedSpeed: 50
+  ssUI: {fileID: 0}
+  boostedSpeed: 25
   effects:
   - {fileID: 2883797502249945402, guid: 06d04987a5a75da4585b924f49b426c2, type: 3}
   - {fileID: 2883797502249945402, guid: 0660110bb3a690f42811cf9d577415e4, type: 3}
   - {fileID: 2883797502249945402, guid: 1e54877675f6e4a46ad7ca7c4d7a5bf6, type: 3}
+--- !u!65 &8740963262644501321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044998225814725650}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.25, y: 0.125, z: 1.25}
+  m_Center: {x: 0, y: 0.25, z: 0}
