@@ -246,30 +246,24 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         StartCoroutine(JumpCoroutine());
 
-        // Calculate the initial jump force
-        //float initialJumpForce = Mathf.Sqrt(2 * Mathf.Abs(_baseGravity) * jumpForce);
-
-        // Apply the initial jump force
-        //moveDirection.y = jumpForce;
-
         // Move the character controller to apply the jump force
         characterController.Move(moveDirection);
-        //Invoke("resetJumpDelay", 1f);
-
     }
+
     IEnumerator JumpCoroutine()
     {
         Debug.Log("Starting Jump");
         // Calculate the initial jump force
         float initialJumpForce = Mathf.Sqrt(2 * Mathf.Abs(_baseGravity) * jumpForce);
         float remainingJumpForce = jumpForce;
+        Vector3 jumpMoveDirection = new Vector3(0, 0, 0);
 
         // Apply jump force gradually over a set number of frames
         for (int i = 0; i < jumpFrames; i++)
         {
             remainingJumpForce += remainingJumpForce / jumpFrames;
-            moveDirection.y += remainingJumpForce / jumpFrames;
-            characterController.Move(moveDirection);
+            jumpMoveDirection.y += remainingJumpForce / jumpFrames;
+            characterController.Move(jumpMoveDirection);
             yield return new  WaitForFixedUpdate();
             Debug.Log("Done");
         }

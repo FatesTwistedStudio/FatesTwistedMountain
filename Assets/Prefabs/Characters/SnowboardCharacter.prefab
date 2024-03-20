@@ -5618,11 +5618,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 6792592451275203989}
   playerModel: {fileID: 8035796500752396125}
+  canMove: 0
   acceleration: 0.1
   maxSpeed: 25
+  velocity: {x: 0, y: 0, z: 0}
   driftForce: 10
   maxDriftDuration: 2
-  jumpForce: 25
+  jumpForce: 1
   maxLeanAngle: 45
   jumpFrames: 6
   rotationSpeed: 100
