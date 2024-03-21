@@ -17,15 +17,7 @@ public class S_StartingLine : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag=="Player")
-        {
-            other.GetComponent<S_HoverboardPhysic>().canMove = false;
-        }
-        if(other.tag=="Character")
-        {
-            other.GetComponent<S_HoverboardPhysic>().canMove = false;
 
-        }
 
     }
     // Update is called once per frame

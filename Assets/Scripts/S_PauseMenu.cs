@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 
 public class S_PauseMenu : MonoBehaviour
 {
+    private S_PlayerInput playerControls;
     public Image background;
     public TextMeshProUGUI title;
     public Button quit;
@@ -24,7 +25,7 @@ public class S_PauseMenu : MonoBehaviour
     [HideInInspector]
     public S_AudioManager audioManager;
     S_StopMusic endAudio;
-    
+
     private bool isPaused;
     public bool canPause = false;
 
@@ -42,7 +43,8 @@ public class S_PauseMenu : MonoBehaviour
         pauseUI.SetActive(false);
 
         manager = FindObjectOfType<S_EventController>();
-        audioManager = FindObjectOfType<S_AudioManager>(); 
+        audioManager = FindObjectOfType<S_AudioManager>();
+        playerControls = FindObjectOfType<S_PlayerInput>();
     }
 
     // Update is called once per frame
@@ -68,8 +70,6 @@ public class S_PauseMenu : MonoBehaviour
     }
     public void OnPause(InputValue value)
     {
-       
-            
             pauseUI.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(resumeButton);
@@ -108,11 +108,15 @@ public class S_PauseMenu : MonoBehaviour
 
     public void ActivateMenu()
     {
+
+        S_HoverboardPhysic playerCharacterPhysics = playerControls.gameObject.GetComponent<S_HoverboardPhysic>();
+
         audioManager.Play("Button-Pause");
         bool crossfinish = FindObjectOfType<S_FinishLine>().crossFinishLine;
         if(!crossfinish)
         {
-            Time.timeScale = Time.unscaledDeltaTime * 0.1f;
+            Time.timeScale = 0f;
+            playerCharacterPhysics.canMove = false;
             //AudioListener.pause = true;
             anim.Play("a_PM_Start");
             HUD.SetActive(false);
@@ -125,6 +129,8 @@ public class S_PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
+        S_HoverboardPhysic playerCharacterPhysics = playerControls.gameObject.GetComponent<S_HoverboardPhysic>();
+
         if (anim.GetBool("IsOptionEnabled") == true)
         {
             anim.SetBool("IsOptionEnabled", false);
@@ -132,6 +138,7 @@ public class S_PauseMenu : MonoBehaviour
             audioManager.Play("Button-Resume");
             anim.Play("a_PM_End_OP");
             Time.timeScale = 1;
+            playerCharacterPhysics.canMove = true;
             EventSystem.current.SetSelectedGameObject(null);
             isPaused = false;
         }
@@ -142,6 +149,7 @@ public class S_PauseMenu : MonoBehaviour
             audioManager.Play("Button-Resume");
             anim.Play("a_PM_End_Cr");
             Time.timeScale = 1;
+            playerCharacterPhysics.canMove = true;
             EventSystem.current.SetSelectedGameObject(null);
             isPaused = false;
         }
@@ -150,6 +158,7 @@ public class S_PauseMenu : MonoBehaviour
             audioManager.Play("Button-Resume");
             anim.Play("a_PM_End");
             Time.timeScale = 1;
+            playerCharacterPhysics.canMove = true;
             //AudioListener.pause = false;
             EventSystem.current.SetSelectedGameObject(null);
             isPaused = false;
@@ -178,7 +187,7 @@ public class S_PauseMenu : MonoBehaviour
     public void EnableOptions()
     {
         if (anim.GetBool("IsOptionEnabled") == true)
-        {  
+        {
             anim.SetBool("IsOptionEnabled", false);
             anim.SetBool("IsControlsEnabled", false);
             anim.Play("a_PM_DisableOptions");
@@ -199,7 +208,7 @@ public class S_PauseMenu : MonoBehaviour
     {
         if (anim.GetBool("IsControlsEnabled") == true)
         {
-            
+
             anim.SetBool("IsOptionEnabled", false);
             anim.SetBool("IsControlsEnabled", false);
             anim.Play("a_PM_DisableControls");

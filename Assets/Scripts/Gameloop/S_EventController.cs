@@ -85,7 +85,7 @@ public class S_EventController : MonoBehaviour
 
         }
 
-        if (player.GetComponent<S_HoverboardPhysic>().canMove = true)
+        if (player.GetComponent<S_HoverboardPhysic>().canMove == true)
         {
             timer += 1 * Time.deltaTime;
         }

@@ -7,7 +7,7 @@ using TMPro;
 public class S_Countdown : MonoBehaviour
 {
     public TMP_Text text;
-
+    private S_HoverboardPhysic player;
     public bool goBegan = false;
     public S_EventController controller;
     public S_PauseMenu pauseMenu;
@@ -33,7 +33,8 @@ public class S_Countdown : MonoBehaviour
         FindObjectOfType<S_AudioManager>().Play("Race-Start");
         text.text = "GO!";
         pauseMenu.canPause = true;
-        //player.GetComponent<S_HoverboardPhysic>().canMove = true;
+        player = FindObjectOfType<S_HoverboardPhysic>();
+        player.GetComponent<S_HoverboardPhysic>().canMove = true;
 
     }
 

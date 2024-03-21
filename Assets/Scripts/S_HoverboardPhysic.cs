@@ -53,7 +53,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private Vector2 _Movement;
     private Vector2 _Rotation;
     private Vector2 _AirRot;
-    public bool disableInput;
     private PlayerInput playerInput;
 
     Vector3 moveDirection;
@@ -127,7 +126,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
-        disableInput = false;
 
     }
 
@@ -243,10 +241,14 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public void Jump()
     {
-        StartCoroutine(JumpCoroutine());
+        if (canMove)
+        {
+            StartCoroutine(JumpCoroutine());
 
-        // Move the character controller to apply the jump force
-        characterController.Move(moveDirection);
+            // Move the character controller to apply the jump force
+            characterController.Move(moveDirection);
+        }
+
     }
 
     IEnumerator JumpCoroutine()
