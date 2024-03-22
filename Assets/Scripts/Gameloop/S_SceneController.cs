@@ -13,12 +13,21 @@ public class S_SceneController : MonoBehaviour
     public S_GameloopController S_GameloopController;
     public string currentSceneName;
     public GameObject GameManager;
+
     public void spawnTheManager()
     {
-        GameObject GM = Instantiate(GameManager);
-       // Debug.Log("gamemanager spawn");
-        S_GameloopController = GM.GetComponent<S_GameloopController>();
+        if (GameObject.FindWithTag("GameController") == null)
+        {
+            GameObject GM = Instantiate(GameManager);
+            S_GameloopController = GM.GetComponent<S_GameloopController>();
+
+        }
+        else
+        {
+            S_GameloopController = FindObjectOfType<S_GameloopController>().GetComponent<S_GameloopController>();
+        }
     }
+
     void Update()
     {
         getSceneName();

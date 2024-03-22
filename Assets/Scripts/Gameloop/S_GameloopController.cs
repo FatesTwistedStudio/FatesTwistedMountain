@@ -24,10 +24,6 @@ public class S_GameloopController : MonoBehaviour
         {
             LoadPlayer();
         }
-        if (instance == null)
-        {
-            instance = this;
-        }
         if (sceneManager == null)
         {
             sceneManager = GameObject.FindWithTag("SceneController");
@@ -37,7 +33,13 @@ public class S_GameloopController : MonoBehaviour
             player = GameObject.FindWithTag("Player");
         }
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
+
+        if (instance == null) {
+            instance = this;
+        } else {
+            DestroyObject(instance);
+        }
     }
 
     void Update()

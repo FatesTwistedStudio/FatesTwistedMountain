@@ -23,28 +23,14 @@ public class S_FinishLine : MonoBehaviour
 
     public void winOrLoseTime(GameObject obj)
     {
-        if (obj.GetComponent<S_CharInfoHolder>() != null)
-        {
-            if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().bronzeLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
-            {
-                if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().silverLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
-                {
-                    if (obj.GetComponent<S_CharInfoHolder>().timedTrial < eventController.GetComponent<S_EventController>().goldLevelTimes[/*not gonna work*/SceneManager.GetActiveScene().buildIndex])
-                    {
-                        if (obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 0)
-                        {
-                            Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
-                            firstPlace = obj;
-                            secondPlace = null;
-                            thirdPlace = null;
-                            fourthPlace = null;
-                            obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
-                            GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
-                        }
-                    }
-                }
-            }
-        }
+        //WILL ONLY WORK IN SINGLE PLAYER MUST REVAMP FOR NPCS
+        Debug.Log(obj.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
+        firstPlace = obj;
+        secondPlace = null;
+        thirdPlace = null;
+        fourthPlace = null;
+        obj.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
+        GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 1;
     }
 
     //public void winOrLosePoint(GameObject obj)
@@ -135,8 +121,6 @@ public class S_FinishLine : MonoBehaviour
         {
             other.GetComponent<S_CharInfoHolder>().itemHeld = null;
         }
-
-
     }
 
     public void PlayMusic()

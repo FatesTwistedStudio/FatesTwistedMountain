@@ -181,7 +181,7 @@ public class S_PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         //load main menu
-        transiton.loadScene(0);
+        GameObject.FindWithTag("AsyncLoader").GetComponent<ASyncLoader>().LoadLevelAsync(0);
     }
 
     public void EnableOptions()

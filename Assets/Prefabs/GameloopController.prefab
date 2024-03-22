@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6264568103808181364}
   - component: {fileID: 6264568103808181363}
+  - component: {fileID: 8431918047443203933}
   m_Layer: 0
   m_Name: GameloopController
   m_TagString: GameController
@@ -57,6 +58,18 @@ MonoBehaviour:
   snowCam: {fileID: 6267562645187972862, guid: d8454e577c48b30469847de7498123ab, type: 3}
   highscores: 
   SavePath: 
+--- !u!114 &8431918047443203933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6264568103808181365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd12db80b601854bbe3efbff0124fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1252332024319113688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +227,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5507243634624397161, guid: 6ad3965feb82a894980cfad9c90d1a8e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7002043430029012458, guid: 6ad3965feb82a894980cfad9c90d1a8e,
         type: 3}
       propertyPath: BackgroundImages.Array.data[0]
@@ -301,8 +319,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
         type: 3}
+      propertyPath: StartRace.m_Name
+      value: Start Race
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
       propertyPath: charSpawner.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
+      propertyPath: goldLevelPoints.Array.data[0]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
+      propertyPath: bronzeLevelTimes.Array.data[0]
+      value: 440
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
+      propertyPath: silverLevelTimes.Array.data[0]
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
+      propertyPath: bronzeLevelPoints.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943616032327040991, guid: 3d3623620f0e62448ac1bad8c76c5828,
+        type: 3}
+      propertyPath: silverLevelPoints.Array.data[0]
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

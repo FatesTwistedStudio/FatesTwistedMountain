@@ -16,22 +16,17 @@ public class S_EventController : MonoBehaviour
     public TextMeshProUGUI startText;
     public GameObject startingLine;
     public GameObject player;
-    public bool isTimedEvent = true;
-    public bool isStarted = true;
+    public bool isTimedEvent;
+    public bool isStarted;
     public bool playerHasItem;
+    [SerializeField]
     private FTMInput _Input;
+    [SerializeField]
     private InputAction StartRace;
-
     public S_BackgroundMusic _BackgroundMusic;
     public S_Countdown countdown;
+    S_GameloopController controller;
     bool playedsong = false;
-
-
-    //public AudioSource bgs;
-    //public AudioClip start;
-
-    //[SerializeField]
-    //public AudioClip[] bgm;
 
     [SerializeField]
     public GameObject[] charSpawned;
@@ -52,7 +47,6 @@ public class S_EventController : MonoBehaviour
     {
         _Input = new FTMInput();
         startEvent = false;
-
     }
 
     private void Start()
@@ -62,13 +56,34 @@ public class S_EventController : MonoBehaviour
             startingLine.SetActive(true);
         }
     }
+
     private void OnEnable()
     {
         currentTime = startTime;
         StartRace = _Input.StartRace.Start;
         StartRace.Enable();
         StartRace.performed += OnStartRace;
+        controller = GetComponentInParent<S_GameloopController>();
     }
+
+    private void OnDisable()
+    {
+        player = null;
+        currentTime = 0f;
+        startingLine = null;
+        startEvent = false;
+        timer = 0f;
+        controller.player = null;
+        controller.follow = null;
+        controller.inGameTime = 0;
+        foundPlayer = false;
+        isTimedEvent = false;
+        isStarted = false;
+
+
+
+    }
+
     void Update()
     {
         if (!foundPlayer)
@@ -77,12 +92,6 @@ public class S_EventController : MonoBehaviour
             player = GameObject.FindWithTag("Player");
             _BackgroundMusic = FindObjectOfType<S_BackgroundMusic>();
             foundPlayer = true;
-        }
-
-        if (player.GetComponent<S_Recovery>() == true)
-        {
-            player.GetComponent<S_Recovery>().hasStarted = isStarted;
-
         }
 
         if (player.GetComponent<S_HoverboardPhysic>().canMove == true)
