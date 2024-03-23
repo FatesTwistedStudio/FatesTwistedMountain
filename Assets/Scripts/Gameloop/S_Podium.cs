@@ -29,14 +29,15 @@ public class S_Podium : MonoBehaviour
             GameObject.FindWithTag("EventController").gameObject.SetActive(false);
 
         player = gameController.GetComponent<S_GameloopController>().player;
-        Debug.Log(player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
+       // Debug.Log(player.GetComponent<S_CharInfoHolder>().levelPlacement[0]);
     }
     public void spawnPlayer()
     {
         if (player.GetComponent<S_CharInfoHolder>().levelPlacement[0] == 1)
         {
             GameObject spawnCharacter = Instantiate(player, podium1st.transform.position, podium1st.transform.rotation) as GameObject;
-            spawnCharacter.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            if (spawnCharacter.GetComponent<Rigidbody>() != null)
+                spawnCharacter.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             spawnCharacter.GetComponent<S_HoverboardPhysic>().enabled = false;
             spawnCharacter.GetComponent<S_SurfaceAlignment>().enabled = false;
             spawnCharacter.GetComponent<S_HandleCinemachine>().enabled = false;
@@ -75,11 +76,11 @@ public class S_Podium : MonoBehaviour
             spawnCharacter.GetComponent<S_Stun>().enabled = false;
         }
     }
-    private void OnDestroy()
-    {
-        GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 0;
-        Destroy(GameObject.FindWithTag("GameController"));
-        Destroy(gameObject);
+    //private void OnDestroy()
+    //{
+    //    GameObject.FindWithTag("GameController").GetComponent<S_GameloopController>().player.GetComponent<S_CharInfoHolder>().levelPlacement[0] = 0;
+    //    Destroy(GameObject.FindWithTag("GameController"));
+    //    Destroy(gameObject);
 
-    }
+    //}
 }

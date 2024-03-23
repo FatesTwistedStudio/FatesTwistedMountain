@@ -95,7 +95,6 @@ public class S_FinishLine : MonoBehaviour
         {
             if (FindObjectOfType<S_LevelBGM>() != null)
             {
-
                 pm.canPause = false;
                 string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
                 FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);

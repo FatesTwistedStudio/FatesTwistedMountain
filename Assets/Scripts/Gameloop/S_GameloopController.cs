@@ -108,5 +108,9 @@ public class S_GameloopController : MonoBehaviour
         }
 
     }
-
+    private void OnApplicationQuit()
+    {
+        SavePlayer();
+        Destroy(gameObject);
+    }
 }
