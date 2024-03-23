@@ -28,6 +28,17 @@ public class S_GameloopController : MonoBehaviour
         {
             sceneManager = GameObject.FindWithTag("SceneController");
         }
+        else
+        {
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                sceneManager.SetActive(false);
+            }
+            else
+            {
+                sceneManager.SetActive(true);
+            }
+        }
         if (player == null)
         {
             player = GameObject.FindWithTag("Player");
@@ -35,9 +46,12 @@ public class S_GameloopController : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
-        } else {
+        }
+        else
+        {
             DestroyObject(instance);
         }
     }

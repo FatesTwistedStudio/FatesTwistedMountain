@@ -3089,10 +3089,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5912232240132556235, guid: 33447d8959cd15a42b189019528bb94a,
+    - target: {fileID: 1311198167489175208, guid: 33447d8959cd15a42b189019528bb94a,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 6
+      propertyPath: BackgroundSongName
+      value: Snow-Valley
       objectReference: {fileID: 0}
     - target: {fileID: 5912232240132556235, guid: 33447d8959cd15a42b189019528bb94a,
         type: 3}
@@ -5343,11 +5343,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3268842646940093838, guid: 4548df3e277b69b448194c30a63829d9,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268842646940093838, guid: 4548df3e277b69b448194c30a63829d9,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.20672
       objectReference: {fileID: 0}
@@ -5395,17 +5390,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268842646940093839, guid: 4548df3e277b69b448194c30a63829d9,
-        type: 3}
-      propertyPath: transitionImg
-      value: 
-      objectReference: {fileID: 3934192606116751692, guid: 7c574222ad1bf3448800b591778c88c6,
-        type: 3}
-    - target: {fileID: 3268842646940093839, guid: 4548df3e277b69b448194c30a63829d9,
-        type: 3}
-      propertyPath: S_GameloopController
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

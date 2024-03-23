@@ -93,10 +93,14 @@ public class S_FinishLine : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            pm.canPause = false;
-            string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
-            FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
-            Invoke("PlayMusic", 1);
+            if (FindObjectOfType<S_LevelBGM>() != null)
+            {
+
+                pm.canPause = false;
+                string levelMusic = FindObjectOfType<S_LevelBGM>().BackgroundSongName;
+                FindObjectOfType<S_AudioManager>().FadeOut(levelMusic);
+                Invoke("PlayMusic", 1);
+            }
 
             crossFinishLine = true;
 
@@ -151,7 +155,7 @@ public class S_FinishLine : MonoBehaviour
             LeaderBoardTracker.firstPlaceImage.sprite = firstPlace.GetComponent<S_CharInfoHolder>().image;
             LeaderBoardTracker.firstPlacePlacementText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>()._name);
             LeaderBoardTracker.firstPlacePointsText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().pointsEarned);
-            LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("Time:"+ "0.000"));
+            LeaderBoardTracker.firstPlaceTimeText.SetText("" + firstPlace.GetComponent<S_CharInfoHolder>().timedTrial.ToString("Time:" + "0.000"));
         }
         else
         {

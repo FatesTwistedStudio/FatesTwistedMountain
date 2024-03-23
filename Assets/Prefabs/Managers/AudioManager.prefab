@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5912232240132556235}
   - component: {fileID: 5826584722921346069}
+  - component: {fileID: 1311198167489175208}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -226,3 +227,18 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   fadeDuration: 2
+--- !u!114 &1311198167489175208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272434664056789802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1195bc257e894cf4a90d2e49543106d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ec: {fileID: 0}
+  BackgroundSongName: 
+  manager: {fileID: 0}

@@ -33,7 +33,15 @@ public class S_SceneController : MonoBehaviour
         getSceneName();
         if (S_GameloopController == null)
         {
-            spawnTheManager();
+            if (FindObjectOfType<S_GameloopController>() != null)
+            {
+                S_GameloopController = FindObjectOfType<S_GameloopController>().GetComponent<S_GameloopController>();
+            }
+            else
+            {
+                spawnTheManager();
+
+            }
         }
         if (GameObject.FindWithTag("PauseMenu") == true)
         {
@@ -67,7 +75,7 @@ public class S_SceneController : MonoBehaviour
     public void getSceneName()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
-      //  debugBuildIndex();
+        //  debugBuildIndex();
     }
     public void quitGame()
     {
@@ -92,7 +100,7 @@ public class S_SceneController : MonoBehaviour
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            Debug.Log("SCENE: "+SceneManager.GetSceneByBuildIndex(i).path + " ; " + i+" ; "+ SceneManager.sceneCountInBuildSettings);
+            Debug.Log("SCENE: " + SceneManager.GetSceneByBuildIndex(i).path + " ; " + i + " ; " + SceneManager.sceneCountInBuildSettings);
 
         }
     }
