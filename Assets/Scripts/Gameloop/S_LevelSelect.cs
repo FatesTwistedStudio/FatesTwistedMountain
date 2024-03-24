@@ -112,6 +112,22 @@ public class S_LevelSelect : MonoBehaviour
         stSlAnim.SetBool("Start", true);
 
     }
+    public void SetLevel7()
+    {
+        currentLevel = Level7;
+        buildIndex = 8;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+    }
+    public void SetLevel8()
+    {
+        currentLevel = Level8;
+        buildIndex = 9;
+        startlevelAnim.SetBool("Entry", true);
+        stSlAnim.SetBool("Start", true);
+
+    }
     public void SetTestLevel(int Index)
     {
         currentLevel = Level3;
