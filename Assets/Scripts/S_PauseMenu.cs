@@ -59,6 +59,10 @@ public class S_PauseMenu : MonoBehaviour
             }
             else { playButton.gameObject.SetActive(true); }
         }
+        if(manager==null)
+        {
+            manager = FindObjectOfType<S_EventController>();
+        }
     }
     public void mysteryButton()
     {
