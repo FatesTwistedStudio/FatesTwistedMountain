@@ -187,13 +187,15 @@ MonoBehaviour:
   playerModel: {fileID: 6902807138073399163}
   canMove: 0
   acceleration: 0.1
-  maxSpeed: 25
+  accelerationRate: 20
+  maxSpeed: 40
   velocity: {x: 0, y: 0, z: 0}
+  lastInputDirection: {x: 0, y: 0, z: 0}
   driftForce: 10
   maxDriftDuration: 2
   jumpForce: 1.5
   maxLeanAngle: 45
-  jumpFrames: 6
+  jumpFrames: 10
   rotationSpeed: 100
   airRotationSpeed: 5
   snowboardSFX: {fileID: 0}
@@ -207,7 +209,7 @@ MonoBehaviour:
   airDrag: 2
   airAngDrag: 1
   _baseGravity: -9
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   maxGravityMultiplier: 10
 --- !u!143 &1796779947622679136
 CharacterController:
@@ -524,6 +526,80 @@ Transform:
   - {fileID: 4760258035713507905}
   m_Father: {fileID: 7929556964530128307}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &115056580681965528
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4952786128138904140}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.729
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.914
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5689271208ced3b4f84cc21d1df9fabc,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowWukong_Final
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5689271208ced3b4f84cc21d1df9fabc, type: 3}
+--- !u!4 &437546412102907955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5689271208ced3b4f84cc21d1df9fabc,
+    type: 3}
+  m_PrefabInstance: {fileID: 115056580681965528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &937169279144028751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2495,9 +2571,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8660052214550215785, guid: ee77b872f9e180a4697203ba00fad76d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3642851060697912276, guid: ee77b872f9e180a4697203ba00fad76d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 437546412102907955}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee77b872f9e180a4697203ba00fad76d, type: 3}
 --- !u!4 &4952786128138904140 stripped

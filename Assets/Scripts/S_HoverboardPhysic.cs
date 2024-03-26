@@ -24,9 +24,13 @@ public class S_HoverboardPhysic : MonoBehaviour
     [Header("Movement")]
     public bool canMove;
     public float acceleration;
+    public float accelerationRate;
     public float maxSpeed;
     public Vector3 velocity;
     private Vector3 forwardVelocity;
+    [SerializeField]
+    private Vector3 lastInputDirection = Vector3.zero;
+
 
     [Header("Drifting")]
     public float driftForce = 10f;
@@ -54,7 +58,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private Vector2 _Rotation;
     private Vector2 _AirRot;
     private PlayerInput playerInput;
-
     Vector3 moveDirection;
     Vector3 airMoveDirection;
 
@@ -95,7 +98,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     RaycastHit slopeHit;
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f ))
         {
@@ -105,9 +108,16 @@ public class S_HoverboardPhysic : MonoBehaviour
         return false;
     }
 
-    private Vector3 GetSlopeMoveDirection()
+    void Update()
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+        if (OnSlope())
+        {
+            //Debug.Log("On Slope");
+        }
+        else
+        {
+            //Debug.Log("L");
+        }
     }
 
     void Start()
@@ -139,8 +149,6 @@ public class S_HoverboardPhysic : MonoBehaviour
                 _Rotation = _PlayerInputScript._rotmvn;
                 _AirRot = _PlayerInputScript._rotair;
             }
-        // rb.AddForce(-transform.right * baseVelocity, ForceMode.VelocityChange);
-        // rb.AddForce(-transform.up * baseVelocity, ForceMode.VelocityChange);
 
             // Calculate the rotation
             //Debug.Log(rotation + _Rotation.x + _Rotation.y);
@@ -148,7 +156,6 @@ public class S_HoverboardPhysic : MonoBehaviour
             transform.Rotate(0, rotation, 0);
 
             myInput();
-
             MovePlayer();
             ApplyGravity();
 
@@ -170,24 +177,9 @@ public class S_HoverboardPhysic : MonoBehaviour
                 // Increase gravity multiplier over time
                 gravityMultiplier = Mathf.Lerp(1.0f, maxGravityMultiplier, currentTimeInAir / maxTimeInAir);
             }
-            // Calculate the lean angle based on input
-            float leanAngle = _Movement.x * maxLeanAngle;
-            currentLeanAngle = Mathf.Lerp(currentLeanAngle, leanAngle, Time.deltaTime * 5);
 
-            // Apply the lean effect to the character mesh
-            Vector3 newRotation = playerModel.localEulerAngles;
-            newRotation.y = currentLeanAngle;
-            playerModel.localEulerAngles = newRotation;
             SurfaceAlignment();
-
-            // Calculate the movement direction based on the character's forward direction
-            Vector3 forwardDirection = -transform.right.normalized;
-
-            // Calculate velocity based on the constant speed and forward direction
-            forwardVelocity = forwardDirection * 10;
-
-            // Move the character controller using velocity
-            characterController.Move(forwardVelocity * Time.fixedDeltaTime);
+            //
 
             if (isDrifting)
             {
@@ -221,17 +213,35 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         //Applying the input values given by the Player Input script to a usable Vector 3. Y Movement is clamped to prevent the player from moving backwards.
         _Movement.y = Mathf.Clamp(_Movement.y, 0, 1);
+        if(_Movement.magnitude > 0)
+        {
+            lastInputDirection = new Vector3(_Movement.x, 0, _Movement.y).normalized;
+        }
+        //Debug.Log(_Movement.y);
         moveDirection = transform.forward * -_Movement.x + transform.right * -_Movement.y;
         airMoveDirection = orientation.forward * -_AirRot.x + orientation.right * _AirRot.y;
     }
 
     private void MovePlayer()
     {
+        acceleration = Mathf.Clamp(acceleration, 0, maxSpeed);
+
+        if(_Movement.y < 1)
+        {
+            acceleration -= Time.fixedDeltaTime * accelerationRate;
+            ForwardMovement();
+
+        }
+        else
+        {
+            acceleration += Time.fixedDeltaTime * accelerationRate;
+        }
+
         // Calculate acceleration based on input
-        Vector3 accelerationVector = moveDirection * acceleration * Time.fixedDeltaTime;
+        Vector3 accelerationVector = moveDirection * acceleration;
 
         // Apply acceleration to velocity
-        velocity += accelerationVector.normalized;
+        velocity = accelerationVector;
 
         // Limit velocity to maximum speed
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
@@ -239,12 +249,33 @@ public class S_HoverboardPhysic : MonoBehaviour
         characterController.Move(velocity * Time.fixedDeltaTime);
     }
 
+    private void ForwardMovement()
+    {
+        // Calculate the movement direction based on the character's forward direction
+        Vector3 forwardDirection = -transform.right;
+
+        if (_Movement.y < 1)
+        {
+            forwardVelocity = forwardDirection * acceleration;
+
+        }
+        else
+        {
+            forwardVelocity = forwardDirection;
+        }
+        // Calculate velocity based on the constant speed and forward direction
+        //forwardVelocity = forwardDirection * 10;
+
+
+        // Move the character controller using velocity
+        characterController.Move(forwardVelocity * Time.fixedDeltaTime);
+    }
+
     public void Jump()
     {
         if (canMove)
         {
             StartCoroutine(JumpCoroutine());
-
             // Move the character controller to apply the jump force
             characterController.Move(moveDirection);
         }
@@ -253,20 +284,18 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     IEnumerator JumpCoroutine()
     {
-        Debug.Log("Starting Jump");
         // Calculate the initial jump force
-        float initialJumpForce = Mathf.Sqrt(2 * Mathf.Abs(_baseGravity) * jumpForce);
-        float remainingJumpForce = jumpForce;
+        float initialJumpForce = Mathf.Sqrt(Mathf.Abs(_baseGravity) * jumpForce);
+        float remainingJumpForce = initialJumpForce;
         Vector3 jumpMoveDirection = new Vector3(0, 0, 0);
 
         // Apply jump force gradually over a set number of frames
         for (int i = 0; i < jumpFrames; i++)
         {
             remainingJumpForce += remainingJumpForce / jumpFrames;
-            jumpMoveDirection.y += remainingJumpForce / jumpFrames;
+            jumpMoveDirection.y = remainingJumpForce / jumpFrames;
             characterController.Move(jumpMoveDirection);
             yield return new  WaitForFixedUpdate();
-            Debug.Log("Done");
         }
     }
 

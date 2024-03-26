@@ -156,13 +156,15 @@ MonoBehaviour:
   playerModel: {fileID: 527959247358016128}
   canMove: 0
   acceleration: 0.1
-  maxSpeed: 25
+  accelerationRate: 20
+  maxSpeed: 40
   velocity: {x: 0, y: 0, z: 0}
+  lastInputDirection: {x: 0, y: 0, z: 0}
   driftForce: 10
   maxDriftDuration: 2
   jumpForce: 1.5
   maxLeanAngle: 45
-  jumpFrames: 6
+  jumpFrames: 10
   rotationSpeed: 100
   airRotationSpeed: 5
   snowboardSFX: {fileID: 0}
@@ -176,7 +178,7 @@ MonoBehaviour:
   airDrag: 2
   airAngDrag: 1
   _baseGravity: -9
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   maxGravityMultiplier: 10
 --- !u!143 &4645308466315212699
 CharacterController:
@@ -201,7 +203,7 @@ CharacterController:
   m_Radius: 0.87
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.087
   m_MinMoveDistance: 0.001
   m_Center: {x: -0.53, y: 1.74, z: 0}
 --- !u!136 &4357492226773306382
@@ -455,7 +457,7 @@ MonoBehaviour:
     m_Bits: 64
   grounded: 0
   freeze: 0
-  anim: {fileID: 2020760535826088731}
+  anim: {fileID: 0}
 --- !u!1 &8337137643711265091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2008,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 527959247358016128}
     m_Modifications:
+    - target: {fileID: 314113235926579132, guid: 73542d8131300994ca640e68b5b2842b,
+        type: 3}
+      propertyPath: m_Name
+      value: TonyFinal
+      objectReference: {fileID: 0}
     - target: {fileID: 6169476961093369061, guid: 73542d8131300994ca640e68b5b2842b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2069,12 +2076,6 @@ PrefabInstance:
 --- !u!4 &1824923404370531790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6169476961093369061, guid: 73542d8131300994ca640e68b5b2842b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5534093471459076395}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2020760535826088731 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5820378812515002928, guid: 73542d8131300994ca640e68b5b2842b,
     type: 3}
   m_PrefabInstance: {fileID: 5534093471459076395}
   m_PrefabAsset: {fileID: 0}
