@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -14,8 +15,12 @@ public class S_HoverboardPhysic : MonoBehaviour
     private Transform orientation;
     [SerializeField]
     private Transform playerModel;
+    [SerializeField]
     private float Height;
+    [SerializeField]
     private float maxSlopeAngle;
+    [SerializeField]
+    private float slopeMovementMultiplier;
     private NavMeshAgent navmesh;
     private CharacterController characterController;
     bool isPlayer;
@@ -100,16 +105,17 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f ))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0;
+            return angle > maxSlopeAngle;
         }
         return false;
     }
 
     void Update()
     {
+         Debug.DrawRay(transform.position, Vector3.down * (Height * 1f), Color.green); // Visualize the raycast
         if (OnSlope())
         {
             //Debug.Log("On Slope");
@@ -122,7 +128,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void Start()
     {
-        canMove = false;
+        //canMove = false;
         if (gameObject.GetComponent<S_PlayerInput>() != null)
         {
             isPlayer = true;
@@ -224,7 +230,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void MovePlayer()
     {
-        acceleration = Mathf.Clamp(acceleration, 0, maxSpeed);
 
         if(_Movement.y < 1)
         {
@@ -236,6 +241,29 @@ public class S_HoverboardPhysic : MonoBehaviour
         {
             acceleration += Time.fixedDeltaTime * accelerationRate;
         }
+        if (OnSlope())
+        {
+            Debug.Log("On Slope");
+            // Apply slope movement multiplier to restrict uphill movement
+            // Calculate the angle between the player's forward direction and the slope normal
+            float angleToSlope = Vector3.Angle(transform.forward, slopeHit.normal);
+
+            // Determine if the slope is facing the opposite direction of the player's forward movement
+            bool isSlopeBackward = angleToSlope > 90f;
+
+            // Adjust movement direction based on the slope
+            if (isSlopeBackward)
+            {
+                // Move backward on slopes facing away from the player's forward direction
+                acceleration *= slopeMovementMultiplier;
+            }
+            else
+            {
+                // Move forward on slopes facing toward the player's forward direction
+                acceleration *= 1;
+            }
+        }
+        acceleration = Mathf.Clamp(acceleration, 0.4f, maxSpeed);
 
         // Calculate acceleration based on input
         Vector3 accelerationVector = moveDirection * acceleration;
@@ -257,11 +285,13 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (_Movement.y < 1)
         {
             forwardVelocity = forwardDirection * acceleration;
+            Debug.Log("Velocity is " + forwardVelocity + "Input is " + _Movement + "acceleration is " + acceleration);
 
         }
         else
         {
             forwardVelocity = forwardDirection;
+            Debug.Log(forwardVelocity);
         }
         // Calculate velocity based on the constant speed and forward direction
         //forwardVelocity = forwardDirection * 10;
@@ -270,6 +300,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         // Move the character controller using velocity
         characterController.Move(forwardVelocity * Time.fixedDeltaTime);
     }
+
 
     public void Jump()
     {
@@ -341,11 +372,11 @@ public class S_HoverboardPhysic : MonoBehaviour
     {
         if (!characterController.isGrounded)
         {
-            characterController.stepOffset = 0;
+            //characterController.stepOffset = 0;
         }
         else
         {
-            characterController.stepOffset = originalStepOffset;
+            //characterController.stepOffset = originalStepOffset;
         }
 
         moveDirection.y += _baseGravity * gravityMultiplier;
