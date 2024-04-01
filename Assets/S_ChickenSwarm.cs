@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+using UnityEditor;
 using UnityEngine;
 
 public class S_ChickenSwarm : MonoBehaviour
@@ -22,7 +22,7 @@ public class S_ChickenSwarm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (isTurningHead)
         {
            // toonChickens[0]
