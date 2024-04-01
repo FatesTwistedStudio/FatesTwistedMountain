@@ -27,6 +27,10 @@ public class ASyncLoader : MonoBehaviour
     public string[] loadingDetails;
     public TextMeshProUGUI LoadScreenPercentage;
 
+    float sliderProgress;
+    float elapsedTime;
+    float fakeLoadTime = 0.5f;
+
     public void LoadLevelAsync(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
@@ -55,18 +59,28 @@ public class ASyncLoader : MonoBehaviour
     }
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
+        sliderProgress = 0f;
+        elapsedTime = 0f;
         //create operation for loading async
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+
         //turn on the canvas
         loadScreen.SetActive(true);
         //set canvas while loading
+        //Debug.Log("Progress is:" + (operation.progress * 100) + "%");
+
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
+            //float progress = Mathf.Clamp01(operation.progress / .9f);
+            float progress = Mathf.Clamp01(elapsedTime / fakeLoadTime);
             slider.value = progress;
+            //slider.value = Mathf.Lerp(0f, 1f, progress);
             setLoadingScreenDetails(sceneIndex, progress);
+            elapsedTime += Time.deltaTime;
+            Debug.Log("Elasped time is " + elapsedTime);
             yield return null;
         }
+        Debug.Log("Elasped time is " + elapsedTime);
         //turn off loading canvas when done
         if (operation.isDone)
         {
@@ -75,8 +89,9 @@ public class ASyncLoader : MonoBehaviour
     }
     public void setLoadingScreenDetails(int sceneIndex, float progress)
     {
+        string formattedPercentage = (progress * 100f).ToString("F0") + "%";
         //slider.value = progress;
-        LoadScreenPercentage.SetText(progress * 100 + "%");
+        LoadScreenPercentage.SetText(formattedPercentage);
 
         Background.sprite = BackgroundImages[sceneIndex];
         LoadScreenHeaderText.SetText(headers[sceneIndex]);
@@ -84,6 +99,10 @@ public class ASyncLoader : MonoBehaviour
 
         // int r = Random.Range(0, levelDetails.Length);
         LoadScreenLoadingDetailsText.SetText(loadingDetails[0]);
+
+    }
+    void OnEnable()
+    {
 
     }
 }
