@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class S_OptionsMenu : MonoBehaviour
 {
     public TMPro.TMP_Dropdown  resDropdown;
+    public TMPro.TMP_Dropdown  graphicsDropdown;
     public Slider masterSlider, musicSlider,sfxSlider;
     public Toggle toggle;
     public AudioMixer masterVolume;
@@ -20,15 +21,16 @@ public class S_OptionsMenu : MonoBehaviour
     private const string resolutionWidthPlayerPrefKey = "ResolutionWidth";
     private const string resolutionHeightPlayerPrefKey = "ResolutionHeight";
     private const string resolutionRefreshRatePlayerPrefKey = "RefreshRate";
+    private const string resolutionDropDownPrefKey = "ResolutionDropdownValue";
+    private const string qualityPrefKey = "Quality";
     private const string fullScreenPlayerPrefKey = "FullScreen";
 
     Resolution[] resolutions;
-    List<Resolution> filteredResolutions;
+    public List<Resolution> filteredResolutions;
     private float currentRefreshRate;
 
     void Start()
     {
-        Load();
 
         int currentResIndex = 0;
 
@@ -59,13 +61,16 @@ public class S_OptionsMenu : MonoBehaviour
                 currentResIndex = i;
             }
         }
+        if (!PlayerPrefs.HasKey(resolutionDropDownPrefKey))
+        {
+            resDropdown.value = currentResIndex;
+        }
         resDropdown.AddOptions(options);
-        resDropdown.value = currentResIndex;
         resDropdown.RefreshShownValue();
 
         toggle.onValueChanged.AddListener(SetFullscreen);
         resDropdown.onValueChanged.AddListener(SetRes);
-
+        Load();
 
     }
 
@@ -94,12 +99,13 @@ public class S_OptionsMenu : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(qualityIndex);
         quality = qualityIndex;
+        PlayerPrefs.SetInt(qualityPrefKey, quality);
     }
 
     public void SetFullscreen (bool isFullscreen)
     {
-        Screen.fullScreen = isFullscreen;  
-        PlayerPrefs.SetInt(fullScreenPlayerPrefKey, isFullscreen ? 1 : 0);          
+        Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt(fullScreenPlayerPrefKey, isFullscreen ? 1 : 0);
     }
 
     public void SetRes(int resolutionIndex)
@@ -109,11 +115,14 @@ public class S_OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt(resolutionHeightPlayerPrefKey, res.height);
         PlayerPrefs.SetInt(resolutionRefreshRatePlayerPrefKey, res.refreshRate);
 
+        Debug.LogWarning(resolutionIndex);
         Screen.SetResolution(
-             res.width,
-             res.height,
-             toggle.isOn
-         );
+            res.width,
+            res.height,
+            toggle.isOn
+        );
+
+        PlayerPrefs.SetInt(resolutionDropDownPrefKey, resolutionIndex);
     }
 
     private void Load()
@@ -128,7 +137,11 @@ public class S_OptionsMenu : MonoBehaviour
         res.width = PlayerPrefs.GetInt(resolutionWidthPlayerPrefKey, Screen.currentResolution.width);
         res.height = PlayerPrefs.GetInt(resolutionHeightPlayerPrefKey, Screen.currentResolution.height);
         res.refreshRate = PlayerPrefs.GetInt(resolutionRefreshRatePlayerPrefKey, Screen.currentResolution.refreshRate);
+        Debug.LogWarning("width:" +res.width +" height:"+ res.height + " rfz:" +res.refreshRate);
+        Debug.LogWarning("res key:" + qualityPrefKey);
 
         toggle.isOn = PlayerPrefs.GetInt(fullScreenPlayerPrefKey, Screen.fullScreen ? 1 : 0) > 0;
+        graphicsDropdown.value = PlayerPrefs.GetInt(qualityPrefKey);
+        resDropdown.value = PlayerPrefs.GetInt("ResolutionDropdownValue");
     }
 }
