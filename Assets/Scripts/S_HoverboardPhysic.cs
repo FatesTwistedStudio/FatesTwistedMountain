@@ -285,13 +285,13 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (_Movement.y < 1)
         {
             forwardVelocity = forwardDirection * acceleration;
-            Debug.Log("Velocity is " + forwardVelocity + "Input is " + _Movement + "acceleration is " + acceleration);
+            //Debug.Log("Velocity is " + forwardVelocity + "Input is " + _Movement + "acceleration is " + acceleration);
 
         }
         else
         {
             forwardVelocity = forwardDirection;
-            Debug.Log(forwardVelocity);
+            //Debug.Log(forwardVelocity);
         }
         // Calculate velocity based on the constant speed and forward direction
         //forwardVelocity = forwardDirection * 10;

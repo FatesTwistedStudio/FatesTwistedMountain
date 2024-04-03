@@ -39,9 +39,9 @@ public class ASyncLoader : MonoBehaviour
     {
         if (name != "MainMenu")
         {
-            Debug.Log(name);
+            //Debug.Log(name);
             int index = SceneManager.GetSceneByName(name).buildIndex;
-            Debug.Log(index);
+            //Debug.Log(index);
             if (index <= -1)
             {
                 Debug.LogError("The Build Index for " + name + " has returned " + index);
@@ -77,10 +77,10 @@ public class ASyncLoader : MonoBehaviour
             //slider.value = Mathf.Lerp(0f, 1f, progress);
             setLoadingScreenDetails(sceneIndex, progress);
             elapsedTime += Time.deltaTime;
-            Debug.Log("Elasped time is " + elapsedTime);
+            //Debug.Log("Elasped time is " + elapsedTime);
             yield return null;
         }
-        Debug.Log("Elasped time is " + elapsedTime);
+       // Debug.Log("Elasped time is " + elapsedTime);
         //turn off loading canvas when done
         if (operation.isDone)
         {
