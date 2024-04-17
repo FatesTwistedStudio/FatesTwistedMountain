@@ -21,10 +21,13 @@ public class S_HoverboardPhysic : MonoBehaviour
     private float maxSlopeAngle;
     [SerializeField]
     private float slopeMovementMultiplier;
+    [SerializeField]
+    private float raycastOffsetX;
     private NavMeshAgent navmesh;
     private CharacterController characterController;
     bool isPlayer;
     private S_PlayerInput _PlayerInputScript;
+    private S_RailGrinding railGrinding;
 
     [Header("Movement")]
     public bool canMove;
@@ -35,7 +38,6 @@ public class S_HoverboardPhysic : MonoBehaviour
     private Vector3 forwardVelocity;
     [SerializeField]
     private Vector3 lastInputDirection = Vector3.zero;
-
 
     [Header("Drifting")]
     public float driftForce = 10f;
@@ -105,7 +107,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, Height * 1f))
+        if (Physics.Raycast(transform.position + transform.right * raycastOffsetX , Vector3.down, out slopeHit, Height * 1f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle > maxSlopeAngle;
@@ -115,7 +117,7 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     void Update()
     {
-         Debug.DrawRay(transform.position, Vector3.down * (Height * 1f), Color.green); // Visualize the raycast
+         Debug.DrawRay(transform.position + transform.right * raycastOffsetX , Vector3.down * (Height * 1f), Color.green); // Visualize the raycast
         if (OnSlope())
         {
             //Debug.Log("On Slope");
@@ -141,6 +143,7 @@ public class S_HoverboardPhysic : MonoBehaviour
             isPlayer = false;
         }
         characterController = GetComponent<CharacterController>();
+        railGrinding = GetComponent<S_RailGrinding>();
         originalStepOffset = characterController.stepOffset;
 
     }
@@ -230,51 +233,59 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void MovePlayer()
     {
-
-        if(_Movement.y < 1)
+        if (railGrinding.onRail == false)
         {
-            acceleration -= Time.fixedDeltaTime * accelerationRate;
-            ForwardMovement();
-
-        }
-        else
-        {
-            acceleration += Time.fixedDeltaTime * accelerationRate;
-        }
-        if (OnSlope())
-        {
-            Debug.Log("On Slope");
-            // Apply slope movement multiplier to restrict uphill movement
-            // Calculate the angle between the player's forward direction and the slope normal
-            float angleToSlope = Vector3.Angle(transform.forward, slopeHit.normal);
-
-            // Determine if the slope is facing the opposite direction of the player's forward movement
-            bool isSlopeBackward = angleToSlope > 90f;
-
-            // Adjust movement direction based on the slope
-            if (isSlopeBackward)
+            if(_Movement.y < 1)
             {
-                // Move backward on slopes facing away from the player's forward direction
-                acceleration *= slopeMovementMultiplier;
+                acceleration -= Time.fixedDeltaTime * accelerationRate;
+                ForwardMovement();
+
             }
             else
             {
-                // Move forward on slopes facing toward the player's forward direction
-                acceleration *= 1;
+                acceleration += Time.fixedDeltaTime * accelerationRate;
             }
+            if (OnSlope())
+            {
+                Debug.Log("On Slope");
+                // Apply slope movement multiplier to restrict uphill movement
+                // Calculate the angle between the player's forward direction and the slope normal
+                float angleToSlope = Vector3.Angle(transform.forward, slopeHit.normal);
+
+                // Determine if the slope is facing the opposite direction of the player's forward movement
+                bool isSlopeBackward = angleToSlope > 90f;
+
+                // Adjust movement direction based on the slope
+                if (isSlopeBackward)
+                {
+                    // Move backward on slopes facing away from the player's forward direction
+                    acceleration *= slopeMovementMultiplier;
+                }
+                else
+                {
+                    // Move forward on slopes facing toward the player's forward direction
+                    acceleration *= 1;
+                }
+            }
+            acceleration = Mathf.Clamp(acceleration, 0.4f, maxSpeed);
+
+            // Calculate acceleration based on input
+            Vector3 accelerationVector = moveDirection * acceleration;
+
+            // Apply acceleration to velocity
+            velocity = accelerationVector;
+
+            // Limit velocity to maximum speed
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+
+            characterController.Move(velocity * Time.fixedDeltaTime);
         }
-        acceleration = Mathf.Clamp(acceleration, 0.4f, maxSpeed);
+        else
+        {
+            //characterController.Move(railGrinding.grindSpeed);
 
-        // Calculate acceleration based on input
-        Vector3 accelerationVector = moveDirection * acceleration;
+        }
 
-        // Apply acceleration to velocity
-        velocity = accelerationVector;
-
-        // Limit velocity to maximum speed
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-
-        characterController.Move(velocity * Time.fixedDeltaTime);
     }
 
     private void ForwardMovement()
@@ -285,17 +296,12 @@ public class S_HoverboardPhysic : MonoBehaviour
         if (_Movement.y < 1)
         {
             forwardVelocity = forwardDirection * acceleration;
-            //Debug.Log("Velocity is " + forwardVelocity + "Input is " + _Movement + "acceleration is " + acceleration);
-
         }
         else
         {
             forwardVelocity = forwardDirection;
             //Debug.Log(forwardVelocity);
         }
-        // Calculate velocity based on the constant speed and forward direction
-        //forwardVelocity = forwardDirection * 10;
-
 
         // Move the character controller using velocity
         characterController.Move(forwardVelocity * Time.fixedDeltaTime);

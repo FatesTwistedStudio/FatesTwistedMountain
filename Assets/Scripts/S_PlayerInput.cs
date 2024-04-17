@@ -15,6 +15,7 @@ public class S_PlayerInput : MonoBehaviour
 
     S_HoverboardPhysic _physicsSystem;
     CharacterController character;
+    S_RailGrinding grinding;
 
     public Animator anim;
     public GameObject playerRef;
@@ -55,6 +56,7 @@ public class S_PlayerInput : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerRefrence = GetComponentInChildren<S_PlayerModelRef>();
         character = GetComponent<CharacterController>();
+        grinding = GetComponent<S_RailGrinding>();
 
         playerInput.actions["Move"].performed += ctx => _mvn = ctx.ReadValue<Vector2>();
         playerInput.actions["Move"].canceled += ctx => _mvn = Vector2.zero;
@@ -159,7 +161,7 @@ public class S_PlayerInput : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (IsGrounded())
+        if (IsGrounded() && !grinding.onRail)
         {
             //Debug.Log("jumping");
             anim.SetBool("HasLanded", false);
@@ -173,6 +175,11 @@ public class S_PlayerInput : MonoBehaviour
                 StartCoroutine(JumpDelay());
             }
         }
+        else if (grinding.onRail)
+        {
+            grinding.ThrowOffRail();
+        }
+
     }
     public void OnDrift(InputValue value)
     {
