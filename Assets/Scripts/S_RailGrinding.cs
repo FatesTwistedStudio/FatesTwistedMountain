@@ -12,11 +12,12 @@ public class S_RailGrinding : MonoBehaviour
 {
     [Header("Inputs")]
     [SerializeField] bool jump;
-    [SerializeField] Vector3 input;     //But they're here for rail switching
+     Vector3 input;     //But they're here for rail switching
 
     [Header("Variables")]
     public bool onRail;
     [SerializeField] float grindSpeed;
+    [SerializeField] float gravity;
     [SerializeField] float heightOffset;
     float timeForFullSpline;
     float elapsedTime;

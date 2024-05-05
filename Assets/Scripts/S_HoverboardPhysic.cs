@@ -124,7 +124,7 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
         else
         {
-            //Debug.Log("L");
+            //Debug.Log("L + Ratio");
         }
     }
 
@@ -336,7 +336,6 @@ public class S_HoverboardPhysic : MonoBehaviour
         }
     }
 
-
     private void ApplyDriftForce()
     {
         // Calculate drift force direction based on the character's forward direction
@@ -376,15 +375,6 @@ public class S_HoverboardPhysic : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (!characterController.isGrounded)
-        {
-            //characterController.stepOffset = 0;
-        }
-        else
-        {
-            //characterController.stepOffset = originalStepOffset;
-        }
-
         moveDirection.y += _baseGravity * gravityMultiplier;
         characterController.Move(moveDirection * Time.deltaTime);
     }
